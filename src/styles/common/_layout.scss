@@ -1,0 +1,94 @@
+$display-types: (block, inline, grid, none, flex, inline-flex);
+.d {
+  @each $display-type in $display-types {
+    &-#{$display-type} {
+      display: #{$display-type} !important;
+    }
+  }
+}
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    flex: 0 0 auto;
+    width: calc(100% / 12 * #{$i});
+  }
+}
+
+$justify-content: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+  evenly: space-evenly
+);
+.justify-content {
+  @each $alignment-name, $alignment in $justify-content {
+    &-#{$alignment-name} {
+      justify-content: #{$alignment} !important;
+    }
+  }
+}
+
+$align: (
+  items: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    baseline: baseline,
+    stretch: stretch
+  ),
+  content: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    between: space-between,
+    around: space-around,
+    stretch: stretch
+  ),
+  self: (
+    auto: auto,
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    baseline: baseline,
+    stretch: stretch
+  ),
+);
+.align {
+  @each $name, $alignments in $align {
+    &-#{$name} {
+      @each $alignment-name, $alignment in $alignments {
+        &-#{$alignment-name} {
+          align-#{$name}: #{$alignment} !important;
+        }
+      }
+    }
+  }
+}
+
+$directions: (row, column, row-reverse, column-reverse);
+$grow-factors: (0, 1);
+$shrink-factors: (0, 1);
+$wraps: (wrap, nowrap, wrap-reverse);
+.flex {
+  @each $direction in $directions {
+    &-#{$direction} {
+      flex-direction: #{$direction} !important;
+    }
+  }
+  @each $grow-factor in $grow-factors {
+    &-grow-#{$grow-factor} {
+      flex-grow: #{$grow-factor} !important;
+    }
+  }
+  @each $shrink-factor in $shrink-factors {
+    &-shrink-#{$shrink-factor} {
+      flex-shrink: #{$shrink-factor} !important;
+    }
+  }
+  @each $wrap in $wraps {
+    &-#{$wrap} {
+      flex-wrap: #{$wrap} !important;
+    }
+  }
+}

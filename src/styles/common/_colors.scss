@@ -1,0 +1,24 @@
+$colors: (
+  accent: #B596FF,
+  accent-semi-transparent: #B596FF33,
+  accent-shadow: #B596FF1A,
+  background-1: #FFFFFF,
+  background-2: #F7F8FF,
+  text-1: #FFFFFF,
+  text-2: #000000,
+  text-3: #D9D9D9,
+  text-4: #828282,
+  error: #FD7670
+);
+
+:root {
+  @each $color, $hex in $colors {
+    --#{$color}: #{$hex};
+    .bg-#{$color} {
+      background-color: var(--#{$color}) !important;
+    }
+    .color-#{$color} {
+      color: var(--#{$color}) !important;
+    }
+  }
+}
