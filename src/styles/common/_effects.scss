@@ -1,0 +1,5 @@
+@use "sass:map";
+
+.drop-shadow {
+  box-shadow: 0px 0px 40px map.get($colors, "accent-shadow");
+}
