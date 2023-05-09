@@ -1,0 +1,40 @@
+@mixin text($font-family, $font-weight, $font-size, $line-height, $letter-spacing: 0) {
+  font-style: normal;
+  font-family: #{$font-family}, Helvetica, Arial, sans-serif;
+  font-weight: #{$font-weight};
+  font-size: #{$font-size}px;
+  @if $line-height {
+    line-height: #{$line-height}px;
+  }
+  @if $letter-spacing {
+    letter-spacing: #{$letter-spacing};
+  }
+}
+
+label, .caption {
+  @include text('Rubik', 400, 12, 14);
+}
+b, .bold-text {
+  @include text('Rubik', 700, 20, 24);
+}
+.medium-text {
+  @include text('Rubik', 500, 20, 24);
+}
+body, .regular-text {
+  @include text('Rubik', 400, 20, 24);
+}
+h4, .header-4 {
+  @include text('Montserrat', 500, 22, 27);
+}
+h3, .header-3 {
+  @include text('Montserrat', 700, 28, 34);
+}
+h2, .header-2 {
+  @include text('Montserrat', 700, 32, 39);
+}
+h1, .header-1 {
+  @include text('Montserrat', 700, 42, 51);
+}
+.logo {
+  @include text('Raleway', 700, 47, 55);
+}
