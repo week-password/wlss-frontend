@@ -1,0 +1,18 @@
+.cdk-overlay-container {
+  .mat-mdc-snack-bar-container {
+    margin: 10px;
+    .mdc-snackbar {
+      &__surface {
+        min-width: max-content;
+        max-width: none;
+        padding: 0;
+        border-radius: unset;
+        background-color: transparent;
+        box-shadow: none;
+      }
+      &__label {
+        padding: 0;
+      }
+    }
+  }
+}

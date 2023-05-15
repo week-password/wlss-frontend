@@ -1,0 +1,9 @@
+.c-base-layout {
+  @extend .drop-shadow;
+  border-radius: 15px;
+  background-color: var(--background-1);
+
+  &_transparent {
+    background-color: transparent;
+  }
+}
