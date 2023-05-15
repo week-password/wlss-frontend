@@ -1,0 +1,30 @@
+<div class="c-dialog">
+  <div mat-dialog-title class="d-flex align-items-center justify-content-between">
+    <div *ngIf="title" [innerText]="title"></div>
+    <div *ngIf="titleTemplate">
+      <ng-container [ngTemplateOutlet]="titleTemplate"></ng-container>
+    </div>
+    <button class="c-button_icon color-text-4" mat-dialog-close>
+      <fa-icon [icon]="xmark"></fa-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <div *ngIf="content" [innerText]="content"></div>
+    <div *ngIf="contentTemplate">
+      <ng-container [ngTemplateOutlet]="contentTemplate"></ng-container>
+    </div>
+  </div>
+  <div *ngIf="submitButtonText || cancelButtonText" mat-dialog-actions align="end">
+    <app-button *ngIf="submitButtonText"
+                mat-button mat-dialog-close
+                class="mr-20"
+                [color]="EBaseColor.primary"
+                [height]="40"
+    >{{ submitButtonText }}</app-button>
+    <app-button *ngIf="cancelButtonText"
+                mat-button mat-dialog-close
+                [color]="EBaseColor.secondary"
+                [height]="40"
+    >{{ cancelButtonText }}</app-button>
+  </div>
+</div>

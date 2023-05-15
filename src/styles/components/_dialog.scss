@@ -1,0 +1,25 @@
+.cdk-global-scrollblock {
+  overflow: hidden;
+}
+.cdk-overlay-container {
+  .mat-mdc-dialog-container {
+    .mdc-dialog {
+      &__surface {
+        @extend .c-base-layout;
+      }
+      &__title {
+        @extend .header-3;
+        padding: 0;
+        margin: 0;
+        &::before {
+          display: none;
+        }
+      }
+      &__content {
+        @extend .regular-text;
+        padding: 0;
+        margin: 40px 0;
+      }
+    }
+  }
+}

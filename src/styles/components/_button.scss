@@ -1,0 +1,63 @@
+.c-button {
+  overflow: hidden;
+  .mdc-button {
+    height: 100%;
+    border-radius: 4px;
+    border: 2px solid;
+    min-width: 100%;
+    line-height: initial;
+
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+
+    &:disabled {
+      background-color: var(--background-2);
+      border-color: var(--background-2);
+      color: var(--text-4);
+    }
+  }
+  &_primary {
+    .mdc-button:not(:disabled) {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--text-1);
+      &:hover {
+        background-color: var(--background-1);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+    }
+  }
+  &_secondary {
+    .mdc-button:not(:disabled) {
+      background-color: var(--accent-semi-transparent);
+      border-color: var(--accent);
+      color: var(--accent);
+      &:hover {
+        background-color: var(--background-1);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+    }
+  }
+  &_danger {
+    .mdc-button:not(:disabled) {
+      background-color: var(--background-1);
+      border-color: var(--error);
+      color: var(--error);
+      &:hover {
+        background-color: var(--error);
+        border-color: var(--error);
+        color: var(--text-1);
+      }
+    }
+  }
+  &_icon {
+    @extend .regular-text;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+}
