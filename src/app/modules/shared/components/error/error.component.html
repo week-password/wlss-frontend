@@ -1,0 +1,18 @@
+<ng-container *ngIf="error === 'required'">
+  <span>Поле не может быть пустым</span>
+</ng-container>
+<ng-container *ngIf="error === 'minlength'">
+  <span>Поле не может содержать менее {{ errors[error].requiredLength }} символов</span>
+</ng-container>
+<ng-container *ngIf="error === 'maxlength'">
+  <span>Поле не может содержать более {{ errors[error].requiredLength }} символов</span>
+</ng-container>
+<ng-container *ngIf="error === 'pattern'">
+  <span>Поле содержит недопустимые символы</span>
+</ng-container>
+<ng-container *ngIf="error === 'fileformat'">
+  <span>Недопустимый формат файла</span>
+</ng-container>
+<ng-container *ngIf="error === 'filemaxsize'">
+  <span>Размер файла не должен быть более {{ errors[error].requiredSize }} Мб</span>
+</ng-container>

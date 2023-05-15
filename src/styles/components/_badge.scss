@@ -1,0 +1,41 @@
+.c-badge {
+  @extend .caption;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  height: 24px;
+  padding: 5px 8px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  cursor: default;
+
+  &_rounded {
+    border-radius: 50%;
+  }
+
+  &_header {
+    @extend .medium-text;
+    height: 34px;
+    padding: 5px 10.5px;
+  }
+
+  &_primary {
+    color: var(--text-1);
+    background-color: var(--accent);
+    border-color: transparent;
+  }
+  &_secondary {
+    color: var(--text-2);
+    background-color: var(--accent-semi-transparent);
+    border-color: transparent;
+  }
+  &_hover {
+    transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+    &:hover {
+      color: var(--text-2);
+      background-color: transparent;
+      border-color: var(--accent);
+    }
+  }
+}
