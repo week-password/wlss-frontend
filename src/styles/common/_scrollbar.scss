@@ -1,0 +1,13 @@
+// chromium
+::-webkit-scrollbar {
+  width: 4px;
+  &-thumb {
+    background-color: var(--text-4);
+    border-radius: 4px;
+  }
+}
+// firefox
+* {
+  scrollbar-color: var(--text-4);
+  scrollbar-width: thin;
+}
