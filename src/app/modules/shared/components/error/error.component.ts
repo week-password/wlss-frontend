@@ -9,6 +9,9 @@ import { ErrorsPrioritizer } from 'src/app/core/classes/Prioritizer';
 })
 export class ErrorComponent {
   @Input()
+  get errors(): ValidationErrors {
+    return this._errors;
+  }
   set errors(value: ValidationErrors | null) {
     this._errors = value || {};
     if (!value) {
@@ -17,9 +20,6 @@ export class ErrorComponent {
     }
     const prioritizer = new ErrorsPrioritizer(value);
     this.error = prioritizer.elements[0];
-  }
-  get errors(): ValidationErrors {
-    return this._errors;
   }
   error = '';
   private _errors: ValidationErrors = {};

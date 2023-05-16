@@ -1,6 +1,6 @@
 abstract class AbstractPrioritizer<T> {
-  private sourceElements: T[] = [];
   protected abstract priorities: T[];
+  private sourceElements: T[] = [];
 
   constructor(elements: T[]) {
     this.sourceElements = elements.slice();
