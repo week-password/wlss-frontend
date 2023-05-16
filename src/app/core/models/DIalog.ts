@@ -1,10 +1,10 @@
-import { TemplateRef } from '@angular/core';
+import { CustomTemplateRef } from '.';
 
-export interface IDIalogData {
+export interface IDialogData {
   cancelButtonText?: string;
   content?: string;
-  contentTemplate?: TemplateRef<any>;
+  contentTemplate?: CustomTemplateRef;
   submitButtonText?: string;
   title?: string;
-  titleTemplate?: TemplateRef<any>;
+  titleTemplate?: CustomTemplateRef;
 }

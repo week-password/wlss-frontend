@@ -43,7 +43,9 @@ const COMPONENTS = [
   SnackbarComponent,
   TextareaComponent,
 ];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const DIRECTIVES: any = [];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PIPES: any = [];
 
 @NgModule({

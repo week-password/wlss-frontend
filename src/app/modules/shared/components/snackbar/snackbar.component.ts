@@ -1,6 +1,6 @@
-import { Component, Inject, inject, TemplateRef } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
-import { EPosition, ESnackbarView, ETextPosition, ISnackbarData } from 'src/app/core/models';
+import { CustomTemplateRef, EPosition, ESnackbarView, ETextPosition, ISnackbarData } from 'src/app/core/models';
 
 @Component({
   selector: 'app-snackbar',
@@ -14,9 +14,9 @@ export class SnackbarComponent {
   catPosition? = EPosition.top;
   text?: string;
   textAlign? = ETextPosition.right;
-  textTemplate?: TemplateRef<any>;
+  textTemplate?: CustomTemplateRef;
   title?: string;
-  titleTemplate?: TemplateRef<any>;
+  titleTemplate?: CustomTemplateRef;
   view: ESnackbarView;
   width? = 320;
 
