@@ -13,7 +13,8 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:eslint-plugin-import/recommended"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -32,7 +33,44 @@
             "style": "kebab-case"
           }
         ],
+        "@angular-eslint/no-output-native": "off",
         "@typescript-eslint/explicit-function-return-type": "error",
+        "@typescript-eslint/member-ordering": [
+          "error",
+          {
+            "default": [
+              "signature",
+              "call-signature",
+
+              "public-decorated-field",
+              "protected-decorated-field",
+              "private-decorated-field",
+
+              "public-decorated-get",
+              "protected-decorated-get",
+              "private-decorated-get",
+
+              "public-field",
+              "protected-field",
+              "private-field",
+
+              "constructor",
+
+              "public-get",
+              "protected-get",
+              "private-get",
+
+              "public-decorated-method",
+              "protected-decorated-method",
+              "private-decorated-method",
+
+              "public-method",
+              "protected-method",
+              "private-method"
+            ]
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/typedef": [
             "error",
             {
@@ -40,6 +78,11 @@
                 "parameter": true
             }
         ],
+        "import/first": "error",
+        "import/no-default-export": "error",
+        "import/no-unresolved": "off",
+        "no-else/no-else": "error",
+        "accessor-pairs": "error",
         "no-restricted-imports": [
           "error",
           {
@@ -52,6 +95,10 @@
     {
       "files": [
         "*.html"
+      ],
+      "plugins": [
+        "eslint-plugin-import",
+        "eslint-plugin-no-else"
       ],
       "extends": [
         "plugin:@angular-eslint/template/recommended"
