@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "wisher-frontend": {
+    "wlss-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/wisher-frontend",
+            "outputPath": "dist/wlss-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "wisher-frontend:build:production"
+              "browserTarget": "wlss-frontend:build:production"
             },
             "development": {
-              "browserTarget": "wisher-frontend:build:development"
+              "browserTarget": "wlss-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "wisher-frontend:build"
+            "browserTarget": "wlss-frontend:build"
           }
         },
         "test": {
