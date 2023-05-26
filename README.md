@@ -1,6 +1,6 @@
-# WisherFrontend
+# WLSS frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
+Frontend application for [Wish List Sharing Service](https://github.com/week-password/wisher). This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
 
 ## Development server
 
