@@ -14,10 +14,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
+import { AuthorizedUserComponent } from './components/authorized-user/authorized-user.component';
 import { ButtonComponent } from './components/button/button.component';
+import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ErrorComponent } from './components/error/error.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 import { InputComponent } from './components/input/input.component';
+import { OverlayComponent } from './components/overlay/overlay.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 
@@ -36,10 +41,15 @@ const MODULES = [
 ];
 
 const COMPONENTS = [
+  AuthorizedUserComponent,
   ButtonComponent,
+  CookieBannerComponent,
   DialogComponent,
   ErrorComponent,
+  FooterComponent,
+  HeaderComponent,
   InputComponent,
+  OverlayComponent,
   SnackbarComponent,
   TextareaComponent,
 ];

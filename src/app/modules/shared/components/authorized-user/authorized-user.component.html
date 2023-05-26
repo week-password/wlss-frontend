@@ -1,0 +1,16 @@
+<div class="c-authorized-user"
+     cdkOverlayOrigin
+     #authorizedUser="cdkOverlayOrigin"
+     (click)="authorizedUserMenu.switch()"
+>
+  <div class="c-authorized-user__avatar"></div>
+  <div class="c-authorized-user__name">Галина Гравчук</div>
+</div>
+
+<app-overlay #authorizedUserMenu [trigger]="authorizedUser" [position]="EOverlayPosition.bottomEnd">
+    <div class="c-authorized-user-dropdown c-dropdown">
+      <div *ngFor="let item of menuItems" class="c-dropdown__item" (click)="item.action()">
+        {{ item.value }}
+      </div>
+    </div>
+</app-overlay>

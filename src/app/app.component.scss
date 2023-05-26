@@ -1,0 +1,26 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  &__header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: var(--background-1);
+    z-index: 2;
+  }
+  &__content {
+    width: 100%;
+    max-width: 1280px + 60px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    flex-grow: 1;
+    background-color: var(--background-1);
+    z-index: 1;
+  }
+  &__footer {
+    width: 100%;
+    background-color: var(--background-1);
+    z-index: 1;
+  }
+}
