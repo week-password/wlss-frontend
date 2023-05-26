@@ -1,4 +1,12 @@
-<div>
-  <h1 class="logo">Wisher <fa-icon [icon]="faCoffee"></fa-icon> </h1>
-  <router-outlet></router-outlet>
+<div class="app">
+  <div class="app__header">
+    <app-header></app-header>
+  </div>
+  <div class="app__content">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="app__footer">
+    <app-footer></app-footer>
+  </div>
+  <app-cookie-banner></app-cookie-banner>
 </div>
