@@ -1,0 +1,11 @@
+<ng-template cdkConnectedOverlay
+             cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+             [cdkConnectedOverlayHasBackdrop]="true"
+             [cdkConnectedOverlayOrigin]="trigger"
+             [cdkConnectedOverlayOpen]="isOpen"
+             [cdkConnectedOverlayPositions]="overlayPosition"
+             (detach)="isOpen = false"
+             (backdropClick)="isOpen = false"
+>
+  <ng-content></ng-content>
+</ng-template>
