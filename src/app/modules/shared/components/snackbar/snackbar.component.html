@@ -3,6 +3,9 @@
     [style.textAlign]="textAlign"
     [style.width]="width + 'px'"
 >
+  <div class="c-snackbar__cat" [class]="['c-snackbar__cat_' + catPosition]">
+    <svg-icon src="assets/icons/mas-cat.svg"></svg-icon>
+  </div>
   <span matSnackBarLabel>
     <div *ngIf="title" class="c-snackbar__title medium-text mb-10">{{ title }}</div>
     <div *ngIf="titleTemplate" class="c-snackbar__title medium-text mb-10">
