@@ -10,6 +10,7 @@ import { EOverlayPosition, OverlayPositions } from 'src/app/core/models/OverlayP
 export class OverlayComponent {
   @Input() trigger: CdkOverlayOrigin;
   @Input() position: EOverlayPosition = EOverlayPosition.bottomCenter;
+  @Input() closeAfterClick = true;
 
   isOpen = false;
 
@@ -19,5 +20,9 @@ export class OverlayComponent {
 
   switch(): void {
     this.isOpen = !this.isOpen;
+  }
+
+  close(): void {
+    this.isOpen = false;
   }
 }
