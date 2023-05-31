@@ -23,6 +23,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { InputComponent } from './components/input/input.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
@@ -51,6 +52,7 @@ const COMPONENTS = [
   FooterComponent,
   HeaderComponent,
   InputComponent,
+  NotFoundComponent,
   OverlayComponent,
   SnackbarComponent,
   TextareaComponent,
