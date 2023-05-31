@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { EOverlayPosition } from 'src/app/core/models/OverlayPosition';
 
 @Component({
@@ -11,26 +12,28 @@ export class AuthorizedUserComponent {
   menuItems = [
     {
       value: 'Профиль',
-      action: this.goToProfile
+      action: this.goToProfile.bind(this)
     },
     {
       value: 'Настройки',
-      action: this.openProfileSettings
+      action: this.openProfileSettings.bind(this)
     },
     {
       value: 'Выход',
-      action: this.logout
+      action: this.logout.bind(this)
     },
   ];
   EOverlayPosition = EOverlayPosition;
 
+  constructor(private router: Router) { }
+
   private goToProfile(): void {
-    return;
+    this.router.navigate(['profile']);
   }
   private openProfileSettings(): void {
     return;
   }
   private logout(): void {
-    return;
+    this.router.navigate(['signin']);
   }
 }

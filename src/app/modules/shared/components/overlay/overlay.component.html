@@ -4,8 +4,10 @@
              [cdkConnectedOverlayOrigin]="trigger"
              [cdkConnectedOverlayOpen]="isOpen"
              [cdkConnectedOverlayPositions]="overlayPosition"
-             (detach)="isOpen = false"
-             (backdropClick)="isOpen = false"
+             (backdropClick)="close()"
+             (detach)="close()"
 >
-  <ng-content></ng-content>
+  <div (click)="closeAfterClick && close()">
+    <ng-content></ng-content>
+  </div>
 </ng-template>

@@ -1,7 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { AuthModule } from 'src/app/modules/auth/auth.module';
+import { ProfileModule } from 'src/app/modules/profile/profile.module';
+import { TermsModule } from 'src/app/modules/terms/terms.module';
+import { NotFoundComponent } from 'src/app/modules/shared/components/not-found/not-found.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'profile',
+  },
+  {
+    path: '',
+    loadChildren: () => AuthModule,
+  },
+  {
+    path: 'profile',
+    loadChildren: () => ProfileModule,
+  },
+  {
+    path: 'terms',
+    loadChildren: () => TermsModule,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
