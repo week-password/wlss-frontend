@@ -1,6 +1,6 @@
-import { Component, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subject, takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs';
 import {
   CustomTemplateRef,
   EMatSnackbarHPosition,
@@ -11,32 +11,29 @@ import {
   ISnackbarData
 } from 'src/app/core/models';
 import { SnackbarComponent } from 'src/app/modules/shared/components/snackbar/snackbar.component';
+import { BaseComponent } from 'src/app/modules/shared/directives/BaseComponent';
 
 @Component({
   selector: 'app-cookie-banner',
   templateUrl: './cookie-banner.component.html',
   styleUrls: ['./cookie-banner.component.scss']
 })
-export class CookieBannerComponent implements AfterViewInit, OnDestroy {
+export class CookieBannerComponent extends BaseComponent implements AfterViewInit {
   @ViewChild('cookieText') cookieText: CustomTemplateRef;
 
   private readonly bannerTitle = 'Добро пожаловать в Wisher - сервис по исполнению желаний!';
   private readonly bannerButtonText = 'Понятно';
   private readonly bannerWidth = 324;
-  private destroy$ = new Subject<void>();
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar) {
+    super();
+  }
 
   ngAfterViewInit(): void {
     const cookieBannerDismissed = localStorage.getItem('cookie-banner-dismissed');
     if (!cookieBannerDismissed) {
       this.showCookieBanner();
     }
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   private showCookieBanner(): void {

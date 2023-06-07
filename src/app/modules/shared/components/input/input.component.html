@@ -12,6 +12,7 @@
            [type]="type"
            (blur)="onBlur()"
            (focus)="onFocus()"
+           (input)="onInput($event)"
     >
     <mat-error *ngIf="showError" class="caption">
       <app-error [errors]="inputControl.errors"></app-error>
