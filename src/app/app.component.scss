@@ -11,10 +11,12 @@
   }
   &__content {
     width: 100%;
+    flex-grow: 1;
     max-width: 1280px + 60px;
     margin: 0 auto;
     padding: 40px 30px;
-    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
     background-color: var(--background-1);
     z-index: 1;
   }

@@ -1,0 +1,14 @@
+.c-welcome-conversation {
+  display: flex;
+  flex-direction: column;
+  padding: 70px 50px 0;
+
+  &__message {
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+    &:nth-child(2n) {
+      align-self: flex-end;
+    }
+  }
+}
