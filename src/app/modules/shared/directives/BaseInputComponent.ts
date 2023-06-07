@@ -17,6 +17,7 @@ export class BaseInputComponent {
 
   @Output() blur = new EventEmitter<void>();
   @Output() focus = new EventEmitter<void>();
+  @Output() input = new EventEmitter<InputEvent>();
 
   focused = false;
 
@@ -34,5 +35,9 @@ export class BaseInputComponent {
   onFocus(): void {
     this.focused = true;
     this.focus.emit();
+  }
+
+  onInput(event: Event): void {
+    this.input.emit(event as InputEvent);
   }
 }

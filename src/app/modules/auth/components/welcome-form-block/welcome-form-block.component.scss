@@ -1,0 +1,12 @@
+.c-welcome-form-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 80px 50px 0;
+  &__logo {
+    margin-bottom: 50px;
+  }
+  &__header {
+    margin-bottom: 40px;
+  }
+}

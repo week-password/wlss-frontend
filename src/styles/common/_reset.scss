@@ -13,6 +13,9 @@
 html, body {
   height: 100%;
 }
+body * {
+  display: block;
+}
 :focus,
 :active,
 a:focus,
