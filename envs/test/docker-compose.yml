@@ -1,0 +1,7 @@
+services:
+  wlss-fe:
+    build:
+      context: ../..
+      dockerfile: envs/test/Dockerfile
+    ports:
+      - 80:80
