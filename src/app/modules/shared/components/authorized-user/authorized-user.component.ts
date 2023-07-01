@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { EOverlayPosition } from 'src/app/core/models/OverlayPosition';
+import { EOverlayPosition } from 'src/app/core/models';
 
 @Component({
   selector: 'app-authorized-user',

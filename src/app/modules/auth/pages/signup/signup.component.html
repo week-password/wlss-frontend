@@ -1,0 +1,56 @@
+<div class="signup c-base-layout">
+  <div class="signup__welcome-conversation">
+    <app-welcome-conversation></app-welcome-conversation>
+  </div>
+  <div class="signup__line c-line c-line_vertical"></div>
+  <div class="signup__welcome-form-block">
+    <app-welcome-form-block>
+      <form class="signup__form" [formGroup]="form">
+        <div class="signup__form-inputs">
+          <ng-container *ngIf="currentSigninStep === ESigninStep.main">
+            <app-input class="mb-20"
+                      label="логин"
+                      [inputControl]="controls.login"
+            ></app-input>
+            <app-input class="mb-20"
+                      label="e-mail"
+                      [type]="EInputType.email"
+                      [inputControl]="controls.email"
+            ></app-input>
+            <app-input class="mb-20"
+                      label="пароль"
+                      [type]="EInputType.password"
+                      [inputControl]="controls.password"
+            ></app-input>
+            <app-input class="mb-30"
+                      label="повторите пароль"
+                      [type]="EInputType.password"
+                      [inputControl]="controls.confirmPassword"
+            ></app-input>
+            <app-button [disabled]="submitDisabled" (click)="goToDetailsStep()">Далее</app-button>
+          </ng-container>
+          <ng-container *ngIf="currentSigninStep === ESigninStep.details">
+            <app-input class="mb-20"
+                      label="имя"
+                      appTrimStartWhitespaces
+                      appDisableRepeatWhitespaces
+                      [inputControl]="controls.name"
+            ></app-input>
+            <app-textarea class="mb-30"
+                          label="о себе"
+                          placeholder="о себе (необязательно)"
+                          appTrimStartWhitespaces
+                          appDisableRepeatWhitespaces
+                          [inputControl]="controls.description"
+            ></app-textarea>
+            <app-button [disabled]="submitDisabled" (click)="onSubmit()">Завершить регистрацию</app-button>
+          </ng-container>
+        </div>
+      </form>
+      <div class="signup__caption caption">
+        <div>Уже есть аккаунт?</div>
+        <a class="color-accent" routerLink="/signin">Войти</a>
+      </div>
+    </app-welcome-form-block>
+  </div>
+</div>

@@ -10,6 +10,9 @@
 <ng-container *ngIf="error === 'pattern'">
   <span>Поле содержит недопустимые символы</span>
 </ng-container>
+<ng-container *ngIf="error === 'passwordsmatch'">
+  <span>Пароли не совпадают</span>
+</ng-container>
 <ng-container *ngIf="error === 'fileformat'">
   <span>Недопустимый формат файла</span>
 </ng-container>

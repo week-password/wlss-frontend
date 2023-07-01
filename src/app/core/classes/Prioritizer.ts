@@ -32,6 +32,7 @@ export class ErrorsPrioritizer extends ObjectKeysPrioritizer {
     'pattern',
     'minlength',
     'maxlength',
+    'passwordsmatch',
     'fileformat',
     'filemaxsize',
   ];

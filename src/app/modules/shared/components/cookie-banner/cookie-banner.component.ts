@@ -11,7 +11,7 @@ import {
   ISnackbarData
 } from 'src/app/core/models';
 import { SnackbarComponent } from 'src/app/modules/shared/components/snackbar/snackbar.component';
-import { BaseComponent } from 'src/app/modules/shared/directives/BaseComponent';
+import { BaseComponent } from 'src/app/modules/shared/directives';
 
 @Component({
   selector: 'app-cookie-banner',
