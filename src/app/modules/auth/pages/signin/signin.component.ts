@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { takeUntil } from 'rxjs';
-import { BaseFormComponent } from 'src/app/modules/shared/directives/BaseFormComponent';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs';
+import { BaseFormComponent } from 'src/app/modules/shared/directives';
 import { emailValidators, loginValidators, passwordValidators } from 'src/app/core/validators';
 
 @Component({

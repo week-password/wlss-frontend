@@ -29,6 +29,11 @@ import { OverlayComponent } from './components/overlay/overlay.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 
+import {
+  DisableRepeatWhitespacesDirective,
+  TrimStartWhitespacesDirective,
+} from './directives';
+
 const MODULES = [
   AngularSvgIconModule.forRoot(),
   CommonModule,
@@ -59,8 +64,11 @@ const COMPONENTS = [
   SnackbarComponent,
   TextareaComponent,
 ];
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const DIRECTIVES: any = [];
+
+const DIRECTIVES = [
+  DisableRepeatWhitespacesDirective,
+  TrimStartWhitespacesDirective,
+];
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PIPES: any = [];
 

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BaseInputComponent } from 'src/app/modules/shared/directives/BaseInputComponent';
+import { BaseInputComponent } from 'src/app/modules/shared/directives';
 
 @Component({
   selector: 'app-textarea',
