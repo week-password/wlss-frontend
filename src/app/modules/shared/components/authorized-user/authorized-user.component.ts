@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { EOverlayPosition } from 'src/app/core/models';
+import { MatDialog } from '@angular/material/dialog';
+import { EOverlayPosition, IDialogData } from 'src/app/core/models';
+import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-authorized-user',
@@ -25,13 +27,24 @@ export class AuthorizedUserComponent {
   ];
   EOverlayPosition = EOverlayPosition;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+  ) { }
 
   private goToProfile(): void {
     this.router.navigate(['profile']);
   }
   private openProfileSettings(): void {
-    return;
+    const profileSettingsDialogData: IDialogData = {
+      title: 'Редактирование профиля',
+      cancelButtonText: 'Отменить',
+      submitButtonText: 'Сохранить',
+    };
+    this.dialog.open(DialogComponent, {
+      width: '640px',
+      data: profileSettingsDialogData,
+    });
   }
   private logout(): void {
     this.router.navigate(['signin']);

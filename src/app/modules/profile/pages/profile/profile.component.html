@@ -1,0 +1,51 @@
+<div class="profile">
+  <div class="profile__block">
+    <app-profile-card></app-profile-card>
+  </div>
+  <div class="profile__block">
+    <app-profile-block [collapsable]="true">
+      <div title class="d-flex">
+        <h3>Друзья</h3>
+        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">9</div>
+        <div class="c-badge c-badge_rounded c-badge_header c-badge_primary c-badge_hover"
+             (click)="openAddFriendDialog()"
+        >+</div>
+      </div>
+      <div content>
+        <span class="color-text-4">Здесь будут отображаться ваши друзья</span>
+      </div>
+    </app-profile-block>
+  </div>
+  <div class="profile__block">
+    <app-profile-block [collapsable]="true" [initialState]="EBlockState.collapsed">
+      <div title class="d-flex">
+        <h3>Входящие заявки</h3>
+        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">3</div>
+      </div>
+      <div content></div>
+    </app-profile-block>
+  </div>
+  <div class="profile__block">
+    <app-profile-block [collapsable]="true" [initialState]="EBlockState.collapsed">
+      <div title class="d-flex">
+        <h3>Исходящие заявки</h3>
+        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">3</div>
+      </div>
+      <div content></div>
+    </app-profile-block>
+  </div>
+  <div class="profile__block">
+    <app-profile-block>
+      <div title class="d-flex">
+        <h3>Желания</h3>
+        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">6</div>
+        <div class="c-badge c-badge_rounded c-badge_header c-badge_primary c-badge_hover"
+             (click)="openAddWishDialog()"
+        >+</div>
+      </div>
+      <div content>
+        <span class="color-text-4">Здесь будут отображаться ваши желания</span>
+      </div>
+    </app-profile-block>
+  </div>
+</div>
