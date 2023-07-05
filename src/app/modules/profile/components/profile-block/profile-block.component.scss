@@ -1,0 +1,10 @@
+.c-profile-block {
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 40px;
+  }
+  &__content {
+    padding: 30px 40px;
+  }
+}

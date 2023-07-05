@@ -1,0 +1,19 @@
+:host {
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+}
+.c-avatar {
+  min-width: 100%;
+  min-height: 100%;
+  &__source {
+    min-width: 100%;
+    min-height: 100%;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+  }
+  &__default {
+    border-radius: 50%;
+  }
+}

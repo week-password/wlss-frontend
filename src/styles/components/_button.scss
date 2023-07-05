@@ -60,4 +60,8 @@
     justify-content: center;
     background-color: transparent;
   }
+  &_text {
+    cursor: pointer;
+    color: var(--accent);
+  }
 }

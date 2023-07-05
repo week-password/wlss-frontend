@@ -16,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import { AuthorizedUserComponent } from './components/authorized-user/authorized-user.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
 import { DialogComponent } from './components/dialog/dialog.component';
@@ -51,6 +52,7 @@ const MODULES = [
 
 const COMPONENTS = [
   AuthorizedUserComponent,
+  AvatarComponent,
   ButtonComponent,
   CookieBannerComponent,
   DialogComponent,
