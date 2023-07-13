@@ -29,3 +29,28 @@ Run `ng build` or `npm run build` to build the project. The build artifacts will
 ## Running linter
 
 Run `ng lint` or `npm run lint` to lint code using the Anguar ESLint.
+
+## Deploy
+
+_Only users with write access are able to deploy._
+
+1. Fetch the last version of the `test` tag with one of the following commands:
+```bash
+# using git
+git fetch origin +refs/tags/test:refs/tags/test
+
+# using npm
+npm run deploy:test:fetch
+```
+
+2. Checkout to branch/commit you want to deploy.
+
+3. Create and push new version of the `test` tag in one of the following ways:
+```bash
+# using git
+git tag --annotate --force test --message ''
+git push origin test --force
+
+# using npm
+npm run deploy:test
+```
