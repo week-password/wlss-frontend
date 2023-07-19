@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BaseFormComponent } from 'src/app/modules/shared/directives';
+import { takeUntil } from 'rxjs';
+
+import { ESigninStep } from 'src/app/core/models';
 import {
   descriptionValidators,
   emailValidators,
+  getSignupPasswordValidators,
   loginValidators,
-  nameValidators,
-  getSignupPasswordValidators
+  nameValidators
 } from 'src/app/core/validators';
-import { ESigninStep } from 'src/app/core/models';
-import { takeUntil } from 'rxjs';
+import { BaseFormComponent } from 'src/app/modules/shared/directives';
 
 @Component({
   selector: 'app-signup',

@@ -1,6 +1,7 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { takeUntil } from 'rxjs';
+
 import {
   CustomTemplateRef,
   EMatSnackbarHPosition,
