@@ -11,65 +11,56 @@
       ],
       "extends": [
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:@typescript-eslint/recommended",
         "plugin:eslint-plugin-import/recommended"
       ],
       "rules": {
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
-          }
-        ],
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "app",
-            "style": "kebab-case"
-          }
-        ],
+        "@angular-eslint/component-selector": ["error", {
+          "type": "element",
+          "prefix": "app",
+          "style": "kebab-case"
+        }],
+        "@angular-eslint/directive-selector": ["error", {
+          "type": "attribute",
+          "prefix": "app",
+          "style": "camelCase"
+        }],
         "@angular-eslint/no-output-native": "off",
+        "@angular-eslint/sort-ngmodule-metadata-arrays": "error",
+
         "@typescript-eslint/explicit-function-return-type": "error",
-        "@typescript-eslint/member-ordering": [
-          "error",
-          {
-            "default": [
-              "signature",
-              "call-signature",
+        "@typescript-eslint/member-ordering": ["error", { "default": [
+          "signature",
+          "call-signature",
 
-              "public-decorated-field",
-              "protected-decorated-field",
-              "private-decorated-field",
+          "public-decorated-field",
+          "protected-decorated-field",
+          "private-decorated-field",
 
-              "public-decorated-get",
-              "protected-decorated-get",
-              "private-decorated-get",
+          "public-decorated-get",
+          "protected-decorated-get",
+          "private-decorated-get",
 
-              "public-field",
-              "protected-field",
-              "private-field",
+          "public-field",
+          "protected-field",
+          "private-field",
 
-              "constructor",
+          "constructor",
 
-              "public-get",
-              "protected-get",
-              "private-get",
+          "public-get",
+          "protected-get",
+          "private-get",
 
-              "public-decorated-method",
-              "protected-decorated-method",
-              "private-decorated-method",
+          "public-decorated-method",
+          "protected-decorated-method",
+          "private-decorated-method",
 
-              "public-method",
-              "protected-method",
-              "private-method"
-            ]
-          }
-        ],
+          "public-method",
+          "protected-method",
+          "private-method"
+        ]}],
         "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/typedef": [
             "error",
@@ -78,18 +69,30 @@
                 "parameter": true
             }
         ],
+
+        "accessor-pairs": "error",
         "import/first": "error",
         "import/no-default-export": "error",
         "import/no-unresolved": "off",
+        "import/order": ["error", {
+          "alphabetize": { "order": "asc", "caseInsensitive": true },
+          "groups": ["external", "builtin", "internal", ["parent", "sibling", "index"]],
+          "newlines-between": "always",
+          "pathGroups": [
+            { "pattern": "src/**", "group": "internal" }
+          ],
+          "pathGroupsExcludedImportTypes": ["type", "object"]
+        }],
         "no-else/no-else": "error",
-        "accessor-pairs": "error",
+        "no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 1 }],
         "no-restricted-imports": [
           "error",
           {
             "patterns": ["../*"]
           }
         ],
-        "semi": ["error", "always"]
+        "semi": ["error", "always"],
+        "sort-imports": ["error", { "ignoreCase": true, "ignoreDeclarationSort": true }]
       }
     },
     {

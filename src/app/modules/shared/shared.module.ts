@@ -1,18 +1,14 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { RouterModule } from "@angular/router";
-
-import { OverlayModule } from '@angular/cdk/overlay';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { RouterModule } from "@angular/router";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import { AuthorizedUserComponent } from './components/authorized-user/authorized-user.component';
@@ -29,7 +25,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
-
 import {
   DisableRepeatWhitespacesDirective,
   TrimStartWhitespacesDirective,
