@@ -1,6 +1,6 @@
 <div class="c-avatar">
-  <div class="c-avatar__source" *ngIf="source" [style]="'background-image: url(' + source + ')'"></div>
-  <div class="c-avatar__default" *ngIf="!source">
+  <div class="c-avatar__source drop-shadow" *ngIf="source" [style]="'background-image: url(' + source + ')'"></div>
+  <div class="c-avatar__default drop-shadow" *ngIf="!source">
     <svg-icon *ngIf="type === EAvatarType.profile" src="assets/icons/default-user-avatar.svg"></svg-icon>
     <svg-icon *ngIf="type === EAvatarType.wish" src="assets/icons/default-wish-avatar.svg"></svg-icon>
   </div>
