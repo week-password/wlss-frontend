@@ -1,26 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { EBlockState, IDialogData } from 'src/app/core/models';
+import { ActivatedRoute, Params } from '@angular/router';
+import { takeUntil } from 'rxjs';
+
+import { EBlockState, IDialogData, IProfile } from 'src/app/core/models';
+import { ProfileService } from 'src/app/core/services';
+import { ProfileStateService } from 'src/app/modules/profile/core/state';
 import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
+import { BaseComponent } from 'src/app/modules/shared/directives';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
-  id: string;
+export class ProfileComponent extends BaseComponent implements OnInit {
+  login: string;
+  profile: IProfile | null = null;
 
   EBlockState = EBlockState;
 
   constructor(
     private route: ActivatedRoute,
     private dialog: MatDialog,
-  ) { }
+    private profileService: ProfileService,
+    private profileStateService: ProfileStateService,
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params?.id;
+    this.subscribeOnRouteParamsChanges();
+    this.subscribeOnProfileChanges();
   }
 
   openAddFriendDialog(): void {
@@ -44,6 +55,31 @@ export class ProfileComponent implements OnInit {
     this.dialog.open(DialogComponent, {
       width: '640px',
       data: addWishDialogData,
+    });
+  }
+
+  private subscribeOnRouteParamsChanges(): void {
+    this.route.params.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((params: Params) => {
+      this.login = params?.login || 'galina';
+      this.getProfile();
+    });
+  }
+
+  private subscribeOnProfileChanges(): void {
+    this.profileStateService.profile.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((profile: IProfile | null) => {
+      this.profile = profile;
+    });
+  }
+
+  private getProfile(): void {
+    this.profileService.getProfile(this.login).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((profile: IProfile) => {
+      this.profileStateService.setProfile(profile);
     });
   }
 }

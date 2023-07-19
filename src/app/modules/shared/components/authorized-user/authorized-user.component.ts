@@ -1,15 +1,22 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { EOverlayPosition, IDialogData } from 'src/app/core/models';
+import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs';
+
+import { EOverlayPosition, IAccount, IDialogData, IProfile } from 'src/app/core/models';
+import { AccountService, ProfileService } from 'src/app/core/services';
+import { UserStateService } from 'src/app/core/state';
 import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
+import { BaseComponent } from 'src/app/modules/shared/directives';
 
 @Component({
   selector: 'app-authorized-user',
   templateUrl: './authorized-user.component.html',
   styleUrls: ['./authorized-user.component.scss']
 })
-export class AuthorizedUserComponent {
+export class AuthorizedUserComponent extends BaseComponent implements OnInit {
+  account: IAccount | null = null;
+  profile: IProfile | null = null;
   menuOpened = false;
   menuItems = [
     {
@@ -30,11 +37,52 @@ export class AuthorizedUserComponent {
   constructor(
     private router: Router,
     private dialog: MatDialog,
-  ) { }
+    private accountService: AccountService,
+    private profileService: ProfileService,
+    private userStateService: UserStateService,
+  ) {
+    super();
+  }
+
+  ngOnInit(): void {
+    this.getAuthorizedUser();
+    this.subscribeOnAccountChanges();
+    this.subscribeOnProfileChanges();
+  }
+
+  private getAuthorizedUser(): void {
+    this.accountService.getAccount().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((account: IAccount) => {
+      this.userStateService.setAccount(account);
+      this.profileService.getProfile(account.login).pipe(
+        takeUntil(this.destroy$)
+      ).subscribe((profile: IProfile) => {
+        this.userStateService.setProfile(profile);
+      });
+    });
+  }
+
+  private subscribeOnAccountChanges(): void {
+    this.userStateService.account.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((account: IAccount | null) => {
+      this.account = account;
+    });
+  }
+
+  private subscribeOnProfileChanges(): void {
+    this.userStateService.profile.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((profile: IProfile | null) => {
+      this.profile = profile;
+    });
+  }
 
   private goToProfile(): void {
-    this.router.navigate(['profile']);
+    this.router.navigate(['profile', this.account?.login]);
   }
+
   private openProfileSettings(): void {
     const profileSettingsDialogData: IDialogData = {
       title: 'Редактирование профиля',
@@ -46,7 +94,10 @@ export class AuthorizedUserComponent {
       data: profileSettingsDialogData,
     });
   }
+
   private logout(): void {
+    this.userStateService.setAccount(null);
+    this.userStateService.setProfile(null);
     this.router.navigate(['signin']);
   }
 }
