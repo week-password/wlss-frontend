@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { EAvatarType } from 'src/app/core/models';
 
 @Component({
@@ -8,7 +9,7 @@ import { EAvatarType } from 'src/app/core/models';
 })
 export class AvatarComponent {
   @Input() type: EAvatarType = EAvatarType.profile;
-  @Input() source: string;
+  @Input() source: string | null;
 
   EAvatarType = EAvatarType;
 }
