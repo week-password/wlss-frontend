@@ -1,4 +1,5 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
+
 import { EBaseColor } from 'src/app/core/models';
 
 @Component({

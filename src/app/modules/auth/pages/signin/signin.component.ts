@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
-import { BaseFormComponent } from 'src/app/modules/shared/directives';
+
 import { emailValidators, loginValidators, passwordValidators } from 'src/app/core/validators';
+import { BaseFormComponent } from 'src/app/modules/shared/directives';
 
 @Component({
   selector: 'app-signin',

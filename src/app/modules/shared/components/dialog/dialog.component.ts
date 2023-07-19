@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+
 import { CustomTemplateRef, EBaseColor, IDialogData } from 'src/app/core/models';
 
 @Component({

@@ -1,4 +1,5 @@
 import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
+
 import { IPasswordsMatchError } from 'src/app/core/models';
 
 const passwordPattern = String.raw`[A-Za-zА-Яа-я0-9\x21-\x7E]*`;

@@ -1,15 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { TermsRoutingModule } from './terms-routing.module';
-import { UserAgreementComponent } from './pages/user-agreement/user-agreement.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
-
+import { UserAgreementComponent } from './pages/user-agreement/user-agreement.component';
+import { TermsRoutingModule } from './terms-routing.module';
 
 @NgModule({
   declarations: [
-    UserAgreementComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    UserAgreementComponent
   ],
   imports: [
     CommonModule,
