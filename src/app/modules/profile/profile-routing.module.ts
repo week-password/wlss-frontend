@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { profileGuard } from 'src/app/core/guards';
+
 import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
@@ -10,7 +12,8 @@ const routes: Routes = [
   },
   {
     path: ':login',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [profileGuard]
   },
 ];
 

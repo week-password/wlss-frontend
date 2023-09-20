@@ -13,13 +13,9 @@
     </div>
     <div *ngIf="text"
          class="c-snackbar__text caption"
-         [class]="title ? 'color-text-4' : 'color-accent'"
          [innerText]="text"
     ></div>
-    <div *ngIf="textTemplate"
-         class="c-snackbar__text caption"
-         [class]="title ? 'color-text-4' : 'color-accent'"
-    >
+    <div *ngIf="textTemplate" class="c-snackbar__text caption">
       <ng-contaner [ngTemplateOutlet]="textTemplate"></ng-contaner>
     </div>
 

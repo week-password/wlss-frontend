@@ -12,4 +12,9 @@ export class ProfileService {
   getProfile(login: string): Observable<IProfile> {
     return of(profiles[login]);
   }
+
+  setProfile(login: string, profile: IProfile): Observable<IProfile> {
+    profiles[login] = profile;
+    return of(profiles[login]);
+  }
 }

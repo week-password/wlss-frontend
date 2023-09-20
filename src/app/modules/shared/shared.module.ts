@@ -1,3 +1,6 @@
+import { LY_THEME, LY_THEME_NAME, LyTheme2 } from '@alyle/ui';
+import { LyImageCropperModule } from '@alyle/ui/image-cropper';
+import { MinimaLight } from '@alyle/ui/themes/minima';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -5,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from "@angular/router";
@@ -19,14 +23,17 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { ErrorComponent } from './components/error/error.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
 import { InputComponent } from './components/input/input.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OverlayComponent } from './components/overlay/overlay.component';
+import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import {
   DisableRepeatWhitespacesDirective,
+  DragAndDropStyleDirective,
   TrimStartWhitespacesDirective,
 } from './directives';
 
@@ -36,8 +43,10 @@ const MODULES = [
   FontAwesomeModule,
   FormsModule,
   HttpClientModule,
+  LyImageCropperModule,
   MatButtonModule,
   MatDialogModule,
+  MatIconModule,
   MatInputModule,
   MatSnackBarModule,
   OverlayModule,
@@ -54,16 +63,19 @@ const COMPONENTS = [
   ErrorComponent,
   FooterComponent,
   HeaderComponent,
+  ImageUploaderComponent,
   InputComponent,
   LogoComponent,
   NotFoundComponent,
   OverlayComponent,
+  ProfileSettingsComponent,
   SnackbarComponent,
   TextareaComponent,
 ];
 
 const DIRECTIVES = [
   DisableRepeatWhitespacesDirective,
+  DragAndDropStyleDirective,
   TrimStartWhitespacesDirective,
 ];
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -84,6 +96,10 @@ const PIPES: any = [];
     ...MODULES,
     ...PIPES,
   ],
-  providers: []
+  providers: [
+    [ LyTheme2 ],
+    { provide: LY_THEME_NAME, useValue: 'minima-light' },
+    { provide: LY_THEME, useClass: MinimaLight, multi: true },
+  ]
 })
 export class SharedModule { }

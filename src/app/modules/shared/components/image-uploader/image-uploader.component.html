@@ -1,0 +1,40 @@
+<div class="c-image-uploader" appDragAndDropStyle [dragAndDropArea]="uploadAreaControl">
+  <ly-img-cropper class="c-image-uploader__cropper"
+                  [config]="imageCropperConfig"
+                  [(scale)]="scale"
+                  (minScale)="minScale = $event"
+                  (maxScale)="maxScale = $event"
+                  (cropped)="onCropped($event)"
+                  (loaded)="onLoaded($event)"
+                  (error)="onError($event)"
+                  (wheel)="zoom($event)"
+  >
+    <div class="c-image-uploader__upload-area c-image-uploader-upload-area">
+      <div class="c-image-uploader-upload-area__source">
+        <ng-content></ng-content>
+      </div>
+      <div #uploadAreaControl class="c-image-uploader-upload-area__control">
+        <button class="c-button_icon c-image-uploader-upload-area__button">
+          <fa-icon [icon]="arrowUpFromBracket"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </ly-img-cropper>
+
+  <div class="c-image-uploader__controls mt-16">
+    <div class="c-image-uploader__control"
+         [class]="{ 'c-image-uploader__control_disabled': !cropper.isLoaded }"
+         (click)="cropper.rotate(-90)"
+    >
+      <mat-icon fontIcon="rotate_90_degrees_ccw"></mat-icon>
+      <div class="ml-4">Повернуть</div>
+    </div>
+    <div class="c-image-uploader__control c-image-uploader__control_red"
+         [class]="{ 'c-image-uploader__control_disabled': !cropper.isLoaded && removeOriginImageDisabled }"
+         (click)="removeImage()"
+    >
+      <mat-icon fontIcon="highlight_off"></mat-icon>
+      <div class="ml-4">Удалить</div>
+    </div>
+  </div>
+</div>
