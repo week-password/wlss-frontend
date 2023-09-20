@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
-import { EOverlayPosition, IAccount, IDialogData, IProfile } from 'src/app/core/models';
+import { EOverlayPosition, IAccount, IProfile } from 'src/app/core/models';
 import { AccountService, ProfileService } from 'src/app/core/services';
 import { UserStateService } from 'src/app/core/state';
-import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
+import { ProfileSettingsComponent } from 'src/app/modules/shared/components/profile-settings/profile-settings.component';
 import { BaseComponent } from 'src/app/modules/shared/directives';
 
 @Component({
@@ -15,6 +14,7 @@ import { BaseComponent } from 'src/app/modules/shared/directives';
   styleUrls: ['./authorized-user.component.scss']
 })
 export class AuthorizedUserComponent extends BaseComponent implements OnInit {
+  @ViewChild ('profileSettings') profileSettings: ProfileSettingsComponent;
   account: IAccount | null = null;
   profile: IProfile | null = null;
   menuOpened = false;
@@ -36,7 +36,6 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private dialog: MatDialog,
     private accountService: AccountService,
     private profileService: ProfileService,
     private userStateService: UserStateService,
@@ -80,19 +79,11 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
   }
 
   private goToProfile(): void {
-    this.router.navigate(['profile', this.account?.login]);
+    this.router.navigate(['profile']);
   }
 
   private openProfileSettings(): void {
-    const profileSettingsDialogData: IDialogData = {
-      title: 'Редактирование профиля',
-      cancelButtonText: 'Отменить',
-      submitButtonText: 'Сохранить',
-    };
-    this.dialog.open(DialogComponent, {
-      width: '640px',
-      data: profileSettingsDialogData,
-    });
+    this.profileSettings.openDialog();
   }
 
   private logout(): void {
