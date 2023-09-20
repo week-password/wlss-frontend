@@ -5,6 +5,7 @@ import { takeUntil } from 'rxjs';
 
 import { EBlockState, IDialogData, IProfile } from 'src/app/core/models';
 import { ProfileService } from 'src/app/core/services';
+import { UserStateService } from 'src/app/core/state';
 import { ProfileStateService } from 'src/app/modules/profile/core/state';
 import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
 import { BaseComponent } from 'src/app/modules/shared/directives';
@@ -15,9 +16,7 @@ import { BaseComponent } from 'src/app/modules/shared/directives';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent extends BaseComponent implements OnInit {
-  login: string;
   profile: IProfile | null = null;
-
   EBlockState = EBlockState;
 
   constructor(
@@ -25,6 +24,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     private dialog: MatDialog,
     private profileService: ProfileService,
     private profileStateService: ProfileStateService,
+    private userStateService: UserStateService,
   ) {
     super();
   }
@@ -62,8 +62,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     this.route.params.pipe(
       takeUntil(this.destroy$)
     ).subscribe((params: Params) => {
-      this.login = params?.login || 'galina';
-      this.getProfile();
+      this.getProfile(params?.login);
     });
   }
 
@@ -75,10 +74,14 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     });
   }
 
-  private getProfile(): void {
-    this.profileService.getProfile(this.login).pipe(
+  private getProfile(login: string | null): void {
+    const profileSource = login ?
+      this.profileService.getProfile(login) :
+      this.userStateService.profile;
+
+    profileSource.pipe(
       takeUntil(this.destroy$)
-    ).subscribe((profile: IProfile) => {
+    ).subscribe((profile: IProfile | null) => {
       this.profileStateService.setProfile(profile);
     });
   }

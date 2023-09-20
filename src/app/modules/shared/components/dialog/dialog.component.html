@@ -4,7 +4,7 @@
     <div *ngIf="titleTemplate">
       <ng-container [ngTemplateOutlet]="titleTemplate"></ng-container>
     </div>
-    <button class="c-button_icon color-text-4" mat-dialog-close>
+    <button class="c-button_icon color-text-4" tabindex="-1" (click)="close()">
       <fa-icon [icon]="xmark"></fa-icon>
     </button>
   </div>
@@ -14,17 +14,20 @@
       <ng-container [ngTemplateOutlet]="contentTemplate"></ng-container>
     </div>
   </div>
-  <div *ngIf="submitButtonText || cancelButtonText" mat-dialog-actions align="end">
+  <div mat-dialog-actions align="end">
     <app-button *ngIf="submitButtonText"
-                mat-button mat-dialog-close
                 class="mr-20"
-                [color]="EBaseColor.primary"
+                tabindex="-1"
+                [mat-dialog-close]="true"
+                [color]="submitButtonColor || EBaseColor.primary"
                 [height]="40"
     >{{ submitButtonText }}</app-button>
     <app-button *ngIf="cancelButtonText"
-                mat-button mat-dialog-close
+                tabindex="-1"
                 [color]="EBaseColor.secondary"
                 [height]="40"
+                (click)="close()"
     >{{ cancelButtonText }}</app-button>
+    <ng-container *ngIf="buttonsTemplate" [ngTemplateOutlet]="buttonsTemplate"></ng-container>
   </div>
 </div>

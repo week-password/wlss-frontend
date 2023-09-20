@@ -7,12 +7,13 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint": "ng lint --fix",
     "deploy:test": "git tag --annotate --force test --message '' && git push origin test --force",
     "deploy:test:fetch": "git fetch origin +refs/tags/test:refs/tags/test"
   },
   "private": true,
   "dependencies": {
+    "@alyle/ui": "^15.0.0",
     "@angular/animations": "^15.1.0",
     "@angular/cdk": "^15.2.8",
     "@angular/common": "^15.1.0",
