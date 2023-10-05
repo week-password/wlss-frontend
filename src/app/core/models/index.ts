@@ -11,3 +11,4 @@ export * from './Profile';
 export * from './SigninStep';
 export * from './Snackbar';
 export * from './TemplateRef';
+export * from './Wish';

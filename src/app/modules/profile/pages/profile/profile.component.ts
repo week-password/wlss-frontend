@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params } from '@angular/router';
 import { takeUntil } from 'rxjs';
@@ -6,6 +6,7 @@ import { takeUntil } from 'rxjs';
 import { EBlockState, IDialogData, IProfile } from 'src/app/core/models';
 import { ProfileService } from 'src/app/core/services';
 import { UserStateService } from 'src/app/core/state';
+import { WishFormComponent } from 'src/app/modules/profile/components/wish-form/wish-form.component';
 import { ProfileStateService } from 'src/app/modules/profile/core/state';
 import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
 import { BaseComponent } from 'src/app/modules/shared/directives';
@@ -16,6 +17,8 @@ import { BaseComponent } from 'src/app/modules/shared/directives';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent extends BaseComponent implements OnInit {
+  @ViewChild ('wishForm') wishForm: WishFormComponent;
+
   profile: IProfile | null = null;
   EBlockState = EBlockState;
 
@@ -47,15 +50,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   }
 
   openAddWishDialog(): void {
-    const addWishDialogData: IDialogData = {
-      title: 'Добавление желания',
-      cancelButtonText: 'Отменить',
-      submitButtonText: 'Сохранить',
-    };
-    this.dialog.open(DialogComponent, {
-      width: '640px',
-      data: addWishDialogData,
-    });
+    this.wishForm.openDialog();
   }
 
   private subscribeOnRouteParamsChanges(): void {
