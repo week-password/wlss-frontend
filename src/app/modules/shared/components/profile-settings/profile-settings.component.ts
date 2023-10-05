@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
 import { CustomTemplateRef, EBaseColor, IAccount, IDialogData, IProfile } from 'src/app/core/models';
 import { ProfileService } from 'src/app/core/services';
 import { UserStateService } from 'src/app/core/state';
-import { descriptionValidators, nameValidators } from 'src/app/core/validators';
+import { descriptionValidators, nameValidators } from 'src/app/core/validators/profile';
 import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
 import { ImageUploaderComponent } from 'src/app/modules/shared/components/image-uploader/image-uploader.component';
 import { BaseFormComponent } from 'src/app/modules/shared/directives';
@@ -28,8 +27,6 @@ export class ProfileSettingsComponent extends BaseFormComponent implements OnIni
   EBaseColor = EBaseColor;
 
   constructor(
-    private fb: FormBuilder,
-    private dialog: MatDialog,
     private userStateService: UserStateService,
     private profileService: ProfileService,
   ) {
@@ -90,7 +87,7 @@ export class ProfileSettingsComponent extends BaseFormComponent implements OnIni
       this.closeDialog();
       return;
     }
-    const confirmDialog = this.openConfirmDialog();
+    const confirmDialog = this.openConfirmClosingFormDialog();
     confirmDialog.afterClosed().pipe(
       takeUntil(this.destroy$)
     ).subscribe((confirm: boolean) => {
@@ -117,20 +114,6 @@ export class ProfileSettingsComponent extends BaseFormComponent implements OnIni
     this.controls.description.setValue(this.profile.description);
     this.controls.name.setValue(this.profile.name);
     this.changed = false;
-  }
-
-  private openConfirmDialog(): MatDialogRef<DialogComponent> {
-    const confirmDialogData: IDialogData = {
-      title: 'Закрыть окно?',
-      content: 'Несохранённые данные будут утеряны',
-      cancelButtonText: 'Отменить',
-      submitButtonText: 'Закрыть',
-      submitButtonColor: EBaseColor.danger,
-    };
-    return this.dialog.open(DialogComponent, {
-      width: '460px',
-      data: confirmDialogData,
-    });
   }
 
   private closeDialog(): void {

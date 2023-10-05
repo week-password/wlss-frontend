@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
-import { emailValidators, loginValidators, passwordValidators } from 'src/app/core/validators';
+import {
+  emailValidators,
+  loginValidators,
+  passwordValidators,
+} from 'src/app/core/validators/account';
 import { BaseFormComponent } from 'src/app/modules/shared/directives';
 
 @Component({
@@ -13,7 +16,6 @@ import { BaseFormComponent } from 'src/app/modules/shared/directives';
 })
 export class SigninComponent extends BaseFormComponent implements OnInit {
   constructor(
-    private fb: FormBuilder,
     private router: Router,
   ) {
     super();
@@ -21,7 +23,7 @@ export class SigninComponent extends BaseFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initSignInForm();
-    this.subsctibeOnLoginChanges();
+    this.subscribeOnLoginChanges();
   }
 
   initSignInForm(): void {
@@ -31,7 +33,7 @@ export class SigninComponent extends BaseFormComponent implements OnInit {
     });
   }
 
-  subsctibeOnLoginChanges(): void {
+  subscribeOnLoginChanges(): void {
     const login = this.controls.login;
     login.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((value: string) => {
       login.clearValidators();

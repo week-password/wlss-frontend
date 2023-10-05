@@ -1,0 +1,106 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { takeUntil } from 'rxjs';
+
+import { CustomTemplateRef, EAvatarType, EBaseColor, IDialogData, IWish } from 'src/app/core/models';
+import { descriptionValidators, titleValidators } from 'src/app/core/validators/wish';
+import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
+import { ImageUploaderComponent } from 'src/app/modules/shared/components/image-uploader/image-uploader.component';
+import { BaseFormComponent } from 'src/app/modules/shared/directives';
+
+@Component({
+  selector: 'app-wish-form',
+  templateUrl: './wish-form.component.html',
+  styleUrls: ['./wish-form.component.scss']
+})
+export class WishFormComponent extends BaseFormComponent implements OnInit {
+  @ViewChild('dialogContent') dialogContent: CustomTemplateRef;
+  @ViewChild('dialogButtons') dialogButtons: CustomTemplateRef;
+  @ViewChild('imageUploader') imageUploader: ImageUploaderComponent;
+
+  readonly EAvatarType = EAvatarType;
+  readonly EBaseColor = EBaseColor;
+
+  private dialogRef: MatDialogRef<DialogComponent>;
+  private wish: IWish | null;
+
+  ngOnInit(): void {
+    this.initWishForm();
+    this.subscribeOnFormChanges();
+  }
+
+  openDialog(wish: IWish | null = null): void {
+    this.wish = wish;
+    this.fillWishForm();
+    const wishFormDialogData: IDialogData = {
+      title: this.wish ? 'Редактирование желания' : 'Добавление желания',
+      contentTemplate: this.dialogContent,
+      buttonsTemplate: this.dialogButtons,
+      customCloseFunction: this.cancelWishForm.bind(this)
+    };
+    this.dialogRef = this.dialog.open(DialogComponent, {
+      width: '800px',
+      data: wishFormDialogData,
+    });
+  }
+
+  initWishForm(): void {
+    this.form = this.fb.group({
+      avatar: this.fb.control(''),
+      description: this.fb.control('', descriptionValidators),
+      title: this.fb.control('', titleValidators),
+    });
+  }
+
+  removeAvatar(): void {
+    this.controls.avatar.setValue(null);
+  }
+
+  onAvatarChanged(): void {
+    this.changed = true;
+  }
+
+  saveWish(): void {
+    this.form.markAllAsTouched();
+    if (this.submitDisabled) {
+      return;
+    }
+    if (this.imageUploader.cropper.isLoaded) {
+      this.imageUploader.cropper.crop();
+      const data = this.imageUploader.croppedImage;
+      this.controls.avatar.setValue(data);
+    }
+    this.closeDialog();
+  }
+
+  cancelWishForm(): void {
+    if (!this.changed) {
+      this.closeDialog();
+      return;
+    }
+    const confirmDialog = this.openConfirmClosingFormDialog();
+    confirmDialog.afterClosed().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((confirm: boolean) => {
+      if (!confirm) {
+        return;
+      }
+      this.closeDialog();
+    });
+  }
+
+  private fillWishForm(): void {
+    if (!this.wish) {
+      return;
+    }
+    this.controls.avatar.setValue(this.wish.avatar);
+    this.controls.description.setValue(this.wish.description);
+    this.controls.title.setValue(this.wish.title);
+    this.changed = false;
+  }
+
+  private closeDialog(): void {
+    this.dialogRef.close();
+    this.initWishForm();
+  }
+}

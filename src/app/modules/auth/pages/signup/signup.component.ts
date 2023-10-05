@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
 import { ESigninStep } from 'src/app/core/models';
 import {
-  descriptionValidators,
   emailValidators,
   getSignupPasswordValidators,
   loginValidators,
-  nameValidators
-} from 'src/app/core/validators';
+} from 'src/app/core/validators/account';
+import {
+  descriptionValidators,
+  nameValidators,
+} from 'src/app/core/validators/profile';
 import { BaseFormComponent } from 'src/app/modules/shared/directives';
 
 @Component({
@@ -23,7 +24,6 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
   currentSigninStep = ESigninStep.main;
 
   constructor(
-    private fb: FormBuilder,
     private router: Router,
   ) {
     super();
