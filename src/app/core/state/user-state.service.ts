@@ -3,9 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { IAccount, IProfile } from 'src/app/core/models';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class UserStateService {
   private account$ = new BehaviorSubject<IAccount | null>(null);
   private profile$ = new BehaviorSubject<IProfile | null>(null);

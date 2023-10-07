@@ -5,9 +5,7 @@ import { IAccount } from 'src/app/core/models';
 
 import { account } from './mocks/account';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AccountService {
   getAccount(): Observable<IAccount> {
     return of(account);

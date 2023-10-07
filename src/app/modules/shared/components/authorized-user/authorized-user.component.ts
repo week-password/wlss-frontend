@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
 import { EOverlayPosition, IAccount, IProfile } from 'src/app/core/models';
-import { AccountService, ProfileService } from 'src/app/core/services';
+import { AccountService, ProfileService, ProfileSettingsService } from 'src/app/core/services';
 import { UserStateService } from 'src/app/core/state';
-import { ProfileSettingsComponent } from 'src/app/modules/shared/components/profile-settings/profile-settings.component';
 import { BaseComponent } from 'src/app/modules/shared/directives';
 
 @Component({
@@ -14,7 +13,6 @@ import { BaseComponent } from 'src/app/modules/shared/directives';
   styleUrls: ['./authorized-user.component.scss']
 })
 export class AuthorizedUserComponent extends BaseComponent implements OnInit {
-  @ViewChild ('profileSettings') profileSettings: ProfileSettingsComponent;
   account: IAccount | null = null;
   profile: IProfile | null = null;
   menuOpened = false;
@@ -38,6 +36,7 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
     private router: Router,
     private accountService: AccountService,
     private profileService: ProfileService,
+    private profileSettingsService: ProfileSettingsService,
     private userStateService: UserStateService,
   ) {
     super();
@@ -83,7 +82,7 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
   }
 
   private openProfileSettings(): void {
-    this.profileSettings.openDialog();
+    this.profileSettingsService.openProfileSettings();
   }
 
   private logout(): void {
