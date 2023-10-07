@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
-import { ESigninStep } from 'src/app/core/models';
 import {
   emailValidators,
   getSignupPasswordValidators,
@@ -12,6 +11,7 @@ import {
   descriptionValidators,
   nameValidators,
 } from 'src/app/core/validators/profile';
+import { ESignupStep, ISignupDataFormGroup } from 'src/app/modules/auth/core/models';
 import { BaseFormComponent } from 'src/app/modules/shared/directives';
 
 @Component({
@@ -19,9 +19,9 @@ import { BaseFormComponent } from 'src/app/modules/shared/directives';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent extends BaseFormComponent implements OnInit {
-  ESigninStep = ESigninStep;
-  currentSigninStep = ESigninStep.main;
+export class SignupComponent extends BaseFormComponent<ISignupDataFormGroup> implements OnInit {
+  ESignupStep = ESignupStep;
+  currentSignupStep = ESignupStep.main;
 
   constructor(
     private router: Router,
@@ -35,13 +35,13 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
   }
 
   initSignUpForm(): void {
-    this.form = this.fb.group({
-      login: this.fb.control('', loginValidators),
-      email: this.fb.control('', emailValidators),
-      password: this.fb.control(''),
-      confirmPassword: this.fb.control(''),
-      name: this.fb.control(''),
-      description: this.fb.control(''),
+    this.form = this.fb.group<ISignupDataFormGroup>({
+      login: this.fb.control<string>('', { nonNullable: true, validators: loginValidators }),
+      email: this.fb.control<string>('', { nonNullable: true, validators: emailValidators }),
+      password: this.fb.control<string>('', { nonNullable: true }),
+      confirmPassword: this.fb.control<string>('', { nonNullable: true }),
+      name: this.fb.control<string>('', { nonNullable: true }),
+      description: this.fb.control<string | null>(''),
     });
     this.addPasswordsValidators();
   }
@@ -53,7 +53,7 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
     }
     this.form.markAsUntouched();
     this.addDetailsStepValidators();
-    this.currentSigninStep = ESigninStep.details;
+    this.currentSignupStep = ESignupStep.details;
   }
 
   onSubmit(): void {

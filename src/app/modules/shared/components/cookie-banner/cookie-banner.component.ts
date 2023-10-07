@@ -1,9 +1,8 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, TemplateRef, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { takeUntil } from 'rxjs';
 
 import {
-  CustomTemplateRef,
   EMatSnackbarHPosition,
   EMatSnackbarVPosition,
   EPosition,
@@ -20,7 +19,7 @@ import { BaseComponent } from 'src/app/modules/shared/directives';
   styleUrls: ['./cookie-banner.component.scss']
 })
 export class CookieBannerComponent extends BaseComponent implements AfterViewInit {
-  @ViewChild('cookieText') cookieText: CustomTemplateRef;
+  @ViewChild('cookieText') cookieText: TemplateRef<HTMLElement>;
 
   private readonly bannerTitle = 'Добро пожаловать в Wisher - сервис по исполнению желаний!';
   private readonly bannerButtonText = 'Понятно';

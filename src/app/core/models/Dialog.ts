@@ -1,14 +1,15 @@
+import { TemplateRef } from '@angular/core';
+
 import { EBaseColor } from './BaseColor';
-import { CustomTemplateRef } from './TemplateRef';
 
 export interface IDialogData {
-  buttonsTemplate?: CustomTemplateRef;
+  buttonsTemplate?: TemplateRef<HTMLElement>;
   cancelButtonText?: string;
   content?: string;
-  contentTemplate?: CustomTemplateRef;
+  contentTemplate?: TemplateRef<HTMLElement>;
   customCloseFunction?: () => void;
   submitButtonColor?: EBaseColor;
   submitButtonText?: string;
   title?: string;
-  titleTemplate?: CustomTemplateRef;
+  titleTemplate?: TemplateRef<HTMLElement>;
 }

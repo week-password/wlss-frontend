@@ -1,4 +1,6 @@
-import { CustomTemplateRef, EPosition, ETextPosition } from '.';
+import { TemplateRef } from '@angular/core';
+
+import { EPosition, ETextPosition } from './Postition';
 
 export enum EMatSnackbarHPosition {
   center = 'center',
@@ -20,9 +22,9 @@ export interface ISnackbarData {
   catPosition?: EPosition;
   text?: string;
   textAlign?: ETextPosition;
-  textTemplate?: CustomTemplateRef;
+  textTemplate?: TemplateRef<HTMLElement>;
   title?: string;
-  titleTemplate?: CustomTemplateRef;
+  titleTemplate?: TemplateRef<HTMLElement>;
   view: ESnackbarView;
   width?: number;
 }
