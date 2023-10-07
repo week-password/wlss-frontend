@@ -7,6 +7,7 @@ import {
   loginValidators,
   passwordValidators,
 } from 'src/app/core/validators/account';
+import { ISigninDataFormGroup } from 'src/app/modules/auth/core/models';
 import { BaseFormComponent } from 'src/app/modules/shared/directives';
 
 @Component({
@@ -14,7 +15,7 @@ import { BaseFormComponent } from 'src/app/modules/shared/directives';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss']
 })
-export class SigninComponent extends BaseFormComponent implements OnInit {
+export class SigninComponent extends BaseFormComponent<ISigninDataFormGroup> implements OnInit {
   constructor(
     private router: Router,
   ) {
@@ -27,9 +28,9 @@ export class SigninComponent extends BaseFormComponent implements OnInit {
   }
 
   initSignInForm(): void {
-    this.form = this.fb.group({
-      login: this.fb.control('', loginValidators),
-      password: this.fb.control('', passwordValidators),
+    this.form = this.fb.group<ISigninDataFormGroup>({
+      login: this.fb.control<string>('', { nonNullable: true, validators: loginValidators }),
+      password: this.fb.control<string>('', { nonNullable: true, validators: passwordValidators }),
     });
   }
 
