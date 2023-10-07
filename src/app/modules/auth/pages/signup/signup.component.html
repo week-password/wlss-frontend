@@ -7,7 +7,7 @@
     <app-welcome-form-block>
       <form class="signup__form" [formGroup]="form">
         <div class="signup__form-inputs">
-          <ng-container *ngIf="currentSigninStep === ESigninStep.main">
+          <ng-container *ngIf="currentSignupStep === ESignupStep.main">
             <app-input class="mb-20"
                       label="логин"
                       [inputControl]="controls.login"
@@ -29,7 +29,7 @@
             ></app-input>
             <app-button [disabled]="submitDisabled" (click)="goToDetailsStep()">Далее</app-button>
           </ng-container>
-          <ng-container *ngIf="currentSigninStep === ESigninStep.details">
+          <ng-container *ngIf="currentSignupStep === ESignupStep.details">
             <app-input class="mb-20"
                       label="имя"
                       appTrimStartWhitespaces

@@ -1,5 +1,5 @@
 import { Directive, inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
@@ -9,8 +9,8 @@ import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog
 import { BaseComponent } from './BaseComponent';
 
 @Directive()
-export class BaseFormComponent extends BaseComponent {
-  form: FormGroup;
+export class BaseFormComponent<FormGroupModel extends { [K in keyof FormGroupModel]: AbstractControl }> extends BaseComponent {
+  form: FormGroup<FormGroupModel>;
   changed = false;
   EInputType = EInputType;
 
@@ -23,13 +23,14 @@ export class BaseFormComponent extends BaseComponent {
     this.fb = inject(FormBuilder);
   }
 
-  get controls(): { [key: string]: FormControl } {
-    return this.form.controls as { [key: string]: FormControl };
+  get controls(): FormGroupModel {
+    return this.form.controls as FormGroupModel;
   }
 
   get submitDisabled(): boolean {
-    return Object.keys(this.controls).some(
-      (key: string) => this.controls[key].invalid && this.controls[key].touched
+    const controls = Object.values(this.controls) as Array<AbstractControl>;
+    return controls.some(
+      (control: AbstractControl) => control.invalid && control.touched
     );
   }
 

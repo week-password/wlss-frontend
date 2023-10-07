@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
-import { CustomTemplateRef, EBaseColor, IAccount, IDialogData, IProfile } from 'src/app/core/models';
+import { EBaseColor, IAccount, IDialogData, IProfile, IProfileFormGroup } from 'src/app/core/models';
 import { ProfileService } from 'src/app/core/services';
 import { UserStateService } from 'src/app/core/state';
 import { descriptionValidators, nameValidators } from 'src/app/core/validators/profile';
@@ -15,9 +15,9 @@ import { BaseFormComponent } from 'src/app/modules/shared/directives';
   templateUrl: './profile-settings.component.html',
   styleUrls: ['./profile-settings.component.scss']
 })
-export class ProfileSettingsComponent extends BaseFormComponent implements OnInit {
-  @ViewChild('dialogContent') dialogContent: CustomTemplateRef;
-  @ViewChild('dialogButtons') dialogButtons: CustomTemplateRef;
+export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGroup> implements OnInit {
+  @ViewChild('dialogContent') dialogContent: TemplateRef<HTMLElement>;
+  @ViewChild('dialogButtons') dialogButtons: TemplateRef<HTMLElement>;
   @ViewChild('imageUploader') imageUploader: ImageUploaderComponent;
 
   dialogRef: MatDialogRef<DialogComponent>;
@@ -71,10 +71,10 @@ export class ProfileSettingsComponent extends BaseFormComponent implements OnIni
     }
     if (this.imageUploader.cropper.isLoaded) {
       this.imageUploader.cropper.crop();
-      const data = this.imageUploader.croppedImage;
+      const data = this.imageUploader.croppedImage || null;
       this.controls.avatar.setValue(data);
     }
-    this.profileService.setProfile(this.login, this.form.value).pipe(
+    this.profileService.setProfile(this.login, this.form.value as IProfile).pipe(
       takeUntil(this.destroy$)
     ).subscribe((profile: IProfile) => {
       this.userStateService.setProfile(profile);
@@ -99,10 +99,10 @@ export class ProfileSettingsComponent extends BaseFormComponent implements OnIni
   }
 
   private initProfileSettingsForm(): void {
-    this.form = this.fb.group({
-      avatar: this.fb.control(''),
-      description: this.fb.control('', descriptionValidators),
-      name: this.fb.control('', nameValidators),
+    this.form = this.fb.group<IProfileFormGroup>({
+      avatar: this.fb.control<string | null>(null),
+      description: this.fb.control<string | null>('', descriptionValidators),
+      name: this.fb.control<string>('', { nonNullable: true, validators: nameValidators }),
     });
   }
 

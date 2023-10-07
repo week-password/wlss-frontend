@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
-import { CustomTemplateRef, EAvatarType, EBaseColor, IDialogData, IWish } from 'src/app/core/models';
+import { EAvatarType, EBaseColor, IDialogData } from 'src/app/core/models';
 import { descriptionValidators, titleValidators } from 'src/app/core/validators/wish';
+import { IWish, IWishFormGroup } from 'src/app/modules/profile/core/models';
 import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
 import { ImageUploaderComponent } from 'src/app/modules/shared/components/image-uploader/image-uploader.component';
 import { BaseFormComponent } from 'src/app/modules/shared/directives';
@@ -13,9 +14,9 @@ import { BaseFormComponent } from 'src/app/modules/shared/directives';
   templateUrl: './wish-form.component.html',
   styleUrls: ['./wish-form.component.scss']
 })
-export class WishFormComponent extends BaseFormComponent implements OnInit {
-  @ViewChild('dialogContent') dialogContent: CustomTemplateRef;
-  @ViewChild('dialogButtons') dialogButtons: CustomTemplateRef;
+export class WishFormComponent extends BaseFormComponent<IWishFormGroup> implements OnInit {
+  @ViewChild('dialogContent') dialogContent: TemplateRef<HTMLElement>;
+  @ViewChild('dialogButtons') dialogButtons: TemplateRef<HTMLElement>;
   @ViewChild('imageUploader') imageUploader: ImageUploaderComponent;
 
   readonly EAvatarType = EAvatarType;
@@ -45,10 +46,10 @@ export class WishFormComponent extends BaseFormComponent implements OnInit {
   }
 
   initWishForm(): void {
-    this.form = this.fb.group({
-      avatar: this.fb.control(''),
-      description: this.fb.control('', descriptionValidators),
-      title: this.fb.control('', titleValidators),
+    this.form = this.fb.group<IWishFormGroup>({
+      avatar: this.fb.control<string | null>(null),
+      description: this.fb.control<string>('', { nonNullable: true, validators: descriptionValidators }),
+      title: this.fb.control<string>('', { nonNullable: true, validators: titleValidators }),
     });
   }
 
@@ -67,7 +68,7 @@ export class WishFormComponent extends BaseFormComponent implements OnInit {
     }
     if (this.imageUploader.cropper.isLoaded) {
       this.imageUploader.cropper.crop();
-      const data = this.imageUploader.croppedImage;
+      const data = this.imageUploader.croppedImage || null;
       this.controls.avatar.setValue(data);
     }
     this.closeDialog();

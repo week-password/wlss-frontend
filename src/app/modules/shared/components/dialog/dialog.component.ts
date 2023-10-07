@@ -1,9 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, TemplateRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { takeUntil } from 'rxjs';
 
-import { CustomTemplateRef, EBaseColor, IDialogData } from 'src/app/core/models';
+import { EBaseColor, IDialogData } from 'src/app/core/models';
 import { BaseComponent } from 'src/app/modules/shared/directives';
 
 @Component({
@@ -15,15 +15,15 @@ export class DialogComponent extends BaseComponent {
   EBaseColor = EBaseColor;
   xmark = faXmark;
 
-  buttonsTemplate?: CustomTemplateRef;
+  buttonsTemplate?: TemplateRef<HTMLElement>;
   cancelButtonText?: string;
   content?: string;
-  contentTemplate?: CustomTemplateRef;
+  contentTemplate?: TemplateRef<HTMLElement>;
   customCloseFunction?: () => void;
   submitButtonColor?: EBaseColor;
   submitButtonText?: string;
   title?: string;
-  titleTemplate?: CustomTemplateRef;
+  titleTemplate?: TemplateRef<HTMLElement>;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: IDialogData,

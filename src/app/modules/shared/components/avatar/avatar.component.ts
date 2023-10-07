@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { EAvatarType } from 'src/app/core/models';
+import { AvatarSources, EAvatarType } from 'src/app/core/models';
 
 @Component({
   selector: 'app-avatar',
@@ -11,5 +11,5 @@ export class AvatarComponent {
   @Input() type: EAvatarType = EAvatarType.profile;
   @Input() source: string | null;
 
-  EAvatarType = EAvatarType;
+  AvatarSources = AvatarSources;
 }
