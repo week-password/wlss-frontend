@@ -3,9 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { IProfile } from 'src/app/core/models';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ProfileStateService {
   private profile$ = new BehaviorSubject<IProfile | null>(null);
 

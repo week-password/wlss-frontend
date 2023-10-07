@@ -28,7 +28,6 @@ import { InputComponent } from './components/input/input.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OverlayComponent } from './components/overlay/overlay.component';
-import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import {
@@ -68,7 +67,6 @@ const COMPONENTS = [
   LogoComponent,
   NotFoundComponent,
   OverlayComponent,
-  ProfileSettingsComponent,
   SnackbarComponent,
   TextareaComponent,
 ];

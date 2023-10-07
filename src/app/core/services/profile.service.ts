@@ -5,9 +5,7 @@ import { IProfile } from 'src/app/core/models';
 
 import { profiles } from './mocks/profiles';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ProfileService {
   getProfile(login: string): Observable<IProfile> {
     return of(profiles[login]);
