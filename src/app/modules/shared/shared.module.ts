@@ -20,6 +20,7 @@ import { AvatarComponent } from './components/avatar/avatar.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { EllipsisDropdownComponent } from './components/ellipsis-dropdown/ellipsis-dropdown.component';
 import { ErrorComponent } from './components/error/error.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -28,11 +29,13 @@ import { InputComponent } from './components/input/input.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OverlayComponent } from './components/overlay/overlay.component';
+import { ProfileCardComponent } from './components/profile-card/profile-card.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import {
   DisableRepeatWhitespacesDirective,
   DragAndDropStyleDirective,
+  LinkDirective,
   TrimStartWhitespacesDirective,
 } from './directives';
 
@@ -59,6 +62,7 @@ const COMPONENTS = [
   ButtonComponent,
   CookieBannerComponent,
   DialogComponent,
+  EllipsisDropdownComponent,
   ErrorComponent,
   FooterComponent,
   HeaderComponent,
@@ -67,6 +71,7 @@ const COMPONENTS = [
   LogoComponent,
   NotFoundComponent,
   OverlayComponent,
+  ProfileCardComponent,
   SnackbarComponent,
   TextareaComponent,
 ];
@@ -74,6 +79,7 @@ const COMPONENTS = [
 const DIRECTIVES = [
   DisableRepeatWhitespacesDirective,
   DragAndDropStyleDirective,
+  LinkDirective,
   TrimStartWhitespacesDirective,
 ];
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

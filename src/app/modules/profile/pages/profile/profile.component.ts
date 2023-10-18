@@ -1,15 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
-import { EBlockState, IDialogData, IProfile } from 'src/app/core/models';
+import { EBlockState, IProfile } from 'src/app/core/models';
 import { ProfileService, ProfileSettingsService } from 'src/app/core/services';
 import { UserStateService } from 'src/app/core/state';
 import { ProfileSettingsComponent } from 'src/app/modules/profile/components/profile-settings/profile-settings.component';
 import { WishFormComponent } from 'src/app/modules/profile/components/wish-form/wish-form.component';
 import { ProfileStateService } from 'src/app/modules/profile/core/state';
-import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
 import { BaseComponent } from 'src/app/modules/shared/directives';
 
 @Component({
@@ -26,7 +24,6 @@ export class ProfileComponent extends BaseComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private dialog: MatDialog,
     private profileService: ProfileService,
     private profileSettingsService: ProfileSettingsService,
     private profileStateService: ProfileStateService,
@@ -39,18 +36,6 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     this.subscribeOnRouteParamsChanges();
     this.subscribeOnOpenProfileSettingsEvent();
     this.subscribeOnProfileChanges();
-  }
-
-  openAddFriendDialog(): void {
-    const addFriendDialogData: IDialogData = {
-      title: 'Добавление друга',
-      cancelButtonText: 'Отменить',
-      submitButtonText: 'Отправить заявку',
-    };
-    this.dialog.open(DialogComponent, {
-      width: '640px',
-      data: addFriendDialogData,
-    });
   }
 
   openAddWishDialog(): void {

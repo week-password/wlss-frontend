@@ -1,0 +1,14 @@
+.c-ellipsis-dropdown {
+  cursor: pointer;
+  &__button {
+    .material-icons {
+      color: var(--text-4);
+      transition: color 0.3s;
+    }
+    &:hover, &:focus, &:active {
+      .material-icons {
+        color: var(--accent);
+      }
+    }
+  }
+}

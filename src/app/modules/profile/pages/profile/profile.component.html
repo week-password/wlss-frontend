@@ -1,15 +1,15 @@
 <div *ngIf="profile" class="profile">
   <div class="profile__block">
-    <app-profile-card [profile]="profile"></app-profile-card>
+    <app-profile-card class="profile__card c-base-layout" [profile]="profile" [large]="true"></app-profile-card>
   </div>
   <div class="profile__block">
     <app-profile-block [collapsable]="true">
       <div title class="d-flex">
         <h3>Друзья</h3>
         <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">9</div>
-        <div class="c-badge c-badge_rounded c-badge_header c-badge_primary c-badge_hover"
-             (click)="openAddFriendDialog()"
-        >+</div>
+        <a class="c-badge c-badge_rounded c-badge_header c-badge_primary c-badge_hover"
+           routerLink="/profiles"
+        >+</a>
       </div>
       <div content>
         <span class="color-text-4">Здесь будут отображаться ваши друзья</span>

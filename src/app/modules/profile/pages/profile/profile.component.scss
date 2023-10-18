@@ -1,4 +1,7 @@
 .profile {
+  &__card {
+    padding: 40px;
+  }
   &__block {
     &:not(:last-child) {
       margin-bottom: 30px;
