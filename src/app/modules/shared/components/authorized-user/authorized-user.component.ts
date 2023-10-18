@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
-import { EOverlayPosition, IAccount, IProfile } from 'src/app/core/models';
+import { EOverlayPosition, IAccount, IDropdownItem, IProfile } from 'src/app/core/models';
 import { AccountService, ProfileService, ProfileSettingsService } from 'src/app/core/services';
 import { UserStateService } from 'src/app/core/state';
 import { BaseComponent } from 'src/app/modules/shared/directives';
@@ -16,7 +16,7 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
   account: IAccount | null = null;
   profile: IProfile | null = null;
   menuOpened = false;
-  menuItems = [
+  menuItems: IDropdownItem[] = [
     {
       value: 'Профиль',
       action: this.goToProfile.bind(this)
@@ -55,7 +55,7 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
       this.userStateService.setAccount(account);
       this.profileService.getProfile(account.login).pipe(
         takeUntil(this.destroy$)
-      ).subscribe((profile: IProfile) => {
+      ).subscribe((profile: IProfile | null) => {
         this.userStateService.setProfile(profile);
       });
     });

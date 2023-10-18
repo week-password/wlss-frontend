@@ -1,6 +1,9 @@
 import { FormControl } from '@angular/forms';
 
+import { IAccount } from './Account';
+
 export interface IProfile {
+  account: IAccount;
   avatar: string | null;
   description: string | null;
   name: string;

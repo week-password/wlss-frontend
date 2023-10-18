@@ -1,0 +1,16 @@
+<div class="c-profiles-filter">
+  <div class="header-3 c-profiles-filter__title">Поиск пользователей</div>
+  <form class="c-profiles-filter__form" [formGroup]="form">
+      <app-input class="mr-30"
+                 label="имя"
+                 appTrimStartWhitespaces
+                 appDisableRepeatWhitespaces
+                 [inputControl]="controls.name"
+      ></app-input>
+      <app-input label="логин"
+                 appTrimStartWhitespaces
+                 appDisableRepeatWhitespaces
+                 [inputControl]="controls.login"
+      ></app-input>
+  </form>
+</div>

@@ -76,7 +76,7 @@ export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGrou
     }
     this.profileService.setProfile(this.login, this.form.value as IProfile).pipe(
       takeUntil(this.destroy$)
-    ).subscribe((profile: IProfile) => {
+    ).subscribe((profile: IProfile | null) => {
       this.userStateService.setProfile(profile);
       this.closeDialog();
     });
