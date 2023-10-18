@@ -1,5 +1,5 @@
 $display-types: (block, inline, grid, none, flex, inline-flex);
-.d {
+html .d {
   @each $display-type in $display-types {
     &-#{$display-type} {
       display: #{$display-type} !important;
@@ -7,7 +7,7 @@ $display-types: (block, inline, grid, none, flex, inline-flex);
   }
 }
 @for $i from 1 through 12 {
-  .col-#{$i} {
+  html .col-#{$i} {
     flex: 0 0 auto;
     width: calc(100% / 12 * #{$i});
   }
@@ -21,7 +21,7 @@ $justify-content: (
   around: space-around,
   evenly: space-evenly
 );
-.justify-content {
+html .justify-content {
   @each $alignment-name, $alignment in $justify-content {
     &-#{$alignment-name} {
       justify-content: #{$alignment} !important;
@@ -54,7 +54,7 @@ $align: (
     stretch: stretch
   ),
 );
-.align {
+html .align {
   @each $name, $alignments in $align {
     &-#{$name} {
       @each $alignment-name, $alignment in $alignments {
@@ -70,7 +70,7 @@ $directions: (row, column, row-reverse, column-reverse);
 $grow-factors: (0, 1);
 $shrink-factors: (0, 1);
 $wraps: (wrap, nowrap, wrap-reverse);
-.flex {
+html .flex {
   @each $direction in $directions {
     &-#{$direction} {
       flex-direction: #{$direction} !important;
