@@ -6,9 +6,9 @@ import { EBaseColor, IAccount, IDialogData, IProfile, IProfileFormGroup } from '
 import { ProfileService } from 'src/app/core/services';
 import { UserStateService } from 'src/app/core/state';
 import { descriptionValidators, nameValidators } from 'src/app/core/validators/profile';
+import { BaseFormComponent } from 'src/app/modules/shared/base-components';
 import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
 import { ImageUploaderComponent } from 'src/app/modules/shared/components/image-uploader/image-uploader.component';
-import { BaseFormComponent } from 'src/app/modules/shared/directives';
 
 @Component({
   selector: 'app-profile-settings',

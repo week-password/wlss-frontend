@@ -4,7 +4,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { takeUntil } from 'rxjs';
 
 import { EBaseColor, IDialogData } from 'src/app/core/models';
-import { BaseComponent } from 'src/app/modules/shared/directives';
+import { BaseComponent } from 'src/app/modules/shared/base-components';
 
 @Component({
   selector: 'app-dialog',

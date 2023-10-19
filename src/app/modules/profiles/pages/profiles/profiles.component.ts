@@ -4,7 +4,7 @@ import { finalize, takeUntil } from 'rxjs';
 import { IProfile } from 'src/app/core/models';
 import { IProfilesFilter } from 'src/app/modules/profiles/core/models';
 import { ProfilesService } from 'src/app/modules/profiles/core/services';
-import { BaseComponent } from 'src/app/modules/shared/directives';
+import { BaseComponent } from 'src/app/modules/shared/base-components';
 
 @Component({
   selector: 'app-profiles',

@@ -12,7 +12,7 @@ import {
   nameValidators,
 } from 'src/app/core/validators/profile';
 import { ESignupStep, ISignupDataFormGroup } from 'src/app/modules/auth/core/models';
-import { BaseFormComponent } from 'src/app/modules/shared/directives';
+import { BaseFormComponent } from 'src/app/modules/shared/base-components';
 
 @Component({
   selector: 'app-signup',
