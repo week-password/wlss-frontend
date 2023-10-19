@@ -8,7 +8,7 @@ import { UserStateService } from 'src/app/core/state';
 import { ProfileSettingsComponent } from 'src/app/modules/profile/components/profile-settings/profile-settings.component';
 import { WishFormComponent } from 'src/app/modules/profile/components/wish-form/wish-form.component';
 import { ProfileStateService } from 'src/app/modules/profile/core/state';
-import { BaseComponent } from 'src/app/modules/shared/directives';
+import { BaseComponent } from 'src/app/modules/shared/base-components';
 
 @Component({
   selector: 'app-profile',

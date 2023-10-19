@@ -8,7 +8,7 @@ import {
   passwordValidators,
 } from 'src/app/core/validators/account';
 import { ISigninDataFormGroup } from 'src/app/modules/auth/core/models';
-import { BaseFormComponent } from 'src/app/modules/shared/directives';
+import { BaseFormComponent } from 'src/app/modules/shared/base-components';
 
 @Component({
   selector: 'app-signin',

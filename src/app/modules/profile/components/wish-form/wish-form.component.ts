@@ -5,9 +5,9 @@ import { takeUntil } from 'rxjs';
 import { EAvatarType, EBaseColor, IDialogData } from 'src/app/core/models';
 import { descriptionValidators, titleValidators } from 'src/app/core/validators/wish';
 import { IWish, IWishFormGroup } from 'src/app/modules/profile/core/models';
+import { BaseFormComponent } from 'src/app/modules/shared/base-components';
 import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
 import { ImageUploaderComponent } from 'src/app/modules/shared/components/image-uploader/image-uploader.component';
-import { BaseFormComponent } from 'src/app/modules/shared/directives';
 
 @Component({
   selector: 'app-wish-form',

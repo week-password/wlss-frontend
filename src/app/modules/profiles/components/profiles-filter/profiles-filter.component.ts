@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { takeUntil } from 'rxjs';
 
 import { IProfilesFilter, IProfilesFilterFormGroup } from 'src/app/modules/profiles/core/models';
-import { BaseFormComponent } from 'src/app/modules/shared/directives';
+import { BaseFormComponent } from 'src/app/modules/shared/base-components';
 
 @Component({
   selector: 'app-profiles-filter',

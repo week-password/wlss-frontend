@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs';
 import { EOverlayPosition, IAccount, IDropdownItem, IProfile } from 'src/app/core/models';
 import { AccountService, ProfileService, ProfileSettingsService } from 'src/app/core/services';
 import { UserStateService } from 'src/app/core/state';
-import { BaseComponent } from 'src/app/modules/shared/directives';
+import { BaseComponent } from 'src/app/modules/shared/base-components';
 
 @Component({
   selector: 'app-authorized-user',

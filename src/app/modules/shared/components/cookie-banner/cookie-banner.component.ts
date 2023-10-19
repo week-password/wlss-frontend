@@ -10,8 +10,8 @@ import {
   ETextPosition,
   ISnackbarData
 } from 'src/app/core/models';
+import { BaseComponent } from 'src/app/modules/shared/base-components';
 import { SnackbarComponent } from 'src/app/modules/shared/components/snackbar/snackbar.component';
-import { BaseComponent } from 'src/app/modules/shared/directives';
 
 @Component({
   selector: 'app-cookie-banner',
