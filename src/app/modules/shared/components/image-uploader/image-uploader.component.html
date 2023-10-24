@@ -14,9 +14,9 @@
         <ng-content></ng-content>
       </div>
       <div #uploadAreaControl class="c-image-uploader-upload-area__control">
-        <button class="c-button_icon c-image-uploader-upload-area__button">
-          <fa-icon [icon]="arrowUpFromBracket"></fa-icon>
-        </button>
+        <div class="c-image-uploader-upload-area__button">
+          <app-icon icon="add_photo_alternate"></app-icon>
+        </div>
       </div>
     </div>
   </ly-img-cropper>
@@ -26,14 +26,14 @@
          [class]="{ 'c-image-uploader__control_disabled': !cropper.isLoaded }"
          (click)="cropper.rotate(-90)"
     >
-      <mat-icon fontIcon="rotate_90_degrees_ccw"></mat-icon>
+      <app-icon icon="rotate_90_degrees_ccw"></app-icon>
       <div class="ml-4">Повернуть</div>
     </div>
     <div class="c-image-uploader__control c-image-uploader__control_red"
          [class]="{ 'c-image-uploader__control_disabled': !cropper.isLoaded && removeOriginImageDisabled }"
          (click)="removeImage()"
     >
-      <mat-icon fontIcon="highlight_off"></mat-icon>
+      <app-icon icon="highlight_off"></app-icon>
       <div class="ml-4">Удалить</div>
     </div>
   </div>

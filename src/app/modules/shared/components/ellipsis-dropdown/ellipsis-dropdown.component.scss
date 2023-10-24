@@ -1,12 +1,12 @@
 .c-ellipsis-dropdown {
   cursor: pointer;
   &__button {
-    .material-icons {
+    app-icon {
       color: var(--text-4);
       transition: color 0.3s;
     }
     &:hover, &:focus, &:active {
-      .material-icons {
+      app-icon {
         color: var(--accent);
       }
     }
