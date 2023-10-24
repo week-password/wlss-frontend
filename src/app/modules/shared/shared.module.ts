@@ -12,7 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from "@angular/router";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import { AuthorizedUserComponent } from './components/authorized-user/authorized-user.component';
@@ -24,6 +23,7 @@ import { EllipsisDropdownComponent } from './components/ellipsis-dropdown/ellips
 import { ErrorComponent } from './components/error/error.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { IconComponent } from './components/icon/icon.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
 import { InputComponent } from './components/input/input.component';
 import { LogoComponent } from './components/logo/logo.component';
@@ -42,7 +42,6 @@ import {
 const MODULES = [
   AngularSvgIconModule.forRoot(),
   CommonModule,
-  FontAwesomeModule,
   FormsModule,
   HttpClientModule,
   LyImageCropperModule,
@@ -66,6 +65,7 @@ const COMPONENTS = [
   ErrorComponent,
   FooterComponent,
   HeaderComponent,
+  IconComponent,
   ImageUploaderComponent,
   InputComponent,
   LogoComponent,

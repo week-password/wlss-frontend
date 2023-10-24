@@ -1,6 +1,5 @@
 import { Component, Inject, TemplateRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { takeUntil } from 'rxjs';
 
 import { EBaseColor, IDialogData } from 'src/app/core/models';
@@ -13,7 +12,6 @@ import { BaseComponent } from 'src/app/modules/shared/base-components';
 })
 export class DialogComponent extends BaseComponent {
   EBaseColor = EBaseColor;
-  xmark = faXmark;
 
   buttonsTemplate?: TemplateRef<HTMLElement>;
   cancelButtonText?: string;

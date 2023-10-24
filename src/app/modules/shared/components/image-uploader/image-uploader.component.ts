@@ -7,7 +7,6 @@ import {
 } from '@alyle/ui/image-cropper';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 import {
   EMatSnackbarHPosition,
@@ -30,8 +29,6 @@ export class ImageUploaderComponent implements OnInit {
   @Output() change = new EventEmitter<ImgCropperEvent | null>();
   @Output() removeOriginImage = new EventEmitter<void>();
   @ViewChild(LyImageCropper, { static: true }) readonly cropper: LyImageCropper;
-
-  readonly arrowUpFromBracket = faArrowUpFromBracket;
 
   croppedImage?: string;
   imageCropperConfig: ImgCropperConfig;

@@ -60,6 +60,9 @@ html .c-button {
     justify-content: center;
     background-color: transparent;
     cursor: pointer;
+    & .c-icon {
+      font-size: 24px;
+    }
   }
   &_text {
     cursor: pointer;
