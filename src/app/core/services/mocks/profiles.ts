@@ -15,8 +15,8 @@ export const profiles: IProfile[] = [
       id: 2,
       login: 'high-kaliber-expert',
     },
-    avatar: 'https://www.firestock.ru/wp-content/uploads/2015/01/Dollarphotoclub_54422632-700x500.jpg',
-    description: null,
+    avatar: 'https://www.lansingstatejournal.com/gcdn/presto/2019/10/10/PLSJ/d45c2234-d7aa-4a23-9b94-c86746ee5932-191009_high_caliber_029a.JPG',
+    description: 'Я не понимаю, почему вы так долго разрабатываете вишер, это делается за два часа, я сам разработчик, знаю о чём говорю',
     name: 'High-Kaliber Ekspert',
   },
   {
@@ -25,7 +25,7 @@ export const profiles: IProfile[] = [
       login: 'god',
     },
     avatar: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT5h-Gy71W1Je_7xgJegpQMVBLVFicLX4ow5Rou0nOsyibqbCru',
-    description: null,
+    description: 'А когда будет готово?',
     name: 'Заказчик',
   },
   {
@@ -34,7 +34,7 @@ export const profiles: IProfile[] = [
       login: 'dasha',
     },
     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlT3GNaodZ2POYi9FeJc27S4G6s4_McYGDTZeYcltXlRYYwTdV',
-    description: null,
+    description: 'Привет, мы можем сейчас быстренько вместо вишера сделать небольшую кнопочку для загрузки больших данных? Очень надо!',
     name: 'Дарья Очень Просила',
   },
   {
@@ -43,7 +43,7 @@ export const profiles: IProfile[] = [
       login: '140',
     },
     avatar: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTJvLVx5gf7gr5PPMGknPGTa_g5JfP7CKIaOFBhA26jAZj0xVPS',
-    description: null,
+    description: 'Не знаю даже, может было бы лучше 200 гигабайтов?',
     name: 'Никита 140 гигабайтов',
   },
   {
@@ -52,7 +52,7 @@ export const profiles: IProfile[] = [
       login: 'llona',
     },
     avatar: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQfd5ao6pkKRE3DrZroYzti8CwXuJqax4SHNJOAEqdoPteX4ZLX',
-    description: null,
+    description: 'Все вопросы к Евгении',
     name: 'Илона на Другом проекте',
   },
   {
@@ -61,7 +61,7 @@ export const profiles: IProfile[] = [
       login: 'lid1',
     },
     avatar: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSDluIdACtLFdbltpj1LDQEScI1svXU2wlQTnAgL3H2iCKUr_gQ',
-    description: null,
+    description: 'Привет! У нас с Антоном запланирован отпуск со следующей недели, может кто-нибудь нас подменить?',
     name: 'Алексей Когда контракты',
   },
   {
@@ -70,7 +70,7 @@ export const profiles: IProfile[] = [
       login: 'lid2',
     },
     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStj2MKqQy6q5hUyalyYswvp0ErDdnodKl5YJ55_hO4AK9m18dK',
-    description: null,
+    description: 'Привет! У нас с Алексеем запланирован отпуск со следующей недели, но у нас всё готово, так что я позвал с нами в отпуск ещё Галину, Илону и Наташу)))',
     name: 'Антон Всё готово',
   },
   {
@@ -88,7 +88,7 @@ export const profiles: IProfile[] = [
       login: 'vi',
     },
     avatar: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTWH0iU5eg8iyb8rYIzjzoNWyvMtsKYjJqpMtUMzX12Tl1gig3z',
-    description: null,
+    description: 'Привет! Меня зовут Вика, я начала свой путь на вишере совсем недавно, но всего за полгода стала продвинутым пользователем платформы, и теперь я помогаю новичкам разобраться во всех нюансах этой системы. Кстати, почему кнопка редактирования профиля не прокликивается?',
     name: 'Виктория За Полгода',
   },
   {
