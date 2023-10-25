@@ -6,32 +6,54 @@
     <app-profile-block [collapsable]="true">
       <div title class="d-flex">
         <h3>Друзья</h3>
-        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">9</div>
+        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">
+          {{ friends.length }}
+        </div>
         <a class="c-badge c-badge_rounded c-badge_header c-badge_primary c-badge_hover"
            routerLink="/profiles"
         >+</a>
       </div>
-      <div content>
+      <div content *ngIf="friends.length" class="profile__related-profiles">
+        <app-short-profile-card *ngFor="let profile of friends"
+                                class="profile__related-profile"
+                                [profile]="profile"
+        ></app-short-profile-card>
+      </div>
+      <div content *ngIf="!friends.length" class="profile__related-profiles">
         <span class="color-text-4">Здесь будут отображаться ваши друзья</span>
       </div>
     </app-profile-block>
   </div>
-  <div class="profile__block">
+  <div class="profile__block" *ngIf="incomingRequests.length">
     <app-profile-block [collapsable]="true" [initialState]="EBlockState.collapsed">
       <div title class="d-flex">
         <h3>Входящие заявки</h3>
-        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">3</div>
+        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">
+          {{ incomingRequests.length }}
+        </div>
       </div>
-      <div content></div>
+      <div content class="profile__related-profiles">
+        <app-short-profile-card *ngFor="let profile of incomingRequests"
+                                class="profile__related-profile"
+                                [profile]="profile"
+        ></app-short-profile-card>
+      </div>
     </app-profile-block>
   </div>
-  <div class="profile__block">
+  <div class="profile__block" *ngIf="outgoingRequests.length">
     <app-profile-block [collapsable]="true" [initialState]="EBlockState.collapsed">
       <div title class="d-flex">
         <h3>Исходящие заявки</h3>
-        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">3</div>
+        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">
+          {{ outgoingRequests.length }}
+        </div>
       </div>
-      <div content></div>
+      <div content class="profile__related-profiles">
+        <app-short-profile-card *ngFor="let profile of outgoingRequests"
+                                class="profile__related-profile"
+                                [profile]="profile"
+        ></app-short-profile-card>
+      </div>
     </app-profile-block>
   </div>
   <div class="profile__block">

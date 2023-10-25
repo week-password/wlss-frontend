@@ -7,4 +7,13 @@
       margin-bottom: 30px;
     }
   }
+  &__related-profiles {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(7, 1fr);
+    row-gap: 20px;
+  }
+  &__related-profile {
+    width: 160px;
+  }
 }
