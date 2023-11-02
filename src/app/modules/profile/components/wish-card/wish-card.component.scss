@@ -1,0 +1,21 @@
+.c-wish-card {
+  display: flex;
+  &__avatar {
+    min-width: 150px;
+    min-height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+  }
+  &__content {
+    padding: 0 20px;
+  }
+  &__title-group {
+    margin-bottom: 16px;
+  }
+  &__button {
+    min-width: 180px;
+    margin-left: auto;
+    display: flex;
+    justify-content: end;
+  }
+}

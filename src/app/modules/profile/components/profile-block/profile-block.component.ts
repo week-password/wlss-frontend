@@ -18,6 +18,9 @@ export class ProfileBlockComponent implements OnInit {
   }
 
   switchCollapsed(): void {
+    if (!this.collapsable) {
+      return;
+    }
     this.collapsed = !this.collapsed;
   }
 }

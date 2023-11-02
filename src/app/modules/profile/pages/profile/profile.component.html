@@ -3,10 +3,12 @@
     <app-profile-card class="profile__card c-base-layout" [profile]="profile" [large]="true"></app-profile-card>
   </div>
   <div class="profile__block">
-    <app-profile-block [collapsable]="true">
+    <app-profile-block [collapsable]="true" [initialState]="EBlockState.collapsed">
       <div title class="d-flex">
-        <h3>Друзья</h3>
-        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">
+        <h3 class="mr-4">Друзья</h3>
+        <div *ngIf="friends.length"
+             class="mr-4 c-badge c-badge_rounded c-badge_header c-badge_secondary"
+        >
           {{ friends.length }}
         </div>
         <a class="c-badge c-badge_rounded c-badge_header c-badge_primary c-badge_hover"
@@ -27,8 +29,8 @@
   <div class="profile__block" *ngIf="incomingRequests.length">
     <app-profile-block [collapsable]="true" [initialState]="EBlockState.collapsed">
       <div title class="d-flex">
-        <h3>Входящие заявки</h3>
-        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">
+        <h3 class="mr-4">Входящие заявки</h3>
+        <div class="mr-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">
           {{ incomingRequests.length }}
         </div>
       </div>
@@ -43,8 +45,8 @@
   <div class="profile__block" *ngIf="outgoingRequests.length">
     <app-profile-block [collapsable]="true" [initialState]="EBlockState.collapsed">
       <div title class="d-flex">
-        <h3>Исходящие заявки</h3>
-        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">
+        <h3 class="mr-4">Исходящие заявки</h3>
+        <div class="mr-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">
           {{ outgoingRequests.length }}
         </div>
       </div>
@@ -59,17 +61,20 @@
   <div class="profile__block">
     <app-profile-block>
       <div title class="d-flex">
-        <h3>Желания</h3>
-        <div class="mr-4 ml-4 c-badge c-badge_rounded c-badge_header c-badge_secondary">6</div>
+        <h3 class="mr-4">Желания</h3>
+        <div *ngIf="wishList.wishes.length"
+             class="mr-4 c-badge c-badge_rounded c-badge_header c-badge_secondary"
+        >
+          {{ wishList.wishes.length }}
+        </div>
         <div class="c-badge c-badge_rounded c-badge_header c-badge_primary c-badge_hover"
-             (click)="openAddWishDialog()"
+             (click)="wishList.openWishFormDialog()"
         >+</div>
       </div>
       <div content>
-        <span class="color-text-4">Здесь будут отображаться ваши желания</span>
+        <app-wish-list #wishList />
       </div>
     </app-profile-block>
   </div>
   <app-profile-settings #profileSettings></app-profile-settings>
-  <app-wish-form #wishForm></app-wish-form>
 </div>
