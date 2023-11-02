@@ -1,10 +1,16 @@
 .c-profile-block {
   &__title {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 30px 40px;
   }
   &__content {
     padding: 30px 40px;
+  }
+  &_collapsable {
+    .c-profile-block__title {
+      cursor: pointer;
+    }
   }
 }

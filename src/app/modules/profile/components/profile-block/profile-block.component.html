@@ -1,12 +1,11 @@
-<div class="c-profile-block c-base-layout">
-  <div class="c-profile-block__title">
+<div class="c-profile-block c-base-layout" [class]="{ 'c-profile-block_collapsable': collapsable }">
+  <div class="c-profile-block__title" (click)="switchCollapsed()">
     <div class="c-profile-block__title-content">
       <ng-content select="[title]"></ng-content>
     </div>
     <div class="c-profile-block__title-actions">
       <div *ngIf="collapsable"
            class="c-profile-block__title-action c-button c-button_text"
-           (click)="switchCollapsed()"
       >{{ collapsed ? 'развернуть' : 'свернуть' }}</div>
     </div>
   </div>

@@ -3,14 +3,13 @@
   <div class="profiles__filter c-base-layout">
     <app-profiles-filter (change)="getProfiles($event)"></app-profiles-filter>
   </div>
-  <div *ngIf="profiles.length" class="profiles__cards c-base-layout">
-    <ng-container *ngFor="let profile of profiles; let i = index">
-      <div class="profiles__line c-line c-line_horizontal"></div>
-      <div class="profiles__card" [appLink]="'/profile/' + profile.account.login">
+  <div *ngIf="profiles.length" class="profiles__cards c-base-layout c-line-separated-list">
+    <ng-container *ngFor="let profile of profiles">
+      <div class="c-line-separated-list__separator c-line c-line_horizontal"></div>
+      <div class="c-line-separated-list__item" [appLink]="'/profile/' + profile.account.login">
         <app-profile-card [profile]="profile"></app-profile-card>
       </div>
     </ng-container>
-
   </div>
   <div *ngIf="!profiles.length" class="profiles">
     Пользователи не найдены. Попробуйте изменить параметры поиска.

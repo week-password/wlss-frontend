@@ -30,7 +30,7 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
     this.subscribeOnFormChanges();
   }
 
-  openDialog(wish: IWish | null = null): void {
+  openDialog(wish: IWish | null = null): MatDialogRef<DialogComponent> {
     this.wish = wish;
     this.fillWishForm();
     const wishFormDialogData: IDialogData = {
@@ -43,14 +43,7 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
       width: '800px',
       data: wishFormDialogData,
     });
-  }
-
-  initWishForm(): void {
-    this.form = this.fb.group<IWishFormGroup>({
-      avatar: this.fb.control<string | null>(null),
-      description: this.fb.control<string>('', { nonNullable: true, validators: descriptionValidators }),
-      title: this.fb.control<string>('', { nonNullable: true, validators: titleValidators }),
-    });
+    return this.dialogRef;
   }
 
   removeAvatar(): void {
@@ -71,7 +64,7 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
       const data = this.imageUploader.croppedImage || null;
       this.controls.avatar.setValue(data);
     }
-    this.closeDialog();
+    this.closeDialog(this.form.value as IWish);
   }
 
   cancelWishForm(): void {
@@ -90,6 +83,14 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
     });
   }
 
+  private initWishForm(): void {
+    this.form = this.fb.group<IWishFormGroup>({
+      avatar: this.fb.control<string | null>(null),
+      description: this.fb.control<string>('', { nonNullable: true, validators: descriptionValidators }),
+      title: this.fb.control<string>('', { nonNullable: true, validators: titleValidators }),
+    });
+  }
+
   private fillWishForm(): void {
     if (!this.wish) {
       return;
@@ -100,8 +101,8 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
     this.changed = false;
   }
 
-  private closeDialog(): void {
-    this.dialogRef.close();
+  private closeDialog(wish: IWish | null = null): void {
+    this.dialogRef.close(wish);
     this.initWishForm();
   }
 }
