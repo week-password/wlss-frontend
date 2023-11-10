@@ -16,4 +16,4 @@ FROM nginx:1.20 as nginx
 
 COPY --from=wlss-fe-build /wlss-fe/dist/wlss-frontend /usr/share/nginx/html
 
-COPY envs/test/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY envs/qa/nginx/nginx.conf /etc/nginx/conf.d/default.conf

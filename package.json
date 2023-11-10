@@ -8,8 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint --fix",
-    "deploy:test": "git tag --annotate --force test --message '' && git push origin test --force",
-    "deploy:test:fetch": "git fetch origin +refs/tags/test:refs/tags/test"
+    "deploy:qa": "git tag --annotate --force deployed/qa --message '' && git push origin deployed/qa --force",
+    "deploy:qa:fetch": "git fetch origin +refs/tags/deployed/qa:refs/tags/deployed/qa"
   },
   "private": true,
   "dependencies": {

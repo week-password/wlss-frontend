@@ -34,23 +34,23 @@ Run `ng lint` or `npm run lint` to lint code using the Anguar ESLint.
 
 _Only users with write access are able to deploy._
 
-1. Fetch the last version of the `test` tag with one of the following commands:
+1. Fetch the last version of the `deployed/qa` tag with one of the following commands:
 ```bash
 # using git
-git fetch origin +refs/tags/test:refs/tags/test
+git fetch origin +refs/tags/deployed/qa:refs/tags/deployed/qa
 
 # using npm
-npm run deploy:test:fetch
+npm run deploy:qa:fetch
 ```
 
 2. Checkout to branch/commit you want to deploy.
 
-3. Create and push new version of the `test` tag in one of the following ways:
+3. Create and push new version of the `deployed/qa` tag in one of the following ways:
 ```bash
 # using git
-git tag --annotate --force test --message ''
-git push origin test --force
+git tag --annotate --force deployed/qa --message ''
+git push origin deployed/qa --force
 
 # using npm
-npm run deploy:test
+npm run deploy:qa
 ```
