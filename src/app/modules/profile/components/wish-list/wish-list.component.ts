@@ -18,7 +18,7 @@ export class WishListComponent extends BaseComponent {
   @ViewChild('wishForm') wishForm: WishFormComponent;
   @ViewChildren('removeWishMessages') removeWishMessages: QueryList<TemplateRef<HTMLElement>>;
 
-  wishes: IWish[] = [];
+  wishes: Array<IWish> = [];
 
   constructor(private wishService: WishService, private matDialog: MatDialog) {
     super();
@@ -89,7 +89,7 @@ export class WishListComponent extends BaseComponent {
   private getWishes(): void {
     this.wishService.getWishes().pipe(
       takeUntil(this.destroy$)
-    ).subscribe((wishes: IWish[]) => {
+    ).subscribe((wishes: Array<IWish>) => {
       this.wishes = wishes;
     });
   }

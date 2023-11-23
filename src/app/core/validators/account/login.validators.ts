@@ -2,7 +2,7 @@ import { ValidatorFn, Validators } from '@angular/forms';
 
 const loginPattern = String.raw`[A-Za-z0-9_-]*`;
 
-export const loginValidators: ValidatorFn[] = [
+export const loginValidators: Array<ValidatorFn> = [
   Validators.required,
   Validators.pattern(loginPattern),
   Validators.minLength(1),

@@ -19,9 +19,9 @@ export class ProfileComponent extends BaseComponent implements OnInit {
 
   EBlockState = EBlockState;
   profile: IProfile | null = null;
-  friends: IProfile[] = [];
-  incomingRequests: IProfile[] = [];
-  outgoingRequests: IProfile[] = [];
+  friends: Array<IProfile> = [];
+  incomingRequests: Array<IProfile> = [];
+  outgoingRequests: Array<IProfile> = [];
 
   constructor(
     private friendshipService: FriendshipService,
@@ -82,7 +82,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   private getFriends(): void {
     this.friendshipService.getFriends().pipe(
       takeUntil(this.destroy$)
-    ).subscribe((friends: IProfile[]) => {
+    ).subscribe((friends: Array<IProfile>) => {
       this.friends = friends;
     });
   }
@@ -90,7 +90,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   private getIncomingRequests(): void {
     this.friendshipService.getIncomingRequests().pipe(
       takeUntil(this.destroy$)
-    ).subscribe((incomingRequests: IProfile[]) => {
+    ).subscribe((incomingRequests: Array<IProfile>) => {
       this.incomingRequests = incomingRequests;
     });
   }
@@ -98,7 +98,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   private getOutgoingRequests(): void {
     this.friendshipService.getOutgoingRequests().pipe(
       takeUntil(this.destroy$)
-    ).subscribe((outgoingRequests: IProfile[]) => {
+    ).subscribe((outgoingRequests: Array<IProfile>) => {
       this.outgoingRequests = outgoingRequests;
     });
   }

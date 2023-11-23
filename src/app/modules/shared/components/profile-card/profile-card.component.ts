@@ -15,7 +15,7 @@ export class ProfileCardComponent {
   readonly EBaseColor = EBaseColor;
   readonly EFriendshipStatus = EFriendshipStatus;
   readonly EOverlayPosition = EOverlayPosition;
-  readonly requestAcceptedStatusDropdownItems: IDropdownItem[] = [{
+  readonly requestAcceptedStatusDropdownItems: Array<IDropdownItem> = [{
     value: 'Удалить',
     action: this.removeAcceptedFriendship.bind(this),
   }];

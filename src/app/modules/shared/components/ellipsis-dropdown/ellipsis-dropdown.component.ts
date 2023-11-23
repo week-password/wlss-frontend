@@ -10,7 +10,7 @@ import { OverlayComponent } from 'src/app/modules/shared/components/overlay/over
 })
 export class EllipsisDropdownComponent {
   @Input() position: EOverlayPosition;
-  @Input() dropdownItems: IDropdownItem[] = [];
+  @Input() dropdownItems: Array<IDropdownItem> = [];
   @ViewChild('dropdown') dropdown: OverlayComponent;
 
   switch(): void {

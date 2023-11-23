@@ -15,7 +15,7 @@ export class WishCardComponent {
 
   EAvatarType = EAvatarType;
   EOverlayPosition = EOverlayPosition;
-  readonly dropdownItems: IDropdownItem[] = [
+  readonly dropdownItems: Array<IDropdownItem> = [
     {
       value: 'Редактировать',
       action: (): void => this.edit.emit(),

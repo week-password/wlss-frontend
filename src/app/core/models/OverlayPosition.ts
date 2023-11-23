@@ -9,7 +9,7 @@ export enum EOverlayPosition {
   topEnd = 'topEnd',
 }
 
-export const OverlayPositions: { [key in EOverlayPosition]: ConnectedPosition[] } = {
+export const OverlayPositions: { [key in EOverlayPosition]: Array<ConnectedPosition> } = {
   [EOverlayPosition.bottomCenter]: [{
     originX: 'center',
     originY: 'bottom',

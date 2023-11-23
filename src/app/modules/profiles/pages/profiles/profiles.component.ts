@@ -12,7 +12,7 @@ import { BaseComponent } from 'src/app/modules/shared/base-components';
   styleUrls: ['./profiles.component.scss']
 })
 export class ProfilesComponent extends BaseComponent implements OnInit {
-  profiles: IProfile[] = [];
+  profiles: Array<IProfile> = [];
 
   constructor(private profilesService: ProfilesService) {
     super();
@@ -27,7 +27,7 @@ export class ProfilesComponent extends BaseComponent implements OnInit {
     this.profilesService.getProfiles(filter).pipe(
       takeUntil(this.destroy$),
       finalize(() => { this.loading = false; })
-    ).subscribe((profiles: IProfile[]) => {
+    ).subscribe((profiles: Array<IProfile>) => {
       this.profiles = profiles;
     });
   }
