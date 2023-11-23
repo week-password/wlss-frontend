@@ -1,41 +1,46 @@
 <ng-template #dialogContent>
   <div *ngIf="profile" class="c-profile-settings">
-    <app-image-uploader #imageUploader
-                        class="c-profile-settings__image-uploader"
-                        [removeOriginImageDisabled]="!controls.avatar.value"
-                        (removeOriginImage)="removeAvatar()"
-                        (change)="onAvatarChanged()"
+    <app-image-uploader
+      #imageUploader
+      class="c-profile-settings__image-uploader"
+      [removeOriginImageDisabled]="!controls.avatar.value"
+      (removeOriginImage)="removeAvatar()"
+      (change)="onAvatarChanged()"
     >
       <app-avatar [source]="controls.avatar.value"></app-avatar>
     </app-image-uploader>
     <form class="c-profile-settings__form" [formGroup]="form">
-      <app-input class="mb-20"
-                 label="имя"
-                 appTrimStartWhitespaces
-                 appDisableRepeatWhitespaces
-                 [inputControl]="controls.name"
+      <app-input
+        class="mb-20"
+        label="имя"
+        appTrimStartWhitespaces
+        appDisableRepeatWhitespaces
+        [inputControl]="controls.name"
       ></app-input>
-      <app-textarea class="mb-12"
-                    label="о себе (необязательно)"
-                    appTrimStartWhitespaces
-                    appDisableRepeatWhitespaces
-                    [inputControl]="controls.description"
-                    [rows]="12"
+      <app-textarea
+        class="mb-12"
+        label="о себе (необязательно)"
+        appTrimStartWhitespaces
+        appDisableRepeatWhitespaces
+        [inputControl]="controls.description"
+        [rows]="12"
       ></app-textarea>
     </form>
   </div>
 </ng-template>
 <ng-template #dialogButtons>
-  <app-button class="mr-20"
-              tabindex="-1"
-              [color]="EBaseColor.primary"
-              [disabled]="submitDisabled"
-              [height]="40"
-              (click)="saveProfileSettings()"
+  <app-button
+    class="mr-20"
+    tabindex="-1"
+    [color]="EBaseColor.primary"
+    [disabled]="submitDisabled"
+    [height]="40"
+    (click)="saveProfileSettings()"
   >Сохранить</app-button>
-  <app-button tabindex="-1"
-              [color]="EBaseColor.secondary"
-              [height]="40"
-              (click)="cancelProfileSettings()"
+  <app-button
+    tabindex="-1"
+    [color]="EBaseColor.secondary"
+    [height]="40"
+    (click)="cancelProfileSettings()"
   >Отменить</app-button>
 </ng-template>

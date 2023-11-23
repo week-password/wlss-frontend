@@ -1,18 +1,20 @@
 <div class="c-input">
-  <mat-form-field [ngClass]="{
+  <mat-form-field
+    [ngClass]="{
       'c-input_filled': inputControl.value || inputControl.value === 0,
       'c-input_focused': focused,
       'c-input_invalid': showError
     }"
   >
     <mat-label class="regular-text">{{ label }}</mat-label>
-    <input matInput
-           [formControl]="inputControl"
-           [placeholder]="placeholder"
-           [type]="type"
-           (blur)="onBlur()"
-           (focus)="onFocus()"
-           (input)="onInput($event)"
+    <input
+      matInput
+      [formControl]="inputControl"
+      [placeholder]="placeholder"
+      [type]="type"
+      (blur)="onBlur()"
+      (focus)="onFocus()"
+      (input)="onInput($event)"
     >
     <mat-error *ngIf="showError" class="caption">
       <app-error [errors]="inputControl.errors"></app-error>

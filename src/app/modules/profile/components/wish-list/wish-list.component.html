@@ -2,9 +2,10 @@
   <ng-container *ngFor="let wish of wishes; let i = index">
     <div class="c-line-separated-list__separator c-line c-line_horizontal"></div>
     <div class="c-line-separated-list__item">
-      <app-wish-card [wish]="wish"
-                     (edit)="openWishFormDialog(wish)"
-                     (remove)="openRemoveWishDialog(wish, i)"
+      <app-wish-card
+        [wish]="wish"
+        (edit)="openWishFormDialog(wish)"
+        (remove)="openRemoveWishDialog(wish, i)"
       ></app-wish-card>
     </div>
     <ng-template #removeWishMessages>

@@ -1,11 +1,12 @@
-<ng-template cdkConnectedOverlay
-             cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
-             [cdkConnectedOverlayHasBackdrop]="true"
-             [cdkConnectedOverlayOrigin]="trigger"
-             [cdkConnectedOverlayOpen]="isOpen"
-             [cdkConnectedOverlayPositions]="overlayPosition"
-             (backdropClick)="close()"
-             (detach)="close()"
+<ng-template
+  cdkConnectedOverlay
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen"
+  [cdkConnectedOverlayPositions]="overlayPosition"
+  (backdropClick)="close()"
+  (detach)="close()"
 >
   <div (click)="closeAfterClick && close()">
     <ng-content></ng-content>

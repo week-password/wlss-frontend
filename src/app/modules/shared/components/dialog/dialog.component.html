@@ -15,18 +15,20 @@
     </div>
   </div>
   <div mat-dialog-actions align="end">
-    <app-button *ngIf="submitButtonText"
-                class="mr-20"
-                tabindex="-1"
-                [mat-dialog-close]="true"
-                [color]="submitButtonColor || EBaseColor.primary"
-                [height]="40"
+    <app-button
+      *ngIf="submitButtonText"
+      class="mr-20"
+      tabindex="-1"
+      [mat-dialog-close]="true"
+      [color]="submitButtonColor || EBaseColor.primary"
+      [height]="40"
     >{{ submitButtonText }}</app-button>
-    <app-button *ngIf="cancelButtonText"
-                tabindex="-1"
-                [color]="EBaseColor.secondary"
-                [height]="40"
-                (click)="close()"
+    <app-button
+      *ngIf="cancelButtonText"
+      tabindex="-1"
+      [color]="EBaseColor.secondary"
+      [height]="40"
+      (click)="close()"
     >{{ cancelButtonText }}</app-button>
     <ng-container *ngIf="buttonsTemplate" [ngTemplateOutlet]="buttonsTemplate"></ng-container>
   </div>
