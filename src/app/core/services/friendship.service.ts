@@ -7,15 +7,15 @@ import { friends, incomingRequests, outgoingRequests } from './mocks/friendship'
 
 @Injectable({ providedIn: 'root' })
 export class FriendshipService {
-  getFriends(): Observable<IProfile[]> {
+  getFriends(): Observable<Array<IProfile>> {
     return of(friends);
   }
 
-  getIncomingRequests(): Observable<IProfile[]> {
+  getIncomingRequests(): Observable<Array<IProfile>> {
     return of(incomingRequests);
   }
 
-  getOutgoingRequests(): Observable<IProfile[]> {
+  getOutgoingRequests(): Observable<Array<IProfile>> {
     return of(outgoingRequests);
   }
 }

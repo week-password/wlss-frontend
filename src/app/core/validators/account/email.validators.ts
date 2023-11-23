@@ -2,7 +2,7 @@ import { ValidatorFn, Validators } from '@angular/forms';
 
 const emailPattern = String.raw`.+@.+\..+`;
 
-export const emailValidators: ValidatorFn[] = [
+export const emailValidators: Array<ValidatorFn> = [
   Validators.required,
   Validators.pattern(emailPattern),
   Validators.minLength(5),

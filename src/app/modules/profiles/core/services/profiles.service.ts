@@ -7,8 +7,8 @@ import { IProfilesFilter } from 'src/app/modules/profiles/core/models';
 
 @Injectable({ providedIn: 'root' })
 export class ProfilesService {
-  getProfiles(filter: IProfilesFilter): Observable<IProfile[]> {
-    const filteredProfiles: IProfile[] = profiles.filter((profile: IProfile) =>
+  getProfiles(filter: IProfilesFilter): Observable<Array<IProfile>> {
+    const filteredProfiles: Array<IProfile> = profiles.filter((profile: IProfile) =>
       profile.account.login.toLowerCase().includes(filter.login) &&
       profile.name.toLowerCase().includes(filter.name)
     );

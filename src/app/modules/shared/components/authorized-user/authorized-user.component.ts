@@ -16,7 +16,7 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
   account: IAccount | null = null;
   profile: IProfile | null = null;
   menuOpened = false;
-  menuItems: IDropdownItem[] = [
+  menuItems: Array<IDropdownItem> = [
     {
       value: 'Профиль',
       action: this.goToProfile.bind(this)

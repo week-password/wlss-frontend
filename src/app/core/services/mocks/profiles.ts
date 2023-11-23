@@ -1,6 +1,6 @@
 import { IProfile } from 'src/app/core/models';
 
-export const profiles: IProfile[] = [
+export const profiles: Array<IProfile> = [
   {
     account: {
       id: 1,

@@ -21,7 +21,7 @@ export const passwordsMatchValidator = (anotherPasswordControl: AbstractControl)
   };
 };
 
-export const passwordValidators: ValidatorFn[] = [
+export const passwordValidators: Array<ValidatorFn> = [
   Validators.required,
   Validators.pattern(passwordPattern),
   Validators.minLength(8),
@@ -29,7 +29,7 @@ export const passwordValidators: ValidatorFn[] = [
 ];
 
 export const getSignupPasswordValidators =
-  (anotherPasswordControl: AbstractControl): ValidatorFn[] => [
+  (anotherPasswordControl: AbstractControl): Array<ValidatorFn> => [
     ...passwordValidators,
     passwordsMatchValidator(anotherPasswordControl),
   ];

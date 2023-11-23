@@ -15,7 +15,7 @@ export class OverlayComponent {
 
   isOpen = false;
 
-  get overlayPosition(): ConnectedPosition[] {
+  get overlayPosition(): Array<ConnectedPosition> {
     return OverlayPositions[this.position];
   }
 

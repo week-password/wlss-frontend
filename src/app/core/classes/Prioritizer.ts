@@ -1,12 +1,12 @@
 abstract class AbstractPrioritizer<T> {
-  protected abstract priorities: T[];
-  private sourceElements: T[] = [];
+  protected abstract priorities: Array<T>;
+  private sourceElements: Array<T> = [];
 
-  constructor(elements: T[]) {
+  constructor(elements: Array<T>) {
     this.sourceElements = elements.slice();
   }
 
-  get elements(): T[] {
+  get elements(): Array<T> {
     return this.sourceElements.slice().sort((x: T, y: T) =>
       this.getPriority(x) - this.getPriority(y)
     );
