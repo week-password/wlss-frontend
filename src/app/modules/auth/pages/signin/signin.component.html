@@ -7,13 +7,15 @@
     <app-welcome-form-block>
       <form class="signin__form" [formGroup]="form">
         <div class="signin__form-inputs">
-          <app-input class="mb-20"
-                     label="e-mail / логин"
-                     [inputControl]="controls.login"
+          <app-input
+            class="mb-20"
+            label="e-mail / логин"
+            [inputControl]="controls.login"
           ></app-input>
-          <app-input label="пароль"
-                     [type]="EInputType.password"
-                     [inputControl]="controls.password"
+          <app-input
+            label="пароль"
+            [type]="EInputType.password"
+            [inputControl]="controls.password"
           ></app-input>
         </div>
         <app-button [disabled]="submitDisabled" (click)="onSubmit()">Войти</app-button>

@@ -4,8 +4,9 @@
       <ng-content select="[title]"></ng-content>
     </div>
     <div class="c-profile-block__title-actions">
-      <div *ngIf="collapsable"
-           class="c-profile-block__title-action c-button c-button_text"
+      <div
+        *ngIf="collapsable"
+        class="c-profile-block__title-action c-button c-button_text"
       >{{ collapsed ? 'развернуть' : 'свернуть' }}</div>
     </div>
   </div>

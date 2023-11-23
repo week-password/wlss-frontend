@@ -1,7 +1,8 @@
 <div class="c-welcome-conversation">
-  <app-message *ngFor="let message of conversation, let i = index"
-               class="c-welcome-conversation__message"
-               [color]="i % 2 ? EBaseColor.secondary : EBaseColor.primary"
+  <app-message
+    *ngFor="let message of conversation, let i = index"
+    class="c-welcome-conversation__message"
+    [color]="i % 2 ? EBaseColor.secondary : EBaseColor.primary"
   >
     <span [innerText]="message"></span>
   </app-message>

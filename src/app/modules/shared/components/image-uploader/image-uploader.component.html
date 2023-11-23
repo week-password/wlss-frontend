@@ -1,13 +1,14 @@
 <div class="c-image-uploader" appDragAndDropStyle [dragAndDropArea]="uploadAreaControl">
-  <ly-img-cropper class="c-image-uploader__cropper"
-                  [config]="imageCropperConfig"
-                  [(scale)]="scale"
-                  (minScale)="minScale = $event"
-                  (maxScale)="maxScale = $event"
-                  (cropped)="onCropped($event)"
-                  (loaded)="onLoaded($event)"
-                  (error)="onError($event)"
-                  (wheel)="zoom($event)"
+  <ly-img-cropper
+    class="c-image-uploader__cropper"
+    [config]="imageCropperConfig"
+    [(scale)]="scale"
+    (minScale)="minScale = $event"
+    (maxScale)="maxScale = $event"
+    (cropped)="onCropped($event)"
+    (loaded)="onLoaded($event)"
+    (error)="onError($event)"
+    (wheel)="zoom($event)"
   >
     <div class="c-image-uploader__upload-area c-image-uploader-upload-area">
       <div class="c-image-uploader-upload-area__source">
@@ -22,16 +23,18 @@
   </ly-img-cropper>
 
   <div class="c-image-uploader__controls mt-16">
-    <div class="c-image-uploader__control"
-         [class]="{ 'c-image-uploader__control_disabled': !cropper.isLoaded }"
-         (click)="cropper.rotate(-90)"
+    <div
+      class="c-image-uploader__control"
+      [class]="{ 'c-image-uploader__control_disabled': !cropper.isLoaded }"
+      (click)="cropper.rotate(-90)"
     >
       <app-icon icon="rotate_90_degrees_ccw"></app-icon>
       <div class="ml-4">Повернуть</div>
     </div>
-    <div class="c-image-uploader__control c-image-uploader__control_red"
-         [class]="{ 'c-image-uploader__control_disabled': !cropper.isLoaded && removeOriginImageDisabled }"
-         (click)="removeImage()"
+    <div
+      class="c-image-uploader__control c-image-uploader__control_red"
+      [class]="{ 'c-image-uploader__control_disabled': !cropper.isLoaded && removeOriginImageDisabled }"
+      (click)="removeImage()"
     >
       <app-icon icon="highlight_off"></app-icon>
       <div class="ml-4">Удалить</div>
