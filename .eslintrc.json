@@ -80,7 +80,11 @@
           "groups": ["external", "builtin", "internal", ["parent", "sibling", "index"]],
           "newlines-between": "always",
           "pathGroups": [
-            { "pattern": "src/**", "group": "internal" }
+            { "pattern": "src/**", "group": "internal" },
+            { "pattern": "@core/**", "group": "internal" },
+            { "pattern": "@modules/**", "group": "internal" },
+            { "pattern": "@shared", "group": "internal" },
+            { "pattern": "@shared/**", "group": "internal" }
           ],
           "pathGroupsExcludedImportTypes": ["type", "object"]
         }],

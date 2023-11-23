@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { EInputType } from 'src/app/core/models';
+import { EInputType } from '@core/models';
 
 @Directive()
 export class BaseInputComponent {

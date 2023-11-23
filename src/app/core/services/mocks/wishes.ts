@@ -1,4 +1,4 @@
-import { IWish } from 'src/app/modules/profile/core/models';
+import { IWish } from '@modules/profile/core/models';
 
 export const wishes: Array<IWish> = [
   {

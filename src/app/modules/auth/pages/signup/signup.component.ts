@@ -2,17 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
-import {
-  emailValidators,
-  getSignupPasswordValidators,
-  loginValidators,
-} from 'src/app/core/validators/account';
-import {
-  descriptionValidators,
-  nameValidators,
-} from 'src/app/core/validators/profile';
-import { ESignupStep, ISignupDataFormGroup } from 'src/app/modules/auth/core/models';
-import { BaseFormComponent } from 'src/app/modules/shared/base-components';
+import { emailValidators, getSignupPasswordValidators, loginValidators } from '@core/validators/account';
+import { descriptionValidators, nameValidators } from '@core/validators/profile';
+import { ESignupStep, ISignupDataFormGroup } from '@modules/auth/core/models';
+import { BaseFormComponent } from '@shared/base-components';
 
 @Component({
   selector: 'app-signup',

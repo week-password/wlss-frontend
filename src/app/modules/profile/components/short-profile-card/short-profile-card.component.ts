@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { IProfile } from 'src/app/core/models';
+import { IProfile } from '@core/models';
 
 @Component({
   selector: 'app-short-profile-card',

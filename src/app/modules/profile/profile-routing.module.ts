@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { profileGuard } from 'src/app/modules/profile/core/guards';
+import { profileGuard } from '@modules/profile/core/guards';
 
-import { ProfileComponent } from './pages/profile/profile.component';
+import { ProfileComponent } from './pages/profile';
 
 const routes: Routes = [
   {

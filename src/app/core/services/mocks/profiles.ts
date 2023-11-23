@@ -1,4 +1,4 @@
-import { IProfile } from 'src/app/core/models';
+import { IProfile } from '@core/models';
 
 export const profiles: Array<IProfile> = [
   {

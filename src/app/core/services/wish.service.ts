@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { IWish } from 'src/app/modules/profile/core/models';
+import { IWish } from '@modules/profile/core/models';
 
 import { wishes } from './mocks/wishes';
 

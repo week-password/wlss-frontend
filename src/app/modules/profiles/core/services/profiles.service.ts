@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { IProfile } from 'src/app/core/models';
-import { profiles } from 'src/app/core/services/mocks/profiles';
-import { IProfilesFilter } from 'src/app/modules/profiles/core/models';
+import { IProfile } from '@core/models';
+import { profiles } from '@core/services/mocks/profiles';
+import { IProfilesFilter } from '@modules/profiles/core/models';
 
 @Injectable({ providedIn: 'root' })
 export class ProfilesService {

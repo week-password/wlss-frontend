@@ -3,8 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
-import { EBaseColor, EInputType, IDialogData } from 'src/app/core/models';
-import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
+import { EBaseColor, EInputType, IDialogData } from '@core/models';
+import { DialogComponent } from '@shared/components/dialog';
 
 import { BaseComponent } from './BaseComponent';
 

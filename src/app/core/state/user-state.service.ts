@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { IAccount, IProfile } from 'src/app/core/models';
+import { IAccount, IProfile } from '@core/models';
 
 @Injectable({ providedIn: 'root' })
 export class UserStateService {

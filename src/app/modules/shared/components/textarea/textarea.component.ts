@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { BaseInputComponent } from 'src/app/modules/shared/base-components';
+import { BaseInputComponent } from '@shared/base-components';
 
 @Component({
   selector: 'app-textarea',

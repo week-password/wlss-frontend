@@ -14,24 +14,24 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from "@angular/router";
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
-import { AuthorizedUserComponent } from './components/authorized-user/authorized-user.component';
-import { AvatarComponent } from './components/avatar/avatar.component';
-import { ButtonComponent } from './components/button/button.component';
-import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
-import { DialogComponent } from './components/dialog/dialog.component';
-import { EllipsisDropdownComponent } from './components/ellipsis-dropdown/ellipsis-dropdown.component';
-import { ErrorComponent } from './components/error/error.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
-import { IconComponent } from './components/icon/icon.component';
-import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
-import { InputComponent } from './components/input/input.component';
-import { LogoComponent } from './components/logo/logo.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { OverlayComponent } from './components/overlay/overlay.component';
-import { ProfileCardComponent } from './components/profile-card/profile-card.component';
-import { SnackbarComponent } from './components/snackbar/snackbar.component';
-import { TextareaComponent } from './components/textarea/textarea.component';
+import { AuthorizedUserComponent } from './components/authorized-user';
+import { AvatarComponent } from './components/avatar';
+import { ButtonComponent } from './components/button';
+import { CookieBannerComponent } from './components/cookie-banner';
+import { DialogComponent } from './components/dialog';
+import { EllipsisDropdownComponent } from './components/ellipsis-dropdown';
+import { ErrorComponent } from './components/error';
+import { FooterComponent } from './components/footer';
+import { HeaderComponent } from './components/header';
+import { IconComponent } from './components/icon';
+import { ImageUploaderComponent } from './components/image-uploader';
+import { InputComponent } from './components/input';
+import { LogoComponent } from './components/logo';
+import { NotFoundComponent } from './components/not-found';
+import { OverlayComponent } from './components/overlay';
+import { ProfileCardComponent } from './components/profile-card';
+import { SnackbarComponent } from './components/snackbar';
+import { TextareaComponent } from './components/textarea';
 import {
   DisableRepeatWhitespacesDirective,
   DragAndDropStyleDirective,

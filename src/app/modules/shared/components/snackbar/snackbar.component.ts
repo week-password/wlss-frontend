@@ -1,7 +1,7 @@
 import { Component, Inject, inject, TemplateRef } from '@angular/core';
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
 
-import { EPosition, ESnackbarView, ETextPosition, ISnackbarData } from 'src/app/core/models';
+import { EPosition, ESnackbarView, ETextPosition, ISnackbarData } from '@core/models';
 
 @Component({
   selector: 'app-snackbar',

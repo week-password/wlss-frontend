@@ -15,8 +15,8 @@ import {
   ESnackbarView,
   ETextPosition,
   ISnackbarData,
-} from 'src/app/core/models';
-import { SnackbarComponent } from 'src/app/modules/shared/components/snackbar/snackbar.component';
+} from '@core/models';
+import { SnackbarComponent } from '@shared/components/snackbar';
 
 @Component({
   selector: 'app-image-uploader',
