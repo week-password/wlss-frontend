@@ -2,8 +2,8 @@ import { Component, Inject, TemplateRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
-import { EBaseColor, IDialogData } from 'src/app/core/models';
-import { BaseComponent } from 'src/app/modules/shared/base-components';
+import { EBaseColor, IDialogData } from '@core/models';
+import { BaseComponent } from '@shared/base-components';
 
 @Component({
   selector: 'app-dialog',

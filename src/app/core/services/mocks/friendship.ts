@@ -1,4 +1,4 @@
-import { IProfile } from 'src/app/core/models/Profile';
+import { IProfile } from '@core/models';
 
 import { profiles } from './profiles';
 

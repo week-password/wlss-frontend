@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
-import { EBlockState, IProfile } from 'src/app/core/models';
-import { FriendshipService, ProfileService, ProfileSettingsService } from 'src/app/core/services';
-import { UserStateService } from 'src/app/core/state';
-import { ProfileSettingsComponent } from 'src/app/modules/profile/components/profile-settings/profile-settings.component';
-import { ProfileStateService } from 'src/app/modules/profile/core/state';
-import { BaseComponent } from 'src/app/modules/shared/base-components';
+import { EBlockState, IProfile } from '@core/models';
+import { FriendshipService, ProfileService, ProfileSettingsService } from '@core/services';
+import { UserStateService } from '@core/state';
+import { ProfileSettingsComponent } from '@modules/profile/components/profile-settings';
+import { ProfileStateService } from '@modules/profile/core/state';
+import { BaseComponent } from '@shared/base-components';
 
 @Component({
   selector: 'app-profile',

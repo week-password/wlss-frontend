@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { IAccount } from 'src/app/core/models';
+import { IAccount } from '@core/models';
 
 import { account } from './mocks/account';
 

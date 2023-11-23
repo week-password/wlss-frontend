@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { EBaseColor } from 'src/app/core/models/BaseColor';
+import { EBaseColor } from '@core/models';
 
 @Component({
   selector: 'app-welcome-conversation',

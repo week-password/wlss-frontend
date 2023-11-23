@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { EBlockState } from 'src/app/core/models';
+import { EBlockState } from '@core/models';
 
 @Component({
   selector: 'app-profile-block',

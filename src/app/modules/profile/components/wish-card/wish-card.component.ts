@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { EAvatarType, EOverlayPosition, IDropdownItem } from 'src/app/core/models';
-import { IWish } from 'src/app/modules/profile/core/models';
+import { EAvatarType, EOverlayPosition, IDropdownItem } from '@core/models';
+import { IWish } from '@modules/profile/core/models';
 
 @Component({
   selector: 'app-wish-card',

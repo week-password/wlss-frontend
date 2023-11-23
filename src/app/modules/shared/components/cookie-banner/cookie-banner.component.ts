@@ -9,9 +9,9 @@ import {
   ESnackbarView,
   ETextPosition,
   ISnackbarData
-} from 'src/app/core/models';
-import { BaseComponent } from 'src/app/modules/shared/base-components';
-import { SnackbarComponent } from 'src/app/modules/shared/components/snackbar/snackbar.component';
+} from '@core/models';
+import { BaseComponent } from '@shared/base-components';
+import { SnackbarComponent } from '@shared/components/snackbar';
 
 @Component({
   selector: 'app-cookie-banner',

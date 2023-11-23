@@ -2,12 +2,12 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
-import { EAvatarType, EBaseColor, IDialogData } from 'src/app/core/models';
-import { descriptionValidators, titleValidators } from 'src/app/core/validators/wish';
-import { IWish, IWishFormGroup } from 'src/app/modules/profile/core/models';
-import { BaseFormComponent } from 'src/app/modules/shared/base-components';
-import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
-import { ImageUploaderComponent } from 'src/app/modules/shared/components/image-uploader/image-uploader.component';
+import { EAvatarType, EBaseColor, IDialogData } from '@core/models';
+import { descriptionValidators, titleValidators } from '@core/validators/wish';
+import { IWish, IWishFormGroup } from '@modules/profile/core/models';
+import { BaseFormComponent } from '@shared/base-components';
+import { DialogComponent } from '@shared/components/dialog';
+import { ImageUploaderComponent } from '@shared/components/image-uploader';
 
 @Component({
   selector: 'app-wish-form',

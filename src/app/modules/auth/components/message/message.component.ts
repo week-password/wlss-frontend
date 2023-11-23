@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { EBaseColor } from 'src/app/core/models';
+import { EBaseColor } from '@core/models';
 
 @Component({
   selector: 'app-message',

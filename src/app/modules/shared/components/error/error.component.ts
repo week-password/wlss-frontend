@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 
-import { ErrorsPrioritizer } from 'src/app/core/classes/Prioritizer';
+import { ErrorsPrioritizer } from '@core/classes';
 
 @Component({
   selector: 'app-error',

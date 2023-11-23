@@ -2,12 +2,12 @@ import { Component, QueryList, TemplateRef, ViewChild, ViewChildren } from '@ang
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
-import { EBaseColor, IDialogData } from 'src/app/core/models';
-import { WishService } from 'src/app/core/services';
-import { WishFormComponent } from 'src/app/modules/profile/components/wish-form/wish-form.component';
-import { IWish } from 'src/app/modules/profile/core/models';
-import { BaseComponent } from 'src/app/modules/shared/base-components';
-import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
+import { EBaseColor, IDialogData } from '@core/models';
+import { WishService } from '@core/services';
+import { WishFormComponent } from '@modules/profile/components/wish-form';
+import { IWish } from '@modules/profile/core/models';
+import { BaseComponent } from '@shared/base-components';
+import { DialogComponent } from '@shared/components/dialog';
 
 @Component({
   selector: 'app-wish-list',

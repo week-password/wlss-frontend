@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { SharedModule } from '@shared';
 
-import { ProfilesFilterComponent } from './components/profiles-filter/profiles-filter.component';
-import { ProfilesComponent } from './pages/profiles/profiles.component';
+import { ProfilesFilterComponent } from './components/profiles-filter';
+import { ProfilesComponent } from './pages/profiles';
 import { ProfilesRoutingModule } from './profiles-routing.module';
 
 @NgModule({

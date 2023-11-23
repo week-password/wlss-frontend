@@ -1,4 +1,4 @@
-import { IAccount } from 'src/app/core/models';
+import { IAccount } from '@core/models';
 
 export const account: IAccount = {
   id: 1,

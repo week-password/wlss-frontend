@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { IProfile } from 'src/app/core/models';
+import { IProfile } from '@core/models';
 
 import { friends, incomingRequests, outgoingRequests } from './mocks/friendship';
 

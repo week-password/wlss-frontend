@@ -2,13 +2,13 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
-import { EBaseColor, IAccount, IDialogData, IProfile, IProfileFormGroup } from 'src/app/core/models';
-import { ProfileService } from 'src/app/core/services';
-import { UserStateService } from 'src/app/core/state';
-import { descriptionValidators, nameValidators } from 'src/app/core/validators/profile';
-import { BaseFormComponent } from 'src/app/modules/shared/base-components';
-import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
-import { ImageUploaderComponent } from 'src/app/modules/shared/components/image-uploader/image-uploader.component';
+import { EBaseColor, IAccount, IDialogData, IProfile, IProfileFormGroup } from '@core/models';
+import { ProfileService } from '@core/services';
+import { UserStateService } from '@core/state';
+import { descriptionValidators, nameValidators } from '@core/validators/profile';
+import { BaseFormComponent } from '@shared/base-components';
+import { DialogComponent } from '@shared/components/dialog';
+import { ImageUploaderComponent } from '@shared/components/image-uploader';
 
 @Component({
   selector: 'app-profile-settings',

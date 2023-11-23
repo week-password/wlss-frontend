@@ -6,9 +6,9 @@ import {
   emailValidators,
   loginValidators,
   passwordValidators,
-} from 'src/app/core/validators/account';
-import { ISigninDataFormGroup } from 'src/app/modules/auth/core/models';
-import { BaseFormComponent } from 'src/app/modules/shared/base-components';
+} from '@core/validators/account';
+import { ISigninDataFormGroup } from '@modules/auth/core/models';
+import { BaseFormComponent } from '@shared/base-components';
 
 @Component({
   selector: 'app-signin',

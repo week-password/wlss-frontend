@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
-import { UserAgreementComponent } from './pages/user-agreement/user-agreement.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy';
+import { UserAgreementComponent } from './pages/user-agreement';
 import { TermsRoutingModule } from './terms-routing.module';
 
 @NgModule({

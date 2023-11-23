@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { EBaseColor, EFriendshipStatus, EOverlayPosition, IDropdownItem, IProfile } from 'src/app/core/models';
+import { EBaseColor, EFriendshipStatus, EOverlayPosition, IDropdownItem, IProfile } from '@core/models';
 
 @Component({
   selector: 'app-profile-card',
