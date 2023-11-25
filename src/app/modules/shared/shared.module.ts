@@ -30,6 +30,7 @@ import { LogoComponent } from './components/logo';
 import { NotFoundComponent } from './components/not-found';
 import { OverlayComponent } from './components/overlay';
 import { ProfileCardComponent } from './components/profile-card';
+import { ProfileSettingsComponent } from './components/profile-settings';
 import { SnackbarComponent } from './components/snackbar';
 import { TextareaComponent } from './components/textarea';
 import {
@@ -72,6 +73,7 @@ const COMPONENTS = [
   NotFoundComponent,
   OverlayComponent,
   ProfileCardComponent,
+  ProfileSettingsComponent,
   SnackbarComponent,
   TextareaComponent,
 ];
