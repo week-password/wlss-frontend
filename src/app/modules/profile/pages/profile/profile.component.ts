@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
 import { EBlockState, IProfile } from '@core/models';
-import { FriendshipService, ProfileService, ProfileSettingsService } from '@core/services';
+import { FriendshipService, ProfileService } from '@core/services';
 import { UserStateService } from '@core/state';
-import { ProfileSettingsComponent } from '@modules/profile/components/profile-settings';
 import { ProfileStateService } from '@modules/profile/core/state';
 import { BaseComponent } from '@shared/base-components';
 
@@ -15,8 +14,6 @@ import { BaseComponent } from '@shared/base-components';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent extends BaseComponent implements OnInit {
-  @ViewChild ('profileSettings') profileSettings: ProfileSettingsComponent;
-
   EBlockState = EBlockState;
   profile: IProfile | null = null;
   friends: Array<IProfile> = [];
@@ -26,7 +23,6 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   constructor(
     private friendshipService: FriendshipService,
     private profileService: ProfileService,
-    private profileSettingsService: ProfileSettingsService,
     private profileStateService: ProfileStateService,
     private route: ActivatedRoute,
     private userStateService: UserStateService,
@@ -36,7 +32,6 @@ export class ProfileComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeOnRouteParamsChanges();
-    this.subscribeOnOpenProfileSettingsEvent();
     this.subscribeOnProfileChanges();
     this.getFriends();
     this.getIncomingRequests();
@@ -48,14 +43,6 @@ export class ProfileComponent extends BaseComponent implements OnInit {
       takeUntil(this.destroy$)
     ).subscribe((params: Params) => {
       this.getProfile(params?.login);
-    });
-  }
-
-  private subscribeOnOpenProfileSettingsEvent(): void {
-    this.profileSettingsService.openProfileSettingsEventObserver.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(() => {
-      this.profileSettings.openDialog();
     });
   }
 
