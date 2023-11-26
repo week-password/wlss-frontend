@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
-import { EBaseColor, IAccount, IDialogData, IProfile, IProfileFormGroup } from '@core/models';
+import { EBaseColor, IDialogData, IProfile, IProfileFormGroup } from '@core/models';
 import { ProfileService } from '@core/services';
 import { UserStateService } from '@core/state';
 import { descriptionValidators, nameValidators } from '@core/validators/profile';
@@ -20,11 +20,10 @@ export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGrou
   @ViewChild('dialogButtons') dialogButtons: TemplateRef<HTMLElement>;
   @ViewChild('imageUploader') imageUploader: ImageUploaderComponent;
 
-  dialogRef: MatDialogRef<DialogComponent>;
-  login: string | null = null;
   profile: IProfile | null = null;
-
   EBaseColor = EBaseColor;
+
+  private dialogRef: MatDialogRef<DialogComponent>;
 
   constructor(
     private userStateService: UserStateService,
@@ -35,7 +34,6 @@ export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGrou
 
   ngOnInit(): void {
     this.initProfileSettingsForm();
-    this.subscribeOnAccountChanges();
     this.subscribeOnProfileChanges();
     this.subscribeOnFormChanges();
   }
@@ -66,7 +64,7 @@ export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGrou
     if (this.submitDisabled) {
       return;
     }
-    if (!this.login) {
+    if (!this.profile) {
       return;
     }
     if (this.imageUploader.cropper.isLoaded) {
@@ -74,7 +72,11 @@ export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGrou
       const data = this.imageUploader.croppedImage || null;
       this.controls.avatar.setValue(data);
     }
-    this.profileService.setProfile(this.login, this.form.value as IProfile).pipe(
+    const profile: IProfile = {
+      ...this.profile,
+      ...this.form.value,
+    };
+    this.profileService.setProfile(profile).pipe(
       takeUntil(this.destroy$)
     ).subscribe((profile: IProfile | null) => {
       this.userStateService.setProfile(profile);
@@ -119,14 +121,6 @@ export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGrou
   private closeDialog(): void {
     this.dialogRef.close();
     this.fillProfileSettingsForm();
-  }
-
-  private subscribeOnAccountChanges(): void {
-    this.userStateService.account.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((account: IAccount | null) => {
-      this.login = account?.login || null;
-    });
   }
 
   private subscribeOnProfileChanges(): void {

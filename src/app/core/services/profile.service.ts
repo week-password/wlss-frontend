@@ -15,7 +15,8 @@ export class ProfileService {
     return of(profile);
   }
 
-  setProfile(login: string, profile: IProfile): Observable<IProfile | null> {
+  setProfile(profile: IProfile): Observable<IProfile | null> {
+    const login = profile.account.login;
     const profileIndex = profiles.findIndex((profile: IProfile) => profile.account.login === login);
     if (profileIndex === -1) {
       return of(null);
