@@ -1,7 +1,7 @@
 @import 'common';
 @import 'components';
 
-body {
+html {
   @extend .regular-text;
   min-width: 320px;
   overflow-y: scroll;

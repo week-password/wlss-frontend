@@ -1,5 +1,7 @@
 .cdk-global-scrollblock {
   overflow: hidden;
+  padding-right: var(--scrollbar-size);
+  position: static;
 }
 .cdk-overlay-container {
   .mat-mdc-dialog-container {

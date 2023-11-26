@@ -1,7 +1,10 @@
+:root {
+  --scrollbar-size: 4px;
+}
 // chromium
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
   &-thumb {
     background-color: var(--text-4);
     border-radius: 4px;
@@ -9,6 +12,6 @@
 }
 // firefox
 * {
-  scrollbar-color: var(--text-4);
+  scrollbar-color: var(--text-4) transparent;
   scrollbar-width: thin;
 }
