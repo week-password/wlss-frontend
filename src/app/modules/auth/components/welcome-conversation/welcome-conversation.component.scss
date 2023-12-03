@@ -5,7 +5,7 @@
 
   &__message {
     &:not(:last-child) {
-      margin-bottom: 40px;
+      margin-bottom: var(--y-indent);
     }
     &:nth-child(2n) {
       align-self: flex-end;

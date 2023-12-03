@@ -6,52 +6,53 @@
   <div class="signup__welcome-form-block">
     <app-welcome-form-block>
       <form class="signup__form" [formGroup]="form">
-        <div class="signup__form-inputs">
-          <ng-container *ngIf="currentSignupStep === ESignupStep.main">
+        <ng-container *ngIf="currentSignupStep === ESignupStep.main">
+          <div class="signup__form-inputs">
             <app-input
-              class="mb-20"
+              class="mb-12"
               label="логин"
               [inputControl]="controls.login"
             ></app-input>
             <app-input
-              class="mb-20"
+              class="mb-12"
               label="e-mail"
               [type]="EInputType.email"
               [inputControl]="controls.email"
             ></app-input>
             <app-input
-              class="mb-20"
+              class="mb-12"
               label="пароль"
               [type]="EInputType.password"
               [inputControl]="controls.password"
             ></app-input>
             <app-input
-              class="mb-30"
               label="повторите пароль"
               [type]="EInputType.password"
               [inputControl]="controls.confirmPassword"
             ></app-input>
-            <app-button [disabled]="submitDisabled" (click)="goToDetailsStep()">Далее</app-button>
-          </ng-container>
-          <ng-container *ngIf="currentSignupStep === ESignupStep.details">
+          </div>
+          <app-button class="signup__form-button" [disabled]="submitDisabled" (click)="goToDetailsStep()">Далее</app-button>
+        </ng-container>
+        <ng-container *ngIf="currentSignupStep === ESignupStep.details">
+          <div class="signup__form-inputs">
             <app-input
-              class="mb-20"
+              class="mb-12"
               label="имя"
               appTrimStartWhitespaces
               appDisableRepeatWhitespaces
               [inputControl]="controls.name"
             ></app-input>
             <app-textarea
-              class="mb-30"
               label="о себе"
               placeholder="о себе (необязательно)"
               appTrimStartWhitespaces
               appDisableRepeatWhitespaces
               [inputControl]="controls.description"
+              [rows]="8"
             ></app-textarea>
-            <app-button [disabled]="submitDisabled" (click)="onSubmit()">Завершить регистрацию</app-button>
-          </ng-container>
-        </div>
+          </div>
+          <app-button class="signup__form-button" [disabled]="submitDisabled" (click)="onSubmit()">Завершить регистрацию</app-button>
+        </ng-container>
       </form>
       <div class="signup__caption caption">
         <div>Уже есть аккаунт?</div>

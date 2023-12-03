@@ -13,30 +13,30 @@
 
 html {
   label, .caption {
-    @include text('Rubik', 400, 12, 14);
+    @include text('Rubik', 400, 10, 12);
   }
   b, .bold-text {
-    @include text('Rubik', 700, 18, 21);
+    @include text('Rubik', 700, 14, 18);
   }
   .medium-text {
-    @include text('Rubik', 500, 18, 21);
+    @include text('Rubik', 500, 14, 18);
   }
   body, .regular-text {
-    @include text('Rubik', 400, 18, 21);
+    @include text('Rubik', 400, 14, 18);
   }
   h4, .header-4 {
-    @include text('Montserrat', 500, 22, 27);
+    @include text('Montserrat', 500, 18, 22);
   }
   h3, .header-3 {
-    @include text('Montserrat', 700, 28, 34);
+    @include text('Montserrat', 700, 20, 24);
   }
   h2, .header-2 {
-    @include text('Montserrat', 700, 32, 39);
+    @include text('Montserrat', 700, 26, 30);
   }
   h1, .header-1 {
-    @include text('Montserrat', 700, 42, 51);
+    @include text('Montserrat', 700, 36, 42);
   }
   .logo {
-    @include text('Raleway', 700, 47, 55);
+    @include text('Raleway', 700, 40, 40);
   }
 }

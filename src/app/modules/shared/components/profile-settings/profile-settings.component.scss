@@ -1,5 +1,5 @@
 .c-profile-settings {
   display: grid;
   grid-template-columns: 320px auto;
-  grid-gap: 20px;
+  column-gap: var(--x-indent);
 }

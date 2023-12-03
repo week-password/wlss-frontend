@@ -1,14 +1,11 @@
 .c-header {
-  width: 100%;
-  max-width: 1280px + 60px;
-  margin: 0 auto;
-  padding: 0 30px;
   &__content {
-    height: 65px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 10px;
+    padding: 0 var(--x-indent);
   }
   &__line {
     margin-top: 9px;

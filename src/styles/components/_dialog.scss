@@ -20,7 +20,7 @@
       &__content {
         @extend .regular-text;
         padding: 0;
-        margin: 40px 0;
+        margin: var(--y-indent) 0;
       }
     }
   }

@@ -1,12 +1,14 @@
+$avatar-size: 120px;
+$avatar-size--large: 180px;
 .c-profile-card {
   display: flex;
   position: relative;
   &__avatar {
-    margin-right: 20px;
-    max-width: 150px;
-    min-width: 150px;
-    max-height: 150px;
-    min-height: 150px;
+    margin-right: var(--x-indent--small);
+    max-width: $avatar-size;
+    min-width: $avatar-size;
+    max-height: $avatar-size;
+    min-height: $avatar-size;
   }
   &__info {
     display: flex;
@@ -14,12 +16,11 @@
     justify-content: center;
   }
   &__name {
-    height: 50px;
     display: flex;
     align-items: center;
   }
   &__description {
-    margin-top: 20px;
+    margin-top: var(--y-indent--small);
     flex-grow: 1;
   }
   &__state {
@@ -34,7 +35,7 @@
     text-align: right;
     color: var(--text-4);
     &:not(:last-child) {
-      margin-right: 10px;
+      margin-right: 4px;
     }
   }
 }
@@ -42,11 +43,11 @@
 .c-profile-card_large {
   .c-profile-card {
     &__avatar {
-      margin-right: 30px;
-      max-width: 180px;
-      min-width: 180px;
-      max-height: 180px;
-      min-height: 180px;
+      margin-right: var(--x-indent);
+      max-width: $avatar-size--large;
+      min-width: $avatar-size--large;
+      max-height: $avatar-size--large;
+      min-height: $avatar-size--large;
     }
   }
 }

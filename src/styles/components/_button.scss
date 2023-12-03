@@ -15,6 +15,9 @@ html .c-button {
       color: var(--text-4);
     }
   }
+  .mat-mdc-button-touch-target {
+    height: initial;
+  }
   &_primary {
     .mdc-button:not(:disabled) {
       background-color: var(--accent);

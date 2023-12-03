@@ -3,10 +3,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 40px;
+    padding: var(--y-indent--small) var(--x-indent);
   }
   &__content {
-    padding: 30px 40px;
+    padding: var(--y-indent--small) var(--x-indent);
   }
   &_collapsable {
     .c-profile-block__title {
