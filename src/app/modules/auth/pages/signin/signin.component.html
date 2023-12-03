@@ -8,7 +8,7 @@
       <form class="signin__form" [formGroup]="form">
         <div class="signin__form-inputs">
           <app-input
-            class="mb-20"
+            class="mb-12"
             label="e-mail / логин"
             [inputControl]="controls.login"
           ></app-input>
@@ -18,7 +18,7 @@
             [inputControl]="controls.password"
           ></app-input>
         </div>
-        <app-button [disabled]="submitDisabled" (click)="onSubmit()">Войти</app-button>
+        <app-button class="signin__form-button" [disabled]="submitDisabled" (click)="onSubmit()">Войти</app-button>
       </form>
       <div class="signin__caption caption">
         <div>Ещё нет аккаунта?</div>

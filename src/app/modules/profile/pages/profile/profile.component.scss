@@ -1,19 +1,20 @@
+$related-profiles-row-count: 12;
+
 .profile {
   &__card {
-    padding: 40px;
+    padding: var(--y-indent) var(--x-indent);
   }
   &__block {
     &:not(:last-child) {
-      margin-bottom: 30px;
+      margin-bottom: var(--y-indent--small);
     }
   }
   &__related-profiles {
     display: grid;
     justify-items: center;
-    grid-template-columns: repeat(7, 1fr);
-    row-gap: 20px;
+    grid-template-columns: repeat($related-profiles-row-count, 1fr);
   }
   &__related-profile {
-    width: 160px;
+    width: calc((var(--page-content-size) - var(--x-indent) * 2) / $related-profiles-row-count) ;
   }
 }

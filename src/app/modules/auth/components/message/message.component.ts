@@ -9,5 +9,4 @@ import { EBaseColor } from '@core/models';
 })
 export class MessageComponent {
   @Input() color: EBaseColor = EBaseColor.primary;
-  @Input() message: string;
 }

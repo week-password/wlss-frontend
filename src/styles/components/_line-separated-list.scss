@@ -6,7 +6,7 @@ html .c-line-separated-list {
     width: 100%;
   }
   &__separator {
-    margin: 30px 0;
+    margin: var(--y-indent--small) 0;
     min-width: 400px;
     max-width: 400px;
 

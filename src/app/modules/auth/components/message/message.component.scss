@@ -1,7 +1,7 @@
 .c-message {
   width: fit-content;
   max-width: 350px;
-  padding: 20px 30px;
+  padding: var(--indent--small);
   border: 2px solid;
   border-radius: 8px;
 

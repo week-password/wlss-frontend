@@ -1,6 +1,6 @@
 .c-profiles-filter {
   &__form {
-    margin-top: 30px;
+    margin-top: var(--y-indent--small);
     display: flex;
     app-input {
       width: 100%;
