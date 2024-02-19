@@ -10,8 +10,6 @@ $avatar-size: 70px;
     display: flex;
     max-width: $avatar-size;
     min-width: $avatar-size;
-    max-height: $avatar-size;
-    min-height: $avatar-size;
   }
   &__name {
     width: inherit;
