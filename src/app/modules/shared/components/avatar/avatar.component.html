@@ -1,6 +1,4 @@
-<div class="c-avatar">
-  <div *ngIf="source" class="c-avatar__source drop-shadow" [style]="'background-image: url(' + source + ')'"></div>
-  <div *ngIf="!source" class="c-avatar__default drop-shadow">
+  <img *ngIf="source" align="center" class="c-avatar drop-shadow" [src]="source" />
+  <div *ngIf="!source" class="c-avatar drop-shadow">
     <svg-icon [src]="AvatarSources[type]"></svg-icon>
   </div>
-</div>

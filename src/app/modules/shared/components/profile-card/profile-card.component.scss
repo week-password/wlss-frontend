@@ -7,8 +7,6 @@ $avatar-size--large: 180px;
     margin-right: var(--x-indent--small);
     max-width: $avatar-size;
     min-width: $avatar-size;
-    max-height: $avatar-size;
-    min-height: $avatar-size;
   }
   &__info {
     display: flex;
@@ -46,8 +44,6 @@ $avatar-size--large: 180px;
       margin-right: var(--x-indent);
       max-width: $avatar-size--large;
       min-width: $avatar-size--large;
-      max-height: $avatar-size--large;
-      min-height: $avatar-size--large;
     }
   }
 }

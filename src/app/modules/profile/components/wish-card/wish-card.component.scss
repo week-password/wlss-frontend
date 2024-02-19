@@ -4,9 +4,7 @@ $avatar-size: 120px;
   display: flex;
   &__avatar {
     min-width: $avatar-size;
-    min-height: $avatar-size;
     max-width: $avatar-size;
-    max-height: $avatar-size;
   }
   &__content {
     padding: 0 var(--x-indent--small);
