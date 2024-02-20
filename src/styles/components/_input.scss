@@ -1,4 +1,4 @@
-html .c-input {
+.c-input {
   width: 100%;
   textarea {
     resize: none;
@@ -30,10 +30,6 @@ html .c-input {
       border-color: var(--error);
     }
   }
-  .mat-mdc-form-field-infix {
-    min-width: 180px;
-    width: 100%;
-  }
   .mat-mdc-input-element {
     margin-top: 12px;
     margin-bottom: 2px;
@@ -41,16 +37,20 @@ html .c-input {
       color: var(--text-3);
     }
   }
-  .mdc-text-field--filled .mdc-floating-label {
-    color: var(--text-3);
-    top: 16px;
-    left: 16px;
-    transition: transform 0.3s, color, 0.3s;
-    &--float-above {
-      top: 22px;
-      color: var(--text-4);
-      transform: translateY(-120%) scale(0.65);
-      margin-top: 2px;
+  .mat-mdc-text-field-wrapper .mat-mdc-form-field-infix {
+    min-width: 180px;
+    width: 100%;
+    .mdc-floating-label {
+      color: var(--text-3);
+      top: 16px;
+      left: 16px;
+      transition: transform 0.3s, color, 0.3s;
+      &--float-above {
+        top: 22px;
+        color: var(--text-4);
+        transform: translateY(-120%) scale(0.65);
+        margin-top: 2px;
+      }
     }
   }
   .mat-mdc-form-field-error-wrapper {
