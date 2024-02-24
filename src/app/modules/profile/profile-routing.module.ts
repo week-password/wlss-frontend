@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { profileGuard } from '@modules/profile/core/guards';
+import { profileGuard } from '@core/guards';
 
 import { ProfileComponent } from './pages/profile';
 

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize, takeUntil } from 'rxjs';
 
-import { IProfile, IProfileFriendshipStatus } from '@core/models';
-import { IProfilesFilter } from '@modules/profiles/core/models';
-import { ProfilesService } from '@modules/profiles/core/services';
+import { IProfile, IProfileFriendshipStatus, IProfilesFilter } from '@core/models';
+import { ProfilesService } from '@core/services';
 import { BaseComponent } from '@shared/base-components';
 
 @Component({

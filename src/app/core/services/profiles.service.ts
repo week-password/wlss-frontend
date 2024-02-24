@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { EFriendshipStatus, IProfile, IProfileFriendshipStatus } from '@core/models';
+import { EFriendshipStatus, IProfile, IProfileFriendshipStatus, IProfilesFilter } from '@core/models';
 import { account } from '@core/services/mocks/account';
 import { friends, incomingRequests, outgoingRequests } from '@core/services/mocks/friendship';
 import { profiles } from '@core/services/mocks/profiles';
-import { IProfilesFilter } from '@modules/profiles/core/models';
 
 @Injectable({ providedIn: 'root' })
 export class ProfilesService {

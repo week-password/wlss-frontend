@@ -4,8 +4,7 @@ import { takeUntil } from 'rxjs';
 
 import { EBlockState, IProfile } from '@core/models';
 import { FriendshipService, ProfileService } from '@core/services';
-import { UserStateService } from '@core/state';
-import { ProfileStateService } from '@modules/profile/core/state';
+import { ProfileStateService, UserStateService } from '@core/state';
 import { BaseComponent } from '@shared/base-components';
 
 @Component({

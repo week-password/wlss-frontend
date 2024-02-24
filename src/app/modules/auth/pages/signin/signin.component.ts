@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
+import { ISigninDataFormGroup } from '@core/models';
 import {
   emailValidators,
   loginValidators,
   passwordValidators,
 } from '@core/validators/account';
-import { ISigninDataFormGroup } from '@modules/auth/core/models';
 import { BaseFormComponent } from '@shared/base-components';
 
 @Component({

@@ -2,10 +2,9 @@ import { Component, QueryList, TemplateRef, ViewChild, ViewChildren } from '@ang
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
-import { EAvatarType, EBaseColor, IDialogData } from '@core/models';
+import { EAvatarType, EBaseColor, IDialogData, IWish } from '@core/models';
 import { WishService } from '@core/services';
 import { WishFormComponent } from '@modules/profile/components/wish-form';
-import { IWish } from '@modules/profile/core/models';
 import { BaseComponent } from '@shared/base-components';
 import { DialogComponent } from '@shared/components/dialog';
 
