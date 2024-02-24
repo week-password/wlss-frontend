@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize, takeUntil } from 'rxjs';
 
-import { IProfile } from '@core/models';
+import { IProfile, IProfileFriendshipStatus } from '@core/models';
 import { IProfilesFilter } from '@modules/profiles/core/models';
 import { ProfilesService } from '@modules/profiles/core/services';
 import { BaseComponent } from '@shared/base-components';
@@ -12,7 +12,7 @@ import { BaseComponent } from '@shared/base-components';
   styleUrls: ['./profiles.component.scss']
 })
 export class ProfilesComponent extends BaseComponent implements OnInit {
-  profiles: Array<IProfile> = [];
+  profiles: Array<IProfile & IProfileFriendshipStatus> = [];
 
   constructor(private profilesService: ProfilesService) {
     super();
@@ -27,7 +27,7 @@ export class ProfilesComponent extends BaseComponent implements OnInit {
     this.profilesService.getProfiles(filter).pipe(
       takeUntil(this.destroy$),
       finalize(() => { this.loading = false; })
-    ).subscribe((profiles: Array<IProfile>) => {
+    ).subscribe((profiles: Array<IProfile & IProfileFriendshipStatus>) => {
       this.profiles = profiles;
     });
   }

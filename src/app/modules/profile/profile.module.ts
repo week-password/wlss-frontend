@@ -5,7 +5,7 @@ import { SharedModule } from '@shared';
 
 import { ProfileBlockComponent } from './components/profile-block';
 import { ShortProfileCardComponent } from './components/short-profile-card';
-import { WishCardComponent } from './components/wish-card';
+import { WishActionsComponent } from './components/wish-actions';
 import { WishFormComponent } from './components/wish-form';
 import { WishListComponent } from './components/wish-list';
 import { ProfileComponent } from './pages/profile';
@@ -16,7 +16,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
     ProfileBlockComponent,
     ProfileComponent,
     ShortProfileCardComponent,
-    WishCardComponent,
+    WishActionsComponent,
     WishFormComponent,
     WishListComponent,
   ],

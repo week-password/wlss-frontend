@@ -1,0 +1,40 @@
+<div *ngIf="friendshipStatus" class="c-friendship-status">
+  <ng-container *ngIf="friendshipStatus === EFriendshipStatus.notRequested">
+    <div class="c-friendship-status__item">
+      <app-button>Добавить в друзья</app-button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="friendshipStatus === EFriendshipStatus.requestAccepted">
+    <div class="c-friendship-status__item">
+      <div
+        class="c-button c-button_text pr-10"
+        (mouseup)="$event.stopPropagation()"
+        (click)="dropdown.switch()"
+      >у вас в друзьях</div>
+      <app-ellipsis-dropdown
+        #dropdown
+        [position]="EOverlayPosition.bottomEnd"
+        [dropdownItems]="requestAcceptedStatusDropdownItems"
+      />
+    </div>
+  </ng-container>
+  <ng-container *ngIf="friendshipStatus === EFriendshipStatus.incomingRequest">
+    <div class="c-friendship-status__item caption">
+      Пользователь хочет<br>добавить Вас в друзья
+    </div>
+    <div class="c-friendship-status__item">
+      <app-button>Принять</app-button>
+    </div>
+    <div class="c-friendship-status__item">
+      <app-button [color]="EBaseColor.secondary">Отклонить</app-button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="friendshipStatus === EFriendshipStatus.outgoingRequest">
+    <div class="c-friendship-status__item caption">
+      Заявка в друзья<br>отправлена
+    </div>
+    <div class="c-friendship-status__item">
+      <app-button [color]="EBaseColor.secondary">Отменить</app-button>
+    </div>
+  </ng-container>
+</div>

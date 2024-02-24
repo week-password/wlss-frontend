@@ -1,6 +1,14 @@
 <div *ngIf="profile" class="profile">
   <div class="profile__block">
-    <app-profile-card class="profile__card c-base-layout" [profile]="profile" [large]="true"></app-profile-card>
+    <app-card
+      class="profile__card c-base-layout"
+      [avatar]="profile.avatar"
+      [header]="profile.name"
+      [description]="profile.description"
+      [presentationView]="true"
+    >
+      <app-friendship-status controls />
+    </app-card>
   </div>
   <div class="profile__block">
     <app-profile-block [collapsable]="true" [initialState]="EBlockState.collapsed">
