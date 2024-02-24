@@ -17,11 +17,13 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { AuthorizedUserComponent } from './components/authorized-user';
 import { AvatarComponent } from './components/avatar';
 import { ButtonComponent } from './components/button';
+import { CardComponent } from './components/card';
 import { CookieBannerComponent } from './components/cookie-banner';
 import { DialogComponent } from './components/dialog';
 import { EllipsisDropdownComponent } from './components/ellipsis-dropdown';
 import { ErrorComponent } from './components/error';
 import { FooterComponent } from './components/footer';
+import { FriendshipStatusComponent } from './components/friendship-status';
 import { HeaderComponent } from './components/header';
 import { IconComponent } from './components/icon';
 import { ImageUploaderComponent } from './components/image-uploader';
@@ -29,7 +31,6 @@ import { InputComponent } from './components/input';
 import { LogoComponent } from './components/logo';
 import { NotFoundComponent } from './components/not-found';
 import { OverlayComponent } from './components/overlay';
-import { ProfileCardComponent } from './components/profile-card';
 import { ProfileSettingsComponent } from './components/profile-settings';
 import { SnackbarComponent } from './components/snackbar';
 import { TextareaComponent } from './components/textarea';
@@ -60,11 +61,13 @@ const COMPONENTS = [
   AuthorizedUserComponent,
   AvatarComponent,
   ButtonComponent,
+  CardComponent,
   CookieBannerComponent,
   DialogComponent,
   EllipsisDropdownComponent,
   ErrorComponent,
   FooterComponent,
+  FriendshipStatusComponent,
   HeaderComponent,
   IconComponent,
   ImageUploaderComponent,
@@ -72,7 +75,6 @@ const COMPONENTS = [
   LogoComponent,
   NotFoundComponent,
   OverlayComponent,
-  ProfileCardComponent,
   ProfileSettingsComponent,
   SnackbarComponent,
   TextareaComponent,

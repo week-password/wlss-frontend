@@ -1,0 +1,12 @@
+.c-friendship-status {
+  display: flex;
+  &__item {
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: var(--text-4);
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+  }
+}

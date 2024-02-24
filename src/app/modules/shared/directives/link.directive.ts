@@ -13,11 +13,13 @@ export class LinkDirective {
     right: 2,
   };
 
+  @HostListener('click')
+  onClick(): void {
+    window.open(this.appLink, '_self');
+  }
+
   @HostListener('mouseup', ['$event'])
   onMouseup(event: MouseEvent): void {
-    if (event.button === this.mouseEventButton.left) {
-      window.open(this.appLink, '_self');
-    }
     if (event.button === this.mouseEventButton.middle) {
       window.open(this.appLink, '_blanc');
     }
@@ -25,9 +27,8 @@ export class LinkDirective {
 
   @HostListener('mousedown', ['$event'])
   onMousedown(event: MouseEvent): void {
-    if (event.button === this.mouseEventButton.right) {
-      return;
+    if (event.button === this.mouseEventButton.middle) {
+      event.preventDefault();
     }
-    event.preventDefault();
   }
 }

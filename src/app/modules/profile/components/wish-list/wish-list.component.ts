@@ -2,7 +2,7 @@ import { Component, QueryList, TemplateRef, ViewChild, ViewChildren } from '@ang
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
-import { EBaseColor, IDialogData } from '@core/models';
+import { EAvatarType, EBaseColor, IDialogData } from '@core/models';
 import { WishService } from '@core/services';
 import { WishFormComponent } from '@modules/profile/components/wish-form';
 import { IWish } from '@modules/profile/core/models';
@@ -18,6 +18,7 @@ export class WishListComponent extends BaseComponent {
   @ViewChild('wishForm') wishForm: WishFormComponent;
   @ViewChildren('removeWishMessages') removeWishMessages: QueryList<TemplateRef<HTMLElement>>;
 
+  readonly EAvatarType = EAvatarType;
   wishes: Array<IWish> = [];
 
   constructor(private wishService: WishService, private matDialog: MatDialog) {
