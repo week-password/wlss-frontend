@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { takeUntil } from 'rxjs';
 
-import { IProfilesFilter, IProfilesFilterFormGroup } from '@modules/profiles/core/models';
+import { IProfilesFilter, IProfilesFilterFormGroup } from '@core/models';
 import { BaseFormComponent } from '@shared/base-components';
 
 @Component({

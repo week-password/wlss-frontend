@@ -2,9 +2,8 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
-import { EAvatarType, EBaseColor, IDialogData } from '@core/models';
+import { EAvatarType, EBaseColor, IDialogData, IWish, IWishFormGroup } from '@core/models';
 import { descriptionValidators, titleValidators } from '@core/validators/wish';
-import { IWish, IWishFormGroup } from '@modules/profile/core/models';
 import { BaseFormComponent } from '@shared/base-components';
 import { DialogComponent } from '@shared/components/dialog';
 import { ImageUploaderComponent } from '@shared/components/image-uploader';

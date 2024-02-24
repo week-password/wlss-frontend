@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
+import { ESignupStep, ISignupDataFormGroup } from '@core/models';
 import { emailValidators, getSignupPasswordValidators, loginValidators } from '@core/validators/account';
 import { descriptionValidators, nameValidators } from '@core/validators/profile';
-import { ESignupStep, ISignupDataFormGroup } from '@modules/auth/core/models';
 import { BaseFormComponent } from '@shared/base-components';
 
 @Component({
