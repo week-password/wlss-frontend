@@ -7,6 +7,7 @@ import { UserAgreementComponent } from './pages/user-agreement';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     redirectTo: 'privacy-policy',
   },
   {
