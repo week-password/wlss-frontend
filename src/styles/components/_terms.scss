@@ -1,0 +1,28 @@
+.c-terms {
+  &__header {
+    margin-bottom: var(--y-indent);
+  }
+  &__subheader {
+    margin-bottom: var(--y-indent--small);
+  }
+  &__block:not(:last-child) {
+    margin-bottom: var(--y-indent--small);
+  }
+  &__list {
+    &:not(:last-child) {
+      margin-bottom: var(--y-indent--small);
+    }
+    li {
+      display: list-item;
+      list-style-type: disc;
+      list-style-position: inside;
+    }
+  }
+
+  .c-base-layout {
+    padding: var(--y-indent--small) var(--x-indent);
+    &:not(:last-child) {
+      margin-bottom: var(--y-indent--small);
+    }
+  }
+}
