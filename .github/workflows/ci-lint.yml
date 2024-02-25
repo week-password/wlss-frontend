@@ -1,0 +1,20 @@
+name: Lint
+run-name: Lint commit "${{ github.sha }}"
+
+on:
+  push:
+    branches:
+      - "*"
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Build lint
+        run: docker compose --file envs/ci/lint/docker-compose.yml build lint
+
+      - name: Run lint
+        run: docker compose --file envs/ci/lint/docker-compose.yml run lint
