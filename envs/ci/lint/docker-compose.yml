@@ -1,0 +1,9 @@
+services:
+  wlss-fe-build: &wlss-fe-build
+    build:
+      context: ../../..  # path from the current file to the project root dir
+      dockerfile: envs/ci/lint/Dockerfile  # path from the project root dir to the Dockerfile
+
+  lint:
+    <<: *wlss-fe-build
+    entrypoint: npm run lint-ci
