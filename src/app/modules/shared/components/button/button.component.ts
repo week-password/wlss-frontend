@@ -10,7 +10,7 @@ import { EBaseColor } from '@core/models';
 export class ButtonComponent {
   @Input() color: EBaseColor = EBaseColor.primary;
   @Input() disabled = false;
-  @Input() height = 36;
+  @Input() height: number;
   @Input() label: string;
 
   @HostBinding('class')

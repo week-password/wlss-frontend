@@ -1,10 +1,16 @@
 import { FormControl } from '@angular/forms';
 
+import { EBookingStatus } from './BookingStatus';
+
 export interface IWish {
-  id?: number;
+  id: number;
   avatar: string | null;
   description: string;
   title: string;
+}
+
+export interface IWishBookingStatus {
+  bookingStatus: EBookingStatus | null;
 }
 
 export interface IWishFormGroup {

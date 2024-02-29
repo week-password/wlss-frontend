@@ -1,8 +1,8 @@
-import { Component, QueryList, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
+import { Component, Input, QueryList, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
-import { EAvatarType, EBaseColor, IDialogData, IWish } from '@core/models';
+import { EAvatarType, EBaseColor, EBookingStatus, IDialogData, IWish, IWishBookingStatus } from '@core/models';
 import { WishService } from '@core/services';
 import { WishFormComponent } from '@modules/profile/components/wish-form';
 import { BaseComponent } from '@shared/base-components';
@@ -14,22 +14,38 @@ import { DialogComponent } from '@shared/components/dialog';
   styleUrls: ['./wish-list.component.scss']
 })
 export class WishListComponent extends BaseComponent {
+  @Input() showActions: boolean;
+  @Input() editableItems: boolean;
+
   @ViewChild('wishForm') wishForm: WishFormComponent;
   @ViewChildren('removeWishMessages') removeWishMessages: QueryList<TemplateRef<HTMLElement>>;
 
+  wishes: Array<IWish & IWishBookingStatus> = [];
   readonly EAvatarType = EAvatarType;
-  wishes: Array<IWish> = [];
+  readonly EBookingStatus = EBookingStatus;
 
   constructor(private wishService: WishService, private matDialog: MatDialog) {
     super();
     this.getWishes();
   }
 
+  getBadge(wish: IWish & IWishBookingStatus): string | null {
+    if (!this.showActions) {
+      return null;
+    }
+    return (
+      wish.bookingStatus === EBookingStatus.bookedByAnotherUser ||
+      wish.bookingStatus === EBookingStatus.bookedByCurrentUser ?
+        'забронировано' :
+        null
+    );
+  }
+
   openWishFormDialog(wish: IWish | null = null): void {
     const dialogRef = this.wishForm.openDialog(wish);
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$)
-    ).subscribe((wishFormResult: IWish | null) => {
+    ).subscribe((wishFormResult: Omit<IWish, 'id'> | null) => {
       if (!wishFormResult) {
         return;
       }
@@ -41,7 +57,9 @@ export class WishListComponent extends BaseComponent {
     });
   }
 
-  openRemoveWishDialog(wish: IWish, index: number): void {
+  openRemoveWishDialog(wish: IWish): void {
+    const { id } = wish;
+    const index = this.wishes.findIndex((wish: IWish) => wish.id === id);
     const removeWishDialogData: IDialogData = {
       cancelButtonText: 'Отменить',
       contentTemplate: this.removeWishMessages.get(index),
@@ -57,12 +75,13 @@ export class WishListComponent extends BaseComponent {
       takeUntil(this.destroy$)
     ).subscribe((removeSubmitted: boolean) => {
       if (removeSubmitted) {
+        this.wishForm.closeDialog();
         this.removeWish(wish);
       }
     });
   }
 
-  private addWish(wish: IWish): void {
+  private addWish(wish: Omit<IWish, 'id'>): void {
     this.wishService.addWish(wish).pipe(
       takeUntil(this.destroy$)
     ).subscribe(() => {
@@ -89,7 +108,7 @@ export class WishListComponent extends BaseComponent {
   private getWishes(): void {
     this.wishService.getWishes().pipe(
       takeUntil(this.destroy$)
-    ).subscribe((wishes: Array<IWish>) => {
+    ).subscribe((wishes: Array<IWish & IWishBookingStatus>) => {
       this.wishes = wishes;
     });
   }

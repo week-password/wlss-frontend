@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
@@ -14,15 +14,17 @@ import { ImageUploaderComponent } from '@shared/components/image-uploader';
   styleUrls: ['./wish-form.component.scss']
 })
 export class WishFormComponent extends BaseFormComponent<IWishFormGroup> implements OnInit {
+  @Output() remove = new EventEmitter<IWish>();
+
   @ViewChild('dialogContent') dialogContent: TemplateRef<HTMLElement>;
   @ViewChild('dialogButtons') dialogButtons: TemplateRef<HTMLElement>;
   @ViewChild('imageUploader') imageUploader: ImageUploaderComponent;
 
+  wish: IWish | null;
   readonly EAvatarType = EAvatarType;
   readonly EBaseColor = EBaseColor;
 
   private dialogRef: MatDialogRef<DialogComponent>;
-  private wish: IWish | null;
 
   ngOnInit(): void {
     this.initWishForm();
@@ -43,6 +45,13 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
       data: wishFormDialogData,
     });
     return this.dialogRef;
+  }
+
+  closeDialog(wish: IWish | null = null): void {
+    this.dialogRef.close(wish);
+    this.dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.initWishForm();
+    });
   }
 
   removeAvatar(): void {
@@ -83,7 +92,7 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
   }
 
   private initWishForm(): void {
-    this.form = this.fb.group<IWishFormGroup>({
+      this.form = this.fb.group<IWishFormGroup>({
       avatar: this.fb.control<string | null>(null),
       description: this.fb.control<string>('', { nonNullable: true, validators: descriptionValidators }),
       title: this.fb.control<string>('', { nonNullable: true, validators: titleValidators }),
@@ -98,10 +107,5 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
     this.controls.description.setValue(this.wish.description);
     this.controls.title.setValue(this.wish.title);
     this.changed = false;
-  }
-
-  private closeDialog(wish: IWish | null = null): void {
-    this.dialogRef.close(wish);
-    this.initWishForm();
   }
 }

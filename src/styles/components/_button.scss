@@ -1,5 +1,8 @@
+@import 'src/styles/common/media';
+
 .c-button {
   overflow: hidden;
+  height: 36px;
   .mdc-button {
     height: 100%;
     border-radius: 4px;
@@ -15,7 +18,7 @@
       color: var(--text-4);
     }
   }
-  .mat-mdc-button-touch-target {
+  .mat-mdc-unelevated-button .mat-mdc-button-touch-target {
     height: initial;
   }
   &_primary {
@@ -70,5 +73,18 @@
   &_text {
     cursor: pointer;
     color: var(--accent);
+    height: initial;
+  }
+}
+
+@include mobile {
+  .c-button {
+    height: 24px;
+    .mdc-button {
+      padding: 0 8px;
+    }
+    &_text {
+      height: initial;
+    }
   }
 }

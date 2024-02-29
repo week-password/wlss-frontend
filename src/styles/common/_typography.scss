@@ -1,3 +1,5 @@
+@import 'media';
+
 @mixin text($font-family, $font-weight, $font-size, $line-height, $letter-spacing: 0) {
   font-style: normal;
   font-family: #{$font-family}, Helvetica, Arial, sans-serif;
@@ -37,4 +39,35 @@ h1, .header-1 {
 }
 .logo {
   @include text('Raleway', 700, 40, 40);
+}
+
+
+@include mobile {
+  label, .caption {
+    @include text('Rubik', 400, 9, 10);
+  }
+  b, .bold-text {
+    @include text('Rubik', 700, 12, 14);
+  }
+  .medium-text {
+    @include text('Rubik', 500, 12, 14);
+  }
+  body, .regular-text {
+    @include text('Rubik', 400, 12, 14);
+  }
+  h4, .header-4 {
+    @include text('Montserrat', 500, 14, 18);
+  }
+  h3, .header-3 {
+    @include text('Montserrat', 700, 16, 20);
+  }
+  h2, .header-2 {
+    @include text('Montserrat', 700, 20, 24);
+  }
+  h1, .header-1 {
+    @include text('Montserrat', 700, 26, 30);
+  }
+  .logo {
+    @include text('Raleway', 700, 30, 30);
+  }
 }

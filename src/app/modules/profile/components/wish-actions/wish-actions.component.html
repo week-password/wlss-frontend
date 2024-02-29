@@ -1,6 +1,12 @@
-<div class="c-wish-actions">
-  <app-ellipsis-dropdown
-    [dropdownItems]="dropdownItems"
-    [position]="EOverlayPosition.bottomEnd"
-  ></app-ellipsis-dropdown>
+<div *ngIf="bookingStatus" class="c-wish-actions">
+  <ng-container *ngIf="bookingStatus === EBookingStatus.notBooked">
+    <div class="c-wish-actions__item">
+      <app-button>Забронировать</app-button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="bookingStatus === EBookingStatus.bookedByCurrentUser">
+    <div class="c-wish-actions__item">
+      <app-button [color]="EBaseColor.secondary">Отменить бронь</app-button>
+    </div>
+  </ng-container>
 </div>
