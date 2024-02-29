@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
-import { EBlockState, IProfile } from '@core/models';
+import { EBlockState, IAccount, IProfile } from '@core/models';
 import { FriendshipService, ProfileService } from '@core/services';
 import { ProfileStateService, UserStateService } from '@core/state';
 import { BaseComponent } from '@shared/base-components';
@@ -15,6 +15,7 @@ import { BaseComponent } from '@shared/base-components';
 export class ProfileComponent extends BaseComponent implements OnInit {
   EBlockState = EBlockState;
   profile: IProfile | null = null;
+  account: IAccount | null = null;
   friends: Array<IProfile> = [];
   incomingRequests: Array<IProfile> = [];
   outgoingRequests: Array<IProfile> = [];
@@ -32,6 +33,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.subscribeOnRouteParamsChanges();
     this.subscribeOnProfileChanges();
+    this.subscribeOnAccountChanges();
     this.getFriends();
     this.getIncomingRequests();
     this.getOutgoingRequests();
@@ -50,6 +52,14 @@ export class ProfileComponent extends BaseComponent implements OnInit {
       takeUntil(this.destroy$)
     ).subscribe((profile: IProfile | null) => {
       this.profile = profile;
+    });
+  }
+
+  private subscribeOnAccountChanges(): void {
+    this.userStateService.account.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((account: IAccount | null) => {
+      this.account = account;
     });
   }
 

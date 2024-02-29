@@ -13,5 +13,7 @@ export class CardComponent {
   @Input() avatarType: EAvatarType = EAvatarType.profile;
   @Input() description: string | null;
   @Input() header: string;
+  @Input() headerBadge: string | null = null;
   @Input() presentationView = false;
+  @Input() showControls: boolean;
 }

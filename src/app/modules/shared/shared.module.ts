@@ -23,7 +23,6 @@ import { DialogComponent } from './components/dialog';
 import { EllipsisDropdownComponent } from './components/ellipsis-dropdown';
 import { ErrorComponent } from './components/error';
 import { FooterComponent } from './components/footer';
-import { FriendshipStatusComponent } from './components/friendship-status';
 import { HeaderComponent } from './components/header';
 import { IconComponent } from './components/icon';
 import { ImageUploaderComponent } from './components/image-uploader';
@@ -31,6 +30,7 @@ import { InputComponent } from './components/input';
 import { LogoComponent } from './components/logo';
 import { NotFoundComponent } from './components/not-found';
 import { OverlayComponent } from './components/overlay';
+import { ProfileActionsComponent } from './components/profile-actions';
 import { ProfileSettingsComponent } from './components/profile-settings';
 import { SnackbarComponent } from './components/snackbar';
 import { TextareaComponent } from './components/textarea';
@@ -67,7 +67,6 @@ const COMPONENTS = [
   EllipsisDropdownComponent,
   ErrorComponent,
   FooterComponent,
-  FriendshipStatusComponent,
   HeaderComponent,
   IconComponent,
   ImageUploaderComponent,
@@ -75,6 +74,7 @@ const COMPONENTS = [
   LogoComponent,
   NotFoundComponent,
   OverlayComponent,
+  ProfileActionsComponent,
   ProfileSettingsComponent,
   SnackbarComponent,
   TextareaComponent,

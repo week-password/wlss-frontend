@@ -1,3 +1,5 @@
+@import 'media';
+
 :root {
   --page-content-size: 1280px;
   --indent: 28px;
@@ -6,4 +8,15 @@
   --x-indent--small: 18px;
   --y-indent: 28px;
   --y-indent--small: 18px;
+}
+
+@include mobile {
+  :root {
+    --indent: 16px;
+    --indent--small: 12px;
+    --x-indent: 16px;
+    --x-indent--small: 12px;
+    --y-indent: 16px;
+    --y-indent--small: 12px;
+  }
 }

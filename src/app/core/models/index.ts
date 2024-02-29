@@ -2,6 +2,7 @@ export * from './Account';
 export * from './AvatarType';
 export * from './BaseColor';
 export * from './BlockState';
+export * from './BookingStatus';
 export * from './Dialog';
 export * from './Dropdown';
 export * from './FriendshipStatus';

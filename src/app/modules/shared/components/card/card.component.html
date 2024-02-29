@@ -1,23 +1,25 @@
-<div class="c-card" [class]="{ 'c-card_presentation-view': presentationView }">
+<div
+  class="c-card"
+  [class]="{
+  'c-card_presentation-view': presentationView,
+  'c-card_no-description': !description
+  }"
+>
   <div class="c-card__avatar">
     <app-avatar [source]="avatar" [type]="avatarType" />
   </div>
-  <div class="c-card__content">
-    <div
-      class="c-card__header-group"
-      [class]="{ 'c-card__header-group_full-height': !description }"
-    >
-      <div
-        class="c-card__header header-4"
-        [class]="{
-          'header-1': presentationView,
-          'header-4': !presentationView
-        }"
-      >{{ header }}</div>
-      <div class="c-card__controls" (click)="$event.stopPropagation()">
-        <ng-content select="[controls]" />
-      </div>
-    </div>
-    <div class="c-card__description color-text-4">{{ description }}</div>
+  <div
+    class="c-card__header"
+    [class]="{
+      'header-2': presentationView,
+      'header-4': !presentationView
+    }"
+  >
+    <span>{{ header }}</span>
+    <span *ngIf="headerBadge" class="c-card__header-badge c-badge c-badge_secondary">{{ headerBadge }}</span>
   </div>
+  <div *ngIf="showControls" #controls class="c-card__controls" (click)="$event.stopPropagation()">
+    <ng-content select="[controls]" />
+  </div>
+  <div class="c-card__description color-text-4">{{ description }}</div>
 </div>

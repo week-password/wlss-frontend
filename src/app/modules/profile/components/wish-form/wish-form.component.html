@@ -36,8 +36,14 @@
     (click)="saveWish()"
   >Сохранить</app-button>
   <app-button
+    class="mr-4"
     tabindex="-1"
     [color]="EBaseColor.secondary"
     (click)="cancelWishForm()"
   >Отменить</app-button>
+  <app-button *ngIf="wish"
+    tabindex="-1"
+    [color]="EBaseColor.danger"
+    (click)="remove.emit(wish)"
+  >Удалить</app-button>
 </ng-template>
