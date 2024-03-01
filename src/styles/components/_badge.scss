@@ -1,3 +1,5 @@
+@import 'src/styles/common/media';
+
 .c-badge {
   @extend .caption;
   display: flex;
@@ -39,6 +41,20 @@
       color: var(--text-2);
       background-color: transparent;
       border-color: var(--accent);
+    }
+  }
+}
+
+@include mobile {
+  .c-badge {
+    height: 14px;
+    min-width: 14px;
+    padding: 0 3px;
+
+    &_header {
+      height: 20px;
+      min-width: 20px;
+      padding: 0 5px;
     }
   }
 }
