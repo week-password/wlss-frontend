@@ -1,4 +1,5 @@
-$related-profiles-row-count: 12;
+$related-profiles-row-max-count: 12;
+$related-profile-width: calc((var(--page-content-size) - var(--x-indent) * 2) / $related-profiles-row-max-count);
 
 .profile {
   &__card {
@@ -11,10 +12,8 @@ $related-profiles-row-count: 12;
   }
   &__related-profiles {
     display: grid;
-    justify-items: center;
-    grid-template-columns: repeat($related-profiles-row-count, 1fr);
-  }
-  &__related-profile {
-    width: calc((var(--page-content-size) - var(--x-indent) * 2) / $related-profiles-row-count) ;
+    justify-content: space-around;
+    grid-template-columns: repeat(auto-fill, $related-profile-width);
+    column-gap: 4px;
   }
 }
