@@ -8,7 +8,6 @@
 
 @include mobile {
   .c-profile-settings {
-    display: grid;
     grid-template-columns: auto;
     row-gap: var(--x-indent);
     &__image-uploader {

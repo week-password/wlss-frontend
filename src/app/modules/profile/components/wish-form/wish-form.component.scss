@@ -1,5 +1,16 @@
+@import 'src/styles/common/media';
+
 .c-wish-form {
   display: grid;
   grid-template-columns: 320px auto;
   column-gap: var(--x-indent);
+}
+@include mobile {
+  .c-wish-form {
+    grid-template-columns: auto;
+    row-gap: var(--x-indent);
+    &__image-uploader {
+      justify-self: center;
+    }
+  }
 }
