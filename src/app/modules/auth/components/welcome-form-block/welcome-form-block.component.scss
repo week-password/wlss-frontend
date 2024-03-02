@@ -1,12 +1,23 @@
+@import 'src/styles/common/media';
+
 .c-welcome-form-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 100px 50px 0;
+  margin: 100px 50px;
   &__logo {
     margin-bottom: 50px;
   }
   &__header {
     margin-bottom: var(--y-indent);
+  }
+}
+
+@include mobile {
+  .c-welcome-form-block {
+    margin: 0;
+    &__form {
+      width: 100%;
+    }
   }
 }
