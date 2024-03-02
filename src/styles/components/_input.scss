@@ -1,3 +1,5 @@
+@import 'src/styles/common/media';
+
 .c-input {
   width: 100%;
   textarea {
@@ -65,6 +67,30 @@
     left: 0;
     &::before {
       height: unset;
+    }
+  }
+}
+
+@include mobile {
+  .c-input {
+    textarea, input {
+      padding: 0 8px;
+    }
+    .mat-mdc-input-element {
+      margin-top: 8px;
+    }
+    .mat-mdc-text-field-wrapper .mat-mdc-form-field-infix {
+      min-width: initial;
+      .mdc-floating-label {
+        top: 12px;
+        left: 8px;
+        &--float-above {
+          top: 15px;
+        }
+      }
+    }
+    .mat-mdc-form-field-bottom-align {
+      bottom: 5px;
     }
   }
 }
