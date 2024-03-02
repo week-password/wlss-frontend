@@ -46,7 +46,7 @@ export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGrou
       customCloseFunction: this.cancelProfileSettings.bind(this)
     };
     this.dialogRef = this.dialog.open(DialogComponent, {
-      width: '800px',
+      maxWidth: '800px',
       data: profileSettingsDialogData,
     });
   }

@@ -41,7 +41,7 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
       customCloseFunction: this.cancelWishForm.bind(this)
     };
     this.dialogRef = this.dialog.open(DialogComponent, {
-      width: '800px',
+      maxWidth: '800px',
       data: wishFormDialogData,
     });
     return this.dialogRef;

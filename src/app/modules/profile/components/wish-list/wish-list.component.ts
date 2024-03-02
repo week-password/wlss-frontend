@@ -69,7 +69,7 @@ export class WishListComponent extends BaseComponent {
     };
     const dialogRef = this.matDialog.open(DialogComponent, {
       data: removeWishDialogData,
-      width: '640px',
+      maxWidth: '640px',
     });
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$)

@@ -50,6 +50,7 @@ export class BaseFormComponent<FormGroupModel extends { [K in keyof FormGroupMod
     };
     return this.dialog.open(DialogComponent, {
       width: '460px',
+      maxWidth: '460px',
       data: confirmDialogData,
     });
   }
