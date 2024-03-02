@@ -1,3 +1,5 @@
+@import 'src/styles/common/media';
+
 .c-footer {
   &__line {
     margin-bottom: 9px;
@@ -7,5 +9,14 @@
     justify-content: flex-end;
     height: 40px;
     color: var(--text-4);
+    padding: 0 var(--x-indent);
+  }
+}
+
+@include mobile {
+  .c-footer {
+    &__content {
+      height: 25px;
+    }
   }
 }
