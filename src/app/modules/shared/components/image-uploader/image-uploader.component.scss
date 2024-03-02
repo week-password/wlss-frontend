@@ -1,3 +1,5 @@
+@import 'src/styles/common/media';
+
 .c-image-uploader {
   &__cropper {
     max-width: 320px;
@@ -77,6 +79,37 @@
   .c-image-uploader {
     .LyImageCropper-area-d::after {
       border: 4px dashed var(--accent);
+    }
+  }
+}
+
+@include mobile {
+  .c-image-uploader {
+    width: 280px;
+    &__cropper {
+      max-width: 280px;
+      height: 280px;
+      &:hover {
+        .c-image-uploader-upload-area__control app-icon {
+          transform: none;
+        }
+      }
+    }
+
+    &__upload-area {
+      border-width: 2px;
+    }
+    &__control {
+      app-icon {
+        font-size: 20px;
+      }
+    }
+  }
+  ::ng-deep {
+    .c-image-uploader {
+      .LyImageCropper-area-d::after {
+        border-width: 2px;
+      }
     }
   }
 }

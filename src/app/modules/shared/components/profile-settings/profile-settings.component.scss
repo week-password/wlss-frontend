@@ -1,5 +1,18 @@
+@import 'src/styles/common/media';
+
 .c-profile-settings {
   display: grid;
   grid-template-columns: 320px auto;
   column-gap: var(--x-indent);
+}
+
+@include mobile {
+  .c-profile-settings {
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: var(--x-indent);
+    &__image-uploader {
+      justify-self: center;
+    }
+  }
 }

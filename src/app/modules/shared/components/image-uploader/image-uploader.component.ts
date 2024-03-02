@@ -7,6 +7,7 @@ import {
 } from '@alyle/ui/image-cropper';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { takeUntil } from 'rxjs';
 
 import {
   EMatSnackbarHPosition,
@@ -16,6 +17,8 @@ import {
   ETextPosition,
   ISnackbarData,
 } from '@core/models';
+import { UiStateService } from '@core/state';
+import { BaseComponent } from '@modules/shared/base-components';
 import { SnackbarComponent } from '@shared/components/snackbar';
 
 @Component({
@@ -23,7 +26,7 @@ import { SnackbarComponent } from '@shared/components/snackbar';
   templateUrl: './image-uploader.component.html',
   styleUrls: ['./image-uploader.component.scss'],
 })
-export class ImageUploaderComponent implements OnInit {
+export class ImageUploaderComponent extends BaseComponent implements OnInit {
   @Input() maxFileSize: number | null = null;
   @Input() removeOriginImageDisabled: boolean;
   @Output() change = new EventEmitter<ImgCropperEvent | null>();
@@ -36,7 +39,9 @@ export class ImageUploaderComponent implements OnInit {
   minScale: number;
   scale: number;
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar, private uiStateService: UiStateService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.imageCropperConfig = {
@@ -46,6 +51,7 @@ export class ImageUploaderComponent implements OnInit {
       round: true,
       maxFileSize: this.maxFileSize,
     };
+    this.subscribeOnWindowWidthChanges();
   }
 
   onCropped(file: ImgCropperEvent): void {
@@ -98,5 +104,18 @@ export class ImageUploaderComponent implements OnInit {
     if (event.deltaY > 0) { // прокрутка вниз
       this.cropper.zoomOut();
     }
+  }
+
+  private subscribeOnWindowWidthChanges(): void {
+    this.uiStateService.mobile.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((mobile: boolean) => {
+      this.cropper.clean();
+      this.imageCropperConfig = {
+        ...this.imageCropperConfig,
+        width: mobile ? 280 : 320,
+        height: mobile ? 280 : 320,
+      };
+    });
   }
 }
