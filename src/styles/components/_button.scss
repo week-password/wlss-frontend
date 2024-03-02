@@ -86,5 +86,14 @@
     &_text {
       height: initial;
     }
+    &_icon {
+      @extend .regular-text;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      & .c-icon {
+        font-size: 20px;
+      }
+    }
   }
 }
