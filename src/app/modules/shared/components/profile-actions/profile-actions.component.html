@@ -4,7 +4,7 @@
       <app-button>Добавить в друзья</app-button>
     </div>
   </ng-container>
-  <ng-container *ngIf="friendshipStatus === EFriendshipStatus.requestAccepted">
+  <ng-container *ngIf="friendshipStatus === EFriendshipStatus.acceptedRequest">
     <div class="c-profile-actions__item">
       <div
         class="c-button c-button_text pr-10"
@@ -14,7 +14,7 @@
       <app-ellipsis-dropdown
         #dropdown
         [position]="EOverlayPosition.bottomEnd"
-        [dropdownItems]="requestAcceptedStatusDropdownItems"
+        [dropdownItems]="acceptedRequestStatusDropdownItems"
       />
     </div>
   </ng-container>

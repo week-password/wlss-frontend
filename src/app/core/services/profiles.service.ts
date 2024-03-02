@@ -28,7 +28,7 @@ export class ProfilesService {
       return null;
     }
     if (friends.find((profile: IProfile) => profile.account.id === id)) {
-      return EFriendshipStatus.requestAccepted;
+      return EFriendshipStatus.acceptedRequest;
     }
     if (incomingRequests.find((profile: IProfile) => profile.account.id === id)) {
       return EFriendshipStatus.incomingRequest;

@@ -1,6 +1,6 @@
 export enum EFriendshipStatus {
   notRequested = 'notRequested',
-  requestAccepted = 'requestAccepted',
+  acceptedRequest = 'acceptedRequest',
   incomingRequest = 'incomingRequest',
   outgoingRequest = 'outgoingRequest',
 }
