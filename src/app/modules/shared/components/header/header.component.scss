@@ -1,3 +1,5 @@
+@import 'src/styles/common/media';
+
 .c-header {
   &__content {
     height: 40px;
@@ -9,5 +11,13 @@
   }
   &__line {
     margin-top: 9px;
+  }
+}
+
+@include mobile {
+  .c-header {
+    &__content {
+      height: 30px;
+    }
   }
 }

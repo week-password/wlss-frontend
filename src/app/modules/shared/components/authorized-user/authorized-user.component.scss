@@ -1,4 +1,7 @@
+@import 'src/styles/common/media';
+
 $avatar-size: 40px;
+$avatar-size--mobile: 30px;
 
 .c-authorized-user {
   display: flex;
@@ -15,4 +18,12 @@ $avatar-size: 40px;
 }
 .c-authorized-user-dropdown {
   margin-top: 8px;
+}
+
+@include mobile {
+  .c-authorized-user {
+    &__avatar {
+      width: $avatar-size--mobile;
+    }
+  }
 }
