@@ -1,3 +1,5 @@
+@import 'src/styles/common/media';
+
 .c-line-separated-list {
   display: flex;
   flex-direction: column;
@@ -12,6 +14,14 @@
 
     &:first-child {
       display: none;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .c-line-separated-list {
+    &__separator {
+      min-width: 100%;
     }
   }
 }
