@@ -1,3 +1,5 @@
+@import 'src/styles/common/media';
+
 :host {
   margin: auto 0;
 }
@@ -6,7 +8,6 @@
   grid-template-columns: 1fr auto 1fr;
   column-gap: var(--y-indent);
   width: 100%;
-  min-height: 730px;
 
   &__form {
     width: 320px;
@@ -28,5 +29,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+}
+
+@include tablet {
+  .signin {
+    grid-template-columns: auto;
+    min-height: initial;
+    &__welcome-conversation, &__line {
+      display: none;
+    }
+  }
+}
+
+@include mobile {
+  .signin {
+    &.c-base-layout {
+      box-shadow: none;
+    }
+    &__form {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 280px;
+      height: 240px;
+      &-button {
+        width: 200px;
+      }
+    }
   }
 }
