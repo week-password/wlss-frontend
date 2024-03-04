@@ -1,9 +1,5 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "projects/**/*",
-    "src/main.ts"
-  ],
   "overrides": [
     {
       "files": [
@@ -72,6 +68,7 @@
         ],
 
         "accessor-pairs": "error",
+        "comma-dangle": ["error", "always-multiline"],
         "import/first": "error",
         "import/no-default-export": "error",
         "import/no-unresolved": "off",
@@ -81,13 +78,17 @@
           "newlines-between": "always",
           "pathGroups": [
             { "pattern": "src/**", "group": "internal" },
+            { "pattern": "@auth/**", "group": "internal" },
             { "pattern": "@core/**", "group": "internal" },
-            { "pattern": "@modules/**", "group": "internal" },
-            { "pattern": "@shared", "group": "internal" },
-            { "pattern": "@shared/**", "group": "internal" }
+            { "pattern": "@profile/**", "group": "internal" },
+            { "pattern": "@profiles/**", "group": "internal" },
+            { "pattern": "@root/**", "group": "internal" },
+            { "pattern": "@terms/**", "group": "internal" },
+            { "pattern": "@wish/**", "group": "internal" }
           ],
           "pathGroupsExcludedImportTypes": ["type", "object"]
         }],
+        "indent": ["error", 2],
         "no-else/no-else": "error",
         "no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 1 }],
         "no-restricted-imports": [
@@ -98,6 +99,12 @@
         ],
         "semi": ["error", "always"],
         "sort-imports": ["error", { "ignoreCase": true, "ignoreDeclarationSort": true }]
+      }
+    },
+    {
+      "files": "*.page.ts",
+      "rules": {
+        "@angular-eslint/component-class-suffix": ["error", { "suffixes": ["Page"] }]
       }
     },
     {

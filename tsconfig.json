@@ -23,9 +23,12 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "@core/*": ["./src/app/core/*"],
-      "@modules/*": ["./src/app/modules/*"],
-      "@shared": ["./src/app/modules/shared"],
-      "@shared/*": ["./src/app/modules/shared/*"],
+      "@auth/*": ["./src/app/auth/*"],
+      "@profile/*": ["./src/app/profile/*"],
+      "@profiles/*": ["./src/app/profiles/*"],
+      "@root/*": ["./src/app/root/*"],
+      "@terms/*": ["./src/app/terms/*"],
+      "@wish/*": ["./src/app/wish/*"],
     },
   },
   "angularCompilerOptions": {

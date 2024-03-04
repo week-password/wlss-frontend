@@ -1,12 +1,36 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
+import { LY_THEME, LY_THEME_NAME, LyTheme2 } from '@alyle/ui';
+import { MinimaLight } from '@alyle/ui/themes/minima';
+import { HttpClientModule } from '@angular/common/http';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { bootstrapApplication, BrowserModule } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouter } from '@angular/router';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
-import { AppModule } from 'src/app';
+import { RootRoutes } from '@root/pages';
+import { RootPage } from '@root/pages/root';
 import { environment } from 'src/environments/environment';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(RootPage, {
+  providers: [
+    importProvidersFrom(
+      AngularSvgIconModule.forRoot(),
+      BrowserModule,
+      HttpClientModule,
+      MatDialogModule,
+      MatSnackBarModule,
+    ),
+    [LyTheme2],
+    { provide: LY_THEME_NAME, useValue: 'minima-light' },
+    { provide: LY_THEME, useClass: MinimaLight, multi: true },
+    provideAnimations(),
+    provideRouter(RootRoutes),
+  ],
+
+}).catch((err: any) => console.error(err)); // eslint-disable-line @typescript-eslint/no-explicit-any
