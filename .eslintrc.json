@@ -2,27 +2,16 @@
   "root": true,
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": "*.ts",
       "extends": [
         "eslint:recommended",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:@typescript-eslint/recommended",
         "plugin:eslint-plugin-import/recommended"
       ],
       "rules": {
-        "@angular-eslint/component-selector": ["error", {
-          "type": "element",
-          "prefix": "app",
-          "style": "kebab-case"
-        }],
-        "@angular-eslint/directive-selector": ["error", {
-          "type": "attribute",
-          "prefix": "app",
-          "style": "camelCase"
-        }],
+        "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "app", "style": "kebab-case" }],
+        "@angular-eslint/directive-selector": ["error", { "type": "attribute", "prefix": "app", "style": "camelCase" }],
         "@angular-eslint/no-output-native": "off",
         "@angular-eslint/sort-ngmodule-metadata-arrays": "error",
 
@@ -33,16 +22,22 @@
           "call-signature",
 
           "public-decorated-field",
+          "public-decorated-readonly-field",
           "protected-decorated-field",
+          "protected-decorated-readonly-field",
           "private-decorated-field",
+          "private-decorated-readonly-field",
 
           "public-decorated-get",
           "protected-decorated-get",
           "private-decorated-get",
 
           "public-field",
+          "public-readonly-field",
           "protected-field",
+          "protected-readonly-field",
           "private-field",
+          "private-readonly-field",
 
           "constructor",
 
@@ -59,13 +54,7 @@
           "private-method"
         ]}],
         "@typescript-eslint/no-explicit-any": "error",
-        "@typescript-eslint/typedef": [
-            "error",
-            {
-                "arrowParameter": true,
-                "parameter": true
-            }
-        ],
+        "@typescript-eslint/typedef": ["error", { "arrowParameter": true, "parameter": true }],
 
         "accessor-pairs": "error",
         "comma-dangle": ["error", "always-multiline"],
@@ -89,14 +78,9 @@
           "pathGroupsExcludedImportTypes": ["type", "object"]
         }],
         "indent": ["error", 2],
-        "no-else/no-else": "error",
         "no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 1 }],
-        "no-restricted-imports": [
-          "error",
-          {
-            "patterns": ["../*"]
-          }
-        ],
+        "no-restricted-imports": ["error", { "patterns": ["../*"] }],
+        "no-restricted-syntax": ["error", { "selector": "IfStatement[alternate]", "message": "No `else` statements allowed" }],
         "semi": ["error", "always"],
         "sort-imports": ["error", { "ignoreCase": true, "ignoreDeclarationSort": true }]
       }
@@ -108,16 +92,8 @@
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
-      "plugins": [
-        "eslint-plugin-import",
-        "eslint-plugin-no-else"
-      ],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended"
-      ],
+      "files": "*.html",
+      "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
     }
   ]
