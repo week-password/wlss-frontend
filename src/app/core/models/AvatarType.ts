@@ -5,5 +5,5 @@ export enum EAvatarType {
 
 export const AvatarSources: { [key in EAvatarType]: string } = {
   profile: 'assets/icons/default-user-avatar.svg',
-  wish: 'assets/icons/default-wish-avatar.svg'
+  wish: 'assets/icons/default-wish-avatar.svg',
 };

@@ -8,7 +8,7 @@ abstract class AbstractPrioritizer<T> {
 
   get elements(): Array<T> {
     return this.sourceElements.slice().sort((x: T, y: T) =>
-      this.getPriority(x) - this.getPriority(y)
+      this.getPriority(x) - this.getPriority(y),
     );
   }
 

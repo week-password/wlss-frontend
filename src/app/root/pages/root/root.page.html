@@ -1,0 +1,12 @@
+<div class="root">
+  <div *ngIf="showHeader" class="root__header">
+    <app-header></app-header>
+  </div>
+  <div class="root__content">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="root__footer">
+    <app-footer></app-footer>
+  </div>
+  <app-cookie-banner></app-cookie-banner>
+</div>

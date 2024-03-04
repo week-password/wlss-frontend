@@ -1,0 +1,43 @@
+::ng-deep {
+  .app__footer {
+    z-index: 0 !important;
+  }
+}
+.not-found {
+  &__mas-cat, &__message {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+  }
+  &__mas-cat {
+    background-position: left bottom;
+    background-size: 85%;
+  }
+  &__message {
+    background-position: center;
+    background-size: contain;
+  }
+  &_variant-0 {
+    .not-found {
+      &__mas-cat {
+        background-image: url('/assets/images/404-mas-cat.svg');
+      }
+      &__message {
+        background-image: url('/assets/images/404-message-0.svg');
+      }
+    }
+  }
+  &_variant-1 {
+    .not-found {
+      &__mas-cat {
+        background-image: none;
+      }
+      &__message {
+        background-image: url('/assets/images/404-message-1.svg');
+      }
+    }
+  }
+}
