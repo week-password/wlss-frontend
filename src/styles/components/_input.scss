@@ -43,15 +43,16 @@
     min-width: 180px;
     width: 100%;
     .mdc-floating-label {
-      color: var(--text-3);
       top: 16px;
       left: 16px;
       transition: transform 0.3s, color, 0.3s;
       &--float-above {
         top: 22px;
-        color: var(--text-4);
         transform: translateY(-120%) scale(0.65);
         margin-top: 2px;
+      }
+      mat-label {
+        color: var(--text-4);
       }
     }
   }

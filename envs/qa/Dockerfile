@@ -1,4 +1,4 @@
-FROM node:16.14.0-slim as wlss-fe-build
+FROM node:20.11.1-slim as wlss-fe-build
 
 WORKDIR /wlss-fe
 
