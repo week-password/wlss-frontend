@@ -1,0 +1,14 @@
+@import 'src/styles/common/media';
+
+.c-image-uploader {
+  .LyImageCropper-area-d::after {
+    border: 4px dashed var(--accent);
+  }
+}
+@include mobile {
+  .c-image-uploader {
+    .LyImageCropper-area-d::after {
+      border-width: 2px;
+    }
+  }
+}
