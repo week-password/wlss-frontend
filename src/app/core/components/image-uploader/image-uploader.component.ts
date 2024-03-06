@@ -15,7 +15,7 @@ import {
   ETextPosition,
   ISnackbarData,
 } from '@core/models';
-import { UiStateService } from '@root/state';
+import { UiStateService } from '@root/services/state';
 
 @Component({
   selector: 'app-image-uploader',

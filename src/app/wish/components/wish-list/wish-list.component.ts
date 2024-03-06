@@ -10,7 +10,7 @@ import { EAvatarType, EBaseColor, IDialogData } from '@core/models';
 import { WishActionsComponent } from '@wish/components/wish-actions';
 import { WishFormComponent } from '@wish/components/wish-form';
 import { EBookingStatus, IWish, IWishBookingStatus } from '@wish/models';
-import { WishService } from '@wish/services';
+import { WishService } from '@wish/services/client';
 
 @Component({
   selector: 'app-wish-list',

@@ -10,9 +10,9 @@ import { OverlayComponent } from '@core/components/overlay';
 import { EOverlayPosition, IDropdownItem } from '@core/models';
 import { ProfileSettingsComponent } from '@profile/components/profile-settings';
 import { IAccount, IProfile } from '@profile/models';
-import { ProfileService } from '@profile/services';
-import { AccountService } from '@root/services';
-import { UserStateService } from '@root/state';
+import { ProfileService } from '@profile/services/client';
+import { AccountService } from '@root/services/client';
+import { UserStateService } from '@root/services/state';
 
 @Component({
   selector: 'app-authorized-user',

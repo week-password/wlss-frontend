@@ -78,6 +78,7 @@
           "pathGroupsExcludedImportTypes": ["type", "object"]
         }],
         "indent": ["error", 2],
+        "no-multi-spaces": "error",
         "no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 1 }],
         "no-restricted-imports": ["error", { "patterns": ["../*"] }],
         "no-restricted-syntax": ["error", { "selector": "IfStatement[alternate]", "message": "No `else` statements allowed" }],

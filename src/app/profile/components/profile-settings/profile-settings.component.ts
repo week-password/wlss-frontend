@@ -14,9 +14,9 @@ import { TextareaComponent } from '@core/components/textarea';
 import { DisableRepeatWhitespacesDirective, TrimStartWhitespacesDirective } from '@core/directives';
 import { EBaseColor, IDialogData } from '@core/models';
 import { IProfile, IProfileFormGroup } from '@profile/models';
-import { ProfileService } from '@profile/services';
+import { ProfileService } from '@profile/services/client';
 import { descriptionValidators, nameValidators } from '@profile/validators';
-import { UserStateService } from '@root/state';
+import { UserStateService } from '@root/services/state';
 
 @Component({
   selector: 'app-profile-settings',

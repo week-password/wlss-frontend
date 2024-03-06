@@ -10,9 +10,9 @@ import { ProfileActionsComponent } from '@profile/components/profile-actions';
 import { ProfileBlockComponent } from '@profile/components/profile-block';
 import { ShortProfileCardComponent } from '@profile/components/short-profile-card';
 import { IAccount, IProfile } from '@profile/models';
-import { FriendshipService, ProfileService } from '@profile/services';
-import { ProfileStateService } from '@profile/state';
-import { UserStateService } from '@root/state';
+import { FriendshipService, ProfileService } from '@profile/services/client';
+import { ProfileStateService } from '@profile/services/state';
+import { UserStateService } from '@root/services/state';
 import { WishListComponent } from '@wish/components/wish-list';
 
 @Component({
