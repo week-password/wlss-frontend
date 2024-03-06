@@ -1,0 +1,9 @@
+{
+  "/bff": {
+    "target": "http://185.154.195.26:8000/",
+    "secure": false,
+    "pathRewrite": {
+      "^/bff": ""
+    }
+  }
+}

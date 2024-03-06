@@ -9,7 +9,7 @@ import { ProfileActionsComponent } from '@profile/components/profile-actions';
 import { IProfile, IProfileFriendshipStatus } from '@profile/models';
 import { ProfilesFilterComponent } from '@profiles/components/profiles-filter';
 import { IProfilesFilter } from '@profiles/models';
-import { ProfilesService } from '@profiles/services';
+import { ProfilesService } from '@profiles/services/client';
 
 @Component({
   selector: 'app-profiles',

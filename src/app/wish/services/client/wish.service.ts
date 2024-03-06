@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { EBookingStatus, IWish, IWishBookingStatus  } from '@wish/models';
-
-import { bookedByAnotherUser, bookedByCurrentUser } from './mocks/booking';
-import { wishes } from './mocks/wishes';
+import { EBookingStatus, IWish, IWishBookingStatus } from '@wish/models';
+import { bookedByAnotherUser, bookedByCurrentUser } from '@wish/services/mocks/booking';
+import { wishes } from '@wish/services/mocks/wishes';
 
 @Injectable({ providedIn: 'root' })
 export class WishService {

@@ -1,6 +1,6 @@
 import { LY_THEME, LY_THEME_NAME, LyTheme2 } from '@alyle/ui';
 import { MinimaLight } from '@alyle/ui/themes/minima';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -9,6 +9,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { provideAngularSvgIcon } from 'angular-svg-icon';
 
+import { requestUrlInterceptor } from '@core/interceptors';
 import { RootRoutes } from '@root/pages';
 import { RootPage } from '@root/pages/root';
 import { environment } from 'src/environments/environment';
@@ -25,8 +26,8 @@ bootstrapApplication(RootPage, {
     { provide: LY_THEME, useClass: MinimaLight, multi: true },
     provideAngularSvgIcon(),
     provideAnimations(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([requestUrlInterceptor])),
     provideRouter(RootRoutes),
   ],
 
-}).catch((err: any) => console.error(err)); // eslint-disable-line @typescript-eslint/no-explicit-any
+}).catch((err: unknown) => console.error(err));

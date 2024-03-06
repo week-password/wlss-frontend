@@ -9,6 +9,6 @@ export const incomingRequests: Array<IProfile> = profiles.filter(
   (profile: IProfile) => [11, 12, 13].includes(profile.account.id),
 );
 
-export const outgoingRequests: Array<IProfile> =  profiles.filter(
+export const outgoingRequests: Array<IProfile> = profiles.filter(
   (profile: IProfile) => [14, 15].includes(profile.account.id),
 );
