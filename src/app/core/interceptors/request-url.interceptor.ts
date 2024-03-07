@@ -7,5 +7,7 @@ export const requestUrlInterceptor: HttpInterceptorFn = (request: HttpRequest<un
   if (request.url.startsWith('assets')) {
     return next(request);
   }
-  return next(request.clone({ url: `${environment.bffUrl}${request.url}` }));
+  return next(request.clone({
+    url: `${environment.bff.host}:${environment.bff.port}${environment.bff.url}${request.url}`,
+  }));
 };
