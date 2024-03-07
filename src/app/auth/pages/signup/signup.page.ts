@@ -7,7 +7,8 @@ import { takeUntil } from 'rxjs';
 import { WelcomeConversationComponent } from '@auth/components/welcome-conversation';
 import { WelcomeFormBlockComponent } from '@auth/components/welcome-form-block';
 import { ESignupStep, ISignupDataFormGroup } from '@auth/models';
-import { emailValidators, getSignupPasswordValidators, loginValidators } from '@auth/validators';
+import { SignupService } from '@auth/services/client';
+import { emailValidators, getSignupPasswordValidators, loginValidators, unavailableEmailValidator, unavailableLoginValidator } from '@auth/validators';
 import { BaseFormComponent } from '@core/base-components';
 import { ButtonComponent } from '@core/components/button';
 import { InputComponent } from '@core/components/input';
@@ -40,6 +41,7 @@ export class SignupPage extends BaseFormComponent<ISignupDataFormGroup> implemen
 
   constructor(
     private router: Router,
+    private signupService: SignupService,
   ) {
     super();
   }
@@ -51,8 +53,16 @@ export class SignupPage extends BaseFormComponent<ISignupDataFormGroup> implemen
 
   initSignUpForm(): void {
     this.form = this.fb.group<ISignupDataFormGroup>({
-      login: this.fb.control<string>('', { nonNullable: true, validators: loginValidators }),
-      email: this.fb.control<string>('', { nonNullable: true, validators: emailValidators }),
+      login: this.fb.control<string>('', {
+        nonNullable: true,
+        validators: loginValidators,
+        asyncValidators: [unavailableLoginValidator(this.signupService)],
+      }),
+      email: this.fb.control<string>('', {
+        nonNullable: true,
+        validators: emailValidators,
+        asyncValidators: [unavailableEmailValidator(this.signupService)],
+      }),
       password: this.fb.control<string>('', { nonNullable: true }),
       confirmPassword: this.fb.control<string>('', { nonNullable: true }),
       name: this.fb.control<string>('', { nonNullable: true }),

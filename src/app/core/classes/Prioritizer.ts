@@ -32,6 +32,8 @@ export class ErrorsPrioritizer extends ObjectKeysPrioritizer {
     'pattern',
     'minlength',
     'maxlength',
+    'unavailablelogin',
+    'unavailableemail',
     'passwordsmatch',
     'fileformat',
     'filemaxsize',

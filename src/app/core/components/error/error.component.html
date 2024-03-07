@@ -10,6 +10,12 @@
 <ng-container *ngIf="error === 'pattern'">
   <span>Поле содержит недопустимые символы</span>
 </ng-container>
+<ng-container *ngIf="error === 'unavailablelogin'">
+  <span>Введённый логин недоступен</span>
+</ng-container>
+<ng-container *ngIf="error === 'unavailableemail'">
+  <span>Введённый e-mail недоступен</span>
+</ng-container>
 <ng-container *ngIf="error === 'passwordsmatch'">
   <span>Пароли не совпадают</span>
 </ng-container>
