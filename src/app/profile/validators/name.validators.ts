@@ -1,6 +1,6 @@
 import { ValidatorFn, Validators } from '@angular/forms';
 
-const namePattern = String.raw`[A-Za-zА-Яа-я0-9'-.() ]*`;
+const namePattern = String.raw`[A-Za-zА-Яа-яЁё'-.() ]*`;
 
 export const nameValidators: Array<ValidatorFn> = [
   Validators.required,

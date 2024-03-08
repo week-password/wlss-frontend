@@ -1,19 +1,23 @@
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
-export interface ISignupData {
+export interface ISignupAccount {
   login: string;
   email: string;
   password: string;
   confirmPassword: string;
+}
+
+export interface ISignupProfile {
   name: string;
   description: string | null;
 }
 
+export interface ISignupData {
+  account: ISignupAccount;
+  profile: ISignupProfile;
+}
+
 export interface ISignupDataFormGroup {
-  login: FormControl<string>;
-  email: FormControl<string>;
-  password: FormControl<string>;
-  confirmPassword: FormControl<string>;
-  name: FormControl<string>;
-  description: FormControl<string | null>;
+  account: FormGroup<{ [key in keyof ISignupAccount]: FormControl<ISignupAccount[key]> }>;
+  profile: FormGroup<{ [key in keyof ISignupProfile]: FormControl<ISignupProfile[key]> }>;
 }

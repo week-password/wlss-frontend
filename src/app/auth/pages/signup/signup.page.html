@@ -6,52 +6,70 @@
   <div class="signup__welcome-form-block">
     <app-welcome-form-block>
       <form class="signup__form" [formGroup]="form">
-        <ng-container *ngIf="currentSignupStep === ESignupStep.main">
+        <ng-container *ngIf="currentSignupStep === ESignupStep.account">
           <div class="signup__form-inputs">
             <app-input
               class="mb-12"
               label="логин"
-              [inputControl]="controls.login"
+              [inputControl]="controls.account.controls.login"
             ></app-input>
             <app-input
               class="mb-12"
               label="e-mail"
               [type]="EInputType.email"
-              [inputControl]="controls.email"
+              [inputControl]="controls.account.controls.email"
             ></app-input>
             <app-input
               class="mb-12"
               label="пароль"
               [type]="EInputType.password"
-              [inputControl]="controls.password"
+              [inputControl]="controls.account.controls.password"
             ></app-input>
             <app-input
               label="повторите пароль"
               [type]="EInputType.password"
-              [inputControl]="controls.confirmPassword"
+              [inputControl]="controls.account.controls.confirmPassword"
             ></app-input>
           </div>
-          <app-button class="signup__form-button" [disabled]="submitDisabled" (click)="goToDetailsStep()">Далее</app-button>
+          <div class="signup__form-buttons">
+            <app-button
+              class="signup__form-button"
+              [disabled]="goToProfileStepDisabled"
+              (click)="goToProfileStep()"
+            >Далее</app-button>
+          </div>
         </ng-container>
-        <ng-container *ngIf="currentSignupStep === ESignupStep.details">
+        <ng-container *ngIf="currentSignupStep === ESignupStep.profile">
           <div class="signup__form-inputs">
             <app-input
               class="mb-12"
               label="имя"
               appTrimStartWhitespaces
               appDisableRepeatWhitespaces
-              [inputControl]="controls.name"
+              [inputControl]="controls.profile.controls.name"
             ></app-input>
             <app-textarea
               label="о себе"
               placeholder="о себе (необязательно)"
+              appConvertEmptyStringToNull
               appTrimStartWhitespaces
               appDisableRepeatWhitespaces
-              [inputControl]="controls.description"
+              [inputControl]="controls.profile.controls.description"
               [rows]="8"
             ></app-textarea>
           </div>
-          <app-button class="signup__form-button" [disabled]="submitDisabled" (click)="onSubmit()">Завершить регистрацию</app-button>
+          <div class="signup__form-buttons">
+            <app-button
+              class="signup__form-button mb-12"
+              [disabled]="submitDisabled"
+              (click)="onSubmit()"
+            >Завершить регистрацию</app-button>
+            <app-button
+              class="signup__form-button"
+              [color]="EBaseColor.secondary"
+              (click)="goToAccountStep()"
+            >Назад</app-button>
+          </div>
         </ng-container>
       </form>
       <div class="signup__caption caption">

@@ -1,4 +1,4 @@
 export enum ESignupStep {
-  main = 1,
-  details
+  account = 'account',
+  profile = 'profile',
 }

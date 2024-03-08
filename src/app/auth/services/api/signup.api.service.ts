@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { ISignupAccount, ISignupProfile } from '@auth/models';
+
 @Injectable({ providedIn: 'root' })
 export class SignupApiService {
   constructor(private http: HttpClient) { }
@@ -12,5 +14,9 @@ export class SignupApiService {
 
   matchAccountEmail(email: string): Observable<void> {
     return this.http.post<void>('/accounts/emails/match', { email });
+  }
+
+  signup(signupData: { account: Omit<ISignupAccount, 'confirmPassword'>, profile: ISignupProfile }): Observable<void> {
+    return this.http.post<void>('/accounts', signupData);
   }
 }
