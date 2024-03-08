@@ -1,5 +1,5 @@
 import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Observable, of, switchMap } from 'rxjs';
+import { debounceTime, first, Observable, of, switchMap } from 'rxjs';
 
 import { SignupService } from '@auth/services/client';
 
@@ -13,10 +13,13 @@ export const loginValidators: Array<ValidatorFn> = [
 ];
 
 export const unavailableLoginValidator = (signupService: SignupService): AsyncValidatorFn => {
-  return (loginControl: AbstractControl): Observable<ValidationErrors | null> => {
-    const login = loginControl.value;
-    return signupService.isLoginUnavailable(login).pipe(
-      switchMap((isLoginUnavailable: boolean) => isLoginUnavailable ? of({ 'unavailablelogin': login }) : of(null)),
+  return (loginControl: AbstractControl<string>): Observable<ValidationErrors | null> => {
+    return loginControl.valueChanges.pipe(
+      debounceTime(500),
+      first(),
+      switchMap((login: string) => signupService.isLoginUnavailable(login).pipe(
+        switchMap((isLoginUnavailable: boolean) => isLoginUnavailable ? of({ 'unavailablelogin': login }) : of(null)),
+      )),
     );
   };
 };

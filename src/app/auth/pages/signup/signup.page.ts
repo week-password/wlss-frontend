@@ -1,19 +1,26 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
 import { WelcomeConversationComponent } from '@auth/components/welcome-conversation';
 import { WelcomeFormBlockComponent } from '@auth/components/welcome-form-block';
-import { ESignupStep, ISignupDataFormGroup } from '@auth/models';
-import { SignupService } from '@auth/services/client';
-import { emailValidators, getSignupPasswordValidators, loginValidators, unavailableEmailValidator, unavailableLoginValidator } from '@auth/validators';
+import { ESignupStep, ISignupData, ISignupDataFormGroup } from '@auth/models';
+import { AuthService, SignupService } from '@auth/services/client';
+import {
+  emailValidators,
+  getSignupPasswordValidators,
+  loginValidators,
+  unavailableEmailValidator,
+  unavailableLoginValidator,
+} from '@auth/validators';
 import { BaseFormComponent } from '@core/base-components';
 import { ButtonComponent } from '@core/components/button';
 import { InputComponent } from '@core/components/input';
 import { TextareaComponent } from '@core/components/textarea';
-import { DisableRepeatWhitespacesDirective, TrimStartWhitespacesDirective } from '@core/directives';
+import { ConvertEmptyStringToNullDirective, DisableRepeatWhitespacesDirective, TrimStartWhitespacesDirective } from '@core/directives';
+import { EBaseColor } from '@core/models';
 import { descriptionValidators, nameValidators } from '@profile/validators';
 
 @Component({
@@ -23,6 +30,7 @@ import { descriptionValidators, nameValidators } from '@profile/validators';
   standalone: true,
   imports: [
     ButtonComponent,
+    ConvertEmptyStringToNullDirective,
     DisableRepeatWhitespacesDirective,
     FormsModule,
     InputComponent,
@@ -36,14 +44,23 @@ import { descriptionValidators, nameValidators } from '@profile/validators';
   ],
 })
 export class SignupPage extends BaseFormComponent<ISignupDataFormGroup> implements OnInit {
+  EBaseColor = EBaseColor;
   ESignupStep = ESignupStep;
-  currentSignupStep = ESignupStep.main;
+  currentSignupStep = ESignupStep.account;
 
   constructor(
+    private authService: AuthService,
     private router: Router,
     private signupService: SignupService,
   ) {
     super();
+  }
+
+  get goToProfileStepDisabled(): boolean {
+    const controls = Object.values(this.controls.account.controls);
+    return controls.some(
+      (control: AbstractControl) => control.invalid && control.touched,
+    );
   }
 
   ngOnInit(): void {
@@ -53,32 +70,38 @@ export class SignupPage extends BaseFormComponent<ISignupDataFormGroup> implemen
 
   initSignUpForm(): void {
     this.form = this.fb.group<ISignupDataFormGroup>({
-      login: this.fb.control<string>('', {
-        nonNullable: true,
-        validators: loginValidators,
-        asyncValidators: [unavailableLoginValidator(this.signupService)],
+      account: this.fb.group({
+        login: this.fb.control<string>('', {
+          nonNullable: true,
+          validators: loginValidators,
+          asyncValidators: [unavailableLoginValidator(this.signupService)],
+        }),
+        email: this.fb.control<string>('', {
+          nonNullable: true,
+          validators: emailValidators,
+          asyncValidators: [unavailableEmailValidator(this.signupService)],
+        }),
+        password: this.fb.control<string>('', { nonNullable: true }),
+        confirmPassword: this.fb.control<string>('', { nonNullable: true }),
       }),
-      email: this.fb.control<string>('', {
-        nonNullable: true,
-        validators: emailValidators,
-        asyncValidators: [unavailableEmailValidator(this.signupService)],
+      profile: this.fb.group({
+        name: this.fb.control<string>('', { nonNullable: true, validators: nameValidators }),
+        description: this.fb.control<string | null>(null, { validators: descriptionValidators }),
       }),
-      password: this.fb.control<string>('', { nonNullable: true }),
-      confirmPassword: this.fb.control<string>('', { nonNullable: true }),
-      name: this.fb.control<string>('', { nonNullable: true }),
-      description: this.fb.control<string | null>(''),
     });
     this.addPasswordsValidators();
   }
 
-  goToDetailsStep(): void {
-    this.form.markAllAsTouched();
-    if (this.submitDisabled) {
+  goToProfileStep(): void {
+    this.controls.account.markAllAsTouched();
+    if (this.goToProfileStepDisabled) {
       return;
     }
-    this.form.markAsUntouched();
-    this.addDetailsStepValidators();
-    this.currentSignupStep = ESignupStep.details;
+    this.currentSignupStep = ESignupStep.profile;
+  }
+
+  goToAccountStep(): void {
+    this.currentSignupStep = ESignupStep.account;
   }
 
   onSubmit(): void {
@@ -86,26 +109,23 @@ export class SignupPage extends BaseFormComponent<ISignupDataFormGroup> implemen
     if (this.submitDisabled) {
       return;
     }
-    this.router.navigate(['signin']);
-  }
-
-  private addDetailsStepValidators(): void {
-    const name = this.controls.name;
-    name.setValidators(nameValidators);
-    const description = this.controls.description;
-    description.setValidators(descriptionValidators);
+    this.authService.signup(this.form.value as ISignupData).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe(() => {
+      this.router.navigate(['signin']);
+    });
   }
 
   private addPasswordsValidators(): void {
-    const password = this.controls.password;
-    const confirmPassword = this.controls.confirmPassword;
+    const password = this.controls.account.controls.password;
+    const confirmPassword = this.controls.account.controls.confirmPassword;
     password.setValidators(getSignupPasswordValidators(confirmPassword));
     confirmPassword.setValidators(getSignupPasswordValidators(password));
   }
 
   private subscribeOnPasswordsChanges(): void {
-    const password = this.controls.password;
-    const confirmPassword = this.controls.confirmPassword;
+    const password = this.controls.account.controls.password;
+    const confirmPassword = this.controls.account.controls.confirmPassword;
     password.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
       confirmPassword.updateValueAndValidity({ emitEvent: false });
     });

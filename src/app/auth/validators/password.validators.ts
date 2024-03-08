@@ -2,7 +2,7 @@ import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
 
 import { IPasswordsMatchError } from '@auth/models';
 
-const passwordPattern = String.raw`[A-Za-zА-Яа-я0-9\x21-\x7E]*`;
+const passwordPattern = String.raw`[A-Za-zА-Яа-яЁё0-9\x21-\x7E]*`;
 
 export const passwordsMatchValidator = (anotherPasswordControl: AbstractControl): ValidatorFn => {
   return (passwordControl: AbstractControl): IPasswordsMatchError | null => {

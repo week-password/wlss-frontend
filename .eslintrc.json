@@ -54,6 +54,7 @@
           "private-method"
         ]}],
         "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
         "@typescript-eslint/typedef": ["error", { "arrowParameter": true, "parameter": true }],
 
         "accessor-pairs": "error",
