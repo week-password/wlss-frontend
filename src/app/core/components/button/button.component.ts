@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { EBaseColor } from '@core/models';
+import { EBaseColor } from '@core/models/client';
 
 @Component({
   selector: 'app-button',

@@ -17,7 +17,7 @@ export enum ESnackbarView {
   error = 'error',
   info = 'info',
 }
-export interface ISnackbarData {
+export type TSnackbarData = {
   buttonText?: string;
   catPosition?: EPosition;
   text?: string;

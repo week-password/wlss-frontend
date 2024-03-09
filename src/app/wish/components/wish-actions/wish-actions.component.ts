@@ -2,8 +2,8 @@ import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ButtonComponent } from '@core/components/button';
-import { EBaseColor, EOverlayPosition, IDropdownItem } from '@core/models';
-import { EBookingStatus } from '@wish/models';
+import { EBaseColor, EOverlayPosition, TDropdownItem } from '@core/models/client';
+import { EBookingStatus } from '@wish/models/client';
 
 @Component({
   selector: 'app-wish-actions',
@@ -21,7 +21,7 @@ export class WishActionsComponent {
   readonly EBaseColor = EBaseColor;
   readonly EBookingStatus = EBookingStatus;
   readonly EOverlayPosition = EOverlayPosition;
-  readonly dropdownItems: Array<IDropdownItem> = [
+  readonly dropdownItems: Array<TDropdownItem> = [
     {
       value: 'Редактировать',
       action: (): void => this.edit.emit(),

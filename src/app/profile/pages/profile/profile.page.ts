@@ -5,11 +5,11 @@ import { takeUntil } from 'rxjs';
 
 import { BaseComponent } from '@core/base-components';
 import { CardComponent } from '@core/components/card';
-import { EBlockState } from '@core/models';
+import { EBlockState } from '@core/models/client';
 import { ProfileActionsComponent } from '@profile/components/profile-actions';
 import { ProfileBlockComponent } from '@profile/components/profile-block';
 import { ShortProfileCardComponent } from '@profile/components/short-profile-card';
-import { IAccount, IProfile } from '@profile/models';
+import { TAccount, TProfile } from '@profile/models/client';
 import { FriendshipService, ProfileService } from '@profile/services/client';
 import { ProfileStateService } from '@profile/services/state';
 import { UserStateService } from '@root/services/state';
@@ -33,11 +33,11 @@ import { WishListComponent } from '@wish/components/wish-list';
 })
 export class ProfilePage extends BaseComponent implements OnInit {
   EBlockState = EBlockState;
-  profile: IProfile | null = null;
-  account: IAccount | null = null;
-  friends: Array<IProfile> = [];
-  incomingRequests: Array<IProfile> = [];
-  outgoingRequests: Array<IProfile> = [];
+  profile: TProfile | null = null;
+  account: TAccount | null = null;
+  friends: Array<TProfile> = [];
+  incomingRequests: Array<TProfile> = [];
+  outgoingRequests: Array<TProfile> = [];
 
   constructor(
     private friendshipService: FriendshipService,
@@ -69,7 +69,7 @@ export class ProfilePage extends BaseComponent implements OnInit {
   private subscribeOnProfileChanges(): void {
     this.profileStateService.profile.pipe(
       takeUntil(this.destroy$),
-    ).subscribe((profile: IProfile | null) => {
+    ).subscribe((profile: TProfile | null) => {
       this.profile = profile;
     });
   }
@@ -77,7 +77,7 @@ export class ProfilePage extends BaseComponent implements OnInit {
   private subscribeOnAccountChanges(): void {
     this.userStateService.account.pipe(
       takeUntil(this.destroy$),
-    ).subscribe((account: IAccount | null) => {
+    ).subscribe((account: TAccount | null) => {
       this.account = account;
     });
   }
@@ -89,7 +89,7 @@ export class ProfilePage extends BaseComponent implements OnInit {
 
     profileSource.pipe(
       takeUntil(this.destroy$),
-    ).subscribe((profile: IProfile | null) => {
+    ).subscribe((profile: TProfile | null) => {
       this.profileStateService.setProfile(profile);
     });
   }
@@ -97,7 +97,7 @@ export class ProfilePage extends BaseComponent implements OnInit {
   private getFriends(): void {
     this.friendshipService.getFriends().pipe(
       takeUntil(this.destroy$),
-    ).subscribe((friends: Array<IProfile>) => {
+    ).subscribe((friends: Array<TProfile>) => {
       this.friends = friends;
     });
   }
@@ -105,7 +105,7 @@ export class ProfilePage extends BaseComponent implements OnInit {
   private getIncomingRequests(): void {
     this.friendshipService.getIncomingRequests().pipe(
       takeUntil(this.destroy$),
-    ).subscribe((incomingRequests: Array<IProfile>) => {
+    ).subscribe((incomingRequests: Array<TProfile>) => {
       this.incomingRequests = incomingRequests;
     });
   }
@@ -113,7 +113,7 @@ export class ProfilePage extends BaseComponent implements OnInit {
   private getOutgoingRequests(): void {
     this.friendshipService.getOutgoingRequests().pipe(
       takeUntil(this.destroy$),
-    ).subscribe((outgoingRequests: Array<IProfile>) => {
+    ).subscribe((outgoingRequests: Array<TProfile>) => {
       this.outgoingRequests = outgoingRequests;
     });
   }

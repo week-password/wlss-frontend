@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs';
 import { BaseFormComponent } from '@core/base-components';
 import { InputComponent } from '@core/components/input';
 import { DisableRepeatWhitespacesDirective, TrimStartWhitespacesDirective } from '@core/directives';
-import { IProfilesFilter, IProfilesFilterFormGroup } from '@profiles/models';
+import { TProfilesFilter, TProfilesFilterFormGroup } from '@profiles/models/client';
 
 @Component({
   selector: 'app-profiles-filter',
@@ -20,8 +20,8 @@ import { IProfilesFilter, IProfilesFilterFormGroup } from '@profiles/models';
     TrimStartWhitespacesDirective,
   ],
 })
-export class ProfilesFilterComponent extends BaseFormComponent<IProfilesFilterFormGroup> implements OnInit {
-  @Output() change = new EventEmitter<IProfilesFilter>();
+export class ProfilesFilterComponent extends BaseFormComponent<TProfilesFilterFormGroup> implements OnInit {
+  @Output() change = new EventEmitter<TProfilesFilter>();
 
   constructor() {
     super();
@@ -33,7 +33,7 @@ export class ProfilesFilterComponent extends BaseFormComponent<IProfilesFilterFo
   }
 
   private initProfilesFilterForm(): void {
-    this.form = this.fb.group<IProfilesFilterFormGroup>({
+    this.form = this.fb.group<TProfilesFilterFormGroup>({
       login: this.fb.control<string>('', { nonNullable: true }),
       name: this.fb.control<string>('', { nonNullable: true }),
     });
@@ -41,8 +41,8 @@ export class ProfilesFilterComponent extends BaseFormComponent<IProfilesFilterFo
 
   private subscribeOnProfilesFilterFormChanges(): void {
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      const filter = this.form.value as IProfilesFilter;
-      const lowerCaseFilter: IProfilesFilter = {
+      const filter = this.form.value as TProfilesFilter;
+      const lowerCaseFilter: TProfilesFilter = {
         login: filter.login.toLowerCase(),
         name: filter.name.toLowerCase(),
       };

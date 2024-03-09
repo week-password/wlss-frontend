@@ -2,7 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 
 import { MessageComponent } from '@auth/components/message';
-import { EBaseColor } from '@core/models';
+import { EBaseColor } from '@core/models/client';
 
 @Component({
   selector: 'app-welcome-conversation',

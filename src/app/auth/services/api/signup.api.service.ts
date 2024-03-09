@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ISignupAccount, ISignupProfile } from '@auth/models';
+import { TSignupRequest } from '@auth/models/api';
 
 @Injectable({ providedIn: 'root' })
 export class SignupApiService {
@@ -16,7 +16,7 @@ export class SignupApiService {
     return this.http.post<void>('/accounts/emails/match', { email });
   }
 
-  signup(signupData: { account: Omit<ISignupAccount, 'confirmPassword'>, profile: ISignupProfile }): Observable<void> {
+  signup(signupData: TSignupRequest): Observable<void> {
     return this.http.post<void>('/accounts', signupData);
   }
 }

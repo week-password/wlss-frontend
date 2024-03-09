@@ -3,8 +3,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ButtonComponent } from '@core/components/button';
 import { EllipsisDropdownComponent } from '@core/components/ellipsis-dropdown';
-import { EBaseColor, EOverlayPosition, IDropdownItem } from '@core/models';
-import { EFriendshipStatus } from '@profile/models';
+import { EBaseColor, EOverlayPosition, TDropdownItem } from '@core/models/client';
+import { EFriendshipStatus } from '@profile/models/client';
 
 @Component({
   selector: 'app-profile-actions',
@@ -21,7 +21,7 @@ export class ProfileActionsComponent {
   readonly EBaseColor = EBaseColor;
   readonly EFriendshipStatus = EFriendshipStatus;
   readonly EOverlayPosition = EOverlayPosition;
-  readonly acceptedRequestStatusDropdownItems: Array<IDropdownItem> = [{
+  readonly acceptedRequestStatusDropdownItems: Array<TDropdownItem> = [{
     value: 'Удалить',
     action: (): void => this.removeAcceptedFriendship.emit(),
   }];

@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 
 import { AvatarComponent } from '@core/components/avatar';
 import { LinkDirective } from '@core/directives';
-import { IProfile } from '@profile/models';
+import { TProfile } from '@profile/models/client';
 
 @Component({
   selector: 'app-short-profile-card',
@@ -13,5 +13,5 @@ import { IProfile } from '@profile/models';
   imports: [AvatarComponent, LinkDirective, NgIf],
 })
 export class ShortProfileCardComponent {
-  @Input() profile: IProfile;
+  @Input() profile: TProfile;
 }

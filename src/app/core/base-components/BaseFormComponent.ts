@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
 import { DialogComponent } from '@core/components/dialog';
-import { EBaseColor, EInputType, IDialogData } from '@core/models';
+import { EBaseColor, EInputType, TDialogData } from '@core/models/client';
 
 import { BaseComponent } from './BaseComponent';
 
@@ -41,7 +41,7 @@ export class BaseFormComponent<FormGroupModel extends { [K in keyof FormGroupMod
   }
 
   protected openConfirmClosingFormDialog(): MatDialogRef<DialogComponent> {
-    const confirmDialogData: IDialogData = {
+    const confirmDialogData: TDialogData = {
       title: 'Закрыть окно?',
       content: 'Несохранённые данные будут утеряны',
       cancelButtonText: 'Отменить',

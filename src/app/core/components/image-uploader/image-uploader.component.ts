@@ -13,8 +13,8 @@ import {
   EPosition,
   ESnackbarView,
   ETextPosition,
-  ISnackbarData,
-} from '@core/models';
+  TSnackbarData,
+} from '@core/models/client';
 import { UiStateService } from '@root/services/state';
 
 @Component({
@@ -62,7 +62,7 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
   }
 
   onError(file: ImgCropperErrorEvent): void {
-    const data: ISnackbarData = {
+    const data: TSnackbarData = {
       width: 260,
       catPosition: EPosition.top,
       textAlign: ETextPosition.right,

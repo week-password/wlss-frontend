@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs';
 
 import { WelcomeConversationComponent } from '@auth/components/welcome-conversation';
 import { WelcomeFormBlockComponent } from '@auth/components/welcome-form-block';
-import { ISigninDataFormGroup } from '@auth/models';
+import { TSigninDataFormGroup } from '@auth/models/client';
 import {
   emailValidators,
   loginValidators,
@@ -30,7 +30,7 @@ import { InputComponent } from '@core/components/input';
     WelcomeFormBlockComponent,
   ],
 })
-export class SigninPage extends BaseFormComponent<ISigninDataFormGroup> implements OnInit {
+export class SigninPage extends BaseFormComponent<TSigninDataFormGroup> implements OnInit {
   constructor(
     private router: Router,
   ) {
@@ -43,7 +43,7 @@ export class SigninPage extends BaseFormComponent<ISigninDataFormGroup> implemen
   }
 
   initSignInForm(): void {
-    this.form = this.fb.group<ISigninDataFormGroup>({
+    this.form = this.fb.group<TSigninDataFormGroup>({
       login: this.fb.control<string>('', { nonNullable: true, validators: loginValidators }),
       password: this.fb.control<string>('', { nonNullable: true, validators: passwordValidators }),
     });

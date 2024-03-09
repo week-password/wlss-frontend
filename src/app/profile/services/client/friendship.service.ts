@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { IProfile } from '@profile/models';
+import { TProfile } from '@profile/models/client';
 import { friends, incomingRequests, outgoingRequests } from '@profile/services/mocks/friendship';
 
 @Injectable({ providedIn: 'root' })
 export class FriendshipService {
-  getFriends(): Observable<Array<IProfile>> {
+  getFriends(): Observable<Array<TProfile>> {
     return of(friends);
   }
 
-  getIncomingRequests(): Observable<Array<IProfile>> {
+  getIncomingRequests(): Observable<Array<TProfile>> {
     return of(incomingRequests);
   }
 
-  getOutgoingRequests(): Observable<Array<IProfile>> {
+  getOutgoingRequests(): Observable<Array<TProfile>> {
     return of(outgoingRequests);
   }
 }

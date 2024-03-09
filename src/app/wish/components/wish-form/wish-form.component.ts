@@ -12,8 +12,8 @@ import { ImageUploaderComponent } from '@core/components/image-uploader';
 import { InputComponent } from '@core/components/input';
 import { TextareaComponent } from '@core/components/textarea';
 import { DisableRepeatWhitespacesDirective, TrimStartWhitespacesDirective } from '@core/directives';
-import { EAvatarType, EBaseColor, IDialogData } from '@core/models';
-import { IWish, IWishFormGroup } from '@wish/models';
+import { EAvatarType, EBaseColor, TDialogData } from '@core/models/client';
+import { TWish, TWishFormGroup } from '@wish/models/client';
 import { descriptionValidators, titleValidators } from '@wish/validators';
 
 @Component({
@@ -34,14 +34,14 @@ import { descriptionValidators, titleValidators } from '@wish/validators';
     TrimStartWhitespacesDirective,
   ],
 })
-export class WishFormComponent extends BaseFormComponent<IWishFormGroup> implements OnInit {
-  @Output() remove = new EventEmitter<IWish>();
+export class WishFormComponent extends BaseFormComponent<TWishFormGroup> implements OnInit {
+  @Output() remove = new EventEmitter<TWish>();
 
   @ViewChild('dialogContent') dialogContent: TemplateRef<HTMLElement>;
   @ViewChild('dialogButtons') dialogButtons: TemplateRef<HTMLElement>;
   @ViewChild('imageUploader') imageUploader: ImageUploaderComponent;
 
-  wish: IWish | null;
+  wish: TWish | null;
   readonly EAvatarType = EAvatarType;
   readonly EBaseColor = EBaseColor;
 
@@ -52,10 +52,10 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
     this.subscribeOnFormChanges();
   }
 
-  openDialog(wish: IWish | null = null): MatDialogRef<DialogComponent> {
+  openDialog(wish: TWish | null = null): MatDialogRef<DialogComponent> {
     this.wish = wish;
     this.fillWishForm();
-    const wishFormDialogData: IDialogData = {
+    const wishFormDialogData: TDialogData = {
       title: this.wish ? 'Редактирование желания' : 'Добавление желания',
       contentTemplate: this.dialogContent,
       buttonsTemplate: this.dialogButtons,
@@ -68,7 +68,7 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
     return this.dialogRef;
   }
 
-  closeDialog(wish: IWish | null = null): void {
+  closeDialog(wish: TWish | null = null): void {
     this.dialogRef.close(wish);
     this.dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.initWishForm();
@@ -93,7 +93,7 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
       const data = this.imageUploader.croppedImage || null;
       this.controls.avatar.setValue(data);
     }
-    this.closeDialog(this.form.value as IWish);
+    this.closeDialog(this.form.value as TWish);
   }
 
   cancelWishForm(): void {
@@ -113,7 +113,7 @@ export class WishFormComponent extends BaseFormComponent<IWishFormGroup> impleme
   }
 
   private initWishForm(): void {
-    this.form = this.fb.group<IWishFormGroup>({
+    this.form = this.fb.group<TWishFormGroup>({
       avatar: this.fb.control<string | null>(null),
       description: this.fb.control<string>('', { nonNullable: true, validators: descriptionValidators }),
       title: this.fb.control<string>('', { nonNullable: true, validators: titleValidators }),

@@ -7,9 +7,9 @@ import { takeUntil } from 'rxjs';
 import { BaseComponent } from '@core/base-components';
 import { AvatarComponent } from '@core/components/avatar';
 import { OverlayComponent } from '@core/components/overlay';
-import { EOverlayPosition, IDropdownItem } from '@core/models';
+import { EOverlayPosition, TDropdownItem } from '@core/models/client';
 import { ProfileSettingsComponent } from '@profile/components/profile-settings';
-import { IAccount, IProfile } from '@profile/models';
+import { TAccount, TProfile } from '@profile/models/client';
 import { ProfileService } from '@profile/services/client';
 import { AccountService } from '@root/services/client';
 import { UserStateService } from '@root/services/state';
@@ -31,10 +31,10 @@ import { UserStateService } from '@root/services/state';
 export class AuthorizedUserComponent extends BaseComponent implements OnInit {
   @ViewChild('profileSettings') profileSettings: ProfileSettingsComponent;
 
-  account: IAccount | null = null;
-  profile: IProfile | null = null;
+  account: TAccount | null = null;
+  profile: TProfile | null = null;
   menuOpened = false;
-  menuItems: Array<IDropdownItem> = [
+  menuItems: Array<TDropdownItem> = [
     {
       value: 'Профиль',
       action: this.goToProfile.bind(this),
@@ -68,11 +68,11 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
   private getAuthorizedUser(): void {
     this.accountService.getAccount().pipe(
       takeUntil(this.destroy$),
-    ).subscribe((account: IAccount) => {
+    ).subscribe((account: TAccount) => {
       this.userStateService.setAccount(account);
       this.profileService.getProfile(account.login).pipe(
         takeUntil(this.destroy$),
-      ).subscribe((profile: IProfile | null) => {
+      ).subscribe((profile: TProfile | null) => {
         this.userStateService.setProfile(profile);
       });
     });
@@ -81,7 +81,7 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
   private subscribeOnAccountChanges(): void {
     this.userStateService.account.pipe(
       takeUntil(this.destroy$),
-    ).subscribe((account: IAccount | null) => {
+    ).subscribe((account: TAccount | null) => {
       this.account = account;
     });
   }
@@ -89,7 +89,7 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
   private subscribeOnProfileChanges(): void {
     this.userStateService.profile.pipe(
       takeUntil(this.destroy$),
-    ).subscribe((profile: IProfile | null) => {
+    ).subscribe((profile: TProfile | null) => {
       this.profile = profile;
     });
   }

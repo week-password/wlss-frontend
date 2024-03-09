@@ -4,7 +4,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 
 import { IconComponent } from '@core/components/icon';
 import { OverlayComponent } from '@core/components/overlay';
-import { EOverlayPosition, IDropdownItem } from '@core/models';
+import { EOverlayPosition, TDropdownItem } from '@core/models/client';
 
 @Component({
   selector: 'app-ellipsis-dropdown',
@@ -15,7 +15,7 @@ import { EOverlayPosition, IDropdownItem } from '@core/models';
 })
 export class EllipsisDropdownComponent {
   @Input() position: EOverlayPosition;
-  @Input() dropdownItems: Array<IDropdownItem> = [];
+  @Input() dropdownItems: Array<TDropdownItem> = [];
   @ViewChild('dropdown') dropdown: OverlayComponent;
 
   switch(): void {

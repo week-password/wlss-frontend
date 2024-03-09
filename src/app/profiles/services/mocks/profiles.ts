@@ -1,6 +1,6 @@
-import { IProfile } from '@profile/models';
+import { TProfile } from '@profile/models/client';
 
-export const profiles: Array<IProfile> = [
+export const profiles: Array<TProfile> = [
   {
     account: {
       id: 1,

@@ -11,8 +11,8 @@ import {
   EPosition,
   ESnackbarView,
   ETextPosition,
-  ISnackbarData,
-} from '@core/models';
+  TSnackbarData,
+} from '@core/models/client';
 
 @Component({
   selector: 'app-cookie-banner',
@@ -40,7 +40,7 @@ export class CookieBannerComponent extends BaseComponent implements AfterViewIni
   }
 
   private showCookieBanner(): void {
-    const data: ISnackbarData = {
+    const data: TSnackbarData = {
       textTemplate: this.cookieText,
       title: this.bannerTitle,
       buttonText: this.bannerButtonText,

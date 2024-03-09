@@ -1,6 +1,6 @@
-import { IWish } from '@wish/models';
+import { TWish } from '@wish/models/client';
 
-export const wishes: Array<IWish> = [
+export const wishes: Array<TWish> = [
   {
     id: 1,
     avatar: 'https://irecommend.ru/sites/default/files/product-images/766724/0pyQyg5yms4Pb8uy8eXOwg.png',
