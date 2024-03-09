@@ -1,6 +1,6 @@
-import { IAccount } from '@profile/models';
+import { TAccount } from '@profile/models/client';
 
-export const account: IAccount = {
+export const account: TAccount = {
   id: 1,
   login: 'galina',
 };

@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { IProfile } from '@profile/models';
+import { TProfile } from '@profile/models/client';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileStateService {
-  private profile$ = new BehaviorSubject<IProfile | null>(null);
+  private profile$ = new BehaviorSubject<TProfile | null>(null);
 
-  get profile(): Observable<IProfile | null> {
+  get profile(): Observable<TProfile | null> {
     return this.profile$.asObservable();
   }
 
-  setProfile(profile: IProfile | null): void {
+  setProfile(profile: TProfile | null): void {
     this.profile$.next(profile);
   }
 }

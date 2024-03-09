@@ -16,6 +16,7 @@
         "@angular-eslint/sort-ngmodule-metadata-arrays": "error",
 
         "@typescript-eslint/array-type": ["error", { "default": "generic" }],
+        "@typescript-eslint/consistent-type-definitions": ["error", "type"],
         "@typescript-eslint/explicit-function-return-type": "error",
         "@typescript-eslint/member-ordering": ["error", { "default": [
           "signature",
@@ -53,6 +54,11 @@
           "protected-method",
           "private-method"
         ]}],
+        "@typescript-eslint/naming-convention": ["error",
+          { "selector": "enum", "format": ["PascalCase"], "prefix": ["E"]},
+          { "selector": "typeAlias", "format": ["PascalCase"], "prefix": ["T"]},
+          { "selector": "variableLike", "format": ["PascalCase", "camelCase"]}
+        ],
         "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
         "@typescript-eslint/typedef": ["error", { "arrowParameter": true, "parameter": true }],

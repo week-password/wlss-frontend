@@ -4,7 +4,7 @@ import { MAT_SNACK_BAR_DATA, MatSnackBarModule, MatSnackBarRef } from '@angular/
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import { ButtonComponent } from '@core/components/button';
-import { EPosition, ESnackbarView, ETextPosition, ISnackbarData } from '@core/models';
+import { EPosition, ESnackbarView, ETextPosition, TSnackbarData } from '@core/models/client';
 
 @Component({
   selector: 'app-snackbar',
@@ -26,7 +26,7 @@ export class SnackbarComponent {
   view: ESnackbarView;
   width? = 320;
 
-  constructor(@Inject(MAT_SNACK_BAR_DATA) data: ISnackbarData) {
+  constructor(@Inject(MAT_SNACK_BAR_DATA) data: TSnackbarData) {
     this.buttonText = data.buttonText;
     this.catPosition = data.catPosition || this.catPosition;
     this.text = data.text;

@@ -1,7 +1,7 @@
 import { CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition } from '@angular/cdk/overlay';
 import { Component, Input } from '@angular/core';
 
-import { EOverlayPosition, OverlayPositions } from '@core/models';
+import { EOverlayPosition, OverlayPositions } from '@core/models/client';
 
 @Component({
   selector: 'app-overlay',

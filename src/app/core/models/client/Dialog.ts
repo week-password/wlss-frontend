@@ -2,7 +2,7 @@ import { TemplateRef } from '@angular/core';
 
 import { EBaseColor } from './BaseColor';
 
-export interface IDialogData {
+export type TDialogData = {
   buttonsTemplate?: TemplateRef<HTMLElement>;
   cancelButtonText?: string;
   content?: string;

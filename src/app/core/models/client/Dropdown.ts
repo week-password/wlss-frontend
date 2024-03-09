@@ -1,4 +1,4 @@
-export interface IDropdownItem {
+export type TDropdownItem = {
   value: string;
   action: () => void;
 }

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ISignupData } from '@auth/models';
+import { TSignupData } from '@auth/models/client';
 import { SignupApiService } from '@auth/services/api';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(private signupApiService: SignupApiService) { }
 
-  signup(signupData: ISignupData): Observable<void> {
+  signup(signupData: TSignupData): Observable<void> {
     const {
       account: { confirmPassword, ...account },
       profile,

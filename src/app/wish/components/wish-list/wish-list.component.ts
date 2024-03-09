@@ -6,10 +6,10 @@ import { takeUntil } from 'rxjs';
 import { BaseComponent } from '@core/base-components';
 import { CardComponent } from '@core/components/card';
 import { DialogComponent } from '@core/components/dialog';
-import { EAvatarType, EBaseColor, IDialogData } from '@core/models';
+import { EAvatarType, EBaseColor, TDialogData } from '@core/models/client';
 import { WishActionsComponent } from '@wish/components/wish-actions';
 import { WishFormComponent } from '@wish/components/wish-form';
-import { EBookingStatus, IWish, IWishBookingStatus } from '@wish/models';
+import { EBookingStatus, TWish, TWishBookingStatus } from '@wish/models/client';
 import { WishService } from '@wish/services/client';
 
 @Component({
@@ -26,7 +26,7 @@ export class WishListComponent extends BaseComponent {
   @ViewChild('wishForm') wishForm: WishFormComponent;
   @ViewChildren('removeWishMessages') removeWishMessages: QueryList<TemplateRef<HTMLElement>>;
 
-  wishes: Array<IWish & IWishBookingStatus> = [];
+  wishes: Array<TWish & TWishBookingStatus> = [];
   readonly EAvatarType = EAvatarType;
   readonly EBookingStatus = EBookingStatus;
 
@@ -35,7 +35,7 @@ export class WishListComponent extends BaseComponent {
     this.getWishes();
   }
 
-  getBadge(wish: IWish & IWishBookingStatus): string | null {
+  getBadge(wish: TWish & TWishBookingStatus): string | null {
     if (!this.showActions) {
       return null;
     }
@@ -47,11 +47,11 @@ export class WishListComponent extends BaseComponent {
     );
   }
 
-  openWishFormDialog(wish: IWish | null = null): void {
+  openWishFormDialog(wish: TWish | null = null): void {
     const dialogRef = this.wishForm.openDialog(wish);
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$),
-    ).subscribe((wishFormResult: Omit<IWish, 'id'> | null) => {
+    ).subscribe((wishFormResult: Omit<TWish, 'id'> | null) => {
       if (!wishFormResult) {
         return;
       }
@@ -63,10 +63,10 @@ export class WishListComponent extends BaseComponent {
     });
   }
 
-  openRemoveWishDialog(wish: IWish): void {
+  openRemoveWishDialog(wish: TWish): void {
     const { id } = wish;
-    const index = this.wishes.findIndex((wish: IWish) => wish.id === id);
-    const removeWishDialogData: IDialogData = {
+    const index = this.wishes.findIndex((wish: TWish) => wish.id === id);
+    const removeWishDialogData: TDialogData = {
       cancelButtonText: 'Отменить',
       contentTemplate: this.removeWishMessages.get(index),
       submitButtonColor: EBaseColor.danger,
@@ -87,7 +87,7 @@ export class WishListComponent extends BaseComponent {
     });
   }
 
-  private addWish(wish: Omit<IWish, 'id'>): void {
+  private addWish(wish: Omit<TWish, 'id'>): void {
     this.wishService.addWish(wish).pipe(
       takeUntil(this.destroy$),
     ).subscribe(() => {
@@ -95,7 +95,7 @@ export class WishListComponent extends BaseComponent {
     });
   }
 
-  private updateWish(wish: IWish): void {
+  private updateWish(wish: TWish): void {
     this.wishService.updateWish(wish).pipe(
       takeUntil(this.destroy$),
     ).subscribe(() => {
@@ -103,7 +103,7 @@ export class WishListComponent extends BaseComponent {
     });
   }
 
-  private removeWish(wish: IWish): void {
+  private removeWish(wish: TWish): void {
     this.wishService.removeWish(wish).pipe(
       takeUntil(this.destroy$),
     ).subscribe(() => {
@@ -114,7 +114,7 @@ export class WishListComponent extends BaseComponent {
   private getWishes(): void {
     this.wishService.getWishes().pipe(
       takeUntil(this.destroy$),
-    ).subscribe((wishes: Array<IWish & IWishBookingStatus>) => {
+    ).subscribe((wishes: Array<TWish & TWishBookingStatus>) => {
       this.wishes = wishes;
     });
   }

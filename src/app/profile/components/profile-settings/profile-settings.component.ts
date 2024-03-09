@@ -12,8 +12,8 @@ import { ImageUploaderComponent } from '@core/components/image-uploader';
 import { InputComponent } from '@core/components/input';
 import { TextareaComponent } from '@core/components/textarea';
 import { DisableRepeatWhitespacesDirective, TrimStartWhitespacesDirective } from '@core/directives';
-import { EBaseColor, IDialogData } from '@core/models';
-import { IProfile, IProfileFormGroup } from '@profile/models';
+import { EBaseColor, TDialogData } from '@core/models/client';
+import { TProfile, TProfileFormGroup } from '@profile/models/client';
 import { ProfileService } from '@profile/services/client';
 import { descriptionValidators, nameValidators } from '@profile/validators';
 import { UserStateService } from '@root/services/state';
@@ -36,12 +36,12 @@ import { UserStateService } from '@root/services/state';
     TrimStartWhitespacesDirective,
   ],
 })
-export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGroup> implements OnInit {
+export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGroup> implements OnInit {
   @ViewChild('dialogContent') dialogContent: TemplateRef<HTMLElement>;
   @ViewChild('dialogButtons') dialogButtons: TemplateRef<HTMLElement>;
   @ViewChild('imageUploader') imageUploader: ImageUploaderComponent;
 
-  profile: IProfile | null = null;
+  profile: TProfile | null = null;
   EBaseColor = EBaseColor;
 
   private dialogRef: MatDialogRef<DialogComponent>;
@@ -60,7 +60,7 @@ export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGrou
   }
 
   openDialog(): void {
-    const profileSettingsDialogData: IDialogData = {
+    const profileSettingsDialogData: TDialogData = {
       title: 'Редактирование профиля',
       contentTemplate: this.dialogContent,
       buttonsTemplate: this.dialogButtons,
@@ -93,13 +93,13 @@ export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGrou
       const data = this.imageUploader.croppedImage || null;
       this.controls.avatar.setValue(data);
     }
-    const profile: IProfile = {
+    const profile: TProfile = {
       ...this.profile,
       ...this.form.value,
     };
     this.profileService.setProfile(profile).pipe(
       takeUntil(this.destroy$),
-    ).subscribe((profile: IProfile | null) => {
+    ).subscribe((profile: TProfile | null) => {
       this.userStateService.setProfile(profile);
       this.closeDialog();
     });
@@ -122,7 +122,7 @@ export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGrou
   }
 
   private initProfileSettingsForm(): void {
-    this.form = this.fb.group<IProfileFormGroup>({
+    this.form = this.fb.group<TProfileFormGroup>({
       avatar: this.fb.control<string | null>(null),
       description: this.fb.control<string | null>('', descriptionValidators),
       name: this.fb.control<string>('', { nonNullable: true, validators: nameValidators }),
@@ -147,7 +147,7 @@ export class ProfileSettingsComponent extends BaseFormComponent<IProfileFormGrou
   private subscribeOnProfileChanges(): void {
     this.userStateService.profile.pipe(
       takeUntil(this.destroy$),
-    ).subscribe((profile: IProfile | null) => {
+    ).subscribe((profile: TProfile | null) => {
       this.profile = profile;
       this.fillProfileSettingsForm();
     });

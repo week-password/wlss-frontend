@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { IAccount } from '@profile/models';
+import { TAccount } from '@profile/models/client';
 import { account } from '@root/services/mocks/account';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
-  getAccount(): Observable<IAccount> {
+  getAccount(): Observable<TAccount> {
     return of(account);
   }
 }

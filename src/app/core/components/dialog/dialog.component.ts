@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs';
 import { BaseComponent } from '@core/base-components';
 import { ButtonComponent } from '@core/components/button';
 import { IconComponent } from '@core/components/icon';
-import { EBaseColor, IDialogData } from '@core/models';
+import { EBaseColor, TDialogData } from '@core/models/client';
 
 @Component({
   selector: 'app-dialog',
@@ -29,7 +29,7 @@ export class DialogComponent extends BaseComponent {
   titleTemplate?: TemplateRef<HTMLElement>;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) data: IDialogData,
+    @Inject(MAT_DIALOG_DATA) data: TDialogData,
     private dialogRef: MatDialogRef<DialogComponent>,
   ) {
     super();

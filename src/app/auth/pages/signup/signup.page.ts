@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs';
 
 import { WelcomeConversationComponent } from '@auth/components/welcome-conversation';
 import { WelcomeFormBlockComponent } from '@auth/components/welcome-form-block';
-import { ESignupStep, ISignupData, ISignupDataFormGroup } from '@auth/models';
+import { ESignupStep, TSignupData, TSignupDataFormGroup } from '@auth/models/client';
 import { AuthService, SignupService } from '@auth/services/client';
 import {
   emailValidators,
@@ -20,7 +20,7 @@ import { ButtonComponent } from '@core/components/button';
 import { InputComponent } from '@core/components/input';
 import { TextareaComponent } from '@core/components/textarea';
 import { ConvertEmptyStringToNullDirective, DisableRepeatWhitespacesDirective, TrimStartWhitespacesDirective } from '@core/directives';
-import { EBaseColor } from '@core/models';
+import { EBaseColor } from '@core/models/client';
 import { descriptionValidators, nameValidators } from '@profile/validators';
 
 @Component({
@@ -43,7 +43,7 @@ import { descriptionValidators, nameValidators } from '@profile/validators';
     WelcomeFormBlockComponent,
   ],
 })
-export class SignupPage extends BaseFormComponent<ISignupDataFormGroup> implements OnInit {
+export class SignupPage extends BaseFormComponent<TSignupDataFormGroup> implements OnInit {
   EBaseColor = EBaseColor;
   ESignupStep = ESignupStep;
   currentSignupStep = ESignupStep.account;
@@ -69,7 +69,7 @@ export class SignupPage extends BaseFormComponent<ISignupDataFormGroup> implemen
   }
 
   initSignUpForm(): void {
-    this.form = this.fb.group<ISignupDataFormGroup>({
+    this.form = this.fb.group<TSignupDataFormGroup>({
       account: this.fb.group({
         login: this.fb.control<string>('', {
           nonNullable: true,
@@ -109,7 +109,7 @@ export class SignupPage extends BaseFormComponent<ISignupDataFormGroup> implemen
     if (this.submitDisabled) {
       return;
     }
-    this.authService.signup(this.form.value as ISignupData).pipe(
+    this.authService.signup(this.form.value as TSignupData).pipe(
       takeUntil(this.destroy$),
     ).subscribe(() => {
       this.router.navigate(['signin']);

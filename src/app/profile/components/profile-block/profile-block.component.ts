@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
-import { EBlockState } from '@core/models';
+import { EBlockState } from '@core/models/client';
 
 @Component({
   selector: 'app-profile-block',

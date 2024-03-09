@@ -2,7 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
-import { AvatarSources, EAvatarType } from '@core/models';
+import { AvatarSources, EAvatarType } from '@core/models/client';
 
 @Component({
   selector: 'app-avatar',

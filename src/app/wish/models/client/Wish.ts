@@ -2,19 +2,17 @@ import { FormControl } from '@angular/forms';
 
 import { EBookingStatus } from './BookingStatus';
 
-export interface IWish {
+export type TWish = {
   id: number;
   avatar: string | null;
   description: string;
   title: string;
 }
 
-export interface IWishBookingStatus {
+export type TWishBookingStatus = {
   bookingStatus: EBookingStatus | null;
 }
 
-export interface IWishFormGroup {
-  avatar: FormControl<string | null>;
-  description: FormControl<string>;
-  title: FormControl<string>;
+export type TWishFormGroup = {
+  [key in keyof Omit<TWish, 'id'>]: FormControl<TWish[key]>;
 }
