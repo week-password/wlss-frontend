@@ -37,4 +37,25 @@ export class AuthService {
       }),
     );
   }
+
+  signout(): Observable<void> {
+    const { accountId, sessionId } = this.sessionStateService;
+    if(!accountId || !sessionId) {
+      this.removeSessionState();
+      return of(undefined);
+    }
+    return this.authApiService.signout(accountId, sessionId).pipe(
+      switchMap(() => {
+        this.removeSessionState();
+        return of(undefined);
+      }),
+    );
+  }
+
+  private removeSessionState(): void {
+    this.sessionStateService.setAccessToken(null);
+    this.sessionStateService.setRefreshToken(null);
+    this.sessionStateService.setSessionId(null);
+    this.sessionStateService.setAccountId(null);
+  }
 }
