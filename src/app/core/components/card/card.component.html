@@ -18,8 +18,8 @@
     <span>{{ header }}</span>
     <span *ngIf="headerBadge" class="c-card__header-badge c-badge c-badge_secondary">{{ headerBadge }}</span>
   </div>
-  <div *ngIf="showControls" #controls class="c-card__controls" (click)="$event.stopPropagation()">
+  <a *ngIf="showControls" #controls class="c-card__controls" href="javascript:;" (click)="$event.stopPropagation()">
     <ng-content select="[controls]" />
-  </div>
+  </a>
   <div class="c-card__description color-text-4">{{ description }}</div>
 </div>

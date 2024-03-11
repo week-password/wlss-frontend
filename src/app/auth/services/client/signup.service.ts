@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, of, switchMap } from 'rxjs';
 
 import { SignupApiService } from '@auth/services/api';
+import { EHttpError } from '@core/models/api';
 
-const availableStatus = 404;
+const availableStatus = EHttpError.notFound;
 
 @Injectable({ providedIn: 'root' })
 export class SignupService {

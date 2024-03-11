@@ -9,7 +9,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { provideAngularSvgIcon } from 'angular-svg-icon';
 
-import { requestUrlInterceptor } from '@core/interceptors';
+import { requestUrlInterceptor, sessionInterceptor } from '@core/interceptors';
 import { RootRoutes } from '@root/pages';
 import { RootPage } from '@root/pages/root';
 import { environment } from 'src/environments/environment';
@@ -26,7 +26,7 @@ bootstrapApplication(RootPage, {
     { provide: LY_THEME, useClass: MinimaLight, multi: true },
     provideAngularSvgIcon(),
     provideAnimations(),
-    provideHttpClient(withInterceptors([requestUrlInterceptor])),
+    provideHttpClient(withInterceptors([requestUrlInterceptor, sessionInterceptor])),
     provideRouter(RootRoutes),
   ],
 
