@@ -3,11 +3,11 @@
     <app-image-uploader
       #imageUploader
       class="c-wish-form__image-uploader"
-      [removeOriginImageDisabled]="!controls.avatar.value"
+      [removeOriginImageDisabled]="!controls.avatarId.value"
       (removeOriginImage)="removeAvatar()"
       (change)="onAvatarChanged()"
     >
-      <app-avatar [source]="controls.avatar.value" [type]="EAvatarType.wish"></app-avatar>
+      <app-avatar [avatarId]="controls.avatarId.value" [type]="EAvatarType.wish"></app-avatar>
     </app-image-uploader>
     <form class="c-wish-form__form" [formGroup]="form">
       <app-input

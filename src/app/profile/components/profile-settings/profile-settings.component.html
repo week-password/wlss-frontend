@@ -3,11 +3,11 @@
     <app-image-uploader
       #imageUploader
       class="c-profile-settings__image-uploader"
-      [removeOriginImageDisabled]="!controls.avatar.value"
+      [removeOriginImageDisabled]="!controls.avatarId.value"
       (removeOriginImage)="removeAvatar()"
       (change)="onAvatarChanged()"
     >
-      <app-avatar [source]="controls.avatar.value"></app-avatar>
+      <app-avatar [avatarId]="controls.avatarId.value"></app-avatar>
     </app-image-uploader>
     <form class="c-profile-settings__form" [formGroup]="form">
       <app-input

@@ -5,7 +5,7 @@ import { EFriendshipStatus } from './FriendshipStatus';
 
 export type TProfile = {
   account: TAccount;
-  avatar: string | null;
+  avatarId: string | null;
   description: string | null;
   name: string;
 }
