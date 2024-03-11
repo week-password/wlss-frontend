@@ -1,6 +1,6 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, RouterLink } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
 import { BaseComponent } from '@core/base-components';
@@ -44,6 +44,7 @@ export class ProfilePage extends BaseComponent implements OnInit {
     private profileService: ProfileService,
     private profileStateService: ProfileStateService,
     private route: ActivatedRoute,
+    private router: Router,
     private userStateService: UserStateService,
   ) {
     super();
@@ -84,13 +85,18 @@ export class ProfilePage extends BaseComponent implements OnInit {
 
   private getProfile(login: string | null): void {
     const profileSource = login ?
-      this.profileService.getProfile(login) :
+      this.profileService.getProfileByLogin(login) :
       this.userStateService.profile;
 
     profileSource.pipe(
       takeUntil(this.destroy$),
-    ).subscribe((profile: TProfile | null) => {
-      this.profileStateService.setProfile(profile);
+    ).subscribe({
+      next: (profile: TProfile | null) => {
+        this.profileStateService.setProfile(profile);
+      },
+      error: () => {
+        this.router.navigate(['404']);
+      },
     });
   }
 

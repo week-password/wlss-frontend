@@ -33,6 +33,10 @@ export const RootRoutes: Routes = [
     loadChildren: () => TermsRoutes,
   },
   {
+    path: '404',
+    component: NotFoundPage,
+  },
+  {
     path: '**',
     component: NotFoundPage,
   },

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
 import { AuthService } from '@auth/services/client';
+import { SessionStateService } from '@auth/services/state';
 import { BaseComponent } from '@core/base-components';
 import { AvatarComponent } from '@core/components/avatar';
 import { OverlayComponent } from '@core/components/overlay';
@@ -12,7 +13,6 @@ import { EOverlayPosition, TDropdownItem } from '@core/models/client';
 import { ProfileSettingsComponent } from '@profile/components/profile-settings';
 import { TAccount, TProfile } from '@profile/models/client';
 import { ProfileService } from '@profile/services/client';
-import { AccountService } from '@root/services/client';
 import { UserStateService } from '@root/services/state';
 
 @Component({
@@ -43,10 +43,10 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
   EOverlayPosition = EOverlayPosition;
 
   constructor(
-    private accountService: AccountService,
     private authService: AuthService,
     private profileService: ProfileService,
     private router: Router,
+    private sessionStateService: SessionStateService,
     private userStateService: UserStateService,
   ) {
     super();
@@ -59,19 +59,16 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
   }
 
   private getAuthorizedUser(): void {
-    this.accountService.getAccount().pipe(
+    const { accountId } = this.sessionStateService;
+    if(!accountId) {
+      this.router.navigate(['signin']);
+      return;
+    }
+    this.profileService.getProfileByAccountId(accountId).pipe(
       takeUntil(this.destroy$),
-    ).subscribe((account: TAccount | null) => {
-      this.userStateService.setAccount(account);
-      if(!account) {
-        this.router.navigate(['signin']);
-        return;
-      }
-      this.profileService.getProfile(account.login).pipe(
-        takeUntil(this.destroy$),
-      ).subscribe((profile: TProfile | null) => {
-        this.userStateService.setProfile(profile);
-      });
+    ).subscribe((profile: TProfile) => {
+      this.userStateService.setAccount(profile.account);
+      this.userStateService.setProfile(profile);
     });
   }
 
