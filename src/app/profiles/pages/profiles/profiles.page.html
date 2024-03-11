@@ -7,7 +7,7 @@
     <ng-container *ngFor="let profile of profiles">
       <div class="c-line-separated-list__separator c-line c-line_horizontal"></div>
       <a class="c-line-separated-list__item" [routerLink]="'/profile/' + profile.account.login">
-        <app-card [avatar]="profile.avatar" [header]="profile.name" [description]="profile.description" [showControls]="!!profile.friendshipStatus">
+        <app-card [avatarId]="profile.avatarId" [header]="profile.name" [description]="profile.description" [showControls]="!!profile.friendshipStatus">
           <app-profile-actions controls [friendshipStatus]="profile.friendshipStatus" />
         </app-card>
       </a>

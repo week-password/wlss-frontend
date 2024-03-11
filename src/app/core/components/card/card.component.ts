@@ -13,7 +13,7 @@ import { EAvatarType } from '@core/models/client';
   imports: [AvatarComponent, NgIf],
 })
 export class CardComponent {
-  @Input() avatar: string | null;
+  @Input() avatarId: string | null;
   @Input() avatarType: EAvatarType = EAvatarType.profile;
   @Input() description: string | null;
   @Input() header: string;

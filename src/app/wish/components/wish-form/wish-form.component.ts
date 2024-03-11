@@ -76,7 +76,7 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
   }
 
   removeAvatar(): void {
-    this.controls.avatar.setValue(null);
+    this.controls.avatarId.setValue(null);
   }
 
   onAvatarChanged(): void {
@@ -90,8 +90,6 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
     }
     if (this.imageUploader.cropper.isLoaded) {
       this.imageUploader.cropper.crop();
-      const data = this.imageUploader.croppedImage || null;
-      this.controls.avatar.setValue(data);
     }
     this.closeDialog(this.form.value as TWish);
   }
@@ -114,7 +112,7 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
 
   private initWishForm(): void {
     this.form = this.fb.group<TWishFormGroup>({
-      avatar: this.fb.control<string | null>(null),
+      avatarId: this.fb.control<string | null>(null),
       description: this.fb.control<string>('', { nonNullable: true, validators: descriptionValidators }),
       title: this.fb.control<string>('', { nonNullable: true, validators: titleValidators }),
     });
@@ -124,7 +122,7 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
     if (!this.wish) {
       return;
     }
-    this.controls.avatar.setValue(this.wish.avatar);
+    this.controls.avatarId.setValue(this.wish.avatarId);
     this.controls.description.setValue(this.wish.description);
     this.controls.title.setValue(this.wish.title);
     this.changed = false;

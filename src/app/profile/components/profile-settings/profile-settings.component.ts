@@ -73,7 +73,7 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
   }
 
   removeAvatar(): void {
-    this.controls.avatar.setValue(null);
+    this.controls.avatarId.setValue(null);
   }
 
   onAvatarChanged(): void {
@@ -90,8 +90,6 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
     }
     if (this.imageUploader.cropper.isLoaded) {
       this.imageUploader.cropper.crop();
-      const data = this.imageUploader.croppedImage || null;
-      this.controls.avatar.setValue(data);
     }
     const profile: TProfile = {
       ...this.profile,
@@ -123,7 +121,7 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
 
   private initProfileSettingsForm(): void {
     this.form = this.fb.group<TProfileFormGroup>({
-      avatar: this.fb.control<string | null>(null),
+      avatarId: this.fb.control<string | null>(null),
       description: this.fb.control<string | null>('', descriptionValidators),
       name: this.fb.control<string>('', { nonNullable: true, validators: nameValidators }),
     });
@@ -133,7 +131,7 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
     if (!this.profile) {
       return;
     }
-    this.controls.avatar.setValue(this.profile.avatar);
+    this.controls.avatarId.setValue(this.profile.avatarId);
     this.controls.description.setValue(this.profile.description);
     this.controls.name.setValue(this.profile.name);
     this.changed = false;

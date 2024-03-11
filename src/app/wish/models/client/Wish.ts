@@ -4,7 +4,7 @@ import { EBookingStatus } from './BookingStatus';
 
 export type TWish = {
   id: number;
-  avatar: string | null;
+  avatarId: string | null;
   description: string;
   title: string;
 }
