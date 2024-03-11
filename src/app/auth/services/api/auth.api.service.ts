@@ -15,4 +15,8 @@ export class AuthApiService {
   signin(signinData: TSigninRequest): Observable<TSigninResponse> {
     return this.http.post<TSigninResponse>('/accounts/sessions', signinData);
   }
+
+  signout(accountId: number, sessionId: string): Observable<void> {
+    return this.http.delete<void>(`/accounts/${accountId}/sessions/${sessionId}`);
+  }
 }

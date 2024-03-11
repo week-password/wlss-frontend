@@ -4,7 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
-import { SessionStateService } from '@auth/services/state';
+import { AuthService } from '@auth/services/client';
 import { BaseComponent } from '@core/base-components';
 import { AvatarComponent } from '@core/components/avatar';
 import { OverlayComponent } from '@core/components/overlay';
@@ -38,15 +38,15 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
   menuItems: Array<TDropdownItem> = [
     { value: 'Профиль', action: this.goToProfile.bind(this) },
     { value: 'Настройки', action: this.openProfileSettings.bind(this) },
-    { value: 'Выход', action: this.logout.bind(this) },
+    { value: 'Выход', action: this.signout.bind(this) },
   ];
   EOverlayPosition = EOverlayPosition;
 
   constructor(
     private accountService: AccountService,
+    private authService: AuthService,
     private profileService: ProfileService,
     private router: Router,
-    private sessionStateService: SessionStateService,
     private userStateService: UserStateService,
   ) {
     super();
@@ -99,13 +99,13 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
     this.profileSettings.openDialog();
   }
 
-  private logout(): void {
-    this.userStateService.setAccount(null);
-    this.userStateService.setProfile(null);
-    this.sessionStateService.setAccessToken(null);
-    this.sessionStateService.setRefreshToken(null);
-    this.sessionStateService.setSessionId(null);
-    this.sessionStateService.setAccountId(null);
-    this.router.navigate(['signin']);
+  private signout(): void {
+    this.authService.signout().pipe(
+      takeUntil(this.destroy$),
+    ).subscribe(() => {
+      this.userStateService.setAccount(null);
+      this.userStateService.setProfile(null);
+      this.router.navigate(['signin']);
+    });
   }
 }
