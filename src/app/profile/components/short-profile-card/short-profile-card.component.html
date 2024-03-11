@@ -1,6 +1,6 @@
-<div *ngIf="profile" class="c-short-profile-card" [appLink]="'profile/' + profile.account.login">
+<a *ngIf="profile" class="c-short-profile-card" [routerLink]="'/profile/' + profile.account.login">
   <div class="c-short-profile-card__avatar">
     <app-avatar [source]="profile.avatar"></app-avatar>
   </div>
   <div class="c-short-profile-card__name" [title]="profile.name">{{ profile.name }}</div>
-</div>
+</a>

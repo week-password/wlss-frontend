@@ -13,7 +13,7 @@ export const profiles: Array<TProfile> = [
   {
     account: {
       id: 2,
-      login: 'high-kaliber-expert',
+      login: '1234',
     },
     avatar: 'https://www.lansingstatejournal.com/gcdn/presto/2019/10/10/PLSJ/d45c2234-d7aa-4a23-9b94-c86746ee5932-191009_high_caliber_029a.JPG',
     description: 'Я не понимаю, почему вы так долго разрабатываете вишер, это делается за два часа, я сам разработчик, знаю о чём говорю',
@@ -22,20 +22,20 @@ export const profiles: Array<TProfile> = [
   {
     account: {
       id: 3,
-      login: 'god',
-    },
-    avatar: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT5h-Gy71W1Je_7xgJegpQMVBLVFicLX4ow5Rou0nOsyibqbCru',
-    description: 'А когда будет готово?',
-    name: 'Заказчик',
-  },
-  {
-    account: {
-      id: 4,
       login: 'dasha',
     },
     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlT3GNaodZ2POYi9FeJc27S4G6s4_McYGDTZeYcltXlRYYwTdV',
     description: 'Привет, мы можем сейчас быстренько вместо вишера сделать небольшую кнопочку для загрузки больших данных? Очень надо!',
     name: 'Дарья Очень Просила',
+  },
+  {
+    account: {
+      id: 4,
+      login: 'god',
+    },
+    avatar: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT5h-Gy71W1Je_7xgJegpQMVBLVFicLX4ow5Rou0nOsyibqbCru',
+    description: 'А когда будет готово?',
+    name: 'Заказчик',
   },
   {
     account: {

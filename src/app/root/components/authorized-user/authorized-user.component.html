@@ -16,11 +16,11 @@
     [trigger]="authorizedUser"
     [position]="EOverlayPosition.bottomEnd"
   >
-      <div class="c-authorized-user-dropdown c-dropdown">
-        <div *ngFor="let item of menuItems" class="c-dropdown__item" (click)="item.action()">
-          {{ item.value }}
-        </div>
+    <div class="c-authorized-user-dropdown c-dropdown">
+      <div *ngFor="let item of menuItems" class="c-dropdown__item" (click)="item.action()">
+        {{ item.value }}
       </div>
+    </div>
   </app-overlay>
   <app-profile-settings #profileSettings></app-profile-settings>
 </ng-container>

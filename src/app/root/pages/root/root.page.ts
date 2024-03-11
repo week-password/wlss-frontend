@@ -36,8 +36,6 @@ export class RootPage extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.healtCheckService.getHealth().pipe(
-      takeUntil(this.destroy$),
-    ).subscribe();
+    this.healtCheckService.getHealth().pipe(takeUntil(this.destroy$)).subscribe();
   }
 }
