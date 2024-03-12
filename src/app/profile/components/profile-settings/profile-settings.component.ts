@@ -47,8 +47,8 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
   private dialogRef: MatDialogRef<DialogComponent>;
 
   constructor(
-    private userStateService: UserStateService,
     private profileService: ProfileService,
+    private userStateService: UserStateService,
   ) {
     super();
   }
@@ -95,9 +95,9 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
       ...this.profile,
       ...this.form.value,
     };
-    this.profileService.setProfile(profile).pipe(
+    this.profileService.updateProfile(profile).pipe(
       takeUntil(this.destroy$),
-    ).subscribe((profile: TProfile | null) => {
+    ).subscribe((profile: TProfile) => {
       this.userStateService.setProfile(profile);
       this.closeDialog();
     });
