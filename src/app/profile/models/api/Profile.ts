@@ -15,3 +15,15 @@ export type TGetProfileResponse = {
   name: string;
   friendshipStatus: EFriendshipStatus | null;
 }
+
+export type TUpdateProfileRequest = {
+  avatarId: string | null;
+  description: string | null;
+  name: string;
+}
+
+export type TUpdateProfileResponse = {
+  avatarId: string | null;
+  description: string | null;
+  name: string;
+}

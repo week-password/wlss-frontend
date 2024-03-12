@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, switchMap } from 'rxjs';
 
-import { TGetAccountResponse } from '@profile/models/api';
+import { TGetAccountResponse, TUpdateProfileRequest, TUpdateProfileResponse } from '@profile/models/api';
 import { TProfile, TProfileFriendshipStatus } from '@profile/models/client';
 import { AccountApiService, ProfileApiService } from '@profile/services/api';
-import { profiles } from '@profiles/services/mocks/profiles';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
@@ -26,13 +25,17 @@ export class ProfileService {
     );
   }
 
-  setProfile(profile: TProfile): Observable<TProfile | null> {
-    const login = profile.account.login;
-    const profileIndex = profiles.findIndex((profile: TProfile) => profile.account.login === login);
-    if (profileIndex === -1) {
-      return of(null);
-    }
-    profiles[profileIndex] = profile;
-    return of(profile);
+  updateProfile(profile: TProfile): Observable<TProfile> {
+    const accountId = profile.account.id;
+    const request: TUpdateProfileRequest = {
+      avatarId: profile.avatarId,
+      description: profile.description,
+      name: profile.name,
+    };
+    return this.profileApiService.updateProfile(accountId, request).pipe(
+      switchMap((response: TUpdateProfileResponse) => {
+        return of({ account: profile.account, ...response });
+      }),
+    );
   }
 }

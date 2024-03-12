@@ -1,4 +1,4 @@
-import { HttpEvent, HttpHandlerFn, HttpHeaders, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,6 +10,6 @@ export const sessionInterceptor: HttpInterceptorFn = (request: HttpRequest<unkno
   if(accessToken === null) {
     return next(request);
   }
-  const headers = new HttpHeaders({ 'Authorization': `Bearer ${accessToken}` });
+  const headers = request.headers.append( 'Authorization', `Bearer ${accessToken}` );
   return next(request.clone({ headers }));
 };
