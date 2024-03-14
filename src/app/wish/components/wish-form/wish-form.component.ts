@@ -39,7 +39,7 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
 
   @ViewChild('dialogContent') dialogContent: TemplateRef<HTMLElement>;
   @ViewChild('dialogButtons') dialogButtons: TemplateRef<HTMLElement>;
-  @ViewChild('imageUploader') imageUploader: ImageUploaderComponent;
+  @ViewChild('avatarUploader') avatarUploader: ImageUploaderComponent;
 
   wish: TWish | null;
   readonly EAvatarType = EAvatarType;
@@ -83,17 +83,6 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
     this.changed = true;
   }
 
-  saveWish(): void {
-    this.form.markAllAsTouched();
-    if (this.submitDisabled) {
-      return;
-    }
-    if (this.imageUploader.cropper.isLoaded) {
-      this.imageUploader.cropper.crop();
-    }
-    this.closeDialog(this.form.value as TWish);
-  }
-
   cancelWishForm(): void {
     if (!this.changed) {
       this.closeDialog();
@@ -108,6 +97,31 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
       }
       this.closeDialog();
     });
+  }
+
+  onSubmit(): void {
+    this.form.markAllAsTouched();
+    if (this.submitDisabled) {
+      return;
+    }
+    if (this.avatarUploader.isLoaded) {
+      this.avatarUploader.triggerUploading();
+      return;
+    }
+    this.saveWish();
+  }
+
+  onAvatarUploaded(avatarId: string): void {
+    this.controls.avatarId.setValue(avatarId);
+    this.form.markAllAsTouched();
+    if (this.submitDisabled) {
+      return;
+    }
+    this.saveWish();
+  }
+
+  private saveWish(): void {
+    this.closeDialog(this.form.value as TWish);
   }
 
   private initWishForm(): void {

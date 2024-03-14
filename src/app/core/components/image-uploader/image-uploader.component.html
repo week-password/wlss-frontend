@@ -1,40 +1,69 @@
-<div class="c-image-uploader" appDragAndDropStyle [dragAndDropArea]="uploadAreaControl">
-  <ly-img-cropper
-    class="c-image-uploader__cropper"
-    [config]="imageCropperConfig"
-    [(scale)]="scale"
-    (minScale)="minScale = $event"
-    (maxScale)="maxScale = $event"
-    (cropped)="onCropped($event)"
-    (loaded)="onLoaded($event)"
-    (error)="onError($event)"
-    (wheel)="zoom($event)"
-  >
-    <div class="c-image-uploader__upload-area c-image-uploader-upload-area">
+<div class="c-image-uploader">
+  <input
+    #input
+    class="c-image-uploader__input"
+    type="file"
+    accept="image/*"
+    (change)="onFileChanged($event)"
+  />
+
+  <ng-container *ngIf="!isLoaded">
+    <div
+      class="c-image-uploader__upload-area c-image-uploader-upload-area"
+      (click)="input.click()"
+    >
       <div class="c-image-uploader-upload-area__source">
         <ng-content></ng-content>
       </div>
-      <div #uploadAreaControl class="c-image-uploader-upload-area__control">
+      <div
+        class="c-image-uploader-upload-area__control"
+        appDragAndDrop
+        (dropFile)="onDropped($event)"
+      >
         <div class="c-image-uploader-upload-area__button">
           <app-icon icon="add_photo_alternate"></app-icon>
         </div>
       </div>
     </div>
-  </ly-img-cropper>
+  </ng-container>
+
+  <ng-container *ngIf="imageChangedEvent || imageUrl">
+    <image-cropper
+      #cropper
+      class="c-image-uploader__cropper"
+      output="blob"
+      [allowMoveImage]="true"
+      [aspectRatio]="1 / 1"
+      [autoCrop]="false"
+      [canvasRotation]="rotation"
+      [containWithinAspectRatio]="true"
+      [hidden]="!isLoaded"
+      [hideResizeSquares]="true"
+      [imageChangedEvent]="imageChangedEvent"
+      [imageURL]="imageUrl"
+      [maintainAspectRatio]="true"
+      [roundCropper]="true"
+      [(transform)]="transform"
+      (imageCropped)="onCropped($event)"
+      (imageLoaded)="onLoaded($event)"
+      (loadImageFailed)="onError()"
+      (wheel)="zoom($event)"
+    />
+  </ng-container>
 
   <div class="c-image-uploader__controls mt-16">
     <div
       class="c-image-uploader__control"
-      [class]="{ 'c-image-uploader__control_disabled': !cropper.isLoaded }"
-      (click)="cropper.rotate(-90)"
-    >
+      [class]="{ 'c-image-uploader__control_disabled': !isLoaded }"
+      (click)="rotate()"
+      >
       <app-icon icon="rotate_90_degrees_ccw"></app-icon>
       <div class="ml-4">Повернуть</div>
     </div>
     <div
       class="c-image-uploader__control c-image-uploader__control_red"
-      [class]="{ 'c-image-uploader__control_disabled': !cropper.isLoaded && removeOriginImageDisabled }"
-      (click)="removeImage()"
+      [class]="{ 'c-image-uploader__control_disabled': !isLoaded && removeOriginDisabled }"
+      (click)="remove()"
     >
       <app-icon icon="highlight_off"></app-icon>
       <div class="ml-4">Удалить</div>

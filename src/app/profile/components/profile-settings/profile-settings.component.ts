@@ -39,7 +39,7 @@ import { UserStateService } from '@root/services/state';
 export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGroup> implements OnInit {
   @ViewChild('dialogContent') dialogContent: TemplateRef<HTMLElement>;
   @ViewChild('dialogButtons') dialogButtons: TemplateRef<HTMLElement>;
-  @ViewChild('imageUploader') imageUploader: ImageUploaderComponent;
+  @ViewChild('avatarUploader') avatarUploader: ImageUploaderComponent;
 
   profile: TProfile | null = null;
   EBaseColor = EBaseColor;
@@ -80,29 +80,6 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
     this.changed = true;
   }
 
-  saveProfileSettings(): void {
-    this.form.markAllAsTouched();
-    if (this.submitDisabled) {
-      return;
-    }
-    if (!this.profile) {
-      return;
-    }
-    if (this.imageUploader.cropper.isLoaded) {
-      this.imageUploader.cropper.crop();
-    }
-    const profile: TProfile = {
-      ...this.profile,
-      ...this.form.value,
-    };
-    this.profileService.updateProfile(profile).pipe(
-      takeUntil(this.destroy$),
-    ).subscribe((profile: TProfile) => {
-      this.userStateService.setProfile(profile);
-      this.closeDialog();
-    });
-  }
-
   cancelProfileSettings(): void {
     if (!this.changed) {
       this.closeDialog();
@@ -115,6 +92,40 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
       if (!confirm) {
         return;
       }
+      this.closeDialog();
+    });
+  }
+
+  onSubmit(): void {
+    this.form.markAllAsTouched();
+    if (this.submitDisabled) {
+      return;
+    }
+    if (this.avatarUploader.isLoaded) {
+      this.avatarUploader.triggerUploading();
+      return;
+    }
+    this.saveProfileSettings();
+  }
+
+  onAvatarUploaded(avatarId: string): void {
+    this.controls.avatarId.setValue(avatarId);
+    this.form.markAllAsTouched();
+    if (this.submitDisabled) {
+      return;
+    }
+    this.saveProfileSettings();
+  }
+
+  private saveProfileSettings(): void {
+    if (!this.profile) {
+      return;
+    }
+    const profile: TProfile = { ...this.profile, ...this.form.value };
+    this.profileService.updateProfile(profile).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe((profile: TProfile) => {
+      this.userStateService.setProfile(profile);
       this.closeDialog();
     });
   }

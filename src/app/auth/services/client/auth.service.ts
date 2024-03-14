@@ -40,7 +40,7 @@ export class AuthService {
 
   signout(): Observable<void> {
     const { accountId, sessionId } = this.sessionStateService;
-    if(!accountId || !sessionId) {
+    if (!accountId || !sessionId) {
       this.removeSessionState();
       return of(undefined);
     }

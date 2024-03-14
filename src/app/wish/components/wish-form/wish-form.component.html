@@ -1,11 +1,13 @@
 <ng-template #dialogContent>
   <div class="c-wish-form">
     <app-image-uploader
-      #imageUploader
+      #avatarUploader
       class="c-wish-form__image-uploader"
-      [removeOriginImageDisabled]="!controls.avatarId.value"
-      (removeOriginImage)="removeAvatar()"
+      [maxFileSize]="10485760"
+      [removeOriginDisabled]="!controls.avatarId.value"
+      (removeOrigin)="removeAvatar()"
       (change)="onAvatarChanged()"
+      (upload)="onAvatarUploaded($event)"
     >
       <app-avatar [avatarId]="controls.avatarId.value" [type]="EAvatarType.wish"></app-avatar>
     </app-image-uploader>
@@ -33,7 +35,7 @@
     tabindex="-1"
     [color]="EBaseColor.primary"
     [disabled]="submitDisabled"
-    (click)="saveWish()"
+    (click)="onSubmit()"
   >Сохранить</app-button>
   <app-button
     class="mr-4"
