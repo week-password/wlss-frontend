@@ -1,14 +1,27 @@
 @import 'src/styles/common/media';
 
 .c-image-uploader {
-  .LyImageCropper-area-d::after {
-    border: 4px dashed var(--accent);
+  image-cropper.c-image-uploader__cropper {
+    padding: 0;
+    .ngx-ic-overlay,
+    .ngx-ic-cropper {
+      pointer-events: none;
+    }
+    .ngx-ic-cropper.ngx-ic-round {
+      .ngx-ic-move {
+        border: 4px dashed var(--accent);
+      }
+    }
   }
 }
 @include mobile {
   .c-image-uploader {
-    .LyImageCropper-area-d::after {
-      border-width: 2px;
+    image-cropper.c-image-uploader__cropper {
+      .ngx-ic-cropper.ngx-ic-round {
+        .ngx-ic-move {
+          border-width: 2px;
+        }
+      }
     }
   }
 }

@@ -4,24 +4,20 @@
   &__cropper {
     max-width: 320px;
     height: 320px;
-    &:hover {
-      .c-image-uploader-upload-area__control app-icon {
-        transform: translateY(-4px);
-      }
-    }
   }
 
   &__upload-area {
     border-radius: 50%;
     border: 4px dashed var(--accent);
     width: 100%;
-    height: 100%;
+    height: 320px;
   }
 
   &__controls {
     display: flex;
     justify-content: space-around;
   }
+
   &__control {
     cursor: pointer;
     width: 100%;
@@ -40,6 +36,10 @@
       font-size: 24px;
     }
   }
+
+  &__input {
+    display: none;
+  }
 }
 .c-image-uploader-upload-area {
   position: relative;
@@ -53,7 +53,6 @@
   }
 
   &__control {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,6 +65,11 @@
     app-icon {
       font-size: 72px;
       transition: transform 0.3s;
+    }
+    &:hover {
+      app-icon {
+        transform: translateY(-4px);
+      }
     }
   }
 
@@ -81,19 +85,25 @@
     &__cropper {
       max-width: 280px;
       height: 280px;
-      &:hover {
-        .c-image-uploader-upload-area__control app-icon {
-          transform: none;
-        }
-      }
     }
 
     &__upload-area {
       border-width: 2px;
+      width: 100%;
+      height: 280px;
     }
     &__control {
       app-icon {
         font-size: 20px;
+      }
+    }
+  }
+  .c-image-uploader-upload-area {
+    &__control {
+      &:hover {
+        app-icon {
+          transform: none;
+        }
       }
     }
   }

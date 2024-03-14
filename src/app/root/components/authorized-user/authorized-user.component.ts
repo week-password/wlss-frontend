@@ -60,7 +60,7 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
 
   private getAuthorizedUser(): void {
     const { accountId } = this.sessionStateService;
-    if(!accountId) {
+    if (!accountId) {
       this.router.navigate(['signin']);
       return;
     }

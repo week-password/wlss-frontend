@@ -90,7 +90,8 @@
         "no-restricted-imports": ["error", { "patterns": ["../*"] }],
         "no-restricted-syntax": ["error", { "selector": "IfStatement[alternate]", "message": "No `else` statements allowed" }],
         "semi": ["error", "always"],
-        "sort-imports": ["error", { "ignoreCase": true, "ignoreDeclarationSort": true }]
+        "sort-imports": ["error", { "ignoreCase": true, "ignoreDeclarationSort": true }],
+        "keyword-spacing": "error"
       }
     },
     {

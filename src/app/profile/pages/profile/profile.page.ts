@@ -11,7 +11,6 @@ import { ProfileBlockComponent } from '@profile/components/profile-block';
 import { ShortProfileCardComponent } from '@profile/components/short-profile-card';
 import { TAccount, TProfile } from '@profile/models/client';
 import { FriendshipService, ProfileService } from '@profile/services/client';
-import { ProfileStateService } from '@profile/services/state';
 import { UserStateService } from '@root/services/state';
 import { WishListComponent } from '@wish/components/wish-list';
 
@@ -42,7 +41,6 @@ export class ProfilePage extends BaseComponent implements OnInit {
   constructor(
     private friendshipService: FriendshipService,
     private profileService: ProfileService,
-    private profileStateService: ProfileStateService,
     private route: ActivatedRoute,
     private router: Router,
     private userStateService: UserStateService,
@@ -52,7 +50,6 @@ export class ProfilePage extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeOnRouteParamsChanges();
-    this.subscribeOnProfileChanges();
     this.subscribeOnAccountChanges();
     this.getFriends();
     this.getIncomingRequests();
@@ -64,14 +61,6 @@ export class ProfilePage extends BaseComponent implements OnInit {
       takeUntil(this.destroy$),
     ).subscribe((params: Params) => {
       this.getProfile(params?.login);
-    });
-  }
-
-  private subscribeOnProfileChanges(): void {
-    this.profileStateService.profile.pipe(
-      takeUntil(this.destroy$),
-    ).subscribe((profile: TProfile | null) => {
-      this.profile = profile;
     });
   }
 
@@ -92,7 +81,7 @@ export class ProfilePage extends BaseComponent implements OnInit {
       takeUntil(this.destroy$),
     ).subscribe({
       next: (profile: TProfile | null) => {
-        this.profileStateService.setProfile(profile);
+        this.profile = profile;
       },
       error: () => {
         this.router.navigate(['404']);

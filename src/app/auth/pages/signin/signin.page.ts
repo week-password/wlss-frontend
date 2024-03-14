@@ -69,7 +69,7 @@ export class SigninPage extends BaseFormComponent<TSigninDataFormGroup> implemen
         this.router.navigate(['profile']);
       },
       error: (error: HttpErrorResponse) => {
-        if(error.status === EHttpError.notFound) {
+        if (error.status === EHttpError.notFound) {
           this.showInvalidCredentialsError();
           this.controls.password.setValue('');
         }

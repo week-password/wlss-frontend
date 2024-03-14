@@ -7,7 +7,7 @@ export const sessionGuard: CanActivateFn = () => {
   const router = inject(Router);
   const sessionStateService = inject(SessionStateService);
   const { isLoggedIn } = sessionStateService;
-  if(!isLoggedIn) {
+  if (!isLoggedIn) {
     router.navigate(['signin']);
   }
   return isLoggedIn;
