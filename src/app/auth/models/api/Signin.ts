@@ -14,3 +14,8 @@ export type TSigninResponse = {
     refreshToken: string;
   };
 }
+
+export type TRefreshTokensResponse = {
+  accessToken: string;
+  refreshToken: string;
+}
