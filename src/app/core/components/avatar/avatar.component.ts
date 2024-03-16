@@ -19,6 +19,6 @@ export class AvatarComponent {
   AvatarSources = AvatarSources;
 
   get source(): string | null {
-    return this.avatarId ? `${environment.bff.filesUrl}/${this.avatarId}` : null;
+    return this.avatarId ? `${environment.bff.host}:${environment.bff.port}${environment.bff.filesUrl}/${this.avatarId}` : null;
   }
 }
