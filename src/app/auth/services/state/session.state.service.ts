@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SessionStateService {
+  refreshingInProgress = new BehaviorSubject<boolean>(false);
+
   get accessToken(): string | null {
     return localStorage.getItem('access-token');
   }
@@ -19,6 +22,9 @@ export class SessionStateService {
     return this.accessToken !== null;
   }
 
+  setRefreshingInProgress(refreshingInProgress: boolean): void {
+    this.refreshingInProgress.next(refreshingInProgress);
+  }
   setAccessToken(accessToken: string | null): void {
     accessToken ?
       localStorage.setItem('access-token', accessToken) :
