@@ -1,7 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, switchMap } from 'rxjs';
+import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 
-import { TSigninRequest, TSigninResponse } from '@auth/models/api';
+import { TRefreshTokensResponse, TSigninRequest, TSigninResponse } from '@auth/models/api';
 import { TSigninData, TSignupData } from '@auth/models/client';
 import { AuthApiService } from '@auth/services/api';
 import { SessionStateService } from '@auth/services/state';
@@ -48,6 +49,26 @@ export class AuthService {
       switchMap(() => {
         this.removeSessionState();
         return of(undefined);
+      }),
+    );
+  }
+
+  refreshTokens(): Observable<void> {
+    const { accountId, sessionId, refreshToken } = this.sessionStateService;
+    if (!accountId || !sessionId || !refreshToken) {
+      this.removeSessionState();
+      return of(undefined);
+    }
+    this.sessionStateService.setAccessToken(null);
+    return this.authApiService.refreshTokens(accountId, sessionId, refreshToken).pipe(
+      switchMap((tokens: TRefreshTokensResponse) => {
+        this.sessionStateService.setAccessToken(tokens.accessToken);
+        this.sessionStateService.setRefreshToken(tokens.refreshToken);
+        return of(undefined);
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.removeSessionState();
+        return throwError(() => error);
       }),
     );
   }
