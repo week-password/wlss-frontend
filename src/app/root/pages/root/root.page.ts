@@ -11,7 +11,7 @@ import { HealtCheckApiService } from '@root/services/api';
 import { UiStateService } from '@root/services/state';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-root-page',
   templateUrl: './root.page.html',
   styleUrls: ['./root.page.scss'],
   standalone: true,

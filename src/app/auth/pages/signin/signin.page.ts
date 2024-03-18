@@ -29,7 +29,7 @@ import {
 } from '@core/models/client';
 
 @Component({
-  selector: 'app-signin',
+  selector: 'app-signin-page',
   templateUrl: './signin.page.html',
   styleUrls: ['./signin.page.scss'],
   standalone: true,

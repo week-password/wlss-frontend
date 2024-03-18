@@ -12,7 +12,7 @@ import { TProfilesFilter } from '@profiles/models/client';
 import { ProfilesService } from '@profiles/services/client';
 
 @Component({
-  selector: 'app-profiles',
+  selector: 'app-profiles-page',
   templateUrl: './profiles.page.html',
   styleUrls: ['./profiles.page.scss'],
   standalone: true,
