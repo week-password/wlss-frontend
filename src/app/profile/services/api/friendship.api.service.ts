@@ -2,11 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { TGetIncomingRequestsResponse, TGetOutgoingRequestsResponse } from '@profile/models/api';
+import { TGetAcceptedRequestsResponse, TGetIncomingRequestsResponse, TGetOutgoingRequestsResponse } from '@profile/models/api';
 
 @Injectable({ providedIn: 'root' })
 export class FriendshipApiService {
   constructor(private http: HttpClient) { }
+
+  getAcceptedRequests(accountId: number): Observable<TGetAcceptedRequestsResponse> {
+    return this.http.get<TGetOutgoingRequestsResponse>(`/accounts/${accountId}/friends/accepted`);
+  }
+
+  removeAcceptedRequest(accountId: number, friendId: number): Observable<TGetAcceptedRequestsResponse> {
+    return this.http.delete<TGetOutgoingRequestsResponse>(`/accounts/${accountId}/friends/accepted/${friendId}`);
+  }
 
   getIncomingRequests(accountId: number): Observable<TGetIncomingRequestsResponse> {
     return this.http.get<TGetIncomingRequestsResponse>(`/accounts/${accountId}/friends/incoming`);

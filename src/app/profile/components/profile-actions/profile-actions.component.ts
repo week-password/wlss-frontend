@@ -20,13 +20,13 @@ export class ProfileActionsComponent {
   @Output() rejectIncomingRequest = new EventEmitter<void>();
   @Output() createOutgoingRequest = new EventEmitter<void>();
   @Output() cancelOutgoingRequest = new EventEmitter<void>();
-  @Output() removeAcceptedFriendship = new EventEmitter<void>();
+  @Output() removeAcceptedRequest = new EventEmitter<void>();
 
   readonly EBaseColor = EBaseColor;
   readonly EFriendshipStatus = EFriendshipStatus;
   readonly EOverlayPosition = EOverlayPosition;
   readonly acceptedRequestStatusDropdownItems: Array<TDropdownItem> = [{
     value: 'Удалить',
-    action: (): void => this.removeAcceptedFriendship.emit(),
+    action: (): void => this.removeAcceptedRequest.emit(),
   }];
 }

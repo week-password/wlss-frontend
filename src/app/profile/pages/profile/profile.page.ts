@@ -35,7 +35,7 @@ export class ProfilePage extends BaseComponent implements OnInit {
   EBlockState = EBlockState;
   profile: TProfile | null = null;
   accountId: number;
-  friends: Array<TProfile> = [];
+  acceptedRequests: Array<TProfile> = [];
   incomingRequests: Array<TProfile> = [];
   outgoingRequests: Array<TProfile> = [];
 
@@ -56,6 +56,10 @@ export class ProfilePage extends BaseComponent implements OnInit {
     this.accountId = accountId;
   }
 
+  get showAcceptedRequests(): boolean {
+    return this.profile?.account.id === this.accountId || this.acceptedRequests.length !== 0;
+  }
+
   ngOnInit(): void {
     this.subscribeOnRouteParamsChanges();
   }
@@ -68,6 +72,7 @@ export class ProfilePage extends BaseComponent implements OnInit {
       takeUntil(this.destroy$),
     ).subscribe(() => {
       this.profile!.friendshipStatus = EFriendshipStatus.acceptedRequest;
+      this.getAcceptedRequests();
     });
   }
 
@@ -104,6 +109,18 @@ export class ProfilePage extends BaseComponent implements OnInit {
     });
   }
 
+  removeAcceptedRequest(): void {
+    if (!this.profile) {
+      return;
+    }
+    this.friendshipService.removeAcceptedRequest(this.accountId, this.profile.account.id).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe(() => {
+      this.profile!.friendshipStatus = EFriendshipStatus.notRequested;
+      this.getAcceptedRequests();
+    });
+  }
+
   private subscribeOnRouteParamsChanges(): void {
     this.route.params.pipe(
       takeUntil(this.destroy$),
@@ -122,7 +139,7 @@ export class ProfilePage extends BaseComponent implements OnInit {
     ).subscribe({
       next: (profile: TProfile | null) => {
         this.profile = profile;
-        this.getFriends();
+        this.getAcceptedRequests();
         if (this.profile?.account.id === this.accountId) {
           this.getIncomingRequests();
           this.getOutgoingRequests();
@@ -134,11 +151,14 @@ export class ProfilePage extends BaseComponent implements OnInit {
     });
   }
 
-  private getFriends(): void {
-    this.friendshipService.getFriends().pipe(
+  private getAcceptedRequests(): void {
+    if (!this.profile) {
+      return;
+    }
+    this.friendshipService.getAcceptedRequests(this.profile.account.id).pipe(
       takeUntil(this.destroy$),
-    ).subscribe((friends: Array<TProfile>) => {
-      this.friends = friends;
+    ).subscribe((acceptedRequests: Array<TProfile>) => {
+      this.acceptedRequests = acceptedRequests;
     });
   }
 
