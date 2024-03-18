@@ -1,7 +1,7 @@
 <div *ngIf="friendshipStatus" class="c-profile-actions">
   <ng-container *ngIf="friendshipStatus === EFriendshipStatus.notRequested">
     <div class="c-profile-actions__item">
-      <app-button>Добавить в друзья</app-button>
+      <app-button (click)="createOutgoingRequest.emit()">Добавить в друзья</app-button>
     </div>
   </ng-container>
   <ng-container *ngIf="friendshipStatus === EFriendshipStatus.acceptedRequest">
@@ -34,7 +34,7 @@
       Заявка в друзья<br>отправлена
     </div>
     <div class="c-profile-actions__item">
-      <app-button [color]="EBaseColor.secondary">Отменить</app-button>
+      <app-button [color]="EBaseColor.secondary" (click)="cancelOutgoingRequest.emit()">Отменить</app-button>
     </div>
   </ng-container>
 </div>
