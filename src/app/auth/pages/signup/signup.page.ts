@@ -24,7 +24,7 @@ import { EBaseColor } from '@core/models/client';
 import { descriptionValidators, nameValidators } from '@profile/validators';
 
 @Component({
-  selector: 'app-signup',
+  selector: 'app-signup-page',
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
   standalone: true,

@@ -4,6 +4,14 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--y-indent--small) var(--x-indent);
+    &-action {
+      color: var(--accent);
+      transition: transform 0.3s;
+      transform: rotate(0);
+      &_collapsed {
+        transform: rotate(-90deg);
+      }
+    }
   }
   &__content {
     padding: var(--y-indent--small) var(--x-indent);
