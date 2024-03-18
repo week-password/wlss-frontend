@@ -60,6 +60,28 @@ export class ProfilePage extends BaseComponent implements OnInit {
     this.subscribeOnRouteParamsChanges();
   }
 
+  acceptIncomingRequest(): void {
+    if (!this.profile) {
+      return;
+    }
+    this.friendshipService.acceptIncomingRequest(this.accountId, this.profile.account.id).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe(() => {
+      this.profile!.friendshipStatus = EFriendshipStatus.acceptedRequest;
+    });
+  }
+
+  rejectIncomingRequest(): void {
+    if (!this.profile) {
+      return;
+    }
+    this.friendshipService.rejectIncomingRequest(this.accountId, this.profile.account.id).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe(() => {
+      this.profile!.friendshipStatus = EFriendshipStatus.notRequested;
+    });
+  }
+
   createOutgoingRequest(): void {
     if (!this.profile) {
       return;
@@ -121,7 +143,10 @@ export class ProfilePage extends BaseComponent implements OnInit {
   }
 
   private getIncomingRequests(): void {
-    this.friendshipService.getIncomingRequests().pipe(
+    if (!this.profile) {
+      return;
+    }
+    this.friendshipService.getIncomingRequests(this.profile.account.id).pipe(
       takeUntil(this.destroy$),
     ).subscribe((incomingRequests: Array<TProfile>) => {
       this.incomingRequests = incomingRequests;
