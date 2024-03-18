@@ -11,6 +11,8 @@
       <app-profile-actions
         controls
         [friendshipStatus]="profile.friendshipStatus"
+        (acceptIncomingRequest)="acceptIncomingRequest()"
+        (rejectIncomingRequest)="rejectIncomingRequest()"
         (createOutgoingRequest)="createOutgoingRequest()"
         (cancelOutgoingRequest)="cancelOutgoingRequest()"
       />

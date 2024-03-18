@@ -23,10 +23,10 @@
       Пользователь хочет<br>добавить Вас в друзья
     </div>
     <div class="c-profile-actions__item">
-      <app-button>Принять</app-button>
+      <app-button (click)="acceptIncomingRequest.emit()">Принять</app-button>
     </div>
     <div class="c-profile-actions__item">
-      <app-button [color]="EBaseColor.secondary">Отклонить</app-button>
+      <app-button [color]="EBaseColor.secondary" (click)="rejectIncomingRequest.emit()">Отклонить</app-button>
     </div>
   </ng-container>
   <ng-container *ngIf="friendshipStatus === EFriendshipStatus.outgoingRequest">
