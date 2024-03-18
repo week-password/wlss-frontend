@@ -8,12 +8,9 @@ export type TProfile = {
   avatarId: string | null;
   description: string | null;
   name: string;
-}
-
-export type TProfileFriendshipStatus = {
   friendshipStatus: EFriendshipStatus | null;
 }
 
 export type TProfileFormGroup = {
-  [key in keyof Omit<TProfile, 'account'>]: FormControl<TProfile[key]>;
+  [key in keyof Omit<TProfile, 'account' | 'friendshipStatus'>]: FormControl<TProfile[key]>;
 }

@@ -16,6 +16,8 @@ import { EFriendshipStatus } from '@profile/models/client';
 export class ProfileActionsComponent {
   @Input() friendshipStatus: EFriendshipStatus | null = null;
 
+  @Output() createOutgoingRequest = new EventEmitter<void>();
+  @Output() cancelOutgoingRequest = new EventEmitter<void>();
   @Output() removeAcceptedFriendship = new EventEmitter<void>();
 
   readonly EBaseColor = EBaseColor;

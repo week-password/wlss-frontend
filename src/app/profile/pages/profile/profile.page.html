@@ -6,9 +6,14 @@
       [header]="profile.name"
       [description]="profile.description"
       [presentationView]="true"
-      [showControls]="false"
+      [showControls]="!!profile.friendshipStatus"
     >
-      <app-profile-actions controls />
+      <app-profile-actions
+        controls
+        [friendshipStatus]="profile.friendshipStatus"
+        (createOutgoingRequest)="createOutgoingRequest()"
+        (cancelOutgoingRequest)="cancelOutgoingRequest()"
+      />
     </app-card>
   </div>
   <div class="profile__block">
@@ -90,8 +95,9 @@
       <div content>
         <app-wish-list
           #wishList
-          [showActions]="profile.account.id !== account?.id"
-          [editableItems]="profile.account.id === account?.id" />
+          [showActions]="profile.account.id !== accountId"
+          [editableItems]="profile.account.id === accountId"
+        />
       </div>
     </app-profile-block>
   </div>

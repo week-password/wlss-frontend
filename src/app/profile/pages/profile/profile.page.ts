@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
+import { SessionStateService } from '@auth/services/state';
 import { BaseComponent } from '@core/base-components';
 import { CardComponent } from '@core/components/card';
 import { EBlockState } from '@core/models/client';
 import { ProfileActionsComponent } from '@profile/components/profile-actions';
 import { ProfileBlockComponent } from '@profile/components/profile-block';
 import { ShortProfileCardComponent } from '@profile/components/short-profile-card';
-import { TAccount, TProfile } from '@profile/models/client';
+import { EFriendshipStatus, TProfile } from '@profile/models/client';
 import { FriendshipService, ProfileService } from '@profile/services/client';
 import { UserStateService } from '@root/services/state';
 import { WishListComponent } from '@wish/components/wish-list';
@@ -33,7 +34,7 @@ import { WishListComponent } from '@wish/components/wish-list';
 export class ProfilePage extends BaseComponent implements OnInit {
   EBlockState = EBlockState;
   profile: TProfile | null = null;
-  account: TAccount | null = null;
+  accountId: number;
   friends: Array<TProfile> = [];
   incomingRequests: Array<TProfile> = [];
   outgoingRequests: Array<TProfile> = [];
@@ -43,17 +44,42 @@ export class ProfilePage extends BaseComponent implements OnInit {
     private profileService: ProfileService,
     private route: ActivatedRoute,
     private router: Router,
+    private sessionStateService: SessionStateService,
     private userStateService: UserStateService,
   ) {
     super();
+    const { accountId } = this.sessionStateService;
+    if (!accountId) {
+      this.router.navigate(['signin']);
+      return;
+    }
+    this.accountId = accountId;
   }
 
   ngOnInit(): void {
     this.subscribeOnRouteParamsChanges();
-    this.subscribeOnAccountChanges();
-    this.getFriends();
-    this.getIncomingRequests();
-    this.getOutgoingRequests();
+  }
+
+  createOutgoingRequest(): void {
+    if (!this.profile) {
+      return;
+    }
+    this.friendshipService.createOutgoingRequest(this.accountId, this.profile.account.id).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe(() => {
+      this.profile!.friendshipStatus = EFriendshipStatus.outgoingRequest;
+    });
+  }
+
+  cancelOutgoingRequest(): void {
+    if (!this.profile) {
+      return;
+    }
+    this.friendshipService.cancelOutgoingRequest(this.accountId, this.profile.account.id).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe(() => {
+      this.profile!.friendshipStatus = EFriendshipStatus.notRequested;
+    });
   }
 
   private subscribeOnRouteParamsChanges(): void {
@@ -61,14 +87,6 @@ export class ProfilePage extends BaseComponent implements OnInit {
       takeUntil(this.destroy$),
     ).subscribe((params: Params) => {
       this.getProfile(params?.login);
-    });
-  }
-
-  private subscribeOnAccountChanges(): void {
-    this.userStateService.account.pipe(
-      takeUntil(this.destroy$),
-    ).subscribe((account: TAccount | null) => {
-      this.account = account;
     });
   }
 
@@ -82,6 +100,11 @@ export class ProfilePage extends BaseComponent implements OnInit {
     ).subscribe({
       next: (profile: TProfile | null) => {
         this.profile = profile;
+        this.getFriends();
+        if (this.profile?.account.id === this.accountId) {
+          this.getIncomingRequests();
+          this.getOutgoingRequests();
+        }
       },
       error: () => {
         this.router.navigate(['404']);
@@ -106,7 +129,10 @@ export class ProfilePage extends BaseComponent implements OnInit {
   }
 
   private getOutgoingRequests(): void {
-    this.friendshipService.getOutgoingRequests().pipe(
+    if (!this.profile) {
+      return;
+    }
+    this.friendshipService.getOutgoingRequests(this.profile.account.id).pipe(
       takeUntil(this.destroy$),
     ).subscribe((outgoingRequests: Array<TProfile>) => {
       this.outgoingRequests = outgoingRequests;

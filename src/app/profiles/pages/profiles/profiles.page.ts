@@ -6,7 +6,7 @@ import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from '@core/base-components';
 import { CardComponent } from '@core/components/card';
 import { ProfileActionsComponent } from '@profile/components/profile-actions';
-import { TProfile, TProfileFriendshipStatus } from '@profile/models/client';
+import { TProfile } from '@profile/models/client';
 import { ProfilesFilterComponent } from '@profiles/components/profiles-filter';
 import { TProfilesFilter } from '@profiles/models/client';
 import { ProfilesService } from '@profiles/services/client';
@@ -19,7 +19,7 @@ import { ProfilesService } from '@profiles/services/client';
   imports: [CardComponent, NgFor, NgIf, ProfileActionsComponent, ProfilesFilterComponent, RouterLink],
 })
 export class ProfilesPage extends BaseComponent implements OnInit {
-  profiles: Array<TProfile & TProfileFriendshipStatus> = [];
+  profiles: Array<TProfile> = [];
 
   constructor(private profilesService: ProfilesService) {
     super();
@@ -34,7 +34,7 @@ export class ProfilesPage extends BaseComponent implements OnInit {
     this.profilesService.getProfiles(filter).pipe(
       takeUntil(this.destroy$),
       finalize(() => { this.loading = false; }),
-    ).subscribe((profiles: Array<TProfile & TProfileFriendshipStatus>) => {
+    ).subscribe((profiles: Array<TProfile>) => {
       this.profiles = profiles;
     });
   }

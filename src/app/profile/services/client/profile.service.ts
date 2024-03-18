@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, switchMap } from 'rxjs';
 
 import { TGetAccountResponse, TUpdateProfileRequest, TUpdateProfileResponse } from '@profile/models/api';
-import { TProfile, TProfileFriendshipStatus } from '@profile/models/client';
+import { TProfile } from '@profile/models/client';
 import { AccountApiService, ProfileApiService } from '@profile/services/api';
 
 @Injectable({ providedIn: 'root' })
@@ -12,11 +12,11 @@ export class ProfileService {
     private profileApiService: ProfileApiService,
   ) { }
 
-  getProfileByAccountId(accountId: number): Observable<TProfile & TProfileFriendshipStatus> {
+  getProfileByAccountId(accountId: number): Observable<TProfile> {
     return this.profileApiService.getProfile(accountId);
   }
 
-  getProfileByLogin(login: string): Observable<TProfile & TProfileFriendshipStatus> {
+  getProfileByLogin(login: string): Observable<TProfile> {
     return this.accountApiService.getAccount(login).pipe(
       switchMap((account: TGetAccountResponse) => {
         const accountId = account.id;
@@ -34,7 +34,7 @@ export class ProfileService {
     };
     return this.profileApiService.updateProfile(accountId, request).pipe(
       switchMap((response: TUpdateProfileResponse) => {
-        return of({ account: profile.account, ...response });
+        return of({ account: profile.account, friendshipStatus: null, ...response });
       }),
     );
   }
