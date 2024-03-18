@@ -15,33 +15,35 @@
         (rejectIncomingRequest)="rejectIncomingRequest()"
         (createOutgoingRequest)="createOutgoingRequest()"
         (cancelOutgoingRequest)="cancelOutgoingRequest()"
+        (removeAcceptedRequest)="removeAcceptedRequest()"
       />
     </app-card>
   </div>
-  <div class="profile__block">
+  <div *ngIf="showAcceptedRequests" class="profile__block">
     <app-profile-block [collapsable]="true" [initialState]="EBlockState.collapsed">
       <div title class="d-flex">
         <h3 class="mr-4">Друзья</h3>
         <div
-          *ngIf="friends.length"
+          *ngIf="acceptedRequests.length"
           class="mr-4 c-badge c-badge_rounded c-badge_header c-badge_secondary"
         >
-          {{ friends.length }}
+          {{ acceptedRequests.length }}
         </div>
         <a
+          *ngIf="profile.account.id === accountId"
           class="c-badge c-badge_rounded c-badge_header c-badge_primary c-badge_hover"
           routerLink="/profiles"
         >+</a>
       </div>
-      <div content *ngIf="friends.length" class="profile__related-profiles">
+      <div content *ngIf="acceptedRequests.length" class="profile__related-profiles">
         <app-short-profile-card
-          *ngFor="let profile of friends"
+          *ngFor="let profile of acceptedRequests"
           class="profile__related-profile"
           [profile]="profile"
         ></app-short-profile-card>
       </div>
-      <div content *ngIf="!friends.length" class="profile__related-profiles">
-        <span class="color-text-4">Здесь будут отображаться ваши друзья</span>
+      <div content *ngIf="!acceptedRequests.length" class="color-text-4">
+        Здесь будут отображаться ваши друзья
       </div>
     </app-profile-block>
   </div>
