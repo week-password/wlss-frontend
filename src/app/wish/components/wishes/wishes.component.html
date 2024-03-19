@@ -18,19 +18,14 @@
           controls
           *ngIf="!!wish.bookingStatus"
           [bookingStatus]="wish.bookingStatus"
+          (createBooking)="createBooking(wish)"
+          (removeBooking)="removeBooking(wish)"
         />
         <div controls *ngIf="editableItems" class="c-wishes__item-edit-button">
           <app-icon icon="edit" />
         </div>
       </app-card>
     </div>
-    <ng-template #removeWishMessages>
-      <div class="d-flex flex-column">
-        <div class="mb-10">Вы действительно хотите удалить желание <b class="d-inline">{{ wish.title }}</b>?</div>
-        <div class="mb-10">Отменить это действие будет <b class="d-inline">невозможно</b>.</div>
-        <div>Если кто-то забронировал это желание, то он потеряет к нему доступ после удаления.</div>
-      </div>
-    </ng-template>
   </ng-container>
 </div>
 <app-wish-form

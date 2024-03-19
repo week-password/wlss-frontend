@@ -17,10 +17,10 @@ label, .caption {
   @include text('Rubik', 400, 10, 12);
 }
 b, .bold-text {
-  @include text('Rubik', 700, 14, 18);
+  @include text('Rubik', 700, 'inherit', 18);
 }
 .medium-text {
-  @include text('Rubik', 500, 14, 18);
+  @include text('Rubik', 500, 'inherit', 18);
 }
 body, .regular-text {
   @include text('Rubik', 400, 14, 18);
@@ -47,10 +47,10 @@ h1, .header-1 {
     @include text('Rubik', 400, 9, 10);
   }
   b, .bold-text {
-    @include text('Rubik', 700, 12, 14);
+    @include text('Rubik', 700, 'inherit', 14);
   }
   .medium-text {
-    @include text('Rubik', 500, 12, 14);
+    @include text('Rubik', 500, 'inherit', 14);
   }
   body, .regular-text {
     @include text('Rubik', 400, 12, 14);

@@ -72,6 +72,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
       takeUntil(this.destroy$),
     ).subscribe(() => {
       this.profile.friendshipStatus = EFriendshipStatus.acceptedRequest;
+      this.getWishes();
       this.getAcceptedRequests();
     });
   }
@@ -105,6 +106,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
       takeUntil(this.destroy$),
     ).subscribe(() => {
       this.profile.friendshipStatus = EFriendshipStatus.notRequested;
+      this.wishes = [];
       this.getAcceptedRequests();
     });
   }

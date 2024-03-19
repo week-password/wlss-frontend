@@ -1,6 +1,6 @@
 <div class="c-dialog">
   <div mat-dialog-title class="d-flex align-items-center justify-content-between">
-    <div *ngIf="title" [innerText]="title"></div>
+    <div *ngIf="title" [innerHtml]="title"></div>
     <div *ngIf="titleTemplate">
       <ng-container [ngTemplateOutlet]="titleTemplate"></ng-container>
     </div>
@@ -9,7 +9,7 @@
     </button>
   </div>
   <div mat-dialog-content>
-    <div *ngIf="content" [innerText]="content"></div>
+    <div *ngIf="content" [innerHtml]="content"></div>
     <div *ngIf="contentTemplate">
       <ng-container [ngTemplateOutlet]="contentTemplate"></ng-container>
     </div>

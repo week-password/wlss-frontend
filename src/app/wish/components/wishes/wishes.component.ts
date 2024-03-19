@@ -1,18 +1,31 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output, QueryList, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { takeUntil } from 'rxjs';
 
 import { BaseComponent } from '@core/base-components';
 import { CardComponent } from '@core/components/card';
 import { DialogComponent } from '@core/components/dialog';
 import { IconComponent } from '@core/components/icon';
-import { EAvatarType, EBaseColor, TDialogData } from '@core/models/client';
+import { SnackbarComponent } from '@core/components/snackbar';
+import {
+  EAvatarType,
+  EBaseColor,
+  EMatSnackbarHPosition,
+  EMatSnackbarVPosition,
+  EPosition,
+  ESnackbarView,
+  ETextPosition,
+  TDialogData,
+  TSnackbarData,
+} from '@core/models/client';
 import { UiStateService } from '@root/services/state';
 import { WishActionsComponent } from '@wish/components/wish-actions';
 import { WishFormComponent } from '@wish/components/wish-form';
 import { EBookingStatus, TWish } from '@wish/models/client';
-import { WishService } from '@wish/services/client';
+import { BookingService, WishService } from '@wish/services/client';
 
 @Component({
   selector: 'app-wishes',
@@ -29,14 +42,15 @@ export class WishesComponent extends BaseComponent implements OnInit {
   @Output() update = new EventEmitter<void>();
 
   @ViewChild('wishForm') wishForm: WishFormComponent;
-  @ViewChildren('removeWishMessages') removeWishMessages: QueryList<TemplateRef<HTMLElement>>;
 
   mobile = false;
   readonly EAvatarType = EAvatarType;
   readonly EBookingStatus = EBookingStatus;
 
   constructor(
+    private bookingService: BookingService,
     private matDialog: MatDialog,
+    private snackBar: MatSnackBar,
     private uiStateService: UiStateService,
     private wishService: WishService,
   ) {
@@ -61,11 +75,14 @@ export class WishesComponent extends BaseComponent implements OnInit {
   }
 
   openRemoveWishDialog(wish: TWish): void {
-    const { id } = wish;
-    const index = this.wishes.findIndex((wish: TWish) => wish.id === id);
     const removeWishDialogData: TDialogData = {
       cancelButtonText: 'Отменить',
-      contentTemplate: this.removeWishMessages.get(index),
+      content:
+        `<div class="d-flex flex-column">
+          <div class="mb-10">Вы действительно хотите удалить желание <b class="d-inline">${wish.title}</b>?</div>
+          <div class="mb-10">Отменить это действие будет <b class="d-inline">невозможно</b>.</div>
+          <div>Если кто-то забронировал это желание, то он потеряет к нему доступ после удаления.</div>
+        </div>`,
       submitButtonColor: EBaseColor.danger,
       submitButtonText: 'Удалить',
       title: 'Удаление желания',
@@ -89,6 +106,47 @@ export class WishesComponent extends BaseComponent implements OnInit {
       return;
     }
     this.createWish(wish);
+  }
+
+  createBooking(wish: TWish): void {
+    this.bookingService.createBooking(this.accountId, wish.id).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe({
+      next: () => {
+        this.update.emit();
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status !== 400) {
+          return;
+        }
+        const data: TSnackbarData = {
+          width: this.mobile ? 270 : 360,
+          catPosition: EPosition.top,
+          textAlign: ETextPosition.right,
+          view: ESnackbarView.error,
+          text: `Желание <b class="d-inline">${wish.title}</b> уже забронировано другим пользователем`,
+        };
+
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          data,
+          horizontalPosition: EMatSnackbarHPosition.end,
+          verticalPosition: EMatSnackbarVPosition.top,
+          duration: 5000,
+        });
+        this.update.emit();
+      },
+    });
+  }
+
+  removeBooking(wish: TWish): void {
+    if (!wish.bookingId) {
+      return;
+    }
+    this.bookingService.removeBooking(this.accountId, wish.id, wish.bookingId).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe(() => {
+      this.update.emit();
+    });
   }
 
   private createWish(wish: Omit<TWish, 'id'>): void {
