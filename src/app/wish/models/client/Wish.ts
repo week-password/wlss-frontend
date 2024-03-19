@@ -7,12 +7,9 @@ export type TWish = {
   avatarId: string | null;
   description: string;
   title: string;
-}
-
-export type TWishBookingStatus = {
   bookingStatus: EBookingStatus | null;
 }
 
 export type TWishFormGroup = {
-  [key in keyof Omit<TWish, 'id'>]: FormControl<TWish[key]>;
+  [key in keyof Omit<TWish, 'id' | 'bookingStatus'>]: FormControl<TWish[key]>;
 }

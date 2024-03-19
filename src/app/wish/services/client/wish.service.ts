@@ -1,54 +1,47 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 
-import { EBookingStatus, TWish, TWishBookingStatus } from '@wish/models/client';
-import { bookedByAnotherUser, bookedByCurrentUser } from '@wish/services/mocks/booking';
-import { wishes } from '@wish/services/mocks/wishes';
+import { TCreateWishRequest, TCreateWishResponse, TUpdateWishRequest, TUpdateWishResponse } from '@wish/models/api';
+import { TWish } from '@wish/models/client';
+import { WishApiService } from '@wish/services/api';
 
 @Injectable({ providedIn: 'root' })
 export class WishService {
-  getWishes(): Observable<Array<TWish & TWishBookingStatus>> {
-    return of(wishes.map((wish: TWish) => {
-      return {
-        ...wish,
-        bookingStatus: this.getBookingStatus(wish.id),
-      };
-    }));
+  constructor(private wishApiService: WishApiService) { }
+
+  getWishes(accountId: number): Observable<Array<TWish>> {
+    return this.wishApiService.getWishes(accountId);
   }
 
-  addWish(wish: Omit<TWish, 'id'>): Observable<TWish> {
-    const id = Math.max(...wishes.map((wish: TWish) => wish.id || 0)) + 1;
-    wishes.push({ id, ...wish });
-    return of({ id, ...wish });
+  createWish(accountId: number, wish: Omit<TWish, 'id'>): Observable<TWish> {
+    const request: TCreateWishRequest = {
+      avatarId: wish.avatarId,
+      description: wish.description,
+      title: wish.title,
+    };
+    return this.wishApiService.createWish(accountId, request).pipe(
+      switchMap((response: TCreateWishResponse) => of({
+        bookingStatus: null,
+        ...response,
+      })),
+    );
   }
 
-  updateWish(wish: TWish): Observable<TWish> {
-    const id = wish.id;
-    const wishIndex = wishes.findIndex((wish: TWish) => wish.id === id);
-    if (wishIndex === -1) {
-      return of(wish);
-    }
-    wishes[wishIndex] = wish;
-    return of(wish);
+  updateWish(accountId: number, wish: TWish): Observable<TWish> {
+    const request: TUpdateWishRequest = {
+      avatarId: wish.avatarId,
+      description: wish.description,
+      title: wish.title,
+    };
+    return this.wishApiService.updateWish(accountId, wish.id, request).pipe(
+      switchMap((response: TUpdateWishResponse) => of({
+        bookingStatus: wish.bookingStatus,
+        ...response,
+      })),
+    );
   }
 
-  removeWish(wish: TWish): Observable<void> {
-    const id = wish.id;
-    const wishIndex = wishes.findIndex((wish: TWish) => wish.id === id);
-    if (wishIndex === -1) {
-      return of(undefined);
-    }
-    wishes.splice(wishIndex, 1);
-    return of(undefined);
-  }
-
-  private getBookingStatus(id: number): EBookingStatus {
-    if (bookedByCurrentUser.find((wish: TWish) => wish.id === id)) {
-      return EBookingStatus.bookedByCurrentUser;
-    }
-    if (bookedByAnotherUser.find((wish: TWish) => wish.id === id)) {
-      return EBookingStatus.bookedByAnotherUser;
-    }
-    return EBookingStatus.notBooked;
+  removeWish(accountId: number, wishId: number): Observable<void> {
+    return this.wishApiService.removeWish(accountId, wishId);
   }
 }

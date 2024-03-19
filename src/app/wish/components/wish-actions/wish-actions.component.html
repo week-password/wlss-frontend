@@ -4,7 +4,7 @@
       <app-button>Забронировать</app-button>
     </div>
   </ng-container>
-  <ng-container *ngIf="bookingStatus === EBookingStatus.bookedByCurrentUser">
+  <ng-container *ngIf="bookingStatus === EBookingStatus.bookedByCurrentAccount">
     <div class="c-wish-actions__item">
       <app-button [color]="EBaseColor.secondary">Отменить бронь</app-button>
     </div>

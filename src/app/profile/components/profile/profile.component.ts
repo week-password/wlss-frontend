@@ -11,7 +11,9 @@ import { ProfileBlockComponent } from '@profile/components/profile-block';
 import { ShortProfileCardComponent } from '@profile/components/short-profile-card';
 import { EFriendshipStatus, TProfile } from '@profile/models/client';
 import { FriendshipService } from '@profile/services/client';
-import { WishListComponent } from '@wish/components/wish-list';
+import { WishesComponent } from '@wish/components/wishes';
+import { TWish } from '@wish/models/client';
+import { WishService } from '@wish/services/client';
 
 @Component({
   selector: 'app-profile',
@@ -26,7 +28,7 @@ import { WishListComponent } from '@wish/components/wish-list';
     ProfileBlockComponent,
     RouterLink,
     ShortProfileCardComponent,
-    WishListComponent,
+    WishesComponent,
   ],
 })
 export class ProfileComponent extends BaseComponent implements OnInit {
@@ -36,9 +38,13 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   acceptedRequests: Array<TProfile> = [];
   incomingRequests: Array<TProfile> = [];
   outgoingRequests: Array<TProfile> = [];
+  wishes: Array<TWish> = [];
   readonly EBlockState = EBlockState;
 
-  constructor(private friendshipService: FriendshipService) {
+  constructor(
+    private friendshipService: FriendshipService,
+    private wishService: WishService,
+  ) {
     super();
   }
 
@@ -46,11 +52,18 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     return this.profile.account.id === this.accountId || this.acceptedRequests.length !== 0;
   }
 
+  get hasWishesAccess(): boolean {
+    return this.profile.account.id === this.accountId || this.profile.friendshipStatus === EFriendshipStatus.acceptedRequest;
+  }
+
   ngOnInit(): void {
     this.getAcceptedRequests();
     if (this.profile.account.id === this.accountId) {
       this.getIncomingRequests();
       this.getOutgoingRequests();
+    }
+    if (this.hasWishesAccess) {
+      this.getWishes();
     }
   }
 
@@ -93,6 +106,14 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     ).subscribe(() => {
       this.profile.friendshipStatus = EFriendshipStatus.notRequested;
       this.getAcceptedRequests();
+    });
+  }
+
+  getWishes(): void {
+    this.wishService.getWishes(this.profile.account.id).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe((wishes: Array<TWish>) => {
+      this.wishes = wishes;
     });
   }
 
