@@ -35,6 +35,7 @@ import { descriptionValidators, titleValidators } from '@wish/validators';
   ],
 })
 export class WishFormComponent extends BaseFormComponent<TWishFormGroup> implements OnInit {
+  @Output() submit = new EventEmitter<TWish>();
   @Output() remove = new EventEmitter<TWish>();
 
   @ViewChild('dialogContent') dialogContent: TemplateRef<HTMLElement>;
@@ -68,8 +69,8 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
     return this.dialogRef;
   }
 
-  closeDialog(wish: TWish | null = null): void {
-    this.dialogRef.close(wish);
+  closeDialog(): void {
+    this.dialogRef.close();
     this.dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.initWishForm();
     });
@@ -108,7 +109,8 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
       this.avatarUploader.triggerUploading();
       return;
     }
-    this.saveWish();
+    const wish = this.form.value as TWish;
+    this.submit.emit({ ...this.wish, ...wish });
   }
 
   onAvatarUploaded(avatarId: string): void {
@@ -117,11 +119,8 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
     if (this.submitDisabled) {
       return;
     }
-    this.saveWish();
-  }
-
-  private saveWish(): void {
-    this.closeDialog(this.form.value as TWish);
+    const wish = this.form.value as TWish;
+    this.submit.emit({ ...this.wish, ...wish });
   }
 
   private initWishForm(): void {

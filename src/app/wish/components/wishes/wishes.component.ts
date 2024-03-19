@@ -1,66 +1,63 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, Input, QueryList, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, QueryList, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
 import { BaseComponent } from '@core/base-components';
 import { CardComponent } from '@core/components/card';
 import { DialogComponent } from '@core/components/dialog';
+import { IconComponent } from '@core/components/icon';
 import { EAvatarType, EBaseColor, TDialogData } from '@core/models/client';
+import { UiStateService } from '@root/services/state';
 import { WishActionsComponent } from '@wish/components/wish-actions';
 import { WishFormComponent } from '@wish/components/wish-form';
-import { EBookingStatus, TWish, TWishBookingStatus } from '@wish/models/client';
+import { EBookingStatus, TWish } from '@wish/models/client';
 import { WishService } from '@wish/services/client';
 
 @Component({
-  selector: 'app-wish-list',
-  templateUrl: './wish-list.component.html',
-  styleUrls: ['./wish-list.component.scss'],
+  selector: 'app-wishes',
+  templateUrl: './wishes.component.html',
+  styleUrls: ['./wishes.component.scss'],
   standalone: true,
-  imports: [CardComponent, NgFor, NgIf, WishActionsComponent, WishFormComponent],
+  imports: [CardComponent, IconComponent, NgFor, NgIf, WishActionsComponent, WishFormComponent],
 })
-export class WishListComponent extends BaseComponent {
-  @Input() showActions: boolean;
+export class WishesComponent extends BaseComponent implements OnInit {
+  @Input() accountId: number;
   @Input() editableItems: boolean;
+  @Input() wishes: Array<TWish> = [];
+
+  @Output() update = new EventEmitter<void>();
 
   @ViewChild('wishForm') wishForm: WishFormComponent;
   @ViewChildren('removeWishMessages') removeWishMessages: QueryList<TemplateRef<HTMLElement>>;
 
-  wishes: Array<TWish & TWishBookingStatus> = [];
+  mobile = false;
   readonly EAvatarType = EAvatarType;
   readonly EBookingStatus = EBookingStatus;
 
-  constructor(private wishService: WishService, private matDialog: MatDialog) {
+  constructor(
+    private matDialog: MatDialog,
+    private uiStateService: UiStateService,
+    private wishService: WishService,
+  ) {
     super();
-    this.getWishes();
   }
 
-  getBadge(wish: TWish & TWishBookingStatus): string | null {
-    if (!this.showActions) {
-      return null;
-    }
+  ngOnInit(): void {
+    this.subscribeOnMobileChanges();
+  }
+
+  getBadge(wish: TWish): string | null {
     return (
-      wish.bookingStatus === EBookingStatus.bookedByAnotherUser ||
-      wish.bookingStatus === EBookingStatus.bookedByCurrentUser ?
+      wish.bookingStatus === EBookingStatus.bookedByAnotherAccount ||
+      wish.bookingStatus === EBookingStatus.bookedByCurrentAccount ?
         'забронировано' :
         null
     );
   }
 
   openWishFormDialog(wish: TWish | null = null): void {
-    const dialogRef = this.wishForm.openDialog(wish);
-    dialogRef.afterClosed().pipe(
-      takeUntil(this.destroy$),
-    ).subscribe((wishFormResult: Omit<TWish, 'id'> | null) => {
-      if (!wishFormResult) {
-        return;
-      }
-      if (wish) {
-        this.updateWish({ id: wish.id, ...wishFormResult });
-        return;
-      }
-      this.addWish(wishFormResult);
-    });
+    this.wishForm.openDialog(wish);
   }
 
   openRemoveWishDialog(wish: TWish): void {
@@ -81,41 +78,51 @@ export class WishListComponent extends BaseComponent {
       takeUntil(this.destroy$),
     ).subscribe((removeSubmitted: boolean) => {
       if (removeSubmitted) {
-        this.wishForm.closeDialog();
         this.removeWish(wish);
       }
     });
   }
 
-  private addWish(wish: Omit<TWish, 'id'>): void {
-    this.wishService.addWish(wish).pipe(
+  saveWish(wish: TWish): void {
+    if (wish.id) {
+      this.updateWish(wish);
+      return;
+    }
+    this.createWish(wish);
+  }
+
+  private createWish(wish: Omit<TWish, 'id'>): void {
+    this.wishService.createWish(this.accountId, wish).pipe(
       takeUntil(this.destroy$),
     ).subscribe(() => {
-      this.getWishes();
+      this.wishForm.closeDialog();
+      this.update.emit();
     });
   }
 
   private updateWish(wish: TWish): void {
-    this.wishService.updateWish(wish).pipe(
+    this.wishService.updateWish(this.accountId, wish).pipe(
       takeUntil(this.destroy$),
     ).subscribe(() => {
-      this.getWishes();
+      this.wishForm.closeDialog();
+      this.update.emit();
     });
   }
 
   private removeWish(wish: TWish): void {
-    this.wishService.removeWish(wish).pipe(
+    this.wishService.removeWish(this.accountId, wish.id).pipe(
       takeUntil(this.destroy$),
     ).subscribe(() => {
-      this.getWishes();
+      this.wishForm.closeDialog();
+      this.update.emit();
     });
   }
 
-  private getWishes(): void {
-    this.wishService.getWishes().pipe(
+  private subscribeOnMobileChanges(): void {
+    this.uiStateService.mobile.pipe(
       takeUntil(this.destroy$),
-    ).subscribe((wishes: Array<TWish & TWishBookingStatus>) => {
-      this.wishes = wishes;
+    ).subscribe((mobile: boolean) => {
+      this.mobile = mobile;
     });
   }
 }

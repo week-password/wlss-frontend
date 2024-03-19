@@ -1,9 +1,9 @@
-<div *ngIf="wishes.length" class="c-wish-list c-line-separated-list">
+<div *ngIf="wishes.length" class="c-wishes c-line-separated-list">
   <ng-container *ngFor="let wish of wishes; let i = index">
     <div class="c-line-separated-list__separator c-line c-line_horizontal"></div>
     <div
-      class="c-wish-list__item c-line-separated-list__item"
-      [class]="{ 'c-wish-list__item_editable': editableItems }"
+      class="c-wishes__item c-line-separated-list__item"
+      [class]="{ 'c-wishes__item_editable': editableItems }"
     >
       <app-card
         [avatarId]="wish.avatarId"
@@ -11,13 +11,17 @@
         [header]="wish.title"
         [headerBadge]="getBadge(wish)"
         [description]="wish.description"
-        [showControls]="!!wish.bookingStatus"
+        [showControls]="!mobile || !!wish.bookingStatus"
         (click)="editableItems && openWishFormDialog(wish)"
       >
-        <app-wish-actions controls
-          *ngIf="showActions"
+        <app-wish-actions
+          controls
+          *ngIf="!!wish.bookingStatus"
           [bookingStatus]="wish.bookingStatus"
         />
+        <div controls *ngIf="editableItems" class="c-wishes__item-edit-button">
+          <app-icon icon="edit" />
+        </div>
       </app-card>
     </div>
     <ng-template #removeWishMessages>
@@ -29,8 +33,8 @@
     </ng-template>
   </ng-container>
 </div>
-<div *ngIf="!wishes.length">
-  <span class="color-text-4">Здесь будут отображаться ваши желания</span>
-</div>
-
-<app-wish-form #wishForm (remove)="openRemoveWishDialog($event)"></app-wish-form>
+<app-wish-form
+  #wishForm
+  (submit)="saveWish($event)"
+  (remove)="openRemoveWishDialog($event)"
+></app-wish-form>

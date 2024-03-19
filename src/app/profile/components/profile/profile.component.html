@@ -87,10 +87,10 @@
     <div title class="d-flex">
       <h3 class="mr-4">Желания</h3>
       <div
-        *ngIf="wishList.wishes.length"
+        *ngIf="wishes.length"
         class="mr-4 c-badge c-badge_rounded c-badge_header c-badge_secondary"
       >
-        {{ wishList.wishes.length }}
+        {{ wishes.length }}
       </div>
       <div
         *ngIf="profile.account.id === accountId"
@@ -101,11 +101,18 @@
       </div>
     </div>
     <div content>
-      <app-wish-list
+      <app-wishes
         #wishList
-        [showActions]="profile.account.id !== accountId"
+        [wishes]="wishes"
+        [accountId]="profile.account.id"
         [editableItems]="profile.account.id === accountId"
+        (update)="getWishes()"
       />
+      <div *ngIf="!hasWishesAccess" class="color-text-4">Желания пользователя могут видеть только его друзья</div>
+      <div *ngIf="hasWishesAccess && !wishes.length" class="color-text-4">
+        <div *ngIf="profile.account.id === accountId">Здесь будут отображаться ваши желания</div>
+        <div *ngIf="profile.account.id !== accountId">Пользователь пока не добавил желаний</div>
+      </div>
     </div>
   </app-profile-block>
 </div>
