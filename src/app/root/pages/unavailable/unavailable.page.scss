@@ -1,0 +1,30 @@
+.unavailable {
+  &__mas-cat, &__message {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+  }
+  &__mas-cat {
+    background-position: left bottom;
+    background-size: 85%;
+    background-image: url('/assets/images/asap-mas-cat.svg');
+  }
+  &__message {
+    background-position: center 70%;
+    background-size: contain;
+    background-image: url('/assets/images/asap-message.svg');
+  }
+  &__team {
+    position: absolute;
+    top: 70%;
+    right: 5%;
+    color: var(--text-4);
+    font-size: 100vw / 1920px * 50px;
+    a {
+      color: var(--accent);
+    }
+  }
+}

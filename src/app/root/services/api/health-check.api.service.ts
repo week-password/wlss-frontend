@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class HealtCheckApiService {
+export class HealthCheckApiService {
   constructor(private http: HttpClient) { }
 
   getHealth(): Observable<void> {
