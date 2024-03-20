@@ -1,14 +1,14 @@
 import { Platform } from '@angular/cdk/platform';
 import { NgIf } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
 import { BaseComponent } from '@core/base-components';
 import { CookieBannerComponent } from '@root/components/cookie-banner';
 import { FooterComponent } from '@root/components/footer';
 import { HeaderComponent } from '@root/components/header';
-import { HealtCheckApiService } from '@root/services/api';
+import { HealthCheckApiService } from '@root/services/api';
 import { UiStateService } from '@root/services/state';
 
 @Component({
@@ -20,15 +20,16 @@ import { UiStateService } from '@root/services/state';
 })
 export class RootPage extends BaseComponent implements OnInit {
   constructor(
-    private healtCheckService: HealtCheckApiService,
-    private uiStateService: UiStateService,
+    private healthCheckApiService: HealthCheckApiService,
     private platform: Platform,
+    private router: Router,
+    private uiStateService: UiStateService,
   ) {
     super();
   }
 
   get showHeader(): boolean {
-    return ['signin', 'signup'].every((path: string) => !window.location.pathname.includes(path));
+    return ['signin', 'signup', 'unavailable'].every((path: string) => !window.location.pathname.includes(path));
   }
 
   @HostListener('window:resize')
@@ -38,8 +39,16 @@ export class RootPage extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.healtCheckService.getHealth().pipe(takeUntil(this.destroy$)).subscribe();
+    this.checkApiHeath();
     this.checkFirefoxBrowser();
+  }
+
+  private checkApiHeath(): void {
+    this.healthCheckApiService.getHealth().pipe(takeUntil(this.destroy$)).subscribe({
+      error: () => {
+        this.router.navigate(['unavailable']);
+      },
+    });
   }
 
   private checkFirefoxBrowser(): void {
