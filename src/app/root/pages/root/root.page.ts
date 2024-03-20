@@ -1,3 +1,4 @@
+import { Platform } from '@angular/cdk/platform';
 import { NgIf } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -21,6 +22,7 @@ export class RootPage extends BaseComponent implements OnInit {
   constructor(
     private healtCheckService: HealtCheckApiService,
     private uiStateService: UiStateService,
+    private platform: Platform,
   ) {
     super();
   }
@@ -37,5 +39,12 @@ export class RootPage extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.healtCheckService.getHealth().pipe(takeUntil(this.destroy$)).subscribe();
+    this.checkFirefoxBrowser();
+  }
+
+  private checkFirefoxBrowser(): void {
+    if (this.platform.FIREFOX) {
+      document.getElementsByTagName('html')[0].classList.add('firefox');
+    }
   }
 }
