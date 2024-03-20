@@ -21,7 +21,7 @@ import { TProfilesFilter, TProfilesFilterFormGroup } from '@profiles/models/clie
   ],
 })
 export class ProfilesFilterComponent extends BaseFormComponent<TProfilesFilterFormGroup> implements OnInit {
-  @Output() change = new EventEmitter<TProfilesFilter>();
+  @Output() filter = new EventEmitter<TProfilesFilter>();
 
   constructor() {
     super();
@@ -46,7 +46,7 @@ export class ProfilesFilterComponent extends BaseFormComponent<TProfilesFilterFo
         login: filter.login.toLowerCase(),
         name: filter.name.toLowerCase(),
       };
-      this.change.emit(lowerCaseFilter);
+      this.filter.emit(lowerCaseFilter);
     });
   }
 }
