@@ -1,6 +1,6 @@
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { NgFor, NgIf } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
@@ -10,7 +10,6 @@ import { BaseComponent } from '@core/base-components';
 import { AvatarComponent } from '@core/components/avatar';
 import { OverlayComponent } from '@core/components/overlay';
 import { EOverlayPosition, TDropdownItem } from '@core/models/client';
-import { ProfileSettingsComponent } from '@profile/components/profile-settings';
 import { TAccount, TProfile } from '@profile/models/client';
 import { ProfileService } from '@profile/services/client';
 import { UserStateService } from '@root/services/state';
@@ -26,18 +25,14 @@ import { UserStateService } from '@root/services/state';
     NgFor,
     NgIf,
     OverlayComponent,
-    ProfileSettingsComponent,
   ],
 })
 export class AuthorizedUserComponent extends BaseComponent implements OnInit {
-  @ViewChild('profileSettings') profileSettings: ProfileSettingsComponent;
-
   account: TAccount | null = null;
   profile: TProfile | null = null;
   menuOpened = false;
   menuItems: Array<TDropdownItem> = [
     { value: 'Профиль', action: this.goToProfile.bind(this) },
-    { value: 'Настройки', action: this.openProfileSettings.bind(this) },
     { value: 'Выход', action: this.signout.bind(this) },
   ];
   EOverlayPosition = EOverlayPosition;
@@ -90,10 +85,6 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
 
   private goToProfile(): void {
     this.router.navigate(['profile']);
-  }
-
-  private openProfileSettings(): void {
-    this.profileSettings.openDialog();
   }
 
   private signout(): void {

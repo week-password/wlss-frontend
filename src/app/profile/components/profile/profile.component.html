@@ -5,10 +5,11 @@
     [header]="profile.name"
     [description]="profile.description"
     [presentationView]="true"
-    [showControls]="!!profile.friendshipStatus"
+    [showControls]="showProfileControls"
   >
     <app-profile-actions
       controls
+      *ngIf="profile.friendshipStatus"
       [friendshipStatus]="profile.friendshipStatus"
       (acceptIncomingRequest)="acceptIncomingRequest()"
       (rejectIncomingRequest)="rejectIncomingRequest()"
@@ -16,6 +17,7 @@
       (cancelOutgoingRequest)="cancelOutgoingRequest()"
       (removeAcceptedRequest)="removeAcceptedRequest()"
     />
+    <app-button controls *ngIf="profile.account.id === accountId" (click)="openProfileSettings()">Редактировать</app-button>
   </app-card>
 </div>
 <div *ngIf="showAcceptedRequests" class="с-profile__block">
@@ -116,3 +118,7 @@
     </div>
   </app-profile-block>
 </div>
+<app-profile-settings
+  #profileSettings
+  (submit)="saveProfileSettings($event)"
+></app-profile-settings>

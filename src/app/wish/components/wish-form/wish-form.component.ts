@@ -71,9 +71,6 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
 
   closeDialog(): void {
     this.dialogRef.close();
-    this.dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.initWishForm();
-    });
   }
 
   removeAvatar(): void {
@@ -132,12 +129,9 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
   }
 
   private fillWishForm(): void {
-    if (!this.wish) {
-      return;
-    }
-    this.controls.avatarId.setValue(this.wish.avatarId);
-    this.controls.description.setValue(this.wish.description);
-    this.controls.title.setValue(this.wish.title);
+    this.controls.avatarId.setValue(this.wish?.avatarId || null);
+    this.controls.description.setValue(this.wish?.description || '');
+    this.controls.title.setValue(this.wish?.title || '');
     this.changed = false;
   }
 }
