@@ -6,9 +6,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { takeUntil } from 'rxjs';
 
 import { BaseComponent } from '@core/base-components';
+import { ButtonComponent } from '@core/components/button';
 import { CardComponent } from '@core/components/card';
 import { DialogComponent } from '@core/components/dialog';
-import { IconComponent } from '@core/components/icon';
 import { SnackbarComponent } from '@core/components/snackbar';
 import {
   EAvatarType,
@@ -32,7 +32,7 @@ import { BookingService, WishService } from '@wish/services/client';
   templateUrl: './wishes.component.html',
   styleUrls: ['./wishes.component.scss'],
   standalone: true,
-  imports: [CardComponent, IconComponent, NgFor, NgIf, WishActionsComponent, WishFormComponent],
+  imports: [ButtonComponent, CardComponent, NgFor, NgIf, WishActionsComponent, WishFormComponent],
 })
 export class WishesComponent extends BaseComponent implements OnInit {
   @Input() accountId: number;
@@ -59,6 +59,13 @@ export class WishesComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeOnMobileChanges();
+  }
+
+  showWishControls(wish: TWish): boolean {
+    if (wish.bookingStatus) {
+      return wish.bookingStatus !== EBookingStatus.bookedByAnotherAccount;
+    }
+    return this.editableItems;
   }
 
   getBadge(wish: TWish): string | null {

@@ -1,28 +1,24 @@
 <div *ngIf="wishes.length" class="c-wishes c-line-separated-list">
   <ng-container *ngFor="let wish of wishes; let i = index">
     <div class="c-line-separated-list__separator c-line c-line_horizontal"></div>
-    <div
-      class="c-wishes__item c-line-separated-list__item"
-      [class]="{ 'c-wishes__item_editable': editableItems }"
-    >
+    <div class="c-wishes__item c-line-separated-list__item">
       <app-card
         [avatarId]="wish.avatarId"
         [avatarType]="EAvatarType.wish"
         [header]="wish.title"
         [headerBadge]="getBadge(wish)"
         [description]="wish.description"
-        [showControls]="!mobile || !!wish.bookingStatus"
-        (click)="editableItems && openWishFormDialog(wish)"
+        [showControls]="showWishControls(wish)"
       >
         <app-wish-actions
           controls
-          *ngIf="!!wish.bookingStatus"
+          *ngIf="wish.bookingStatus"
           [bookingStatus]="wish.bookingStatus"
           (createBooking)="createBooking(wish)"
           (removeBooking)="removeBooking(wish)"
         />
-        <div controls *ngIf="editableItems" class="c-wishes__item-edit-button">
-          <app-icon icon="edit" />
+        <div controls *ngIf="editableItems">
+          <app-button (click)="openWishFormDialog(wish)">Редактировать</app-button>
         </div>
       </app-card>
     </div>

@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
@@ -14,7 +14,6 @@ import { TextareaComponent } from '@core/components/textarea';
 import { DisableRepeatWhitespacesDirective, TrimStartWhitespacesDirective } from '@core/directives';
 import { EBaseColor, TDialogData } from '@core/models/client';
 import { TProfile, TProfileFormGroup } from '@profile/models/client';
-import { ProfileService } from '@profile/services/client';
 import { descriptionValidators, nameValidators } from '@profile/validators';
 import { UserStateService } from '@root/services/state';
 
@@ -37,19 +36,18 @@ import { UserStateService } from '@root/services/state';
   ],
 })
 export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGroup> implements OnInit {
+  @Output() submit = new EventEmitter<TProfile>();
+
   @ViewChild('dialogContent') dialogContent: TemplateRef<HTMLElement>;
   @ViewChild('dialogButtons') dialogButtons: TemplateRef<HTMLElement>;
   @ViewChild('avatarUploader') avatarUploader: ImageUploaderComponent;
 
   profile: TProfile | null = null;
-  EBaseColor = EBaseColor;
+  readonly EBaseColor = EBaseColor;
 
   private dialogRef: MatDialogRef<DialogComponent>;
 
-  constructor(
-    private profileService: ProfileService,
-    private userStateService: UserStateService,
-  ) {
+  constructor(private userStateService: UserStateService) {
     super();
   }
 
@@ -70,6 +68,10 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
       maxWidth: '800px',
       data: profileSettingsDialogData,
     });
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 
   removeAvatar(): void {
@@ -93,6 +95,9 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
         return;
       }
       this.closeDialog();
+      this.dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(() => {
+        this.fillProfileSettingsForm();
+      });
     });
   }
 
@@ -105,7 +110,8 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
       this.avatarUploader.triggerUploading();
       return;
     }
-    this.saveProfileSettings();
+    const profile = this.form.value as TProfile;
+    this.submit.emit({ ...this.profile, ...profile });
   }
 
   onAvatarUploaded(avatarId: string): void {
@@ -114,20 +120,8 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
     if (this.submitDisabled) {
       return;
     }
-    this.saveProfileSettings();
-  }
-
-  private saveProfileSettings(): void {
-    if (!this.profile) {
-      return;
-    }
-    const profile: TProfile = { ...this.profile, ...this.form.value };
-    this.profileService.updateProfile(profile).pipe(
-      takeUntil(this.destroy$),
-    ).subscribe((profile: TProfile) => {
-      this.userStateService.setProfile(profile);
-      this.closeDialog();
-    });
+    const profile = this.form.value as TProfile;
+    this.submit.emit({ ...this.profile, ...profile });
   }
 
   private initProfileSettingsForm(): void {
@@ -146,11 +140,6 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
     this.controls.description.setValue(this.profile.description);
     this.controls.name.setValue(this.profile.name);
     this.changed = false;
-  }
-
-  private closeDialog(): void {
-    this.dialogRef.close();
-    this.fillProfileSettingsForm();
   }
 
   private subscribeOnProfileChanges(): void {

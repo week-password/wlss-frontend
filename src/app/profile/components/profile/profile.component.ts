@@ -1,16 +1,19 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
 import { BaseComponent } from '@core/base-components';
+import { ButtonComponent } from '@core/components/button';
 import { CardComponent } from '@core/components/card';
 import { EBlockState } from '@core/models/client';
 import { ProfileActionsComponent } from '@profile/components/profile-actions';
 import { ProfileBlockComponent } from '@profile/components/profile-block';
+import { ProfileSettingsComponent } from '@profile/components/profile-settings';
 import { ShortProfileCardComponent } from '@profile/components/short-profile-card';
 import { EFriendshipStatus, TProfile } from '@profile/models/client';
-import { FriendshipService } from '@profile/services/client';
+import { FriendshipService, ProfileService } from '@profile/services/client';
+import { UserStateService } from '@root/services/state';
 import { WishesComponent } from '@wish/components/wishes';
 import { TWish } from '@wish/models/client';
 import { WishService } from '@wish/services/client';
@@ -21,11 +24,13 @@ import { WishService } from '@wish/services/client';
   styleUrls: ['./profile.component.scss'],
   standalone: true,
   imports: [
+    ButtonComponent,
     CardComponent,
     NgFor,
     NgIf,
     ProfileActionsComponent,
     ProfileBlockComponent,
+    ProfileSettingsComponent,
     RouterLink,
     ShortProfileCardComponent,
     WishesComponent,
@@ -35,6 +40,8 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   @Input() accountId: number;
   @Input() profile: TProfile;
 
+  @ViewChild('profileSettings') profileSettings: ProfileSettingsComponent;
+
   acceptedRequests: Array<TProfile> = [];
   incomingRequests: Array<TProfile> = [];
   outgoingRequests: Array<TProfile> = [];
@@ -43,9 +50,15 @@ export class ProfileComponent extends BaseComponent implements OnInit {
 
   constructor(
     private friendshipService: FriendshipService,
+    private profileService: ProfileService,
+    private userStateService: UserStateService,
     private wishService: WishService,
   ) {
     super();
+  }
+
+  get showProfileControls(): boolean {
+    return this.profile.account.id === this.accountId || !!this.profile.friendshipStatus;
   }
 
   get showAcceptedRequests(): boolean {
@@ -65,6 +78,19 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     if (this.hasWishesAccess) {
       this.getWishes();
     }
+  }
+
+  openProfileSettings(): void {
+    this.profileSettings.openDialog();
+  }
+
+  saveProfileSettings(profile: TProfile): void {
+    this.profileService.updateProfile(profile).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe((profile: TProfile) => {
+      this.userStateService.setProfile(profile);
+      this.profileSettings.closeDialog();
+    });
   }
 
   acceptIncomingRequest(): void {
