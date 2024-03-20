@@ -1,7 +1,7 @@
 <ng-container *ngIf="loading"></ng-container>
 <div *ngIf="!loading" class="profiles">
   <div class="profiles__filter c-base-layout">
-    <app-profiles-filter (change)="getFilteredProfiles($event)"></app-profiles-filter>
+    <app-profiles-filter (filter)="getFilteredProfiles($event)"></app-profiles-filter>
   </div>
   <div *ngIf="profiles.length" class="profiles__cards c-base-layout c-line-separated-list">
     <ng-container *ngFor="let profile of filteredProfiles">
