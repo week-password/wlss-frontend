@@ -71,6 +71,7 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
   }
 
   closeDialog(): void {
+    this.loading = false;
     this.dialogRef.close();
   }
 
@@ -104,8 +105,10 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
   onSubmit(): void {
     this.form.markAllAsTouched();
     if (this.submitDisabled) {
+      this.loading = false;
       return;
     }
+    this.loading = true;
     if (this.avatarUploader.isLoaded) {
       this.avatarUploader.triggerUploading();
       return;
@@ -118,10 +121,15 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
     this.controls.avatarId.setValue(avatarId);
     this.form.markAllAsTouched();
     if (this.submitDisabled) {
+      this.loading = false;
       return;
     }
     const profile = this.form.value as TProfile;
     this.submit.emit({ ...this.profile, ...profile });
+  }
+
+  onAvatarUploadError(): void {
+    this.loading = false;
   }
 
   private initProfileSettingsForm(): void {
@@ -139,6 +147,7 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
     this.controls.avatarId.setValue(this.profile.avatarId);
     this.controls.description.setValue(this.profile.description);
     this.controls.name.setValue(this.profile.name);
+    this.form.markAsUntouched();
     this.changed = false;
   }
 

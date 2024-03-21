@@ -1,24 +1,20 @@
 import { NgFor, NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { takeUntil } from 'rxjs';
 
 import { BaseComponent } from '@core/base-components';
 import { ButtonComponent } from '@core/components/button';
 import { CardComponent } from '@core/components/card';
-import { DialogComponent } from '@core/components/dialog';
 import { SnackbarComponent } from '@core/components/snackbar';
 import {
   EAvatarType,
-  EBaseColor,
   EMatSnackbarHPosition,
   EMatSnackbarVPosition,
   EPosition,
   ESnackbarView,
   ETextPosition,
-  TDialogData,
   TSnackbarData,
 } from '@core/models/client';
 import { UiStateService } from '@root/services/state';
@@ -49,7 +45,6 @@ export class WishesComponent extends BaseComponent implements OnInit {
 
   constructor(
     private bookingService: BookingService,
-    private matDialog: MatDialog,
     private snackBar: MatSnackBar,
     private uiStateService: UiStateService,
     private wishService: WishService,
@@ -81,38 +76,26 @@ export class WishesComponent extends BaseComponent implements OnInit {
     this.wishForm.openDialog(wish);
   }
 
-  openRemoveWishDialog(wish: TWish): void {
-    const removeWishDialogData: TDialogData = {
-      cancelButtonText: 'Отменить',
-      content:
-        `<div class="d-flex flex-column">
-          <div class="mb-10">Вы действительно хотите удалить желание <b class="d-inline">${wish.title}</b>?</div>
-          <div class="mb-10">Отменить это действие будет <b class="d-inline">невозможно</b>.</div>
-          <div>Если кто-то забронировал это желание, то он потеряет к нему доступ после удаления.</div>
-        </div>`,
-      submitButtonColor: EBaseColor.danger,
-      submitButtonText: 'Удалить',
-      title: 'Удаление желания',
-    };
-    const dialogRef = this.matDialog.open(DialogComponent, {
-      data: removeWishDialogData,
-      maxWidth: '640px',
-    });
-    dialogRef.afterClosed().pipe(
-      takeUntil(this.destroy$),
-    ).subscribe((removeSubmitted: boolean) => {
-      if (removeSubmitted) {
-        this.removeWish(wish);
-      }
-    });
-  }
-
   saveWish(wish: TWish): void {
     if (wish.id) {
       this.updateWish(wish);
       return;
     }
     this.createWish(wish);
+  }
+
+  removeWish(wish: TWish): void {
+    this.wishService.removeWish(this.accountId, wish.id).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe({
+      next: () => {
+        this.wishForm.closeDialog();
+        this.update.emit();
+      },
+      error: () => {
+        this.wishForm.removeLoading = false;
+      },
+    });
   }
 
   createBooking(wish: TWish): void {
@@ -159,27 +142,28 @@ export class WishesComponent extends BaseComponent implements OnInit {
   private createWish(wish: Omit<TWish, 'id'>): void {
     this.wishService.createWish(this.accountId, wish).pipe(
       takeUntil(this.destroy$),
-    ).subscribe(() => {
-      this.wishForm.closeDialog();
-      this.update.emit();
+    ).subscribe({
+      next: () => {
+        this.wishForm.closeDialog();
+        this.update.emit();
+      },
+      error: () => {
+        this.wishForm.loading = false;
+      },
     });
   }
 
   private updateWish(wish: TWish): void {
     this.wishService.updateWish(this.accountId, wish).pipe(
       takeUntil(this.destroy$),
-    ).subscribe(() => {
-      this.wishForm.closeDialog();
-      this.update.emit();
-    });
-  }
-
-  private removeWish(wish: TWish): void {
-    this.wishService.removeWish(this.accountId, wish.id).pipe(
-      takeUntil(this.destroy$),
-    ).subscribe(() => {
-      this.wishForm.closeDialog();
-      this.update.emit();
+    ).subscribe({
+      next: () => {
+        this.wishForm.closeDialog();
+        this.update.emit();
+      },
+      error: () => {
+        this.wishForm.loading = false;
+      },
     });
   }
 

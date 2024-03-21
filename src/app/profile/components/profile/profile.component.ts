@@ -87,9 +87,14 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   saveProfileSettings(profile: TProfile): void {
     this.profileService.updateProfile(profile).pipe(
       takeUntil(this.destroy$),
-    ).subscribe((profile: TProfile) => {
-      this.userStateService.setProfile(profile);
-      this.profileSettings.closeDialog();
+    ).subscribe({
+      next: (profile: TProfile) => {
+        this.userStateService.setProfile(profile);
+        this.profileSettings.closeDialog();
+      },
+      error: () => {
+        this.profileSettings.loading = false;
+      },
     });
   }
 

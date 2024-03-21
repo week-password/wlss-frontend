@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs';
 
 import { BaseFormComponent } from '@core/base-components';
@@ -43,10 +43,15 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
   @ViewChild('avatarUploader') avatarUploader: ImageUploaderComponent;
 
   wish: TWish | null;
+  removeLoading = false;
   readonly EAvatarType = EAvatarType;
   readonly EBaseColor = EBaseColor;
 
   private dialogRef: MatDialogRef<DialogComponent>;
+
+  constructor(private matDialog: MatDialog) {
+    super();
+  }
 
   ngOnInit(): void {
     this.initWishForm();
@@ -70,6 +75,8 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
   }
 
   closeDialog(): void {
+    this.loading = false;
+    this.removeLoading = false;
     this.dialogRef.close();
   }
 
@@ -97,11 +104,42 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
     });
   }
 
+  openRemoveWishDialog(): void {
+    if (!this.wish) {
+      return;
+    }
+    const removeWishDialogData: TDialogData = {
+      cancelButtonText: 'Отменить',
+      content:
+        `<div class="d-flex flex-column">
+          <div class="mb-10">Вы действительно хотите удалить желание <b class="d-inline">${this.wish.title}</b>?</div>
+          <div class="mb-10">Отменить это действие будет <b class="d-inline">невозможно</b>.</div>
+          <div>Если кто-то забронировал это желание, то он потеряет к нему доступ после удаления.</div>
+        </div>`,
+      submitButtonColor: EBaseColor.danger,
+      submitButtonText: 'Удалить',
+      title: 'Удаление желания',
+    };
+    const dialogRef = this.matDialog.open(DialogComponent, {
+      data: removeWishDialogData,
+      maxWidth: '640px',
+    });
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.destroy$),
+    ).subscribe((removeSubmitted: boolean) => {
+      if (removeSubmitted) {
+        this.removeWish();
+      }
+    });
+  }
+
   onSubmit(): void {
     this.form.markAllAsTouched();
     if (this.submitDisabled) {
+      this.loading = false;
       return;
     }
+    this.loading = true;
     if (this.avatarUploader.isLoaded) {
       this.avatarUploader.triggerUploading();
       return;
@@ -114,10 +152,23 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
     this.controls.avatarId.setValue(avatarId);
     this.form.markAllAsTouched();
     if (this.submitDisabled) {
+      this.loading = false;
       return;
     }
     const wish = this.form.value as TWish;
     this.submit.emit({ ...this.wish, ...wish });
+  }
+
+  onAvatarUploadError(): void {
+    this.loading = false;
+  }
+
+  private removeWish(): void {
+    if (!this.wish) {
+      return;
+    }
+    this.removeLoading = true;
+    this.remove.emit(this.wish);
   }
 
   private initWishForm(): void {
@@ -132,6 +183,7 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
     this.controls.avatarId.setValue(this.wish?.avatarId || null);
     this.controls.description.setValue(this.wish?.description || '');
     this.controls.title.setValue(this.wish?.title || '');
+    this.form.markAsUntouched();
     this.changed = false;
   }
 }

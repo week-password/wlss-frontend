@@ -1,5 +1,10 @@
-<div class="c-button" [class]="'c-button_' + color" [style.height]="height + 'px'">
+<div class="c-button" [class]="['c-button_' + color, loading ? 'c-button_loading' : '']" [style.height]="height + 'px'">
   <button mat-flat-button [disabled]="disabled">
-    <ng-content></ng-content>
+    <div class="c-button__content" [class]="{ 'c-button__content_visible': !loading }">
+      <ng-content></ng-content>
+    </div>
+    <div *ngIf="loading" class="c-button__loader">
+      <app-loader [scale]="0.5" [color]="color"></app-loader>
+    </div>
   </button>
 </div>

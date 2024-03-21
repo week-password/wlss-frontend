@@ -8,6 +8,7 @@
       (removeOrigin)="removeAvatar()"
       (change)="onAvatarChanged()"
       (upload)="onAvatarUploaded($event)"
+      (uploadError)="onAvatarUploadError()"
     >
       <app-avatar [avatarId]="controls.avatarId.value"></app-avatar>
     </app-image-uploader>
@@ -35,6 +36,7 @@
     tabindex="-1"
     [color]="EBaseColor.primary"
     [disabled]="submitDisabled"
+    [loading]="loading"
     (click)="onSubmit()"
   >Сохранить</app-button>
   <app-button
