@@ -1,9 +1,9 @@
-<ng-container *ngIf="loading"></ng-container>
+<app-loader *ngIf="loading"></app-loader>
 <div *ngIf="!loading" class="profiles">
   <div class="profiles__filter c-base-layout">
     <app-profiles-filter (filter)="getFilteredProfiles($event)"></app-profiles-filter>
   </div>
-  <div *ngIf="profiles.length" class="profiles__cards c-base-layout c-line-separated-list">
+  <div *ngIf="filteredProfiles.length" class="profiles__cards c-base-layout c-line-separated-list">
     <ng-container *ngFor="let profile of filteredProfiles">
       <div class="c-line-separated-list__separator c-line c-line_horizontal"></div>
       <a class="c-line-separated-list__item" [routerLink]="'/profile/' + profile.account.login">
@@ -21,7 +21,7 @@
       </a>
     </ng-container>
   </div>
-  <div *ngIf="!profiles.length" class="profiles">
+  <div *ngIf="!filteredProfiles.length" class="profiles">
     Пользователи не найдены. Попробуйте изменить параметры поиска.
   </div>
 </div>

@@ -8,6 +8,7 @@
       (removeOrigin)="removeAvatar()"
       (change)="onAvatarChanged()"
       (upload)="onAvatarUploaded($event)"
+      (uploadError)="onAvatarUploadError()"
     >
       <app-avatar [avatarId]="controls.avatarId.value" [type]="EAvatarType.wish"></app-avatar>
     </app-image-uploader>
@@ -34,7 +35,8 @@
     class="mr-4"
     tabindex="-1"
     [color]="EBaseColor.primary"
-    [disabled]="submitDisabled"
+    [disabled]="submitDisabled || removeLoading"
+    [loading]="loading"
     (click)="onSubmit()"
   >Сохранить</app-button>
   <app-button
@@ -46,6 +48,8 @@
   <app-button *ngIf="wish"
     tabindex="-1"
     [color]="EBaseColor.danger"
-    (click)="remove.emit(wish)"
+    [disabled]="loading"
+    [loading]="removeLoading"
+    (click)="openRemoveWishDialog()"
   >Удалить</app-button>
 </ng-template>

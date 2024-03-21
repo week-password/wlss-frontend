@@ -1,25 +1,28 @@
-<ng-container *ngIf="profile">
-  <div
-    class="c-authorized-user"
-    cdkOverlayOrigin
-    #authorizedUser="cdkOverlayOrigin"
-    (click)="authorizedUserMenu.switch()"
-  >
-    <div class="c-authorized-user__avatar">
-      <app-avatar [avatarId]="profile.avatarId"></app-avatar>
-    </div>
-    <div class="c-authorized-user__name">{{ profile.name }}</div>
-  </div>
-
-  <app-overlay
-    #authorizedUserMenu
-    [trigger]="authorizedUser"
-    [position]="EOverlayPosition.bottomEnd"
-  >
-    <div class="c-authorized-user-dropdown c-dropdown">
-      <div *ngFor="let item of menuItems" class="c-dropdown__item" (click)="item.action()">
-        {{ item.value }}
+<app-loader *ngIf="loading"></app-loader>
+<ng-container *ngIf="!loading">
+  <ng-container *ngIf="profile">
+    <div
+      class="c-authorized-user"
+      cdkOverlayOrigin
+      #authorizedUser="cdkOverlayOrigin"
+      (click)="authorizedUserMenu.switch()"
+    >
+      <div class="c-authorized-user__avatar">
+        <app-avatar [avatarId]="profile.avatarId"></app-avatar>
       </div>
+      <div class="c-authorized-user__name">{{ profile.name }}</div>
     </div>
-  </app-overlay>
+
+    <app-overlay
+      #authorizedUserMenu
+      [trigger]="authorizedUser"
+      [position]="EOverlayPosition.bottomEnd"
+    >
+      <div class="c-authorized-user-dropdown c-dropdown">
+        <div *ngFor="let item of menuItems" class="c-dropdown__item" (click)="item.action()">
+          {{ item.value }}
+        </div>
+      </div>
+    </app-overlay>
+  </ng-container>
 </ng-container>

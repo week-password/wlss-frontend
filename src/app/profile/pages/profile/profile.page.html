@@ -1,1 +1,4 @@
-<app-profile *ngIf="accountId && profile" [profile]="profile" [accountId]="accountId" />
+<app-loader *ngIf="loading" />
+<ng-container *ngIf="!loading">
+  <app-profile *ngIf="accountId && profile" [profile]="profile" [accountId]="accountId" />
+</ng-container>

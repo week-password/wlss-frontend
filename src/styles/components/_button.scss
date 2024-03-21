@@ -21,6 +21,11 @@
   .mat-mdc-unelevated-button .mat-mdc-button-touch-target {
     height: initial;
   }
+  &_loading {
+    .c-button__content {
+      opacity: 0;
+    }
+  }
   &_primary {
     .mdc-button:not(:disabled) {
       background-color: var(--accent);
@@ -31,6 +36,11 @@
         border-color: var(--accent);
         color: var(--accent);
       }
+    }
+    &.c-button_loading .mdc-button:not(:disabled) {
+      background-color: var(--background-1);
+      border-color: var(--accent);
+      color: var(--accent);
     }
   }
   &_secondary {
@@ -44,6 +54,11 @@
         color: var(--accent);
       }
     }
+    &.c-button_loading .mdc-button:not(:disabled) {
+      background-color: var(--background-1);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
   }
   &_danger {
     .mdc-button:not(:disabled) {
@@ -55,6 +70,11 @@
         border-color: var(--error);
         color: var(--text-1);
       }
+    }
+    &.c-button_loading .mdc-button:not(:disabled) {
+      background-color: var(--background-1);
+      border-color: var(--error);
+      color: var(--error);
     }
   }
   &_icon {
@@ -74,6 +94,10 @@
     cursor: pointer;
     color: var(--accent);
     height: initial;
+  }
+  &__content {
+    opacity: 1;
+    transition: opacity 0.3;
   }
 }
 

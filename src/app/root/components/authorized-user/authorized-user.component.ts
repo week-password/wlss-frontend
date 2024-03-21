@@ -2,12 +2,13 @@ import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { takeUntil } from 'rxjs';
+import { finalize, takeUntil } from 'rxjs';
 
 import { AuthService } from '@auth/services/client';
 import { SessionStateService } from '@auth/services/state';
 import { BaseComponent } from '@core/base-components';
 import { AvatarComponent } from '@core/components/avatar';
+import { LoaderComponent } from '@core/components/loader';
 import { OverlayComponent } from '@core/components/overlay';
 import { EOverlayPosition, TDropdownItem } from '@core/models/client';
 import { TAccount, TProfile } from '@profile/models/client';
@@ -22,6 +23,7 @@ import { UserStateService } from '@root/services/state';
   imports: [
     AvatarComponent,
     CdkOverlayOrigin,
+    LoaderComponent,
     NgFor,
     NgIf,
     OverlayComponent,
@@ -59,8 +61,10 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
       this.router.navigate(['signin']);
       return;
     }
+    this.loading = true;
     this.profileService.getProfileByAccountId(accountId).pipe(
       takeUntil(this.destroy$),
+      finalize(() => { this.loading = false; }),
     ).subscribe((profile: TProfile) => {
       this.userStateService.setAccount(profile.account);
       this.userStateService.setProfile(profile);

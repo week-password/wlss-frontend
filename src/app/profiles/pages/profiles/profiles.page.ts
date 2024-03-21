@@ -6,6 +6,7 @@ import { finalize, takeUntil } from 'rxjs';
 import { SessionStateService } from '@auth/services/state';
 import { BaseComponent } from '@core/base-components';
 import { CardComponent } from '@core/components/card';
+import { LoaderComponent } from '@core/components/loader';
 import { ProfileActionsComponent } from '@profile/components/profile-actions';
 import { EFriendshipStatus, TProfile } from '@profile/models/client';
 import { FriendshipService } from '@profile/services/client';
@@ -18,7 +19,15 @@ import { ProfilesService } from '@profiles/services/client';
   templateUrl: './profiles.page.html',
   styleUrls: ['./profiles.page.scss'],
   standalone: true,
-  imports: [CardComponent, NgFor, NgIf, ProfileActionsComponent, ProfilesFilterComponent, RouterLink],
+  imports: [
+    CardComponent,
+    LoaderComponent,
+    NgFor,
+    NgIf,
+    ProfileActionsComponent,
+    ProfilesFilterComponent,
+    RouterLink,
+  ],
 })
 export class ProfilesPage extends BaseComponent implements OnInit {
   accountId: number;

@@ -1,0 +1,51 @@
+@import 'src/styles/common/media';
+
+:host {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-loader {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  animation: rotation 1s linear infinite;
+  &_primary, &_secondary {
+    background: linear-gradient(0deg, var(--accent-semi-transparent) 33%, var(--accent) 100%);
+  }
+  &_danger {
+    background: linear-gradient(0deg, var(--background-1) 33%, var(--error) 100%);
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--background-1);
+  }
+}
+@keyframes rotation {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg)}
+}
+
+@include mobile {
+  .c-loader {
+    width: 32px;
+    height: 32px;
+    &::after {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}

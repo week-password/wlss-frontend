@@ -35,6 +35,7 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
 
   @Output() change = new EventEmitter<void>();
   @Output() upload = new EventEmitter<string>();
+  @Output() uploadError = new EventEmitter<void>();
   @Output() removeOrigin = new EventEmitter<void>();
 
   @ViewChild('cropper') readonly cropper: ImageCropperComponent;
@@ -224,6 +225,7 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
         this.change.emit();
       },
       error: (error: HttpErrorResponse) => {
+        this.uploadError.emit();
         if (error.status === EHttpError.unprocessableEntity) {
           this.fileError$.next(EFileError.format);
           return;

@@ -5,6 +5,7 @@ import { takeUntil } from 'rxjs';
 
 import { SessionStateService } from '@auth/services/state';
 import { BaseComponent } from '@core/base-components';
+import { LoaderComponent } from '@core/components/loader';
 import { ProfileComponent } from '@profile/components/profile';
 import { TProfile } from '@profile/models/client';
 import { ProfileService } from '@profile/services/client';
@@ -15,7 +16,7 @@ import { UserStateService } from '@root/services/state';
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [NgIf, ProfileComponent],
+  imports: [LoaderComponent, NgIf, ProfileComponent],
 })
 export class ProfilePage extends BaseComponent implements OnInit {
   profile: TProfile | null = null;
@@ -60,13 +61,16 @@ export class ProfilePage extends BaseComponent implements OnInit {
       this.profileService.getProfileByLogin(login) :
       this.userStateService.profile;
 
+    this.loading = true;
     profileSource.pipe(
       takeUntil(this.destroy$),
     ).subscribe({
       next: (profile: TProfile | null) => {
+        this.loading = false;
         this.profile = profile;
       },
       error: () => {
+        this.loading = false;
         this.router.navigate(['404']);
       },
     });
