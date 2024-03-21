@@ -7,7 +7,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { provideAngularSvgIcon } from 'angular-svg-icon';
 
-import { authorizationHeaderInterceptor, requestUrlInterceptor, tokensInterceptor } from '@core/interceptors';
+import { authorizationHeaderInterceptor, requestUrlInterceptor, serverErrorInterceptor, tokensInterceptor } from '@core/interceptors';
 import { RootRoutes } from '@root/pages';
 import { RootPage } from '@root/pages/root';
 import { environment } from 'src/environments/environment';
@@ -25,6 +25,7 @@ bootstrapApplication(RootPage, {
       requestUrlInterceptor,
       tokensInterceptor,
       authorizationHeaderInterceptor,
+      serverErrorInterceptor,
     ])),
     provideRouter(RootRoutes),
   ],
