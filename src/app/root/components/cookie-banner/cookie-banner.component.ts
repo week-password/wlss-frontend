@@ -14,12 +14,13 @@ import {
   TSnackbarData,
 } from '@core/models/client';
 
+const imports = [RouterLink];
 @Component({
+  imports,
   selector: 'app-cookie-banner',
-  templateUrl: './cookie-banner.component.html',
-  styleUrls: ['./cookie-banner.component.scss'],
   standalone: true,
-  imports: [RouterLink],
+  styleUrl: 'cookie-banner.component.scss',
+  templateUrl: 'cookie-banner.component.html',
 })
 export class CookieBannerComponent extends BaseComponent implements AfterViewInit {
   @ViewChild('cookieText') cookieText: TemplateRef<HTMLElement>;

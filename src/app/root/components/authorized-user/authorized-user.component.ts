@@ -15,19 +15,20 @@ import { TAccount, TProfile } from '@profile/models/client';
 import { ProfileService } from '@profile/services/client';
 import { UserStateService } from '@root/services/state';
 
+const imports = [
+  AvatarComponent,
+  CdkOverlayOrigin,
+  LoaderComponent,
+  NgFor,
+  NgIf,
+  OverlayComponent,
+];
 @Component({
+  imports,
   selector: 'app-authorized-user',
-  templateUrl: './authorized-user.component.html',
-  styleUrls: ['./authorized-user.component.scss'],
   standalone: true,
-  imports: [
-    AvatarComponent,
-    CdkOverlayOrigin,
-    LoaderComponent,
-    NgFor,
-    NgIf,
-    OverlayComponent,
-  ],
+  styleUrl: 'authorized-user.component.scss',
+  templateUrl: 'authorized-user.component.html',
 })
 export class AuthorizedUserComponent extends BaseComponent implements OnInit {
   account: TAccount | null = null;

@@ -5,12 +5,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoaderComponent } from '@core/components/loader';
 import { EBaseColor } from '@core/models/client';
 
+const imports = [LoaderComponent, MatButtonModule, NgIf];
 @Component({
+  imports,
   selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
   standalone: true,
-  imports: [LoaderComponent, MatButtonModule, NgIf],
+  styleUrl: 'button.component.scss',
+  templateUrl: 'button.component.html',
 })
 export class ButtonComponent {
   @Input() color: EBaseColor = EBaseColor.primary;

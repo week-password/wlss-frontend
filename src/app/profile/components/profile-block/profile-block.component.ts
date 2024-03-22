@@ -4,12 +4,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IconComponent } from '@core/components/icon';
 import { EBlockState } from '@core/models/client';
 
+const imports = [IconComponent, NgIf];
 @Component({
+  imports,
   selector: 'app-profile-block',
-  templateUrl: './profile-block.component.html',
-  styleUrls: ['./profile-block.component.scss'],
   standalone: true,
-  imports: [IconComponent, NgIf],
+  styleUrl: 'profile-block.component.scss',
+  templateUrl: 'profile-block.component.html',
 })
 export class ProfileBlockComponent implements OnInit {
   @Input() collapsable = false;

@@ -7,9 +7,9 @@ import { HealthCheckApiService } from '@root/services/api';
 
 @Component({
   selector: 'app-unavailable-page',
-  templateUrl: './unavailable.page.html',
-  styleUrls: ['./unavailable.page.scss'],
   standalone: true,
+  styleUrl: 'unavailable.page.scss',
+  templateUrl: 'unavailable.page.html',
 })
 export class UnavailablePage extends BaseComponent implements OnInit {
   private intervalId: number;

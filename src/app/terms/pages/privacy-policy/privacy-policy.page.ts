@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+const imports = [RouterLink];
 @Component({
+  imports,
   selector: 'app-privacy-policy-page',
-  templateUrl: './privacy-policy.page.html',
-  styleUrls: ['./privacy-policy.page.scss'],
   standalone: true,
-  imports: [RouterLink],
+  styleUrl: 'privacy-policy.page.scss',
+  templateUrl: 'privacy-policy.page.html',
 })
 export class PrivacyPolicyPage { }

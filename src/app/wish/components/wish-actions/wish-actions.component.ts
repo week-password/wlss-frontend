@@ -5,12 +5,13 @@ import { ButtonComponent } from '@core/components/button';
 import { EBaseColor } from '@core/models/client';
 import { EBookingStatus } from '@wish/models/client';
 
+const imports = [ButtonComponent, NgIf];
 @Component({
+  imports,
   selector: 'app-wish-actions',
-  templateUrl: './wish-actions.component.html',
-  styleUrls: ['./wish-actions.component.scss'],
   standalone: true,
-  imports: [ButtonComponent, NgIf],
+  styleUrl: 'wish-actions.component.scss',
+  templateUrl: 'wish-actions.component.html',
 })
 export class WishActionsComponent {
   @Input() bookingStatus: EBookingStatus | null = null;

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+const imports = [RouterLink];
 @Component({
+  imports,
   selector: 'app-logo',
-  templateUrl: './logo.component.html',
-  styleUrls: ['./logo.component.scss'],
   standalone: true,
-  imports: [RouterLink],
+  styleUrl: 'logo.component.scss',
+  templateUrl: 'logo.component.html',
 })
 export class LogoComponent { }

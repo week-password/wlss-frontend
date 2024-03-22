@@ -23,25 +23,26 @@ import { ConvertEmptyStringToNullDirective, DisableRepeatWhitespacesDirective, T
 import { EBaseColor } from '@core/models/client';
 import { descriptionValidators, nameValidators } from '@profile/validators';
 
+const imports = [
+  ButtonComponent,
+  ConvertEmptyStringToNullDirective,
+  DisableRepeatWhitespacesDirective,
+  FormsModule,
+  InputComponent,
+  NgIf,
+  ReactiveFormsModule,
+  RouterLink,
+  TextareaComponent,
+  TrimStartWhitespacesDirective,
+  WelcomeConversationComponent,
+  WelcomeFormBlockComponent,
+];
 @Component({
+  imports,
   selector: 'app-signup-page',
-  templateUrl: './signup.page.html',
-  styleUrls: ['./signup.page.scss'],
   standalone: true,
-  imports: [
-    ButtonComponent,
-    ConvertEmptyStringToNullDirective,
-    DisableRepeatWhitespacesDirective,
-    FormsModule,
-    InputComponent,
-    NgIf,
-    ReactiveFormsModule,
-    RouterLink,
-    TextareaComponent,
-    TrimStartWhitespacesDirective,
-    WelcomeConversationComponent,
-    WelcomeFormBlockComponent,
-  ],
+  styleUrl: 'signup.page.scss',
+  templateUrl: 'signup.page.html',
 })
 export class SignupPage extends BaseFormComponent<TSignupDataFormGroup> implements OnInit {
   EBaseColor = EBaseColor;

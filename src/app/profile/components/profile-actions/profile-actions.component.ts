@@ -6,12 +6,13 @@ import { EllipsisDropdownComponent } from '@core/components/ellipsis-dropdown';
 import { EBaseColor, EOverlayPosition, TDropdownItem } from '@core/models/client';
 import { EFriendshipStatus } from '@profile/models/client';
 
+const imports = [ButtonComponent, EllipsisDropdownComponent, NgIf];
 @Component({
+  imports,
   selector: 'app-profile-actions',
-  templateUrl: './profile-actions.component.html',
-  styleUrls: ['./profile-actions.component.scss'],
   standalone: true,
-  imports: [ButtonComponent, EllipsisDropdownComponent, NgIf],
+  styleUrl: 'profile-actions.component.scss',
+  templateUrl: 'profile-actions.component.html',
 })
 export class ProfileActionsComponent {
   @Input() friendshipStatus: EFriendshipStatus | null = null;

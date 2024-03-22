@@ -11,12 +11,13 @@ import { TProfile } from '@profile/models/client';
 import { ProfileService } from '@profile/services/client';
 import { UserStateService } from '@root/services/state';
 
+const imports = [LoaderComponent, NgIf, ProfileComponent];
 @Component({
+  imports,
   selector: 'app-profile-page',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [LoaderComponent, NgIf, ProfileComponent],
+  styleUrl: 'profile.page.scss',
+  templateUrl: 'profile.page.html',
 })
 export class ProfilePage extends BaseComponent implements OnInit {
   profile: TProfile | null = null;

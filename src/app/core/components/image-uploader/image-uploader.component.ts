@@ -22,12 +22,13 @@ import {
 import { FileSizePipe } from '@core/pipes';
 import { FilesService } from '@core/services/client';
 
+const imports = [DragAndDropDirective, IconComponent, ImageCropperModule, NgIf];
 @Component({
+  imports,
   selector: 'app-image-uploader',
-  templateUrl: './image-uploader.component.html',
-  styleUrls: ['./image-uploader.component.scss'],
   standalone: true,
-  imports: [DragAndDropDirective, IconComponent, ImageCropperModule, NgIf],
+  styleUrl: 'image-uploader.component.scss',
+  templateUrl: 'image-uploader.component.html',
 })
 export class ImageUploaderComponent extends BaseComponent implements OnInit {
   @Input() maxFileSize: number | null = null;

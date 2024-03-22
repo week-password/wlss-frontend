@@ -14,20 +14,21 @@ import { ProfilesFilterComponent } from '@profiles/components/profiles-filter';
 import { TProfilesFilter } from '@profiles/models/client';
 import { ProfilesService } from '@profiles/services/client';
 
+const imports = [
+  CardComponent,
+  LoaderComponent,
+  NgFor,
+  NgIf,
+  ProfileActionsComponent,
+  ProfilesFilterComponent,
+  RouterLink,
+];
 @Component({
+  imports,
   selector: 'app-profiles-page',
-  templateUrl: './profiles.page.html',
-  styleUrls: ['./profiles.page.scss'],
   standalone: true,
-  imports: [
-    CardComponent,
-    LoaderComponent,
-    NgFor,
-    NgIf,
-    ProfileActionsComponent,
-    ProfilesFilterComponent,
-    RouterLink,
-  ],
+  styleUrl: 'profiles.page.scss',
+  templateUrl: 'profiles.page.html',
 })
 export class ProfilesPage extends BaseComponent implements OnInit {
   accountId: number;

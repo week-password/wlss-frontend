@@ -4,12 +4,13 @@ import { ValidationErrors } from '@angular/forms';
 
 import { ErrorsPrioritizer } from '@core/classes';
 
+const imports = [NgIf];
 @Component({
+  imports,
   selector: 'app-error',
-  templateUrl: './error.component.html',
-  styleUrls: ['./error.component.scss'],
   standalone: true,
-  imports: [NgIf],
+  styleUrl: 'error.component.scss',
+  templateUrl: 'error.component.html',
 })
 export class ErrorComponent {
   @Input()

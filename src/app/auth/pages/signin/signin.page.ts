@@ -28,20 +28,21 @@ import {
   TSnackbarData,
 } from '@core/models/client';
 
+const imports = [
+  ButtonComponent,
+  FormsModule,
+  InputComponent,
+  ReactiveFormsModule,
+  RouterLink,
+  WelcomeConversationComponent,
+  WelcomeFormBlockComponent,
+];
 @Component({
+  imports,
   selector: 'app-signin-page',
-  templateUrl: './signin.page.html',
-  styleUrls: ['./signin.page.scss'],
   standalone: true,
-  imports: [
-    ButtonComponent,
-    FormsModule,
-    InputComponent,
-    ReactiveFormsModule,
-    RouterLink,
-    WelcomeConversationComponent,
-    WelcomeFormBlockComponent,
-  ],
+  styleUrl: 'signin.page.scss',
+  templateUrl: 'signin.page.html',
 })
 export class SigninPage extends BaseFormComponent<TSigninDataFormGroup> implements OnInit {
   constructor(
