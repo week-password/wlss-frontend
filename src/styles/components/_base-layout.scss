@@ -1,3 +1,5 @@
+@import 'src/styles/common/media';
+
 .c-base-layout {
   @extend .drop-shadow;
   border-radius: 12px;
@@ -5,5 +7,11 @@
 
   &_transparent {
     background-color: transparent;
+  }
+}
+
+@include mobile {
+  .c-base-layout {
+    border-radius: 8px;
   }
 }
