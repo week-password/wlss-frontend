@@ -5,12 +5,13 @@ import { RouterLink } from '@angular/router';
 import { AvatarComponent } from '@core/components/avatar';
 import { TProfile } from '@profile/models/client';
 
+const imports = [AvatarComponent, NgIf, RouterLink];
 @Component({
+  imports,
   selector: 'app-short-profile-card',
-  templateUrl: './short-profile-card.component.html',
-  styleUrls: ['./short-profile-card.component.scss'],
   standalone: true,
-  imports: [AvatarComponent, NgIf, RouterLink],
+  styleUrl: 'short-profile-card.component.scss',
+  templateUrl: 'short-profile-card.component.html',
 })
 export class ShortProfileCardComponent {
   @Input() profile: TProfile;

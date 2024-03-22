@@ -5,12 +5,13 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { AvatarSources, EAvatarType } from '@core/models/client';
 import { environment } from 'src/environments/environment';
 
+const imports = [AngularSvgIconModule, NgIf];
 @Component({
+  imports,
   selector: 'app-avatar',
-  templateUrl: './avatar.component.html',
-  styleUrls: ['./avatar.component.scss'],
   standalone: true,
-  imports: [AngularSvgIconModule, NgIf],
+  styleUrl: 'avatar.component.scss',
+  templateUrl: 'avatar.component.html',
 })
 export class AvatarComponent {
   @Input() type: EAvatarType = EAvatarType.profile;

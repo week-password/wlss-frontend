@@ -3,12 +3,13 @@ import { Component, Input } from '@angular/core';
 
 import { EOverlayPosition, OverlayPositions } from '@core/models/client';
 
+const imports = [CdkConnectedOverlay];
 @Component({
+  imports,
   selector: 'app-overlay',
-  templateUrl: './overlay.component.html',
-  styleUrls: ['./overlay.component.scss'],
   standalone: true,
-  imports: [CdkConnectedOverlay],
+  styleUrl: 'overlay.component.scss',
+  templateUrl: 'overlay.component.html',
 })
 export class OverlayComponent {
   @Input() trigger: CdkOverlayOrigin;

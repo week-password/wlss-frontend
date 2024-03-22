@@ -23,12 +23,13 @@ import { WishFormComponent } from '@wish/components/wish-form';
 import { EBookingStatus, TWish } from '@wish/models/client';
 import { BookingService, WishService } from '@wish/services/client';
 
+const imports = [ButtonComponent, CardComponent, NgFor, NgIf, WishActionsComponent, WishFormComponent];
 @Component({
+  imports,
   selector: 'app-wishes',
-  templateUrl: './wishes.component.html',
-  styleUrls: ['./wishes.component.scss'],
   standalone: true,
-  imports: [ButtonComponent, CardComponent, NgFor, NgIf, WishActionsComponent, WishFormComponent],
+  styleUrl: 'wishes.component.scss',
+  templateUrl: 'wishes.component.html',
 })
 export class WishesComponent extends BaseComponent implements OnInit {
   @Input() accountId: number;

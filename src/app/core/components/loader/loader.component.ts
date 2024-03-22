@@ -5,8 +5,8 @@ import { EBaseColor } from '@core/models/client';
 @Component({
   selector: 'app-loader',
   standalone: true,
-  templateUrl: './loader.component.html',
-  styleUrl: './loader.component.scss',
+  styleUrl: 'loader.component.scss',
+  templateUrl: 'loader.component.html',
 })
 export class LoaderComponent {
   @Input() color: EBaseColor = EBaseColor.primary;

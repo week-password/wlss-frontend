@@ -4,13 +4,14 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { AvatarComponent } from '@core/components/avatar';
 import { EAvatarType } from '@core/models/client';
 
+const imports = [AvatarComponent, NgIf];
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports,
+  selector: 'app-card',
   standalone: true,
-  imports: [AvatarComponent, NgIf],
+  styleUrl: 'card.component.scss',
+  templateUrl: 'card.component.html',
 })
 export class CardComponent {
   @Input() avatarId: string | null;

@@ -7,18 +7,19 @@ import { InputComponent } from '@core/components/input';
 import { DisableRepeatWhitespacesDirective, TrimStartWhitespacesDirective } from '@core/directives';
 import { TProfilesFilter, TProfilesFilterFormGroup } from '@profiles/models/client';
 
+const imports = [
+  DisableRepeatWhitespacesDirective,
+  FormsModule,
+  InputComponent,
+  ReactiveFormsModule,
+  TrimStartWhitespacesDirective,
+];
 @Component({
+  imports,
   selector: 'app-profiles-filter',
-  templateUrl: './profiles-filter.component.html',
-  styleUrls: ['./profiles-filter.component.scss'],
   standalone: true,
-  imports: [
-    DisableRepeatWhitespacesDirective,
-    FormsModule,
-    InputComponent,
-    ReactiveFormsModule,
-    TrimStartWhitespacesDirective,
-  ],
+  styleUrl: 'profiles-filter.component.scss',
+  templateUrl: 'profiles-filter.component.html',
 })
 export class ProfilesFilterComponent extends BaseFormComponent<TProfilesFilterFormGroup> implements OnInit {
   @Output() filter = new EventEmitter<TProfilesFilter>();

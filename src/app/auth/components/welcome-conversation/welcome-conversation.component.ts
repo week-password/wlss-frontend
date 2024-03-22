@@ -4,12 +4,13 @@ import { Component } from '@angular/core';
 import { MessageComponent } from '@auth/components/message';
 import { EBaseColor } from '@core/models/client';
 
+const imports = [MessageComponent, NgFor];
 @Component({
+  imports,
   selector: 'app-welcome-conversation',
-  templateUrl: './welcome-conversation.component.html',
-  styleUrls: ['./welcome-conversation.component.scss'],
   standalone: true,
-  imports: [MessageComponent, NgFor],
+  styleUrl: 'welcome-conversation.component.scss',
+  templateUrl: 'welcome-conversation.component.html',
 })
 export class WelcomeConversationComponent {
   EBaseColor = EBaseColor;

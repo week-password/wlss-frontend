@@ -6,12 +6,13 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ButtonComponent } from '@core/components/button';
 import { EPosition, ESnackbarView, ETextPosition, TSnackbarData } from '@core/models/client';
 
+const imports = [AngularSvgIconModule, ButtonComponent, MatSnackBarModule, NgIf, NgTemplateOutlet];
 @Component({
+  imports,
   selector: 'app-snackbar',
-  templateUrl: './snackbar.component.html',
-  styleUrls: ['./snackbar.component.scss'],
   standalone: true,
-  imports: [AngularSvgIconModule, ButtonComponent, MatSnackBarModule, NgIf, NgTemplateOutlet],
+  styleUrl: 'snackbar.component.scss',
+  templateUrl: 'snackbar.component.html',
 })
 export class SnackbarComponent {
   snackBarRef = inject(MatSnackBarRef);

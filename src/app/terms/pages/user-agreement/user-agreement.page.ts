@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+const imports = [RouterLink];
 @Component({
+  imports,
   selector: 'app-user-agreement-page',
-  templateUrl: './user-agreement.page.html',
-  styleUrls: ['./user-agreement.page.scss'],
   standalone: true,
-  imports: [RouterLink],
+  styleUrl: 'user-agreement.page.scss',
+  templateUrl: 'user-agreement.page.html',
 })
 export class UserAgreementPage { }

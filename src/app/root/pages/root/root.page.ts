@@ -11,12 +11,13 @@ import { HeaderComponent } from '@root/components/header';
 import { HealthCheckApiService } from '@root/services/api';
 import { UiStateService } from '@root/services/state';
 
+const imports = [CookieBannerComponent, FooterComponent, HeaderComponent, NgIf, RouterOutlet];
 @Component({
+  imports,
   selector: 'app-root-page',
-  templateUrl: './root.page.html',
-  styleUrls: ['./root.page.scss'],
   standalone: true,
-  imports: [CookieBannerComponent, FooterComponent, HeaderComponent, NgIf, RouterOutlet],
+  styleUrl: 'root.page.scss',
+  templateUrl: 'root.page.html',
 })
 export class RootPage extends BaseComponent implements OnInit {
   constructor(

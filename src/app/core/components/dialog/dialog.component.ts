@@ -8,12 +8,13 @@ import { ButtonComponent } from '@core/components/button';
 import { IconComponent } from '@core/components/icon';
 import { EBaseColor, TDialogData } from '@core/models/client';
 
+const imports = [ButtonComponent, IconComponent, MatDialogModule, NgIf, NgTemplateOutlet];
 @Component({
+  imports,
   selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss'],
   standalone: true,
-  imports: [ButtonComponent, IconComponent, MatDialogModule, NgIf, NgTemplateOutlet],
+  styleUrl: 'dialog.component.scss',
+  templateUrl: 'dialog.component.html',
 })
 export class DialogComponent extends BaseComponent {
   EBaseColor = EBaseColor;

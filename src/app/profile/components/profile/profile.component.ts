@@ -18,23 +18,24 @@ import { WishesComponent } from '@wish/components/wishes';
 import { TWish } from '@wish/models/client';
 import { WishService } from '@wish/services/client';
 
+const imports = [
+  ButtonComponent,
+  CardComponent,
+  NgFor,
+  NgIf,
+  ProfileActionsComponent,
+  ProfileBlockComponent,
+  ProfileSettingsComponent,
+  RouterLink,
+  ShortProfileCardComponent,
+  WishesComponent,
+];
 @Component({
+  imports,
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
   standalone: true,
-  imports: [
-    ButtonComponent,
-    CardComponent,
-    NgFor,
-    NgIf,
-    ProfileActionsComponent,
-    ProfileBlockComponent,
-    ProfileSettingsComponent,
-    RouterLink,
-    ShortProfileCardComponent,
-    WishesComponent,
-  ],
+  styleUrl: 'profile.component.scss',
+  templateUrl: 'profile.component.html',
 })
 export class ProfileComponent extends BaseComponent implements OnInit {
   @Input() accountId: number;

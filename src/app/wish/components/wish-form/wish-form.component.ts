@@ -16,23 +16,24 @@ import { EAvatarType, EBaseColor, TDialogData } from '@core/models/client';
 import { TWish, TWishFormGroup } from '@wish/models/client';
 import { descriptionValidators, titleValidators } from '@wish/validators';
 
+const imports = [
+  AvatarComponent,
+  ButtonComponent,
+  DisableRepeatWhitespacesDirective,
+  FormsModule,
+  ImageUploaderComponent,
+  InputComponent,
+  NgIf,
+  ReactiveFormsModule,
+  TextareaComponent,
+  TrimStartWhitespacesDirective,
+];
 @Component({
+  imports,
   selector: 'app-wish-form',
-  templateUrl: './wish-form.component.html',
-  styleUrls: ['./wish-form.component.scss'],
   standalone: true,
-  imports: [
-    AvatarComponent,
-    ButtonComponent,
-    DisableRepeatWhitespacesDirective,
-    FormsModule,
-    ImageUploaderComponent,
-    InputComponent,
-    NgIf,
-    ReactiveFormsModule,
-    TextareaComponent,
-    TrimStartWhitespacesDirective,
-  ],
+  styleUrl: 'wish-form.component.scss',
+  templateUrl: 'wish-form.component.html',
 })
 export class WishFormComponent extends BaseFormComponent<TWishFormGroup> implements OnInit {
   @Output() submit = new EventEmitter<TWish>();

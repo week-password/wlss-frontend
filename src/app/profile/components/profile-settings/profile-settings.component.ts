@@ -17,23 +17,24 @@ import { TProfile, TProfileFormGroup } from '@profile/models/client';
 import { descriptionValidators, nameValidators } from '@profile/validators';
 import { UserStateService } from '@root/services/state';
 
+const imports = [
+  AvatarComponent,
+  ButtonComponent,
+  DisableRepeatWhitespacesDirective,
+  FormsModule,
+  ImageUploaderComponent,
+  InputComponent,
+  NgIf,
+  ReactiveFormsModule,
+  TextareaComponent,
+  TrimStartWhitespacesDirective,
+];
 @Component({
+  imports,
   selector: 'app-profile-settings',
-  templateUrl: './profile-settings.component.html',
-  styleUrls: ['./profile-settings.component.scss'],
   standalone: true,
-  imports: [
-    AvatarComponent,
-    ButtonComponent,
-    DisableRepeatWhitespacesDirective,
-    FormsModule,
-    ImageUploaderComponent,
-    InputComponent,
-    NgIf,
-    ReactiveFormsModule,
-    TextareaComponent,
-    TrimStartWhitespacesDirective,
-  ],
+  styleUrl: 'profile-settings.component.scss',
+  templateUrl: 'profile-settings.component.html',
 })
 export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGroup> implements OnInit {
   @Output() submit = new EventEmitter<TProfile>();
