@@ -9,4 +9,7 @@
     flex-direction: column;
     align-items: center;
   }
+  &__not-found-message {
+    padding: 0 var(--x-indent);
+  }
 }
