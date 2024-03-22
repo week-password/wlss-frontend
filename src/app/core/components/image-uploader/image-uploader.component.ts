@@ -104,6 +104,11 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
       this.fileError$.next(EFileError.other);
       return;
     }
+    const fileError = this.validateFileSize(file.blob);
+    this.fileError$.next(fileError);
+    if (fileError !== null) {
+      return;
+    }
     this.uploadFile(file.blob);
   }
 
@@ -164,7 +169,7 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
     this.updateScale();
   }
 
-  private validateFile(file: File | null): EFileError | null {
+  private validateFile(file: Blob | null): EFileError | null {
     if (!file) {
       return EFileError.other;
     }
@@ -172,6 +177,10 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
     if (!fileFormatRegexp.test(file.type)) {
       return EFileError.format;
     }
+    return null;
+  }
+
+  private validateFileSize(file: Blob): EFileError | null {
     if (this.maxFileSize && file.size > this.maxFileSize) {
       return EFileError.size;
     }
@@ -185,6 +194,7 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
       if (!fileError) {
         return;
       }
+      this.uploadError.emit();
       const data: TSnackbarData = {
         width: 260,
         catPosition: EPosition.top,
@@ -225,7 +235,6 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
         this.change.emit();
       },
       error: (error: HttpErrorResponse) => {
-        this.uploadError.emit();
         if (error.status === EHttpError.unprocessableEntity) {
           this.fileError$.next(EFileError.format);
           return;
