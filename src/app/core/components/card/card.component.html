@@ -1,8 +1,8 @@
 <div
   class="c-card"
   [class]="{
-  'c-card_presentation-view': presentationView,
-  'c-card_no-description': !description
+    'c-card_presentation-view': presentationView,
+    'c-card_no-description': !description
   }"
 >
   <div class="c-card__avatar">
@@ -10,10 +10,7 @@
   </div>
   <div
     class="c-card__header"
-    [class]="{
-      'header-2': presentationView,
-      'header-4': !presentationView
-    }"
+    [class]="{ 'header-2': presentationView, 'header-4': !presentationView }"
   >
     <span>{{ header }}</span>
     <span *ngIf="headerBadge" class="c-card__header-badge c-badge c-badge_secondary">{{ headerBadge }}</span>
@@ -21,5 +18,10 @@
   <a *ngIf="showControls" #controls class="c-card__controls" href="javascript:;" (click)="$event.stopPropagation()">
     <ng-content select="[controls]" />
   </a>
-  <div class="c-card__description color-text-4">{{ description }}</div>
+  <div class="c-card__description color-text-4">{{ truncatedDescription }}</div>
+  <div *ngIf="shouldTruncateDescription" class="c-card__truncate-description-button" >
+    <span class="c-button c-button_text" (click)="switchDescriptionView()">
+      {{ showFullDescription ? 'Скрыть' : 'Показать полностью' }}
+    </span>
+  </div>
 </div>
