@@ -6,7 +6,8 @@ $avatar-size--presentation-view: 180px;
 .c-card {
   display: grid;
   grid-template-areas: 'avatar header controls'
-                       'avatar description description';
+                       'avatar description description'
+                       'avatar truncate-description-button truncate-description-button';
   grid-template-columns: max-content auto min-content;
   grid-template-rows: minmax(36px, auto) 1fr;
   column-gap: var(--x-indent--small);
@@ -50,6 +51,9 @@ $avatar-size--presentation-view: 180px;
   &__description {
     grid-area: description;
   }
+  &__truncate-description-button {
+    grid-area: truncate-description-button;
+  }
 }
 
 @include mobile {
@@ -59,7 +63,8 @@ $avatar-size--presentation-view: 180px;
       'avatar'
       'header'
       'controls'
-      'description';
+      'description'
+      'truncate-description-button';
     grid-template-rows: repeat(4, auto);
     grid-template-columns: auto;
     row-gap: 0;
@@ -73,6 +78,9 @@ $avatar-size--presentation-view: 180px;
     }
     &__description {
       margin-top: var(--y-indent--small);
+    }
+    &__truncate-description-button {
+      justify-self: start;
     }
   }
 }
