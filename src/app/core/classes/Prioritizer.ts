@@ -1,6 +1,6 @@
 abstract class AbstractPrioritizer<T> {
   protected abstract priorities: Array<T>;
-  private sourceElements: Array<T> = [];
+  private readonly sourceElements: Array<T> = [];
 
   constructor(elements: Array<T>) {
     this.sourceElements = elements.slice();
@@ -12,12 +12,12 @@ abstract class AbstractPrioritizer<T> {
     );
   }
 
-  private getPriority = (element: T): number => {
+  private getPriority(element: T): number {
     const lowestPriority = Infinity;
     const elementPriority = this.priorities.indexOf(element);
     const hasPriority = elementPriority !== -1;
     return hasPriority ? elementPriority : lowestPriority;
-  };
+  }
 }
 
 abstract class ObjectKeysPrioritizer extends AbstractPrioritizer<string> {

@@ -46,9 +46,9 @@ const imports = [
 })
 export class SigninPage extends BaseFormComponent<TSigninDataFormGroup> implements OnInit {
   constructor(
-    private authService: AuthService,
-    private router: Router,
-    private snackBar: MatSnackBar,
+    private readonly authService: AuthService,
+    private readonly router: Router,
+    private readonly snackBar: MatSnackBar,
   ) {
     super();
   }

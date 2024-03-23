@@ -21,10 +21,10 @@ const imports = [CookieBannerComponent, FooterComponent, HeaderComponent, NgIf, 
 })
 export class RootPage extends BaseComponent implements OnInit {
   constructor(
-    private healthCheckApiService: HealthCheckApiService,
-    private platform: Platform,
-    private router: Router,
-    private uiStateService: UiStateService,
+    private readonly healthCheckApiService: HealthCheckApiService,
+    private readonly platform: Platform,
+    private readonly router: Router,
+    private readonly uiStateService: UiStateService,
   ) {
     super();
   }
@@ -46,9 +46,7 @@ export class RootPage extends BaseComponent implements OnInit {
 
   private checkApiHeath(): void {
     this.healthCheckApiService.getHealth().pipe(takeUntil(this.destroy$)).subscribe({
-      error: () => {
-        this.router.navigate(['unavailable']);
-      },
+      error: () => this.router.navigate(['unavailable']),
     });
   }
 

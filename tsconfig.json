@@ -48,5 +48,4 @@
     "strictTemplates": true,
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.prod.*"],
 }

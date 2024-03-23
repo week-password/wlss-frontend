@@ -6,7 +6,7 @@ import { TGetAcceptedRequestsResponse, TGetIncomingRequestsResponse, TGetOutgoin
 
 @Injectable({ providedIn: 'root' })
 export class FriendshipApiService {
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   getAcceptedRequests(accountId: number): Observable<TGetAcceptedRequestsResponse> {
     return this.http.get<TGetOutgoingRequestsResponse>(`/accounts/${accountId}/friends/accepted`);

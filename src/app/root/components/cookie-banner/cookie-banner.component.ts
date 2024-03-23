@@ -29,7 +29,7 @@ export class CookieBannerComponent extends BaseComponent implements AfterViewIni
   private readonly bannerButtonText = 'Понятно';
   private readonly bannerWidth = 300;
 
-  constructor(private snackBar: MatSnackBar) {
+  constructor(private readonly snackBar: MatSnackBar) {
     super();
   }
 

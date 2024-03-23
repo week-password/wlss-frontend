@@ -6,7 +6,7 @@ import { TGetProfileResponse, TUpdateProfileRequest, TUpdateProfileResponse } fr
 
 @Injectable({ providedIn: 'root' })
 export class ProfileApiService {
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   getProfile(accountId: number): Observable<TGetProfileResponse> {
     return this.http.get<TGetProfileResponse>(`/accounts/${accountId}/profile`);

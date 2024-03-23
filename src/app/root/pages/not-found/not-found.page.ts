@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   templateUrl: 'not-found.page.html',
 })
 export class NotFoundPage {
-  variant = new Date().getMilliseconds() % 2;
+  readonly variant = new Date().getMilliseconds() % 2;
 }

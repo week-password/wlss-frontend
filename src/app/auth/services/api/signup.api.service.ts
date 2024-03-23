@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SignupApiService {
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   matchAccountLogin(login: string): Observable<void> {
     return this.http.post<void>('/accounts/logins/match', { login });

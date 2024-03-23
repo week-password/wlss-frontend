@@ -12,11 +12,7 @@
     <div *ngIf="titleTemplate" class="c-snackbar__title medium-text mb-10">
       <ng-container [ngTemplateOutlet]="titleTemplate"></ng-container>
     </div>
-    <div
-      *ngIf="text"
-      class="c-snackbar__text"
-      [innerHtml]="text"
-    ></div>
+    <div *ngIf="text" class="c-snackbar__text" [innerHtml]="text"></div>
     <div *ngIf="textTemplate" class="c-snackbar__text">
       <ng-contaner [ngTemplateOutlet]="textTemplate"></ng-contaner>
     </div>

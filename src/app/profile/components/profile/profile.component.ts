@@ -50,10 +50,10 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   readonly EBlockState = EBlockState;
 
   constructor(
-    private friendshipService: FriendshipService,
-    private profileService: ProfileService,
-    private userStateService: UserStateService,
-    private wishService: WishService,
+    private readonly friendshipService: FriendshipService,
+    private readonly profileService: ProfileService,
+    private readonly userStateService: UserStateService,
+    private readonly wishService: WishService,
   ) {
     super();
   }

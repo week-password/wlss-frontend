@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class BookingApiService {
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   createBooking(accountId: number, wishId: number): Observable<void> {
     return this.http.post<void>(`/accounts/${accountId}/wishes/${wishId}/bookings`, {});

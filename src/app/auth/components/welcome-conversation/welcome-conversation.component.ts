@@ -13,7 +13,7 @@ const imports = [MessageComponent, NgFor];
   templateUrl: 'welcome-conversation.component.html',
 })
 export class WelcomeConversationComponent {
-  EBaseColor = EBaseColor;
+  readonly EBaseColor = EBaseColor;
   readonly conversation = [
     'Что такое Wisher?',
     'Wisher - это сервис, который поможет вам создавать списки желаний и легко делиться ими со своими близкими и друзьями',

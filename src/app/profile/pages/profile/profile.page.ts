@@ -24,11 +24,11 @@ export class ProfilePage extends BaseComponent implements OnInit {
   accountId: number | null = null;
 
   constructor(
-    private profileService: ProfileService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private sessionStateService: SessionStateService,
-    private userStateService: UserStateService,
+    private readonly profileService: ProfileService,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly sessionStateService: SessionStateService,
+    private readonly userStateService: UserStateService,
   ) {
     super();
   }

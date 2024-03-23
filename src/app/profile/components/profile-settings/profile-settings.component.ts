@@ -48,7 +48,7 @@ export class ProfileSettingsComponent extends BaseFormComponent<TProfileFormGrou
 
   private dialogRef: MatDialogRef<DialogComponent>;
 
-  constructor(private userStateService: UserStateService) {
+  constructor(private readonly userStateService: UserStateService) {
     super();
   }
 

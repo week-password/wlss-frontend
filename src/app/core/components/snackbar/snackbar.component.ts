@@ -15,17 +15,17 @@ const imports = [AngularSvgIconModule, ButtonComponent, MatSnackBarModule, NgIf,
   templateUrl: 'snackbar.component.html',
 })
 export class SnackbarComponent {
-  snackBarRef = inject(MatSnackBarRef);
+  readonly snackBarRef = inject(MatSnackBarRef);
 
-  buttonText?: string;
-  catPosition? = EPosition.top;
-  text?: string;
-  textAlign? = ETextPosition.right;
-  textTemplate?: TemplateRef<HTMLElement>;
-  title?: string;
-  titleTemplate?: TemplateRef<HTMLElement>;
-  view: ESnackbarView;
-  width? = 320;
+  readonly buttonText?: string;
+  readonly catPosition?: EPosition = EPosition.top;
+  readonly text?: string;
+  readonly textAlign?: ETextPosition = ETextPosition.right;
+  readonly textTemplate?: TemplateRef<HTMLElement>;
+  readonly title?: string;
+  readonly titleTemplate?: TemplateRef<HTMLElement>;
+  readonly view: ESnackbarView;
+  readonly width: number = 320;
 
   constructor(@Inject(MAT_SNACK_BAR_DATA) data: TSnackbarData) {
     this.buttonText = data.buttonText;

@@ -11,7 +11,7 @@ import { AvatarComponent } from '@core/components/avatar';
 import { LoaderComponent } from '@core/components/loader';
 import { OverlayComponent } from '@core/components/overlay';
 import { EOverlayPosition, TDropdownItem } from '@core/models/client';
-import { TAccount, TProfile } from '@profile/models/client';
+import { TProfile } from '@profile/models/client';
 import { ProfileService } from '@profile/services/client';
 import { UserStateService } from '@root/services/state';
 
@@ -31,28 +31,25 @@ const imports = [
   templateUrl: 'authorized-user.component.html',
 })
 export class AuthorizedUserComponent extends BaseComponent implements OnInit {
-  account: TAccount | null = null;
   profile: TProfile | null = null;
-  menuOpened = false;
   menuItems: Array<TDropdownItem> = [
     { value: 'Профиль', action: this.goToProfile.bind(this) },
     { value: 'Выход', action: this.signout.bind(this) },
   ];
-  EOverlayPosition = EOverlayPosition;
+  readonly EOverlayPosition = EOverlayPosition;
 
   constructor(
-    private authService: AuthService,
-    private profileService: ProfileService,
-    private router: Router,
-    private sessionStateService: SessionStateService,
-    private userStateService: UserStateService,
+    private readonly authService: AuthService,
+    private readonly profileService: ProfileService,
+    private readonly router: Router,
+    private readonly sessionStateService: SessionStateService,
+    private readonly userStateService: UserStateService,
   ) {
     super();
   }
 
   ngOnInit(): void {
     this.getAuthorizedUser();
-    this.subscribeOnAccountChanges();
     this.subscribeOnProfileChanges();
   }
 
@@ -69,14 +66,6 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
     ).subscribe((profile: TProfile) => {
       this.userStateService.setAccount(profile.account);
       this.userStateService.setProfile(profile);
-    });
-  }
-
-  private subscribeOnAccountChanges(): void {
-    this.userStateService.account.pipe(
-      takeUntil(this.destroy$),
-    ).subscribe((account: TAccount | null) => {
-      this.account = account;
     });
   }
 

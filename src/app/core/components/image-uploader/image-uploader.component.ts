@@ -41,18 +41,22 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
 
   @ViewChild('cropper') readonly cropper: ImageCropperComponent;
 
-  minScale: number;
-  scale: number;
   rotation = 0;
   transform: ImageTransform = { translateUnit: 'px' };
   imageUrl: string | undefined;
   imageChangedEvent: Event | null;
   isLoaded = false;
 
-  private fileError$ = new BehaviorSubject<EFileError | null>(null);
-  private fileSizePipe = new FileSizePipe();
+  private scale: number;
+  private minScale: number;
 
-  constructor(private filesService: FilesService, private snackBar: MatSnackBar) {
+  private readonly fileError$ = new BehaviorSubject<EFileError | null>(null);
+  private readonly fileSizePipe = new FileSizePipe();
+
+  constructor(
+    private readonly filesService: FilesService,
+    private readonly snackBar: MatSnackBar,
+  ) {
     super();
   }
 

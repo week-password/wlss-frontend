@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SessionStateService {
-  refreshingInProgress = new BehaviorSubject<boolean>(false);
+  readonly refreshingInProgress = new BehaviorSubject<boolean>(false);
 
   get accessToken(): string | null {
     return localStorage.getItem('access-token');

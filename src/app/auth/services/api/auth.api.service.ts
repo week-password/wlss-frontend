@@ -7,7 +7,7 @@ import { refreshRequestTokens } from '@core/interceptors';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService {
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   signup(signupData: TSignupRequest): Observable<void> {
     return this.http.post<void>('/accounts', signupData);

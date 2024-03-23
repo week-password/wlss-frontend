@@ -10,8 +10,8 @@ import { SessionStateService } from '@auth/services/state';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(
-    private authApiService: AuthApiService,
-    private sessionStateService: SessionStateService,
+    private readonly authApiService: AuthApiService,
+    private readonly sessionStateService: SessionStateService,
   ) { }
 
   signup(signupData: TSignupData): Observable<void> {
