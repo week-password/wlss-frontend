@@ -6,7 +6,7 @@ import { showServerError } from '@core/interceptors';
 
 @Injectable({ providedIn: 'root' })
 export class HealthCheckApiService {
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   getHealth(): Observable<void> {
     const context = new HttpContext().set(showServerError, false);

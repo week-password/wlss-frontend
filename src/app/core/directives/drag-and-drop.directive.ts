@@ -7,7 +7,7 @@ import { AfterViewInit, Directive, ElementRef, EventEmitter, HostListener, Outpu
 export class DragAndDropDirective implements AfterViewInit {
   @Output() dropFile: EventEmitter<File> = new EventEmitter();
 
-  constructor(private dragAndDropArea: ElementRef) { }
+  constructor(private readonly dragAndDropArea: ElementRef) { }
 
   @HostListener('dragover', ['$event'])
   onDragOver(event: DragEvent): void {

@@ -8,8 +8,8 @@ import { AccountApiService, ProfileApiService } from '@profile/services/api';
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
   constructor(
-    private accountApiService: AccountApiService,
-    private profileApiService: ProfileApiService,
+    private readonly accountApiService: AccountApiService,
+    private readonly profileApiService: ProfileApiService,
   ) { }
 
   getProfileByAccountId(accountId: number): Observable<TProfile> {

@@ -4,8 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 const mobileMaxWidth = 768;
 @Injectable({ providedIn: 'root' })
 export class UiStateService {
-  private viewportWidth$ = new BehaviorSubject<number>(window.innerWidth);
-  private mobile$ = new BehaviorSubject<boolean>(window.innerWidth <= mobileMaxWidth);
+  private readonly viewportWidth$ = new BehaviorSubject<number>(window.innerWidth);
+  private readonly mobile$ = new BehaviorSubject<boolean>(window.innerWidth <= mobileMaxWidth);
 
   get viewportWidth(): Observable<number> {
     return this.viewportWidth$.asObservable();

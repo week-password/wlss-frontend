@@ -15,8 +15,8 @@ export class UnavailablePage extends BaseComponent implements OnInit {
   private intervalId: number;
 
   constructor(
-    private healthCheckApiService: HealthCheckApiService,
-    private router: Router,
+    private readonly healthCheckApiService: HealthCheckApiService,
+    private readonly router: Router,
   ) {
     super();
   }

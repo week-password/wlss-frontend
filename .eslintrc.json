@@ -3,6 +3,11 @@
   "overrides": [
     {
       "files": "*.ts",
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "sourceType": "module",
+        "project": ["./tsconfig.json"]
+      },
       "extends": [
         "eslint:recommended",
         "plugin:@angular-eslint/recommended",
@@ -61,6 +66,7 @@
         ],
         "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+        "@typescript-eslint/prefer-readonly": "error",
         "@typescript-eslint/typedef": ["error", { "arrowParameter": true, "parameter": true }],
 
         "accessor-pairs": "error",

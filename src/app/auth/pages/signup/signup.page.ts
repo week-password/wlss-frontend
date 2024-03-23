@@ -45,14 +45,14 @@ const imports = [
   templateUrl: 'signup.page.html',
 })
 export class SignupPage extends BaseFormComponent<TSignupDataFormGroup> implements OnInit {
-  EBaseColor = EBaseColor;
-  ESignupStep = ESignupStep;
   currentSignupStep = ESignupStep.account;
+  readonly EBaseColor = EBaseColor;
+  readonly ESignupStep = ESignupStep;
 
   constructor(
-    private authService: AuthService,
-    private router: Router,
-    private signupService: SignupService,
+    private readonly authService: AuthService,
+    private readonly router: Router,
+    private readonly signupService: SignupService,
   ) {
     super();
   }
@@ -67,30 +67,6 @@ export class SignupPage extends BaseFormComponent<TSignupDataFormGroup> implemen
   ngOnInit(): void {
     this.initSignUpForm();
     this.subscribeOnPasswordsChanges();
-  }
-
-  initSignUpForm(): void {
-    this.form = this.fb.group<TSignupDataFormGroup>({
-      account: this.fb.group({
-        login: this.fb.control<string>('', {
-          nonNullable: true,
-          validators: loginValidators,
-          asyncValidators: [unavailableLoginValidator(this.signupService)],
-        }),
-        email: this.fb.control<string>('', {
-          nonNullable: true,
-          validators: emailValidators,
-          asyncValidators: [unavailableEmailValidator(this.signupService)],
-        }),
-        password: this.fb.control<string>('', { nonNullable: true }),
-        confirmPassword: this.fb.control<string>('', { nonNullable: true }),
-      }),
-      profile: this.fb.group({
-        name: this.fb.control<string>('', { nonNullable: true, validators: nameValidators }),
-        description: this.fb.control<string | null>(null, { validators: descriptionValidators }),
-      }),
-    });
-    this.addPasswordsValidators();
   }
 
   goToProfileStep(): void {
@@ -115,6 +91,30 @@ export class SignupPage extends BaseFormComponent<TSignupDataFormGroup> implemen
     ).subscribe(() => {
       this.router.navigate(['signin']);
     });
+  }
+
+  private initSignUpForm(): void {
+    this.form = this.fb.group<TSignupDataFormGroup>({
+      account: this.fb.group({
+        login: this.fb.control<string>('', {
+          nonNullable: true,
+          validators: loginValidators,
+          asyncValidators: [unavailableLoginValidator(this.signupService)],
+        }),
+        email: this.fb.control<string>('', {
+          nonNullable: true,
+          validators: emailValidators,
+          asyncValidators: [unavailableEmailValidator(this.signupService)],
+        }),
+        password: this.fb.control<string>('', { nonNullable: true }),
+        confirmPassword: this.fb.control<string>('', { nonNullable: true }),
+      }),
+      profile: this.fb.group({
+        name: this.fb.control<string>('', { nonNullable: true, validators: nameValidators }),
+        description: this.fb.control<string | null>(null, { validators: descriptionValidators }),
+      }),
+    });
+    this.addPasswordsValidators();
   }
 
   private addPasswordsValidators(): void {

@@ -6,7 +6,7 @@ import { TCreateWishRequest, TCreateWishResponse, TGetWishesResponse, TUpdateWis
 
 @Injectable({ providedIn: 'root' })
 export class WishApiService {
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   getWishes(accountId: number): Observable<TGetWishesResponse> {
     return this.http.get<TGetWishesResponse>(`/accounts/${accountId}/wishes`);

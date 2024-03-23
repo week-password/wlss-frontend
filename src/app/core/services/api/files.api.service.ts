@@ -6,7 +6,7 @@ import { TUploadFileResponse } from '@core/models/api';
 
 @Injectable({ providedIn: 'root' })
 export class FilesApiService {
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   uploadFile(file: FormData): Observable<TUploadFileResponse> {
     return this.http.post<TUploadFileResponse>(`/files`, file);

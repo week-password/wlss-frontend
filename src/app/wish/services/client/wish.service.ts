@@ -7,7 +7,7 @@ import { WishApiService } from '@wish/services/api';
 
 @Injectable({ providedIn: 'root' })
 export class WishService {
-  constructor(private wishApiService: WishApiService) { }
+  constructor(private readonly wishApiService: WishApiService) { }
 
   getWishes(accountId: number): Observable<Array<TWish>> {
     return this.wishApiService.getWishes(accountId);

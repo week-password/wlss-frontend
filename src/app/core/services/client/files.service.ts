@@ -6,7 +6,7 @@ import { FilesApiService } from '@core/services/api';
 
 @Injectable({ providedIn: 'root' })
 export class FilesService {
-  constructor(private filesApiService: FilesApiService) { }
+  constructor(private readonly filesApiService: FilesApiService) { }
 
   uploadFile(file: Blob): Observable<string> {
     const extension = file.type.split('/')[1];

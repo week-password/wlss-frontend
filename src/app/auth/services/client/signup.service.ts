@@ -9,7 +9,7 @@ const availableStatus = EHttpError.notFound;
 
 @Injectable({ providedIn: 'root' })
 export class SignupService {
-  constructor(private signupApiService: SignupApiService) { }
+  constructor(private readonly signupApiService: SignupApiService) { }
 
   isLoginUnavailable(login: string): Observable<boolean> {
     return this.signupApiService.matchAccountLogin(login).pipe(

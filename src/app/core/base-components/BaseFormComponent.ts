@@ -12,7 +12,7 @@ import { BaseComponent } from './BaseComponent';
 export class BaseFormComponent<FormGroupModel extends { [K in keyof FormGroupModel]: AbstractControl }> extends BaseComponent {
   form: FormGroup<FormGroupModel>;
   changed = false;
-  EInputType = EInputType;
+  readonly EInputType = EInputType;
 
   protected readonly dialog: MatDialog;
   protected readonly fb: FormBuilder;

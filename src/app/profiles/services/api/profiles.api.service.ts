@@ -6,7 +6,7 @@ import { TGetProfilesResponse } from '@profiles/models/api';
 
 @Injectable({ providedIn: 'root' })
 export class ProfilesApiService {
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   getProfiles(): Observable<TGetProfilesResponse> {
     return this.http.get<TGetProfilesResponse>('/profiles');

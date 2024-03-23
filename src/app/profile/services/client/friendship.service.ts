@@ -6,7 +6,7 @@ import { FriendshipApiService } from '@profile/services/api';
 
 @Injectable({ providedIn: 'root' })
 export class FriendshipService {
-  constructor(private friendshipApiService: FriendshipApiService) { }
+  constructor(private readonly friendshipApiService: FriendshipApiService) { }
 
   getAcceptedRequests(accountId: number): Observable<Array<TProfile>> {
     return this.friendshipApiService.getAcceptedRequests(accountId);

@@ -5,8 +5,8 @@ import { TAccount, TProfile } from '@profile/models/client';
 
 @Injectable({ providedIn: 'root' })
 export class UserStateService {
-  private account$ = new BehaviorSubject<TAccount | null>(null);
-  private profile$ = new BehaviorSubject<TProfile | null>(null);
+  private readonly account$ = new BehaviorSubject<TAccount | null>(null);
+  private readonly profile$ = new BehaviorSubject<TProfile | null>(null);
 
   get account(): Observable<TAccount | null> {
     return this.account$.asObservable();

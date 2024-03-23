@@ -6,7 +6,7 @@ import { TGetAccountResponse } from '@profile/models/api';
 
 @Injectable({ providedIn: 'root' })
 export class AccountApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   getAccount(login: string): Observable<TGetAccountResponse> {
     return this.http.get<TGetAccountResponse>(`/accounts/logins/${login}`);

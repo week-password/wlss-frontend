@@ -14,10 +14,10 @@ const imports = [AngularSvgIconModule, NgIf];
   templateUrl: 'avatar.component.html',
 })
 export class AvatarComponent {
-  @Input() type: EAvatarType = EAvatarType.profile;
   @Input() avatarId: string | null;
+  @Input() type: EAvatarType = EAvatarType.profile;
 
-  AvatarSources = AvatarSources;
+  readonly AvatarSources = AvatarSources;
 
   get source(): string | null {
     return this.avatarId ? `${environment.bff.host}:${environment.bff.port}${environment.bff.filesUrl}/${this.avatarId}` : null;

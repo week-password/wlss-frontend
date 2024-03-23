@@ -4,12 +4,6 @@ import { SigninPage } from './signin';
 import { SignupPage } from './signup';
 
 export const AuthRoutes: Routes = [
-  {
-    path: 'signin',
-    component: SigninPage,
-  },
-  {
-    path: 'signup',
-    component: SignupPage,
-  },
+  { path: 'signin', component: SigninPage },
+  { path: 'signup', component: SignupPage },
 ];

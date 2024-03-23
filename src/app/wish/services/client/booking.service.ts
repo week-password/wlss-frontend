@@ -5,7 +5,7 @@ import { BookingApiService } from '@wish/services/api';
 
 @Injectable({ providedIn: 'root' })
 export class BookingService {
-  constructor(private bookingApiService: BookingApiService) { }
+  constructor(private readonly bookingApiService: BookingApiService) { }
 
   createBooking(accountId: number, wishId: number): Observable<void> {
     return this.bookingApiService.createBooking(accountId, wishId);

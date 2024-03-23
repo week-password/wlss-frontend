@@ -50,7 +50,7 @@ export class WishFormComponent extends BaseFormComponent<TWishFormGroup> impleme
 
   private dialogRef: MatDialogRef<DialogComponent>;
 
-  constructor(private matDialog: MatDialog) {
+  constructor(private readonly matDialog: MatDialog) {
     super();
   }
 

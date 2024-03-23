@@ -31,15 +31,16 @@ const imports = [
   templateUrl: 'profiles.page.html',
 })
 export class ProfilesPage extends BaseComponent implements OnInit {
-  accountId: number;
-  profiles: Array<TProfile> = [];
   filteredProfiles: Array<TProfile> = [];
 
+  private profiles: Array<TProfile> = [];
+  private readonly accountId: number;
+
   constructor(
-    private friendshipService: FriendshipService,
-    private profilesService: ProfilesService,
-    private router: Router,
-    private sessionStateService: SessionStateService,
+    private readonly friendshipService: FriendshipService,
+    private readonly profilesService: ProfilesService,
+    private readonly router: Router,
+    private readonly sessionStateService: SessionStateService,
   ) {
     super();
     const accountId = this.sessionStateService.accountId;
@@ -52,17 +53,6 @@ export class ProfilesPage extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfiles();
-  }
-
-  getProfiles(): void {
-    this.loading = true;
-    this.profilesService.getProfiles().pipe(
-      takeUntil(this.destroy$),
-      finalize(() => { this.loading = false; }),
-    ).subscribe((profiles: Array<TProfile>) => {
-      this.profiles = profiles;
-      this.filteredProfiles = profiles;
-    });
   }
 
   getFilteredProfiles(filter: TProfilesFilter): void {
@@ -109,6 +99,17 @@ export class ProfilesPage extends BaseComponent implements OnInit {
       takeUntil(this.destroy$),
     ).subscribe(() => {
       profile.friendshipStatus = EFriendshipStatus.notRequested;
+    });
+  }
+
+  private getProfiles(): void {
+    this.loading = true;
+    this.profilesService.getProfiles().pipe(
+      takeUntil(this.destroy$),
+      finalize(() => { this.loading = false; }),
+    ).subscribe((profiles: Array<TProfile>) => {
+      this.profiles = profiles;
+      this.filteredProfiles = profiles;
     });
   }
 }

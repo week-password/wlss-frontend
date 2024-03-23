@@ -6,7 +6,7 @@ import { ProfilesApiService } from '@profiles/services/api';
 
 @Injectable({ providedIn: 'root' })
 export class ProfilesService {
-  constructor(private profilesApiService: ProfilesApiService) { }
+  constructor(private readonly profilesApiService: ProfilesApiService) { }
 
   getProfiles(): Observable<Array<TProfile>> {
     return this.profilesApiService.getProfiles();

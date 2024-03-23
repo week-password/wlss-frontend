@@ -24,10 +24,6 @@ const imports = [
 export class ProfilesFilterComponent extends BaseFormComponent<TProfilesFilterFormGroup> implements OnInit {
   @Output() filter = new EventEmitter<TProfilesFilter>();
 
-  constructor() {
-    super();
-  }
-
   ngOnInit(): void {
     this.initProfilesFilterForm();
     this.subscribeOnProfilesFilterFormChanges();

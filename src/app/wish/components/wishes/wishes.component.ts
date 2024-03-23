@@ -40,15 +40,16 @@ export class WishesComponent extends BaseComponent implements OnInit {
 
   @ViewChild('wishForm') wishForm: WishFormComponent;
 
-  mobile = false;
   readonly EAvatarType = EAvatarType;
   readonly EBookingStatus = EBookingStatus;
 
+  private mobile = false;
+
   constructor(
-    private bookingService: BookingService,
-    private snackBar: MatSnackBar,
-    private uiStateService: UiStateService,
-    private wishService: WishService,
+    private readonly bookingService: BookingService,
+    private readonly snackBar: MatSnackBar,
+    private readonly uiStateService: UiStateService,
+    private readonly wishService: WishService,
   ) {
     super();
   }
