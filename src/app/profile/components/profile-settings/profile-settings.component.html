@@ -16,14 +16,12 @@
       <app-input
         class="mb-12"
         label="имя"
-        appTrimStartWhitespaces
-        appDisableRepeatWhitespaces
+        appRestrictWhitespaces
         [inputControl]="controls.name"
       ></app-input>
       <app-textarea
         label="о себе (необязательно)"
-        appTrimStartWhitespaces
-        appDisableRepeatWhitespaces
+        appRestrictWhitespaces
         [inputControl]="controls.description"
         [rows]="14"
       ></app-textarea>

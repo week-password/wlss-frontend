@@ -11,7 +11,7 @@ import { DialogComponent } from '@core/components/dialog';
 import { ImageUploaderComponent } from '@core/components/image-uploader';
 import { InputComponent } from '@core/components/input';
 import { TextareaComponent } from '@core/components/textarea';
-import { DisableRepeatWhitespacesDirective, TrimStartWhitespacesDirective } from '@core/directives';
+import { RestrictWhitespacesDirective } from '@core/directives';
 import { EAvatarType, EBaseColor, TDialogData } from '@core/models/client';
 import { TWish, TWishFormGroup } from '@wish/models/client';
 import { descriptionValidators, titleValidators } from '@wish/validators';
@@ -19,14 +19,13 @@ import { descriptionValidators, titleValidators } from '@wish/validators';
 const imports = [
   AvatarComponent,
   ButtonComponent,
-  DisableRepeatWhitespacesDirective,
   FormsModule,
   ImageUploaderComponent,
   InputComponent,
   NgIf,
   ReactiveFormsModule,
+  RestrictWhitespacesDirective,
   TextareaComponent,
-  TrimStartWhitespacesDirective,
 ];
 @Component({
   imports,

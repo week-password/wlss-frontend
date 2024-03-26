@@ -21,6 +21,7 @@ export class CardComponent {
   @Input() presentationView = false;
   @Input() showControls: boolean;
   @Input() visibleDescriptionLength: number;
+  @Input() visibleDescriptionLinesLength: number;
 
   showFullDescription = false;
 
@@ -31,14 +32,25 @@ export class CardComponent {
     if (!this.shouldTruncateDescription || this.showFullDescription) {
       return this.description;
     }
-    return this.description.slice(0, this.visibleDescriptionLength) + '...';
+    const truncatedDescription = this.description
+      .slice(0, this.visibleDescriptionLength)
+      .split('\n')
+      .slice(0, this.visibleDescriptionLinesLength)
+      .join('\n');
+    return truncatedDescription + '...';
   }
 
   get shouldTruncateDescription(): boolean {
     if (!this.description) {
       return false;
     }
-    return !!this.visibleDescriptionLength && this.description.length > this.visibleDescriptionLength;
+    if (this.visibleDescriptionLength && this.description.length > this.visibleDescriptionLength) {
+      return true;
+    }
+    if (this.visibleDescriptionLinesLength && this.description.split('\n').length > this.visibleDescriptionLinesLength) {
+      return true;
+    }
+    return false;
   }
 
   switchDescriptionView(): void {

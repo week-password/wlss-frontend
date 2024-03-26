@@ -16,8 +16,8 @@ export class WishService {
   createWish(accountId: number, wish: Omit<TWish, 'id'>): Observable<void> {
     const request: TCreateWishRequest = {
       avatarId: wish.avatarId,
-      description: wish.description,
-      title: wish.title,
+      description: wish.description.trimEnd(),
+      title: wish.title.trimEnd(),
     };
     return this.wishApiService.createWish(accountId, request).pipe(
       switchMap(() => of(undefined)),
@@ -27,8 +27,8 @@ export class WishService {
   updateWish(accountId: number, wish: TWish): Observable<void> {
     const request: TUpdateWishRequest = {
       avatarId: wish.avatarId,
-      description: wish.description,
-      title: wish.title,
+      description: wish.description.trimEnd(),
+      title: wish.title.trimEnd(),
     };
     return this.wishApiService.updateWish(accountId, wish.id, request).pipe(
       switchMap(() => of(undefined)),

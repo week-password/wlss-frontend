@@ -4,14 +4,12 @@
       <app-input
         class="mr-10"
         label="имя"
-        appTrimStartWhitespaces
-        appDisableRepeatWhitespaces
+        appRestrictWhitespaces
         [inputControl]="controls.name"
       ></app-input>
       <app-input
         label="логин"
-        appTrimStartWhitespaces
-        appDisableRepeatWhitespaces
+        appRestrictWhitespaces
         [inputControl]="controls.login"
       ></app-input>
   </form>

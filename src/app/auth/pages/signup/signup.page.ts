@@ -19,21 +19,20 @@ import { BaseFormComponent } from '@core/base-components';
 import { ButtonComponent } from '@core/components/button';
 import { InputComponent } from '@core/components/input';
 import { TextareaComponent } from '@core/components/textarea';
-import { ConvertEmptyStringToNullDirective, DisableRepeatWhitespacesDirective, TrimStartWhitespacesDirective } from '@core/directives';
+import { ConvertEmptyStringToNullDirective, RestrictWhitespacesDirective } from '@core/directives';
 import { EBaseColor } from '@core/models/client';
 import { descriptionValidators, nameValidators } from '@profile/validators';
 
 const imports = [
   ButtonComponent,
   ConvertEmptyStringToNullDirective,
-  DisableRepeatWhitespacesDirective,
   FormsModule,
   InputComponent,
   NgIf,
   ReactiveFormsModule,
+  RestrictWhitespacesDirective,
   RouterLink,
   TextareaComponent,
-  TrimStartWhitespacesDirective,
   WelcomeConversationComponent,
   WelcomeFormBlockComponent,
 ];

@@ -29,8 +29,8 @@ export class ProfileService {
     const accountId = profile.account.id;
     const request: TUpdateProfileRequest = {
       avatarId: profile.avatarId,
-      description: profile.description,
-      name: profile.name,
+      description: profile.description?.trimEnd() || null,
+      name: profile.name.trimEnd(),
     };
     return this.profileApiService.updateProfile(accountId, request).pipe(
       switchMap((response: TUpdateProfileResponse) => {
