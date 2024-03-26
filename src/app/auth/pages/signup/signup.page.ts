@@ -1,4 +1,5 @@
 import { NgIf } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -20,6 +21,7 @@ import { ButtonComponent } from '@core/components/button';
 import { InputComponent } from '@core/components/input';
 import { TextareaComponent } from '@core/components/textarea';
 import { ConvertEmptyStringToNullDirective, RestrictWhitespacesDirective } from '@core/directives';
+import { EHttpError } from '@core/models/api';
 import { EBaseColor } from '@core/models/client';
 import { descriptionValidators, nameValidators } from '@profile/validators';
 
@@ -87,8 +89,18 @@ export class SignupPage extends BaseFormComponent<TSignupDataFormGroup> implemen
     }
     this.authService.signup(this.form.value as TSignupData).pipe(
       takeUntil(this.destroy$),
-    ).subscribe(() => {
-      this.router.navigate(['signin']);
+    ).subscribe({
+      next: () => {
+        this.router.navigate(['signin']);
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status !== EHttpError.badRequest) {
+          return;
+        }
+        this.controls.account.controls.login.updateValueAndValidity();
+        this.controls.account.controls.email.updateValueAndValidity();
+        this.currentSignupStep = ESignupStep.account;
+      },
     });
   }
 

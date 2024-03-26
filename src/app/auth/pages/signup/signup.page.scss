@@ -11,12 +11,14 @@
   width: 100%;
 
   &__form {
-    width: 320px;
-    height: 340px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    &-step {
+      width: 320px;
+      height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
     &-inputs {
       width: 100%;
     }
