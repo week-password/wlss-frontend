@@ -49,6 +49,7 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
 
   private scale: number;
   private minScale: number;
+  private fileName = 'file';
 
   private readonly fileError$ = new BehaviorSubject<EFileError | null>(null);
   private readonly fileSizePipe = new FileSizePipe();
@@ -70,6 +71,7 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
     if (fileError !== null) {
       return;
     }
+    this.fileName = this.getFileName(file);
     this.triggerDroppedImageLoading(file);
   }
 
@@ -84,6 +86,7 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
     if (fileError !== null) {
       return;
     }
+    this.fileName = this.getFileName(target.files[0]);
     this.triggerSelectedImageLoading(fileChangedEvent);
   }
 
@@ -125,6 +128,7 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
     }
     this.imageChangedEvent = null;
     this.imageUrl = undefined;
+    this.fileName = 'file';
     this.isLoaded = false;
     this.transform = { translateUnit: 'px' };
     this.rotation = 0;
@@ -232,7 +236,7 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
   }
 
   private uploadFile(file: Blob): void {
-    this.filesService.uploadFile(file).pipe(
+    this.filesService.uploadFile(file, this.fileName).pipe(
       takeUntil(this.destroy$),
     ).subscribe({
       next: (fileId: string) => {
@@ -251,5 +255,10 @@ export class ImageUploaderComponent extends BaseComponent implements OnInit {
         this.fileError$.next(EFileError.other);
       },
     });
+  }
+
+  private getFileName(file: File): string {
+    const fileNameParts = file.name.split('.');
+    return fileNameParts.slice(0, fileNameParts.length - 1).join('.');
   }
 }
