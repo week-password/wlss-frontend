@@ -6,7 +6,10 @@
   <div class="signup__welcome-form-block">
     <app-welcome-form-block>
       <form class="signup__form" [formGroup]="form">
-        <ng-container *ngIf="currentSignupStep === ESignupStep.account">
+        <div
+          class="signup__form-step"
+          [class]="{ 'd-none': currentSignupStep !== ESignupStep.account }"
+        >
           <div class="signup__form-inputs">
             <app-input
               class="mb-12"
@@ -38,8 +41,10 @@
               (click)="goToProfileStep()"
             >Далее</app-button>
           </div>
-        </ng-container>
-        <ng-container *ngIf="currentSignupStep === ESignupStep.profile">
+        </div>
+        <div
+          class="signup__form-step"
+          [class]="{ 'd-none': currentSignupStep !== ESignupStep.profile }">
           <div class="signup__form-inputs">
             <app-input
               class="mb-12"
@@ -68,7 +73,7 @@
               (click)="goToAccountStep()"
             >Назад</app-button>
           </div>
-        </ng-container>
+        </div>
       </form>
       <div class="signup__caption caption">
         <div>Уже есть аккаунт?</div>
