@@ -4,15 +4,14 @@ import { takeUntil } from 'rxjs';
 
 import { BaseFormComponent } from '@core/base-components';
 import { InputComponent } from '@core/components/input';
-import { DisableRepeatWhitespacesDirective, TrimStartWhitespacesDirective } from '@core/directives';
+import { RestrictWhitespacesDirective } from '@core/directives';
 import { TProfilesFilter, TProfilesFilterFormGroup } from '@profiles/models/client';
 
 const imports = [
-  DisableRepeatWhitespacesDirective,
   FormsModule,
   InputComponent,
   ReactiveFormsModule,
-  TrimStartWhitespacesDirective,
+  RestrictWhitespacesDirective,
 ];
 @Component({
   imports,

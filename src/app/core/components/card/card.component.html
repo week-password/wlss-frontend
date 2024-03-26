@@ -18,7 +18,7 @@
   <a *ngIf="showControls" #controls class="c-card__controls" href="javascript:;" (click)="$event.stopPropagation()">
     <ng-content select="[controls]" />
   </a>
-  <div class="c-card__description color-text-4">{{ truncatedDescription }}</div>
+  <div class="c-card__description color-text-4" [innerText]="truncatedDescription"></div>
   <div *ngIf="shouldTruncateDescription" class="c-card__truncate-description-button" >
     <span class="c-button c-button_text" (click)="switchDescriptionView()">
       {{ showFullDescription ? 'Скрыть' : 'Показать полностью' }}

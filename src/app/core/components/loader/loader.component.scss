@@ -4,6 +4,7 @@
   position: absolute;
   top: 0;
   width: 100%;
+  max-width: var(--page-content-size);
   height: 100%;
   display: flex;
   align-items: center;
