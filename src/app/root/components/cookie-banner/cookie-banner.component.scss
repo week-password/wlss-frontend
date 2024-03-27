@@ -1,0 +1,29 @@
+@import 'src/styles/common/media';
+
+.c-cookie-banner {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 350px;
+  color: var(--accent);
+  border-color: var(--accent);
+  background-color: var(--background-2);
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid var(--accent);
+  &__cat {
+    position: absolute;
+    width: 50px;
+    height: 46px;
+    bottom: -2px;
+  }
+  &__button {
+    margin-left: auto;
+  }
+}
+
+@include mobile {
+  .c-cookie-banner {
+    width: 300px;
+  }
+}
