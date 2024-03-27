@@ -27,7 +27,7 @@ export class CookieBannerComponent extends BaseComponent implements AfterViewIni
 
   private readonly bannerTitle = 'Добро пожаловать в Wisher - сервис по исполнению желаний!';
   private readonly bannerButtonText = 'Понятно';
-  private readonly bannerWidth = 300;
+  private readonly bannerWidth = 350;
 
   constructor(private readonly snackBar: MatSnackBar) {
     super();

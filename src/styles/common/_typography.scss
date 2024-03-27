@@ -14,7 +14,7 @@
 }
 
 label, .caption {
-  @include text('Rubik', 400, 10, 12);
+  @include text('Rubik', 400, 11, 12);
 }
 b, .bold-text {
   @include text('Rubik', 700, 'inherit', 18);
@@ -44,7 +44,7 @@ h1, .header-1 {
 
 @include mobile {
   label, .caption {
-    @include text('Rubik', 400, 9, 10);
+    @include text('Rubik', 400, 10, 11);
   }
   b, .bold-text {
     @include text('Rubik', 700, 'inherit', 14);
