@@ -1,0 +1,14 @@
+<div class="c-dropdown" cdkOverlayOrigin #dropdown="cdkOverlayOrigin">
+  <div class="c-dropdown__switch-button" (click)="overlay.switch()">
+    <ng-content></ng-content>
+  </div>
+  <app-overlay #overlay [trigger]="dropdown" [position]="position">
+    <div class="c-dropdown__overlay">
+      <div
+        *ngFor="let item of dropdownItems"
+        class="c-dropdown__item"
+        (click)="item.action()"
+      >{{ item.value }}</div>
+    </div>
+  </app-overlay>
+</div>

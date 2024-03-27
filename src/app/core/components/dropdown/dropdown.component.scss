@@ -1,10 +1,13 @@
 @import 'src/styles/common/media';
 
 .c-dropdown {
-  padding: 4px 0;
-  background-color: var(--background-1);
-  border: 2px solid var(--accent);
-  border-radius: 8px;
+  &__overlay {
+    padding: 4px 0;
+    background-color: var(--background-1);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    margin-top: 8px;
+  }
   &__item {
     padding: 0 14px;
     min-height: 28px;
@@ -23,8 +26,11 @@
 
 @include mobile {
   .c-dropdown {
-    border-width: 1px;
-    border-radius: 4px;
+    &__overlay {
+      border-width: 1px;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
     &__item {
       min-height: 24px;
       min-width: 90px;
