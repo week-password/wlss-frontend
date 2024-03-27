@@ -4,6 +4,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
+import { SessionStateService } from '@auth/services/state';
 import { BaseComponent } from '@core/base-components';
 import { CookieBannerComponent } from '@root/components/cookie-banner';
 import { FooterComponent } from '@root/components/footer';
@@ -24,13 +25,14 @@ export class RootPage extends BaseComponent implements OnInit {
     private readonly healthCheckApiService: HealthCheckApiService,
     private readonly platform: Platform,
     private readonly router: Router,
+    private readonly sessionStateService: SessionStateService,
     private readonly uiStateService: UiStateService,
   ) {
     super();
   }
 
   get showHeader(): boolean {
-    return ['signin', 'signup', 'unavailable'].every((path: string) => !window.location.pathname.includes(path));
+    return this.sessionStateService.isLoggedIn && !window.location.pathname.includes('unavailable');
   }
 
   @HostListener('window:resize')
