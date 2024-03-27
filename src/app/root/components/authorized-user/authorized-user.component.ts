@@ -1,5 +1,4 @@
-import { CdkOverlayOrigin } from '@angular/cdk/overlay';
-import { NgFor, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { finalize, takeUntil } from 'rxjs';
@@ -8,20 +7,18 @@ import { AuthService } from '@auth/services/client';
 import { SessionStateService } from '@auth/services/state';
 import { BaseComponent } from '@core/base-components';
 import { AvatarComponent } from '@core/components/avatar';
+import { DropdownComponent } from '@core/components/dropdown';
 import { LoaderComponent } from '@core/components/loader';
-import { OverlayComponent } from '@core/components/overlay';
-import { EOverlayPosition, TDropdownItem } from '@core/models/client';
+import { TDropdownItem } from '@core/models/client';
 import { TProfile } from '@profile/models/client';
 import { ProfileService } from '@profile/services/client';
 import { UserStateService } from '@root/services/state';
 
 const imports = [
   AvatarComponent,
-  CdkOverlayOrigin,
+  DropdownComponent,
   LoaderComponent,
-  NgFor,
   NgIf,
-  OverlayComponent,
 ];
 @Component({
   imports,
@@ -36,7 +33,6 @@ export class AuthorizedUserComponent extends BaseComponent implements OnInit {
     { value: 'Профиль', action: this.goToProfile.bind(this) },
     { value: 'Выход', action: this.signout.bind(this) },
   ];
-  readonly EOverlayPosition = EOverlayPosition;
 
   constructor(
     private readonly authService: AuthService,

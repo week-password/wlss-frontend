@@ -6,16 +6,12 @@
   </ng-container>
   <ng-container *ngIf="friendshipStatus === EFriendshipStatus.acceptedRequest">
     <div class="c-profile-actions__item">
-      <div
-        class="c-button c-button_text pr-10"
-        (mouseup)="$event.stopPropagation()"
-        (click)="dropdown.switch()"
-      >у вас в друзьях</div>
-      <app-ellipsis-dropdown
-        #dropdown
-        [position]="EOverlayPosition.bottomEnd"
-        [dropdownItems]="acceptedRequestStatusDropdownItems"
-      />
+      <app-dropdown [dropdownItems]="acceptedRequestStatusDropdownItems">
+        <div class="d-flex align-items-center">
+          <div class="c-button c-button_text pr-10">у вас в друзьях</div>
+          <app-icon class="c-button c-button_icon" icon="more_horiz"></app-icon>
+        </div>
+      </app-dropdown>
     </div>
   </ng-container>
   <ng-container *ngIf="friendshipStatus === EFriendshipStatus.incomingRequest">
