@@ -9,8 +9,8 @@
     [visibleDescriptionLinesLength]="10"
   >
     <app-profile-actions
-      controls
       *ngIf="profile.friendshipStatus"
+      controls
       [friendshipStatus]="profile.friendshipStatus"
       (acceptIncomingRequest)="acceptIncomingRequest()"
       (rejectIncomingRequest)="rejectIncomingRequest()"
@@ -18,7 +18,11 @@
       (cancelOutgoingRequest)="cancelOutgoingRequest()"
       (removeAcceptedRequest)="removeAcceptedRequest()"
     />
-    <app-button controls *ngIf="profile.account.id === accountId" (click)="openProfileSettings()">Редактировать</app-button>
+    <app-button
+      *ngIf="profile.account.id === accountId"
+      controls
+      (click)="openProfileSettings()"
+    >Редактировать</app-button>
   </app-card>
 </div>
 <div *ngIf="showAcceptedRequests" class="с-profile__block">
@@ -39,19 +43,19 @@
         +
       </a>
     </div>
-    <div content *ngIf="acceptedRequests.length" class="с-profile__related-profiles">
+    <div *ngIf="acceptedRequests.length" content class="с-profile__related-profiles">
       <app-short-profile-card
         *ngFor="let profile of acceptedRequests"
         class="с-profile__related-profile"
         [profile]="profile"
       ></app-short-profile-card>
     </div>
-    <div content *ngIf="!acceptedRequests.length" class="color-text-4">
+    <div *ngIf="!acceptedRequests.length" content class="color-text-4">
       Здесь будут отображаться ваши друзья
     </div>
   </app-profile-block>
 </div>
-<div class="с-profile__block" *ngIf="incomingRequests.length">
+<div *ngIf="incomingRequests.length" class="с-profile__block">
   <app-profile-block [collapsable]="true" [initialState]="EBlockState.collapsed">
     <div title class="d-flex">
       <h3 class="mr-4">Входящие заявки</h3>
@@ -68,7 +72,7 @@
     </div>
   </app-profile-block>
 </div>
-<div class="с-profile__block" *ngIf="outgoingRequests.length">
+<div *ngIf="outgoingRequests.length" class="с-profile__block">
   <app-profile-block [collapsable]="true" [initialState]="EBlockState.collapsed">
     <div title class="d-flex">
       <h3 class="mr-4">Исходящие заявки</h3>

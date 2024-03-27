@@ -13,13 +13,13 @@
         [visibleDescriptionLinesLength]="6"
       >
         <app-wish-actions
-          controls
           *ngIf="wish.bookingStatus"
+          controls
           [bookingStatus]="wish.bookingStatus"
           (createBooking)="createBooking(wish)"
           (removeBooking)="removeBooking(wish)"
         />
-        <div controls *ngIf="editableItems">
+        <div *ngIf="editableItems" controls>
           <app-button (click)="openWishFormDialog(wish)">Редактировать</app-button>
         </div>
       </app-card>
