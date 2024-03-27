@@ -25,4 +25,7 @@
     background-color: var(--background-1);
     z-index: 0;
   }
+  &__cookie-banner {
+    z-index: 3;
+  }
 }

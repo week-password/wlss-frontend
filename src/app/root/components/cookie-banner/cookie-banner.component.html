@@ -1,4 +1,17 @@
-<ng-template #cookieText>
-  <div class="color-text-4">Мы используем технические cookie, чтобы улучшить работу и предоставить вам лучший опыт использования нашего сервиса. Наши cookie не собирают информацию о вашей личности и не передают ее третьим лицам.</div>
-  <div class="color-text-4">Подробнее о нашей политике использования cookie вы можете узнать в нашей <a class="color-accent" routerLink="/terms/privacy-policy">Политике конфиденциальности</a>.</div>
-</ng-template>
+<div class="c-cookie-banner" *ngIf="!dismissed">
+    <div class="c-cookie-banner__cat">
+      <svg-icon src="assets/icons/mas-cat.svg"></svg-icon>
+    </div>
+    <div class="c-cookie-banner__title medium-text mb-10">Добро пожаловать в Wisher - сервис по исполнению желаний!</div>
+    <div class="c-cookie-banner__content caption">
+      <div class="color-text-4">Мы используем технические cookie, чтобы улучшить работу и предоставить вам лучший опыт использования нашего сервиса. Наши cookie не собирают информацию о вашей личности и не передают ее третьим лицам.</div>
+      <div class="color-text-4">Подробнее о нашей политике использования cookie вы можете узнать в нашей <a class="color-accent" routerLink="/terms/privacy-policy">Политике конфиденциальности</a>.</div>
+    </div>
+    <div class="d-flex mt-10">
+      <app-button
+        class="c-cookie-banner__button caption"
+        [height]="24"
+        (click)="dismiss()"
+      >Понятно</app-button>
+    </div>
+</div>
